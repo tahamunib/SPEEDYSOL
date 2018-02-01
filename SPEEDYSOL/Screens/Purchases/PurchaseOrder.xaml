@@ -1,0 +1,43 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Purchases.PurchaseOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPEEDYSOL.Screens"
+        mc:Ignorable="d"
+        Title="PurchaseOrder" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+    
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnCreatePOrder" Width="80" Height="80" Click="btnCreatePOrder_Click">Create Order</Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">PURCHASE ORDERS</TextBlock>
+        <DataGrid Background="#FFAEABAB" Name="purchaseOrderGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False">
+            <DataGrid.Columns>
+                <DataGridHyperlinkColumn x:Name="OrderID" Binding="{Binding POrderID}" Header="OrderID" DisplayIndex="0"></DataGridHyperlinkColumn>
+                <DataGridTextColumn DisplayIndex="1" Header="Godown" Binding="{Binding Godown.Name}" x:Name="GodownName"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="Client" Binding="{Binding SSClient.Name}" x:Name="ClientName"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="Total" Binding="{Binding GrandTotal}" x:Name="GrandTotal"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="4" Header="CreatedOn" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="5" Header="UpdatedOn" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTemplateColumn DisplayIndex="6">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Width="50" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="50" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

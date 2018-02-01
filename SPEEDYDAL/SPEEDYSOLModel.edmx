@@ -1,0 +1,1137 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="SPEEDYSOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Godowns">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="Items">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="PurchasePrice" Type="int" Nullable="false" />
+          <Property Name="SalePrice" Type="int" Nullable="false" />
+          <Property Name="Manufacturer" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="PackUnit" Type="int" Nullable="false" />
+          <Property Name="RecentPurchase" Type="int" />
+          <Property Name="UnitWeight" Type="int" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="OrderBooker">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="ContactNum" Type="nvarchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POrderID" Type="nvarchar(max)" />
+          <Property Name="GodownID" Type="bigint" />
+          <Property Name="ClientID" Type="bigint" />
+          <Property Name="InvType" Type="varchar" MaxLength="255" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="TotalQtyPack" Type="int" />
+          <Property Name="TotalQtyLoose" Type="int" />
+          <Property Name="TotalQty" Type="int" />
+          <Property Name="TotalQtyBonus" Type="int" />
+          <Property Name="TotalDiscountPercentage" Type="int" />
+          <Property Name="TotalFlatDiscount" Type="bigint" />
+          <Property Name="TotalGST" Type="bigint" />
+          <Property Name="TotalExclTax" Type="bigint" />
+          <Property Name="TotalInclTax" Type="bigint" />
+          <Property Name="GrandTotal" Type="bigint" />
+          <Property Name="isPosted" Type="bit" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="POrderID" Type="bigint" />
+          <Property Name="ItemID" Type="bigint" />
+          <Property Name="FlatDiscount" Type="bigint" />
+          <Property Name="GSTPercentage" Type="int" />
+          <Property Name="GSTValue" Type="bigint" />
+          <Property Name="MarginPercentage" Type="int" />
+          <Property Name="MarkupPercentage" Type="int" />
+          <Property Name="NetRate" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Bonus" Type="int" />
+          <Property Name="TotalDisc" Type="bigint" />
+          <Property Name="DiscAfterTax" Type="bigint" />
+          <Property Name="TP" Type="bigint" />
+          <Property Name="GrossAmount" Type="bigint" />
+          <Property Name="DiscPercentage" Type="int" />
+        </EntityType>
+        <EntityType Name="SaleOrder">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SalesManID" Type="bigint" />
+          <Property Name="BookerID" Type="bigint" />
+          <Property Name="ClientID" Type="bigint" />
+          <Property Name="SaleAddress" Type="varchar" MaxLength="255" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="VehicleNo" Type="varchar" MaxLength="255" />
+          <Property Name="TotalQtyPack" Type="int" />
+          <Property Name="TotalQtyLoose" Type="int" />
+          <Property Name="TotalQty" Type="int" />
+          <Property Name="TotalQtyBonus" Type="int" />
+          <Property Name="TotalDiscountPercentage" Type="int" />
+          <Property Name="TotalFlatDiscount" Type="bigint" />
+          <Property Name="TotalDiscount" Type="bigint" />
+          <Property Name="TotalGST" Type="bigint" />
+          <Property Name="TotalAdditionalGST" Type="bigint" />
+          <Property Name="TotalGrossSalePercentage" Type="int" />
+          <Property Name="TotalExclTax" Type="bigint" />
+          <Property Name="TotalInclTax" Type="bigint" />
+          <Property Name="GrandTotal" Type="bigint" />
+          <Property Name="SaleReturn" Type="bigint" />
+          <Property Name="NetValue" Type="int" />
+          <Property Name="CashBack" Type="bigint" />
+          <Property Name="isPosted" Type="bit" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SaleOrderDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SOrderID" Type="bigint" />
+          <Property Name="ItemID" Type="bigint" />
+          <Property Name="DiscountPercentage" Type="int" />
+          <Property Name="Total" Type="bigint" />
+          <Property Name="ExtraDiscount" Type="int" />
+          <Property Name="SaleTO" Type="int" />
+          <Property Name="SalePrice" Type="int" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+          <Property Name="Bonus" Type="int" />
+        </EntityType>
+        <EntityType Name="Salesman">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="Type" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SSAccounts">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AccNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="BalanceLimit" Type="bigint" Nullable="false" />
+          <Property Name="DiscountInPercentage" Type="int" />
+          <Property Name="Remarks" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SSClients">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContactPerson" Type="varchar" MaxLength="255" />
+          <Property Name="Address" Type="varchar" MaxLength="255" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="255" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="255" />
+          <Property Name="NIC" Type="varchar" MaxLength="255" />
+          <Property Name="City" Type="varchar" MaxLength="255" />
+          <Property Name="NTN" Type="nvarchar" MaxLength="255" />
+          <Property Name="SalesTaxNo" Type="varchar" MaxLength="255" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SSUsers">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="bigint" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="ContactNum" Type="nvarchar" MaxLength="255" />
+          <Property Name="LoginID" Type="nvarchar" MaxLength="255" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SSUsersRoles">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Total" Type="int" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="VoucherDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VoucherID" Type="bigint" />
+          <Property Name="AccountID" Type="bigint" />
+          <Property Name="VoucherCode" Type="varchar(max)" Nullable="false" />
+          <Property Name="RefNo" Type="nvarchar" MaxLength="255" />
+          <Property Name="Description" Type="varchar" MaxLength="255" />
+          <Property Name="Amount" Type="int" />
+          <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <Association Name="FK_PurchaseOrder_Godown">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="0..1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_SSClients">
+          <End Role="SSClients" Type="Self.SSClients" Multiplicity="0..1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetail_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetail_POrder">
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="POrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_Booker">
+          <End Role="OrderBooker" Type="Self.OrderBooker" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderBooker">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="BookerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_SalesMan">
+          <End Role="Salesman" Type="Self.Salesman" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salesman">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="SalesManID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_SSClients">
+          <End Role="SSClients" Type="Self.SSClients" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrderDetail_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrderDetail_SOrder">
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="0..1" />
+          <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleOrder">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrderDetail">
+              <PropertyRef Name="SOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSUsers_SSUserRoles">
+          <End Role="SSUsersRoles" Type="Self.SSUsersRoles" Multiplicity="0..1" />
+          <End Role="SSUsers" Type="Self.SSUsers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSUsersRoles">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSUsers">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoucherDetail_SSAccounts">
+          <End Role="SSAccounts" Type="Self.SSAccounts" Multiplicity="0..1" />
+          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSAccounts">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="VoucherDetail">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoucherDetail_Voucher">
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
+          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="VoucherDetail">
+              <PropertyRef Name="VoucherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SPEEDYSOLModelStoreContainer">
+          <EntitySet Name="Godowns" EntityType="Self.Godowns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderBooker" EntityType="Self.OrderBooker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleOrder" EntityType="Self.SaleOrder" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SaleOrderDetail" EntityType="Self.SaleOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Salesman" EntityType="Self.Salesman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSAccounts" EntityType="Self.SSAccounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSClients" EntityType="Self.SSClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSUsers" EntityType="Self.SSUsers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VoucherDetail" EntityType="Self.VoucherDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_SSClients" Association="Self.FK_PurchaseOrder_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetail_Items" Association="Self.FK_PurchaseOrderDetail_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetail_POrder" Association="Self.FK_PurchaseOrderDetail_POrder">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_Booker" Association="Self.FK_SaleOrder_Booker">
+            <End Role="OrderBooker" EntitySet="OrderBooker" />
+            <End Role="SaleOrder" EntitySet="SaleOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_SalesMan" Association="Self.FK_SaleOrder_SalesMan">
+            <End Role="Salesman" EntitySet="Salesman" />
+            <End Role="SaleOrder" EntitySet="SaleOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_SSClients" Association="Self.FK_SaleOrder_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="SaleOrder" EntitySet="SaleOrder" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrderDetail_Items" Association="Self.FK_SaleOrderDetail_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrderDetail_SOrder" Association="Self.FK_SaleOrderDetail_SOrder">
+            <End Role="SaleOrder" EntitySet="SaleOrder" />
+            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSUsers_SSUserRoles" Association="Self.FK_SSUsers_SSUserRoles">
+            <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
+            <End Role="SSUsers" EntitySet="SSUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoucherDetail_SSAccounts" Association="Self.FK_VoucherDetail_SSAccounts">
+            <End Role="SSAccounts" EntitySet="SSAccounts" />
+            <End Role="VoucherDetail" EntitySet="VoucherDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoucherDetail_Voucher" Association="Self.FK_VoucherDetail_Voucher">
+            <End Role="Voucher" EntitySet="Voucher" />
+            <End Role="VoucherDetail" EntitySet="VoucherDetail" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SPEEDYSOLModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Godown">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Godown" FromRole="Godowns" ToRole="PurchaseOrder" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="PurchasePrice" Type="Int32" Nullable="false" />
+          <Property Name="SalePrice" Type="Int32" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PackUnit" Type="Int32" Nullable="false" />
+          <Property Name="RecentPurchase" Type="Int32" />
+          <Property Name="UnitWeight" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="Self.FK_PurchaseOrderDetail_Items" FromRole="Items" ToRole="PurchaseOrderDetail" />
+          <NavigationProperty Name="SaleOrderDetails" Relationship="Self.FK_SaleOrderDetail_Items" FromRole="Items" ToRole="SaleOrderDetail" />
+        </EntityType>
+        <EntityType Name="OrderBooker">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SaleOrders" Relationship="Self.FK_SaleOrder_Booker" FromRole="OrderBooker" ToRole="SaleOrder" />
+        </EntityType>
+        <EntityType Name="PurchaseOrder">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GodownID" Type="Int64" />
+          <Property Name="ClientID" Type="Int64" />
+          <Property Name="InvType" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TotalQtyPack" Type="Int32" />
+          <Property Name="TotalQtyLoose" Type="Int32" />
+          <Property Name="TotalQty" Type="Int32" />
+          <Property Name="TotalQtyBonus" Type="Int32" />
+          <Property Name="TotalDiscountPercentage" Type="Int32" />
+          <Property Name="TotalFlatDiscount" Type="Int64" />
+          <Property Name="TotalGST" Type="Int64" />
+          <Property Name="TotalExclTax" Type="Int64" />
+          <Property Name="TotalInclTax" Type="Int64" />
+          <Property Name="GrandTotal" Type="Int64" />
+          <Property Name="isPosted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Godown" Relationship="Self.FK_PurchaseOrder_Godown" FromRole="PurchaseOrder" ToRole="Godowns" />
+          <NavigationProperty Name="SSClient" Relationship="Self.FK_PurchaseOrder_SSClients" FromRole="PurchaseOrder" ToRole="SSClients" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="Self.FK_PurchaseOrderDetail_POrder" FromRole="PurchaseOrder" ToRole="PurchaseOrderDetail" />
+          <Property Name="POrderID" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="PurchaseOrderDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="POrderID" Type="Int64" />
+          <Property Name="ItemID" Type="Int64" />
+          <Property Name="FlatDiscount" Type="Int64" />
+          <Property Name="GSTPercentage" Type="Int32" />
+          <Property Name="GSTValue" Type="Int64" />
+          <Property Name="MarginPercentage" Type="Int32" />
+          <Property Name="MarkupPercentage" Type="Int32" />
+          <Property Name="NetRate" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Bonus" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_PurchaseOrderDetail_Items" FromRole="PurchaseOrderDetail" ToRole="Items" />
+          <NavigationProperty Name="PurchaseOrder" Relationship="Self.FK_PurchaseOrderDetail_POrder" FromRole="PurchaseOrderDetail" ToRole="PurchaseOrder" />
+          <Property Name="TotalDisc" Type="Int64" />
+          <Property Name="DiscAfterTax" Type="Int64" />
+          <Property Name="TP" Type="Int64" />
+          <Property Name="GrossAmount" Type="Int64" />
+          <Property Name="DiscPercentage" Type="Int32" />
+        </EntityType>
+        <EntityType Name="SaleOrder">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SalesManID" Type="Int64" />
+          <Property Name="BookerID" Type="Int64" />
+          <Property Name="ClientID" Type="Int64" />
+          <Property Name="SaleAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="VehicleNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="TotalQtyPack" Type="Int32" />
+          <Property Name="TotalQtyLoose" Type="Int32" />
+          <Property Name="TotalQty" Type="Int32" />
+          <Property Name="TotalQtyBonus" Type="Int32" />
+          <Property Name="TotalDiscountPercentage" Type="Int32" />
+          <Property Name="TotalFlatDiscount" Type="Int64" />
+          <Property Name="TotalDiscount" Type="Int64" />
+          <Property Name="TotalGST" Type="Int64" />
+          <Property Name="TotalAdditionalGST" Type="Int64" />
+          <Property Name="TotalGrossSalePercentage" Type="Int32" />
+          <Property Name="TotalExclTax" Type="Int64" />
+          <Property Name="TotalInclTax" Type="Int64" />
+          <Property Name="GrandTotal" Type="Int64" />
+          <Property Name="SaleReturn" Type="Int64" />
+          <Property Name="NetValue" Type="Int32" />
+          <Property Name="CashBack" Type="Int64" />
+          <Property Name="isPosted" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="OrderBooker" Relationship="Self.FK_SaleOrder_Booker" FromRole="SaleOrder" ToRole="OrderBooker" />
+          <NavigationProperty Name="Salesman" Relationship="Self.FK_SaleOrder_SalesMan" FromRole="SaleOrder" ToRole="Salesman" />
+          <NavigationProperty Name="SSClient" Relationship="Self.FK_SaleOrder_SSClients" FromRole="SaleOrder" ToRole="SSClients" />
+          <NavigationProperty Name="SaleOrderDetails" Relationship="Self.FK_SaleOrderDetail_SOrder" FromRole="SaleOrder" ToRole="SaleOrderDetail" />
+        </EntityType>
+        <EntityType Name="SaleOrderDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SOrderID" Type="Int64" />
+          <Property Name="ItemID" Type="Int64" />
+          <Property Name="DiscountPercentage" Type="Int32" />
+          <Property Name="Total" Type="Int64" />
+          <Property Name="ExtraDiscount" Type="Int32" />
+          <Property Name="SaleTO" Type="Int32" />
+          <Property Name="SalePrice" Type="Int32" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <Property Name="Bonus" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="Self.FK_SaleOrderDetail_Items" FromRole="SaleOrderDetail" ToRole="Items" />
+          <NavigationProperty Name="SaleOrder" Relationship="Self.FK_SaleOrderDetail_SOrder" FromRole="SaleOrderDetail" ToRole="SaleOrder" />
+        </EntityType>
+        <EntityType Name="Salesman">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Type" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SaleOrders" Relationship="Self.FK_SaleOrder_SalesMan" FromRole="Salesman" ToRole="SaleOrder" />
+        </EntityType>
+        <EntityType Name="SSAccount">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AccNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="BalanceLimit" Type="Int64" Nullable="false" />
+          <Property Name="DiscountInPercentage" Type="Int32" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="VoucherDetails" Relationship="Self.FK_VoucherDetail_SSAccounts" FromRole="SSAccounts" ToRole="VoucherDetail" />
+        </EntityType>
+        <EntityType Name="SSClient">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactPerson" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Address" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="255" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Fax" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="NIC" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="City" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="NTN" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SalesTaxNo" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_SSClients" FromRole="SSClients" ToRole="PurchaseOrder" />
+          <NavigationProperty Name="SaleOrders" Relationship="Self.FK_SaleOrder_SSClients" FromRole="SSClients" ToRole="SaleOrder" />
+        </EntityType>
+        <EntityType Name="SSUser">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleID" Type="Int64" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ContactNum" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="LoginID" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SSUsersRole" Relationship="Self.FK_SSUsers_SSUserRoles" FromRole="SSUsers" ToRole="SSUsersRoles" />
+        </EntityType>
+        <EntityType Name="SSUsersRole">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SSUsers" Relationship="Self.FK_SSUsers_SSUserRoles" FromRole="SSUsersRoles" ToRole="SSUsers" />
+        </EntityType>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Total" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="VoucherDetails" Relationship="Self.FK_VoucherDetail_Voucher" FromRole="Voucher" ToRole="VoucherDetail" />
+        </EntityType>
+        <EntityType Name="VoucherDetail">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoucherID" Type="Int64" />
+          <Property Name="AccountID" Type="Int64" />
+          <Property Name="VoucherCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RefNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Amount" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SSAccount" Relationship="Self.FK_VoucherDetail_SSAccounts" FromRole="VoucherDetail" ToRole="SSAccounts" />
+          <NavigationProperty Name="Voucher" Relationship="Self.FK_VoucherDetail_Voucher" FromRole="VoucherDetail" ToRole="Voucher" />
+        </EntityType>
+        <Association Name="FK_PurchaseOrder_Godown">
+          <End Role="Godowns" Type="Self.Godown" Multiplicity="0..1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetail_Items">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrderDetail_Items">
+          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
+          <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_Booker">
+          <End Role="OrderBooker" Type="Self.OrderBooker" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderBooker">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="BookerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrder_SSClients">
+          <End Role="SSClients" Type="Self.SSClient" Multiplicity="0..1" />
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrder">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetail_POrder">
+          <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="0..1" />
+          <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseOrder">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="POrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_SalesMan">
+          <End Role="Salesman" Type="Self.Salesman" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salesman">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="SalesManID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrder_SSClients">
+          <End Role="SSClients" Type="Self.SSClient" Multiplicity="0..1" />
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrder">
+              <PropertyRef Name="ClientID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrderDetail_SOrder">
+          <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="0..1" />
+          <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SaleOrder">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrderDetail">
+              <PropertyRef Name="SOrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoucherDetail_SSAccounts">
+          <End Role="SSAccounts" Type="Self.SSAccount" Multiplicity="0..1" />
+          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSAccounts">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="VoucherDetail">
+              <PropertyRef Name="AccountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSUsers_SSUserRoles">
+          <End Role="SSUsersRoles" Type="Self.SSUsersRole" Multiplicity="0..1" />
+          <End Role="SSUsers" Type="Self.SSUser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSUsersRoles">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSUsers">
+              <PropertyRef Name="RoleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_VoucherDetail_Voucher">
+          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
+          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Voucher">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="VoucherDetail">
+              <PropertyRef Name="VoucherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SPEEDYSOLEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Godowns" EntityType="Self.Godown" />
+          <EntitySet Name="Items" EntityType="Self.Item" />
+          <EntitySet Name="OrderBookers" EntityType="Self.OrderBooker" />
+          <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrder" />
+          <EntitySet Name="PurchaseOrderDetails" EntityType="Self.PurchaseOrderDetail" />
+          <EntitySet Name="SaleOrders" EntityType="Self.SaleOrder" />
+          <EntitySet Name="SaleOrderDetails" EntityType="Self.SaleOrderDetail" />
+          <EntitySet Name="Salesmen" EntityType="Self.Salesman" />
+          <EntitySet Name="SSAccounts" EntityType="Self.SSAccount" />
+          <EntitySet Name="SSClients" EntityType="Self.SSClient" />
+          <EntitySet Name="SSUsers" EntityType="Self.SSUser" />
+          <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRole" />
+          <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
+          <EntitySet Name="VoucherDetails" EntityType="Self.VoucherDetail" />
+          <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetail_Items" Association="Self.FK_PurchaseOrderDetail_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrderDetail_Items" Association="Self.FK_SaleOrderDetail_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_Booker" Association="Self.FK_SaleOrder_Booker">
+            <End Role="OrderBooker" EntitySet="OrderBookers" />
+            <End Role="SaleOrder" EntitySet="SaleOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrder_SSClients" Association="Self.FK_PurchaseOrder_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetail_POrder" Association="Self.FK_PurchaseOrderDetail_POrder">
+            <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_SalesMan" Association="Self.FK_SaleOrder_SalesMan">
+            <End Role="Salesman" EntitySet="Salesmen" />
+            <End Role="SaleOrder" EntitySet="SaleOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrder_SSClients" Association="Self.FK_SaleOrder_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="SaleOrder" EntitySet="SaleOrders" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrderDetail_SOrder" Association="Self.FK_SaleOrderDetail_SOrder">
+            <End Role="SaleOrder" EntitySet="SaleOrders" />
+            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoucherDetail_SSAccounts" Association="Self.FK_VoucherDetail_SSAccounts">
+            <End Role="SSAccounts" EntitySet="SSAccounts" />
+            <End Role="VoucherDetail" EntitySet="VoucherDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSUsers_SSUserRoles" Association="Self.FK_SSUsers_SSUserRoles">
+            <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
+            <End Role="SSUsers" EntitySet="SSUsers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_VoucherDetail_Voucher" Association="Self.FK_VoucherDetail_Voucher">
+            <End Role="Voucher" EntitySet="Vouchers" />
+            <End Role="VoucherDetail" EntitySet="VoucherDetails" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SPEEDYSOLModelStoreContainer" CdmEntityContainer="SPEEDYSOLEntities">
+          <EntitySetMapping Name="Godowns">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Godown">
+              <MappingFragment StoreEntitySet="Godowns">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="PackUnit" ColumnName="PackUnit" />
+                <ScalarProperty Name="RecentPurchase" ColumnName="RecentPurchase" />
+                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderBookers">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.OrderBooker">
+              <MappingFragment StoreEntitySet="OrderBooker">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrders">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseOrder">
+              <MappingFragment StoreEntitySet="PurchaseOrder">
+                <ScalarProperty Name="POrderID" ColumnName="POrderID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="InvType" ColumnName="InvType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="TotalQtyPack" ColumnName="TotalQtyPack" />
+                <ScalarProperty Name="TotalQtyLoose" ColumnName="TotalQtyLoose" />
+                <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+                <ScalarProperty Name="TotalQtyBonus" ColumnName="TotalQtyBonus" />
+                <ScalarProperty Name="TotalDiscountPercentage" ColumnName="TotalDiscountPercentage" />
+                <ScalarProperty Name="TotalFlatDiscount" ColumnName="TotalFlatDiscount" />
+                <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+                <ScalarProperty Name="TotalExclTax" ColumnName="TotalExclTax" />
+                <ScalarProperty Name="TotalInclTax" ColumnName="TotalInclTax" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="isPosted" ColumnName="isPosted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseOrderDetails">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseOrderDetail">
+              <MappingFragment StoreEntitySet="PurchaseOrderDetail">
+                <ScalarProperty Name="DiscPercentage" ColumnName="DiscPercentage" />
+                <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+                <ScalarProperty Name="TP" ColumnName="TP" />
+                <ScalarProperty Name="DiscAfterTax" ColumnName="DiscAfterTax" />
+                <ScalarProperty Name="TotalDisc" ColumnName="TotalDisc" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="POrderID" ColumnName="POrderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="FlatDiscount" ColumnName="FlatDiscount" />
+                <ScalarProperty Name="GSTPercentage" ColumnName="GSTPercentage" />
+                <ScalarProperty Name="GSTValue" ColumnName="GSTValue" />
+                <ScalarProperty Name="MarginPercentage" ColumnName="MarginPercentage" />
+                <ScalarProperty Name="MarkupPercentage" ColumnName="MarkupPercentage" />
+                <ScalarProperty Name="NetRate" ColumnName="NetRate" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleOrders">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SaleOrder">
+              <MappingFragment StoreEntitySet="SaleOrder">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="SalesManID" ColumnName="SalesManID" />
+                <ScalarProperty Name="BookerID" ColumnName="BookerID" />
+                <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+                <ScalarProperty Name="SaleAddress" ColumnName="SaleAddress" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+                <ScalarProperty Name="TotalQtyPack" ColumnName="TotalQtyPack" />
+                <ScalarProperty Name="TotalQtyLoose" ColumnName="TotalQtyLoose" />
+                <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+                <ScalarProperty Name="TotalQtyBonus" ColumnName="TotalQtyBonus" />
+                <ScalarProperty Name="TotalDiscountPercentage" ColumnName="TotalDiscountPercentage" />
+                <ScalarProperty Name="TotalFlatDiscount" ColumnName="TotalFlatDiscount" />
+                <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+                <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+                <ScalarProperty Name="TotalAdditionalGST" ColumnName="TotalAdditionalGST" />
+                <ScalarProperty Name="TotalGrossSalePercentage" ColumnName="TotalGrossSalePercentage" />
+                <ScalarProperty Name="TotalExclTax" ColumnName="TotalExclTax" />
+                <ScalarProperty Name="TotalInclTax" ColumnName="TotalInclTax" />
+                <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+                <ScalarProperty Name="SaleReturn" ColumnName="SaleReturn" />
+                <ScalarProperty Name="NetValue" ColumnName="NetValue" />
+                <ScalarProperty Name="CashBack" ColumnName="CashBack" />
+                <ScalarProperty Name="isPosted" ColumnName="isPosted" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SaleOrderDetails">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SaleOrderDetail">
+              <MappingFragment StoreEntitySet="SaleOrderDetail">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="SOrderID" ColumnName="SOrderID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="ExtraDiscount" ColumnName="ExtraDiscount" />
+                <ScalarProperty Name="SaleTO" ColumnName="SaleTO" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Salesmen">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Salesman">
+              <MappingFragment StoreEntitySet="Salesman">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Type" ColumnName="Type" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSAccounts">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSAccount">
+              <MappingFragment StoreEntitySet="SSAccounts">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="AccNo" ColumnName="AccNo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="BalanceLimit" ColumnName="BalanceLimit" />
+                <ScalarProperty Name="DiscountInPercentage" ColumnName="DiscountInPercentage" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSClients">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSClient">
+              <MappingFragment StoreEntitySet="SSClients">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="NIC" ColumnName="NIC" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="NTN" ColumnName="NTN" />
+                <ScalarProperty Name="SalesTaxNo" ColumnName="SalesTaxNo" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSUsers">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSUser">
+              <MappingFragment StoreEntitySet="SSUsers">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSUsersRoles">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSUsersRole">
+              <MappingFragment StoreEntitySet="SSUsersRoles">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Voucher">
+              <MappingFragment StoreEntitySet="Voucher">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VoucherDetails">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.VoucherDetail">
+              <MappingFragment StoreEntitySet="VoucherDetail">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

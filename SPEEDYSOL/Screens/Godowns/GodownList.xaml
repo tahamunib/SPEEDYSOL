@@ -1,0 +1,39 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Godowns.GodownList"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SPEEDYSOL.Screens.Godowns"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Godown List" Width="1000" Height="600" Background="#FFAEABAB" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+            
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnAddGodown" Width="80" Height="80" Click="btnAddGodown_Click">ADD</Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="153">GODOWNS</TextBlock>
+        <DataGrid SelectionChanged="godownGrid_SelectionChanged" ColumnWidth="*" Background="#FFAEABAB" Name="godownGrid" Grid.Row="1" ItemsSource="{Binding}" AutoGeneratingColumn="godownGrid_AutoGeneratingColumn" AutoGenerateColumns="True">
+            <DataGrid.Columns>
+                
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Width="50" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="50" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

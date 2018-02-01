@@ -1,0 +1,233 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="SPEEDYSOLModelStoreContainer" CdmEntityContainer="SPEEDYSOLEntities">
+    <EntitySetMapping Name="Godowns">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.Godown">
+        <MappingFragment StoreEntitySet="Godowns">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Items">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.Item">
+        <MappingFragment StoreEntitySet="Items">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="PackUnit" ColumnName="PackUnit" />
+          <ScalarProperty Name="RecentPurchase" ColumnName="RecentPurchase" />
+          <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="OrderBookers">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.OrderBooker">
+        <MappingFragment StoreEntitySet="OrderBooker">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrders">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseOrder">
+        <MappingFragment StoreEntitySet="PurchaseOrder">
+          <ScalarProperty Name="POrderID" ColumnName="POrderID" />
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="GodownID" ColumnName="GodownID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="InvType" ColumnName="InvType" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="TotalQtyPack" ColumnName="TotalQtyPack" />
+          <ScalarProperty Name="TotalQtyLoose" ColumnName="TotalQtyLoose" />
+          <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+          <ScalarProperty Name="TotalQtyBonus" ColumnName="TotalQtyBonus" />
+          <ScalarProperty Name="TotalDiscountPercentage" ColumnName="TotalDiscountPercentage" />
+          <ScalarProperty Name="TotalFlatDiscount" ColumnName="TotalFlatDiscount" />
+          <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+          <ScalarProperty Name="TotalExclTax" ColumnName="TotalExclTax" />
+          <ScalarProperty Name="TotalInclTax" ColumnName="TotalInclTax" />
+          <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+          <ScalarProperty Name="isPosted" ColumnName="isPosted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="PurchaseOrderDetails">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseOrderDetail">
+        <MappingFragment StoreEntitySet="PurchaseOrderDetail">
+          <ScalarProperty Name="DiscPercentage" ColumnName="DiscPercentage" />
+          <ScalarProperty Name="GrossAmount" ColumnName="GrossAmount" />
+          <ScalarProperty Name="TP" ColumnName="TP" />
+          <ScalarProperty Name="DiscAfterTax" ColumnName="DiscAfterTax" />
+          <ScalarProperty Name="TotalDisc" ColumnName="TotalDisc" />
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="POrderID" ColumnName="POrderID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="FlatDiscount" ColumnName="FlatDiscount" />
+          <ScalarProperty Name="GSTPercentage" ColumnName="GSTPercentage" />
+          <ScalarProperty Name="GSTValue" ColumnName="GSTValue" />
+          <ScalarProperty Name="MarginPercentage" ColumnName="MarginPercentage" />
+          <ScalarProperty Name="MarkupPercentage" ColumnName="MarkupPercentage" />
+          <ScalarProperty Name="NetRate" ColumnName="NetRate" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleOrders">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SaleOrder">
+        <MappingFragment StoreEntitySet="SaleOrder">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="SalesManID" ColumnName="SalesManID" />
+          <ScalarProperty Name="BookerID" ColumnName="BookerID" />
+          <ScalarProperty Name="ClientID" ColumnName="ClientID" />
+          <ScalarProperty Name="SaleAddress" ColumnName="SaleAddress" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="VehicleNo" ColumnName="VehicleNo" />
+          <ScalarProperty Name="TotalQtyPack" ColumnName="TotalQtyPack" />
+          <ScalarProperty Name="TotalQtyLoose" ColumnName="TotalQtyLoose" />
+          <ScalarProperty Name="TotalQty" ColumnName="TotalQty" />
+          <ScalarProperty Name="TotalQtyBonus" ColumnName="TotalQtyBonus" />
+          <ScalarProperty Name="TotalDiscountPercentage" ColumnName="TotalDiscountPercentage" />
+          <ScalarProperty Name="TotalFlatDiscount" ColumnName="TotalFlatDiscount" />
+          <ScalarProperty Name="TotalDiscount" ColumnName="TotalDiscount" />
+          <ScalarProperty Name="TotalGST" ColumnName="TotalGST" />
+          <ScalarProperty Name="TotalAdditionalGST" ColumnName="TotalAdditionalGST" />
+          <ScalarProperty Name="TotalGrossSalePercentage" ColumnName="TotalGrossSalePercentage" />
+          <ScalarProperty Name="TotalExclTax" ColumnName="TotalExclTax" />
+          <ScalarProperty Name="TotalInclTax" ColumnName="TotalInclTax" />
+          <ScalarProperty Name="GrandTotal" ColumnName="GrandTotal" />
+          <ScalarProperty Name="SaleReturn" ColumnName="SaleReturn" />
+          <ScalarProperty Name="NetValue" ColumnName="NetValue" />
+          <ScalarProperty Name="CashBack" ColumnName="CashBack" />
+          <ScalarProperty Name="isPosted" ColumnName="isPosted" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SaleOrderDetails">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SaleOrderDetail">
+        <MappingFragment StoreEntitySet="SaleOrderDetail">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="SOrderID" ColumnName="SOrderID" />
+          <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+          <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="ExtraDiscount" ColumnName="ExtraDiscount" />
+          <ScalarProperty Name="SaleTO" ColumnName="SaleTO" />
+          <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+          <ScalarProperty Name="Qty" ColumnName="Qty" />
+          <ScalarProperty Name="Bonus" ColumnName="Bonus" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Salesmen">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.Salesman">
+        <MappingFragment StoreEntitySet="Salesman">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SSAccounts">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SSAccount">
+        <MappingFragment StoreEntitySet="SSAccounts">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="AccNo" ColumnName="AccNo" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="BalanceLimit" ColumnName="BalanceLimit" />
+          <ScalarProperty Name="DiscountInPercentage" ColumnName="DiscountInPercentage" />
+          <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SSClients">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SSClient">
+        <MappingFragment StoreEntitySet="SSClients">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
+          <ScalarProperty Name="Address" ColumnName="Address" />
+          <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Fax" ColumnName="Fax" />
+          <ScalarProperty Name="NIC" ColumnName="NIC" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="NTN" ColumnName="NTN" />
+          <ScalarProperty Name="SalesTaxNo" ColumnName="SalesTaxNo" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SSUsers">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SSUser">
+        <MappingFragment StoreEntitySet="SSUsers">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+          <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SSUsersRoles">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.SSUsersRole">
+        <MappingFragment StoreEntitySet="SSUsersRoles">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vouchers">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.Voucher">
+        <MappingFragment StoreEntitySet="Voucher">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="Total" ColumnName="Total" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="VoucherDetails">
+      <EntityTypeMapping TypeName="SPEEDYSOLModel.VoucherDetail">
+        <MappingFragment StoreEntitySet="VoucherDetail">
+          <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+          <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
+          <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+          <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
+          <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+          <ScalarProperty Name="Description" ColumnName="Description" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+          <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

@@ -1,0 +1,60 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Dashboard"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPEEDYSOL.Screens"
+        mc:Ignorable="d"
+        Title="Dashboard" Height="Auto" Width="Auto" >
+    
+    <Grid Background="#FFAEABAB">
+        <Grid.RowDefinitions>
+            
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+            <RowDefinition Height="100*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+            <ColumnDefinition Width="100*"/>
+        </Grid.ColumnDefinitions>
+        
+            
+        
+        <TextBlock Grid.Row="0" Grid.Column="1" Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40"  Height="53" Width="232">DASHBOARD</TextBlock>
+        <Button Grid.Row="1" Grid.Column="0" Name="btnSales" Width="150" Height="150" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="btnSales_Click" >
+            <StackPanel>
+                <TextBlock FontSize="18">SALES</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnPurchase" Grid.Row="1" Grid.Column="1" Width="150" HorizontalAlignment="Center" Height="150"  Click="btnPurchase_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">PURCHASES</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnVouchers" Grid.Row="1" Grid.Column="2" Height="150" Width="150" HorizontalAlignment="Center" VerticalAlignment="Center"  Click="btnVouchers_Click" >
+            <StackPanel>
+                <TextBlock FontSize="18">VOUCHERS</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnGodowns" Width="150" Grid.Row="1" Grid.Column="3" Height="150"  Click="btnGodowns_Click" HorizontalAlignment="Center" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">GODOWNS</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnItems" Width="150" Grid.Row="1" Grid.Column="4" Height="150" HorizontalAlignment="Center"  Click="btnItems_Click" VerticalAlignment="Center">
+            <StackPanel>
+                <TextBlock FontSize="18">ITEMS</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnUsers" Grid.Row="2" Grid.Column="2" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnUsers_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">USERS</TextBlock>
+            </StackPanel>
+        </Button>
+        
+    </Grid>
+</Page>

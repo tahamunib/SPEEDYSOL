@@ -1,0 +1,177 @@
+﻿<Window x:Class="SPEEDYSOL.Screens.Purchases.CreatePOrder"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:SPEEDYSOL.Screens.Purchases"
+        mc:Ignorable="d"
+        Title="Purchase Order" WindowState="Maximized" ShowInTaskbar="True" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFAEABAB" Height="Auto" Width="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="20*"></RowDefinition>
+            <RowDefinition Height="45*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <TextBlock Name="pOrderHeader" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="Auto" Width="Auto" FontSize="30">PURCHASE ORDER</TextBlock>
+        <Grid Grid.Row="1" Name="pOrder1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50"></RowDefinition>
+                <RowDefinition Height="50"></RowDefinition>
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+                <ColumnDefinition Width="10*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+                <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbGodown" Margin="10,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding godownID}" SelectedItem="{Binding SelectedGodown}"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+                <Label Content="Client" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbClient" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Clients}" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedItem="{Binding SelectedSSClient}"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+                <Label Content="InvType" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbInvType" Margin="20,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding InvType}" DisplayMemberPath="DisplayName" SelectedValuePath="Value" SelectedItem="{Binding SelectedInvType}"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                <Label Content="Remarks" FontSize="13" HorizontalAlignment="Left"></Label>
+                <TextBox Name="tbRemarks" Margin="16,0,0,0" Width="160" HorizontalAlignment="Right"></TextBox>
+            </StackPanel>
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+                <Label Content="Posted" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbPosted" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Posted}" DisplayMemberPath="DisplayName" SelectedValuePath="Value" SelectedItem="{Binding SelectedPosted}"></ComboBox>
+            </StackPanel>
+        </Grid>
+        <DataGrid RowEditEnding="pOrderDetailGrid_RowEditEnding"  ItemsSource="{Binding PurchaseOrderDetails, Mode=TwoWay}" Name="pOrderDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
+            <DataGrid.Columns>
+                <!--<DataGridTemplateColumn x:Name="templateCmb" Header="Item" Width="3*">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox x:Name="cmbItems" SelectionChanged="cmbItems_SelectionChanged" ItemsSource="{Binding DataContext.Items,Mode=TwoWay, RelativeSource={RelativeSource AncestorType=Window}}" DisplayMemberPath="Name"  SelectedItem="{Binding SelectedItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"></ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>-->
+                <DataGridComboBoxColumn Header="Item" Width="3*" DisplayMemberPath="Name" SelectedItemBinding="{Binding SelectedItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    <DataGridComboBoxColumn.ElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Items, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.ElementStyle>
+                    <DataGridComboBoxColumn.EditingElementStyle>
+                        <Style TargetType="{x:Type ComboBox}">
+                            <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Items, RelativeSource={RelativeSource AncestorType={x:Type Window}}}" />
+                        </Style>
+                    </DataGridComboBoxColumn.EditingElementStyle>
+                </DataGridComboBoxColumn>
+                <DataGridTextColumn Width="0.7*" Binding="{Binding Qty}" IsReadOnly="False" Header="Qty"  x:Name="Qty"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Bonus}" IsReadOnly="False" Header="Bonus"  x:Name="Bonus"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding TP}" IsReadOnly="False" Header="TP"  x:Name="TP"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GrossAmount}" IsReadOnly="False" Header="GrossAmount"  x:Name="GrossAmount"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding DiscPercentage}" IsReadOnly="False" Header="Disc (%)"  x:Name="DiscPercentage"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding FlatDiscount}" IsReadOnly="False" Header="Flat Disc"  x:Name="FlatDisc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding TotalDisc}" IsReadOnly="False" Header="Total Disc"  x:Name="TotalDisc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GSTPercentage}" IsReadOnly="False" Header="Gst (%)"  x:Name="GstPerc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GSTValue}" IsReadOnly="False" Header="Gst Value"  x:Name="GstValue"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding DiscAfterTax}" IsReadOnly="False" Header="DiscAfterTax"  x:Name="DiscAfterTax"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" IsReadOnly="True" Binding="{Binding SelectedItem.PurchasePrice,Mode=OneWay}" Header="Purchase Value" x:Name="PurValue"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding NetRate}" IsReadOnly="False" Header="Net Rate" x:Name="NetRate"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding MarginPercentage}" IsReadOnly="False" Header="Margin (%)" x:Name="Margin"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding MarkupPercentage}" IsReadOnly="False" Header="Markup (%)" x:Name="Markup"></DataGridTextColumn>
+            </DataGrid.Columns>
+            <!--<DataGrid.RowStyle>
+                <Style TargetType="DataGridRow">
+                    <Setter Property="IsEnabled" Value="{Binding RelativeSource={RelativeSource Self},Path=IsNewItem,Mode=OneWay}" />
+                </Style>
+            </DataGrid.RowStyle>-->
+        </DataGrid>
+        <!--<Grid LoadingRow="pOrderDetailGrid_LoadingRow" ItemsSource="{Binding PurchaseOrderDetail}" Name="pOrderDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
+            --><!--<DataGridComboBoxColumn Width="2*" x:Name="cmbItems" Header="Item" ItemsSource="{Binding Items}" DisplayMemberPath="Name" SelectedValuePath="sysSerial"></DataGridComboBoxColumn>
+                <DataGridTextColumn Width="0.3*" Binding="{Binding Qty}" Header="Qty"  x:Name="GodownName"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Bonus}" Header="Bonus"  x:Name="ClientName"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding TP}" Header="TP"  x:Name="GrandTotal"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GrossAmount}" Header="GrossAmount"  x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding DiscPercentage}" Header="Disc (%)"  x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding FlatDiscount}" Header="Flat Disc"  x:Name="FlatDisc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding TotalDisc}" Header="Total Disc"  x:Name="TotalDisc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GSTPercentage}" Header="Gst (%)"  x:Name="GstPerc"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding GSTValue}" Header="Gst Value"  x:Name="GstValue"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding DiscAfterTax}" Header="DiscAfterTax"  x:Name="DiscAfterTax"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding ElementName=cmbItems,Path=SelectedItem.PurchaseValue}" Header="Purchase Value" x:Name="PurValue"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Qty}" Header="Net Rate" x:Name="NetRate"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Qty}" Header="Margin (%)" x:Name="Margin"></DataGridTextColumn>
+                <DataGridTextColumn Width="*" Binding="{Binding Qty}" Header="Markup (%)" x:Name="Markup"></DataGridTextColumn>
+            </Grid.Column>--><!--
+        </Grid>-->
+        <GroupBox Grid.Row="3" Header="TOTAL">
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80*"></ColumnDefinition>
+                <ColumnDefinition Width="20*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" >
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="50"></RowDefinition>
+                </Grid.RowDefinitions>
+                
+                <StackPanel HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">QtyPack</Label>
+                        <TextBox Name="tbQtyPack" Text="{Binding pOrder.TotalQtyPack}" VerticalAlignment="Center" Margin="26,0,0,0" Width="40" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">QtyLoose</Label>
+                        <TextBox Name="tbQtyLoose" VerticalAlignment="Center" Margin="10" Width="40" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">Qty</Label>
+                        <TextBox Name="tbQty" VerticalAlignment="Center" Margin="28,0,0,0" Width="40" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="0" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">QtyBonus</Label>
+                        <TextBox Name="tbQtyBonus" VerticalAlignment="Center" Width="40" Margin="10" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">Discount(%)</Label>
+                        <TextBox Name="tbDiscPerc" VerticalAlignment="Center" Width="40" Margin="6" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">FlatDiscount</Label>
+                        <TextBox Name="tbFlatDisc" VerticalAlignment="Center" Width="40" Margin="3,0,0,0" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Margin="10,0,0,0" Grid.Row="0">GST</Label>
+                        <TextBox Name="tbGst" VerticalAlignment="Center" Width="40" Margin="29,0,0,0" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">ExclTax</Label>
+                        <TextBox Name="tbExclTax" VerticalAlignment="Center" Width="40" Margin="10" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="1" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">InclTax</Label>
+                        <TextBox Name="tbInclTax" VerticalAlignment="Center" Width="40" Margin="27,0,0,0" Height="35"></TextBox>
+                    </StackPanel>
+                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="4" Grid.Row="1" Orientation="Horizontal">
+                        <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">GrandTotal</Label>
+                        <TextBox Name="tbGrandTotal" VerticalAlignment="Center" Margin="8,0,0,0" Width="40" Height="35"></TextBox>
+                    </StackPanel>
+                
+            </Grid>
+                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
+                    <Button VerticalAlignment="Center" Margin="0,0,0,10" Width="80" Height="30" Content="Save" Name="btnCreate" Click="btnCreate_Click"></Button>
+                    <Button VerticalAlignment="Center" Width="80" Height="30" Content="Close" Name="btnClose" Click="btnClose_Click"></Button>
+                </StackPanel>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Window>

@@ -1,0 +1,14 @@
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\bin\Debug\SPEEDYSOL.exe.config
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\bin\Debug\SPEEDYSOL.exe
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\bin\Debug\SPEEDYSOL.pdb
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.csprojResolveAssemblyReference.cache
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\MainWindow.g.cs
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\App.g.cs
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL_MarkupCompile.cache
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL_MarkupCompile.lref
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\MainWindow.baml
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.g.resources
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.Properties.Resources.resources
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.csproj.GenerateResource.Cache
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.exe
+c:\users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYSOL\obj\Debug\SPEEDYSOL.pdb

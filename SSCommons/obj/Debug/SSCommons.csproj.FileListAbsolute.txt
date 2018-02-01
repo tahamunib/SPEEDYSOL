@@ -1,0 +1,5 @@
+C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SSCommons\bin\Debug\SSCommons.dll
+C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SSCommons\bin\Debug\SSCommons.pdb
+C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SSCommons\obj\Debug\SSCommons.dll
+C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SSCommons\obj\Debug\SSCommons.pdb
+C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SSCommons\obj\Debug\SSCommons.csprojResolveAssemblyReference.cache
