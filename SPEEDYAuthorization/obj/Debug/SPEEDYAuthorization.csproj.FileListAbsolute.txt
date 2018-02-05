@@ -1,5 +1,0 @@
-C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYAuthorization\bin\Debug\SPEEDYAuthorization.dll
-C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYAuthorization\bin\Debug\SPEEDYAuthorization.pdb
-C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYAuthorization\obj\Debug\SPEEDYAuthorization.dll
-C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYAuthorization\obj\Debug\SPEEDYAuthorization.pdb
-C:\Users\taha\documents\visual studio 2017\Projects\SPEEDYSOL\SPEEDYAuthorization\obj\Debug\SPEEDYAuthorization.csprojResolveAssemblyReference.cache
