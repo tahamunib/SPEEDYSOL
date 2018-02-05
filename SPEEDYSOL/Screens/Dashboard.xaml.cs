@@ -72,7 +72,7 @@ namespace SPEEDYSOL.Screens
 
         private void btnItems_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(new Screens.Items.Items(window));
         }
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)

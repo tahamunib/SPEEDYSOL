@@ -12,20 +12,14 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SaleOrderDetail
+    public partial class GodownItem
     {
         public long sysSerial { get; set; }
-        public Nullable<long> SOrderID { get; set; }
-        public Nullable<long> ItemID { get; set; }
-        public Nullable<int> DiscountPercentage { get; set; }
-        public Nullable<long> Total { get; set; }
-        public Nullable<int> ExtraDiscount { get; set; }
-        public Nullable<int> SaleTO { get; set; }
-        public Nullable<int> SalePrice { get; set; }
-        public int Qty { get; set; }
-        public Nullable<int> Bonus { get; set; }
+        public long godownID { get; set; }
+        public long itemID { get; set; }
+        public long Qty { get; set; }
     
-        public virtual SaleOrder SaleOrder { get; set; }
+        public virtual Godown Godown { get; set; }
         public virtual Item Item { get; set; }
     }
 }

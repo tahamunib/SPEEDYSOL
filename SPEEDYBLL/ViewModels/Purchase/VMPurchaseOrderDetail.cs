@@ -23,7 +23,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
             Posted = new ObservableCollection<object>(Enum.GetValues(typeof(SSEnums.Posted))
                 .Cast<object>()
                 .Select(x=> new { Value = (int)x, DisplayName = x.ToString()}));
-            Items = new ObservableCollection<Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
 
             PurchaseOrderDetails = new ObservableCollection<PurchaseOrderDetailVM>();
 
@@ -34,7 +34,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public ObservableCollection<SSClient> Clients { get; set; }
         public ObservableCollection<object> InvType { get; set; }
         public ObservableCollection<object> Posted { get; set; }
-        public static ObservableCollection<Item> Items { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public ObservableCollection<PurchaseOrderDetailVM> PurchaseOrderDetails {
             get;
             set;
@@ -71,8 +71,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public long GrossAmount { get; set; }
         public int DiscPercentage { get; set; }
 
-        private Item _selectedItem;
-        public Item SelectedItem
+        private SPEEDYDAL.Item _selectedItem;
+        public SPEEDYDAL.Item SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -83,8 +83,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
 
         }
 
-        private ObservableCollection<Item> _items = VMPurchaseOrderDetail.Items;
-        public ObservableCollection<Item> PItems { get { return _items; }
+        private ObservableCollection<SPEEDYDAL.Item> _items = VMPurchaseOrderDetail.Items;
+        public ObservableCollection<SPEEDYDAL.Item> PItems { get { return _items; }
             set {
                 _items = value;
                 NotifyPropertyChanged("PItems");

@@ -4,9 +4,8 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="86e011fc7fc24ca4b4d82922921be7e0" Name="Diagram1">
+      <Diagram DiagramId="86e011fc7fc24ca4b4d82922921be7e0" Name="Diagram1" ZoomLevel="85">
         <EntityTypeShape EntityType="SPEEDYSOLModel.Godown" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SPEEDYSOLModel.Item" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPEEDYSOLModel.OrderBooker" Width="1.5" PointX="3.75" PointY="1.75" IsExpanded="true" />
         <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseOrder" Width="1.5" PointX="3" PointY="6" IsExpanded="true" />
         <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseOrderDetail" Width="1.5" PointX="8.25" PointY="6.5" IsExpanded="true" />
@@ -20,8 +19,6 @@
         <EntityTypeShape EntityType="SPEEDYSOLModel.Voucher" Width="1.5" PointX="8.75" PointY="11.375" IsExpanded="true" />
         <EntityTypeShape EntityType="SPEEDYSOLModel.VoucherDetail" Width="1.5" PointX="11" PointY="1.75" IsExpanded="true" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrder_Godown" ManuallyRouted="false" />
-        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" ManuallyRouted="false" />
-        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrderDetail_Items" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrder_Booker" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrder_SSClients" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_POrder" ManuallyRouted="false" />
@@ -31,7 +28,13 @@
         <AssociationConnector Association="SPEEDYSOLModel.FK_VoucherDetail_SSAccounts" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SSUsers_SSUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_VoucherDetail_Voucher" ManuallyRouted="false" />
-      </Diagram>
+        <EntityTypeShape EntityType="SPEEDYSOLModel.GodownItem" Width="1.5" PointX="3.375" PointY="15.625" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Item" Width="1.5" PointX="0.75" PointY="13" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_GodownItems_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrderDetail_Items" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_GodownItems_Items" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

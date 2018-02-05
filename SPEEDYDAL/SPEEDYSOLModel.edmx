@@ -5,6 +5,15 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SPEEDYSOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="GodownItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="godownID" Type="bigint" Nullable="false" />
+          <Property Name="itemID" Type="bigint" Nullable="false" />
+          <Property Name="Qty" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="Godowns">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -219,6 +228,30 @@
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
+        <Association Name="FK_GodownItems_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="GodownItems" Type="Self.GodownItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="GodownItems">
+              <PropertyRef Name="godownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GodownItems_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="GodownItems" Type="Self.GodownItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="GodownItems">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PurchaseOrder_Godown">
           <End Role="Godowns" Type="Self.Godowns" Multiplicity="0..1" />
           <End Role="PurchaseOrder" Type="Self.PurchaseOrder" Multiplicity="*" />
@@ -364,6 +397,7 @@
           </ReferentialConstraint>
         </Association>
         <EntityContainer Name="SPEEDYSOLModelStoreContainer">
+          <EntitySet Name="GodownItems" EntityType="Self.GodownItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Godowns" EntityType="Self.Godowns" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderBooker" EntityType="Self.OrderBooker" Schema="dbo" store:Type="Tables" />
@@ -378,6 +412,14 @@
           <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VoucherDetail" EntityType="Self.VoucherDetail" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_GodownItems_Godowns" Association="Self.FK_GodownItems_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="GodownItems" EntitySet="GodownItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GodownItems_Items" Association="Self.FK_GodownItems_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="GodownItems" EntitySet="GodownItems" />
+          </AssociationSet>
           <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
             <End Role="Godowns" EntitySet="Godowns" />
             <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
@@ -440,24 +482,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Godown" FromRole="Godowns" ToRole="PurchaseOrder" />
-        </EntityType>
-        <EntityType Name="Item">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="PurchasePrice" Type="Int32" Nullable="false" />
-          <Property Name="SalePrice" Type="Int32" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="PackUnit" Type="Int32" Nullable="false" />
-          <Property Name="RecentPurchase" Type="Int32" />
-          <Property Name="UnitWeight" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="PurchaseOrderDetails" Relationship="Self.FK_PurchaseOrderDetail_Items" FromRole="Items" ToRole="PurchaseOrderDetail" />
-          <NavigationProperty Name="SaleOrderDetails" Relationship="Self.FK_SaleOrderDetail_Items" FromRole="Items" ToRole="SaleOrderDetail" />
+          <NavigationProperty Name="GodownItems" Relationship="SPEEDYSOLModel.FK_GodownItems_Godowns" FromRole="Godown" ToRole="GodownItem" />
         </EntityType>
         <EntityType Name="OrderBooker">
           <Key>
@@ -514,13 +539,13 @@
           <Property Name="NetRate" Type="Int32" />
           <Property Name="Qty" Type="Int32" Nullable="false" />
           <Property Name="Bonus" Type="Int32" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_PurchaseOrderDetail_Items" FromRole="PurchaseOrderDetail" ToRole="Items" />
           <NavigationProperty Name="PurchaseOrder" Relationship="Self.FK_PurchaseOrderDetail_POrder" FromRole="PurchaseOrderDetail" ToRole="PurchaseOrder" />
           <Property Name="TotalDisc" Type="Int64" />
           <Property Name="DiscAfterTax" Type="Int64" />
           <Property Name="TP" Type="Int64" />
           <Property Name="GrossAmount" Type="Int64" />
           <Property Name="DiscPercentage" Type="Int32" />
+          <NavigationProperty Name="Item" Relationship="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" FromRole="PurchaseOrderDetail" ToRole="Item" />
         </EntityType>
         <EntityType Name="SaleOrder">
           <Key>
@@ -571,8 +596,8 @@
           <Property Name="SalePrice" Type="Int32" />
           <Property Name="Qty" Type="Int32" Nullable="false" />
           <Property Name="Bonus" Type="Int32" />
-          <NavigationProperty Name="Item" Relationship="Self.FK_SaleOrderDetail_Items" FromRole="SaleOrderDetail" ToRole="Items" />
           <NavigationProperty Name="SaleOrder" Relationship="Self.FK_SaleOrderDetail_SOrder" FromRole="SaleOrderDetail" ToRole="SaleOrder" />
+          <NavigationProperty Name="Item" Relationship="SPEEDYSOLModel.FK_SaleOrderDetail_Items" FromRole="SaleOrderDetail" ToRole="Item" />
         </EntityType>
         <EntityType Name="Salesman">
           <Key>
@@ -678,30 +703,6 @@
             </Principal>
             <Dependent Role="PurchaseOrder">
               <PropertyRef Name="GodownID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_PurchaseOrderDetail_Items">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="PurchaseOrderDetail">
-              <PropertyRef Name="ItemID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_SaleOrderDetail_Items">
-          <End Role="Items" Type="Self.Item" Multiplicity="0..1" />
-          <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Items">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="SaleOrderDetail">
-              <PropertyRef Name="ItemID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -815,7 +816,6 @@
         </Association>
         <EntityContainer Name="SPEEDYSOLEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Godowns" EntityType="Self.Godown" />
-          <EntitySet Name="Items" EntityType="Self.Item" />
           <EntitySet Name="OrderBookers" EntityType="Self.OrderBooker" />
           <EntitySet Name="PurchaseOrders" EntityType="Self.PurchaseOrder" />
           <EntitySet Name="PurchaseOrderDetails" EntityType="Self.PurchaseOrderDetail" />
@@ -831,14 +831,6 @@
           <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
             <End Role="Godowns" EntitySet="Godowns" />
             <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
-          </AssociationSet>
-          <AssociationSet Name="FK_PurchaseOrderDetail_Items" Association="Self.FK_PurchaseOrderDetail_Items">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_SaleOrderDetail_Items" Association="Self.FK_SaleOrderDetail_Items">
-            <End Role="Items" EntitySet="Items" />
-            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetails" />
           </AssociationSet>
           <AssociationSet Name="FK_SaleOrder_Booker" Association="Self.FK_SaleOrder_Booker">
             <End Role="OrderBooker" EntitySet="OrderBookers" />
@@ -876,8 +868,104 @@
             <End Role="Voucher" EntitySet="Vouchers" />
             <End Role="VoucherDetail" EntitySet="VoucherDetails" />
           </AssociationSet>
-        </EntityContainer>
-      </Schema>
+          <EntitySet Name="GodownItems" EntityType="SPEEDYSOLModel.GodownItem" />
+          <EntitySet Name="Items" EntityType="SPEEDYSOLModel.Item" />
+          <AssociationSet Name="FK_GodownItems_Godowns" Association="SPEEDYSOLModel.FK_GodownItems_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="GodownItem" EntitySet="GodownItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseOrderDetail_Items" Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SaleOrderDetail_Items" Association="SPEEDYSOLModel.FK_SaleOrderDetail_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SaleOrderDetail" EntitySet="SaleOrderDetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_GodownItems_Items" Association="SPEEDYSOLModel.FK_GodownItems_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="GodownItem" EntitySet="GodownItems" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="GodownItem">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="godownID" Type="Int64" Nullable="false" />
+          <Property Name="itemID" Type="Int64" Nullable="false" />
+          <Property Name="Qty" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godown" Relationship="SPEEDYSOLModel.FK_GodownItems_Godowns" FromRole="GodownItem" ToRole="Godown" />
+          <NavigationProperty Name="Item" Relationship="SPEEDYSOLModel.FK_GodownItems_Items" FromRole="GodownItem" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="Item">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PurchasePrice" Type="Int32" Nullable="false" />
+          <Property Name="SalePrice" Type="Int32" Nullable="false" />
+          <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="PackUnit" Type="Int32" Nullable="false" />
+          <Property Name="RecentPurchase" Type="Int32" />
+          <Property Name="UnitWeight" Type="Int32" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PurchaseOrderDetails" Relationship="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" FromRole="Item" ToRole="PurchaseOrderDetail" />
+          <NavigationProperty Name="SaleOrderDetails" Relationship="SPEEDYSOLModel.FK_SaleOrderDetail_Items" FromRole="Item" ToRole="SaleOrderDetail" />
+          <NavigationProperty Name="GodownItems" Relationship="SPEEDYSOLModel.FK_GodownItems_Items" FromRole="Item" ToRole="GodownItem" />
+        </EntityType>
+        <Association Name="FK_GodownItems_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.GodownItem" Role="GodownItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="GodownItem">
+              <PropertyRef Name="godownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseOrderDetail_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SPEEDYSOLModel.PurchaseOrderDetail" Role="PurchaseOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SaleOrderDetail_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="0..1" />
+          <End Type="SPEEDYSOLModel.SaleOrderDetail" Role="SaleOrderDetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SaleOrderDetail">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_GodownItems_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.GodownItem" Role="GodownItem" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="GodownItem">
+              <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -888,23 +976,6 @@
               <MappingFragment StoreEntitySet="Godowns">
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Items">
-            <EntityTypeMapping TypeName="SPEEDYSOLModel.Item">
-              <MappingFragment StoreEntitySet="Items">
-                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
-                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="PackUnit" ColumnName="PackUnit" />
-                <ScalarProperty Name="RecentPurchase" ColumnName="RecentPurchase" />
-                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
               </MappingFragment>
@@ -1108,6 +1179,33 @@
                 <ScalarProperty Name="Amount" ColumnName="Amount" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GodownItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.GodownItem">
+              <MappingFragment StoreEntitySet="GodownItems">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="itemID" ColumnName="itemID" />
+                <ScalarProperty Name="godownID" ColumnName="godownID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Items">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Item">
+              <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
+                <ScalarProperty Name="RecentPurchase" ColumnName="RecentPurchase" />
+                <ScalarProperty Name="PackUnit" ColumnName="PackUnit" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
+                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
+                <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

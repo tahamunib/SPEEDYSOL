@@ -102,7 +102,14 @@ namespace SPEEDYSOL.Screens.Godowns
                 case "UpdatedOn":
                     e.Column.DisplayIndex = 2;
                     break;
+                
             }
+        }
+
+        private void btnViewDetails_Click(object sender, RoutedEventArgs e)
+        {
+            var selectedGodown = SSGodownsLINQ.GetGodownByName(godownObj.Name);
+            window.mainFrame.Navigate(new Screens.Godowns.ViewGodownDetails(selectedGodown));
         }
     }
 }

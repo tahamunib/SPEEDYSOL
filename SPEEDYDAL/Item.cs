@@ -19,6 +19,7 @@ namespace SPEEDYDAL
         {
             this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
             this.SaleOrderDetails = new HashSet<SaleOrderDetail>();
+            this.GodownItems = new HashSet<GodownItem>();
         }
     
         public long sysSerial { get; set; }
@@ -37,5 +38,7 @@ namespace SPEEDYDAL
         public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleOrderDetail> SaleOrderDetails { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GodownItem> GodownItems { get; set; }
     }
 }

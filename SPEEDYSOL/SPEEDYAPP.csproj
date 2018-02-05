@@ -73,6 +73,12 @@
     <Compile Include="Screens\Godowns\GodownList.xaml.cs">
       <DependentUpon>GodownList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Godowns\ViewGodownDetails.xaml.cs">
+      <DependentUpon>ViewGodownDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Items\Items.xaml.cs">
+      <DependentUpon>Items.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Purchases\CreatePOrder.xaml.cs">
       <DependentUpon>CreatePOrder.xaml</DependentUpon>
     </Compile>
@@ -106,6 +112,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Godowns\GodownList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Godowns\ViewGodownDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Items\Items.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

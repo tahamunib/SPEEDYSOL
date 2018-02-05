@@ -18,6 +18,7 @@ namespace SPEEDYDAL
         public Godown()
         {
             this.PurchaseOrders = new HashSet<PurchaseOrder>();
+            this.GodownItems = new HashSet<GodownItem>();
         }
     
         public long sysSerial { get; set; }
@@ -27,5 +28,7 @@ namespace SPEEDYDAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<GodownItem> GodownItems { get; set; }
     }
 }

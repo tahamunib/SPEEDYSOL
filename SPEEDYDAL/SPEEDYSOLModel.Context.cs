@@ -26,7 +26,6 @@ namespace SPEEDYDAL
         }
     
         public virtual DbSet<Godown> Godowns { get; set; }
-        public virtual DbSet<Item> Items { get; set; }
         public virtual DbSet<OrderBooker> OrderBookers { get; set; }
         public virtual DbSet<PurchaseOrder> PurchaseOrders { get; set; }
         public virtual DbSet<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
@@ -39,5 +38,7 @@ namespace SPEEDYDAL
         public virtual DbSet<SSUsersRole> SSUsersRoles { get; set; }
         public virtual DbSet<Voucher> Vouchers { get; set; }
         public virtual DbSet<VoucherDetail> VoucherDetails { get; set; }
+        public virtual DbSet<GodownItem> GodownItems { get; set; }
+        public virtual DbSet<Item> Items { get; set; }
     }
 }

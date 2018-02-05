@@ -21,13 +21,13 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="153">GODOWNS</TextBlock>
         <DataGrid SelectionChanged="godownGrid_SelectionChanged" ColumnWidth="*" Background="#FFAEABAB" Name="godownGrid" Grid.Row="1" ItemsSource="{Binding}" AutoGeneratingColumn="godownGrid_AutoGeneratingColumn" AutoGenerateColumns="True">
             <DataGrid.Columns>
-                
                 <DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
-                                <Button Name="btnEdit" Width="50" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
-                                <Button Name="btnDelete" Width="50" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                                <Button Name="btnEdit" Width="30" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="30" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Del</Button>
+                                <Button Name="btnViewDetails" Width="30" Height="25" Margin="10,0,0,0" Click="btnViewDetails_Click">View</Button>
                             </StackPanel>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>

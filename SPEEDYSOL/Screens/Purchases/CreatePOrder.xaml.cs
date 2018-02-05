@@ -34,31 +34,7 @@ namespace SPEEDYSOL.Screens.Purchases
             _viewModel = new VMPurchaseOrderDetail();
             this.DataContext = _viewModel;
 
-            //pOrderDetailGrid.DataContext = viewModel.PurchaseOrderDetails;
-            //pOrderDetailGrid.Items.Add(new SPEEDYDAL.PurchaseOrderDetail());
-
-            //pOrderDetailGrid.DataContext = new List<String>();
-
-            //#region Populating Comboboxes
-            //cmbGodown.ItemsSource = SSGodownsLINQ.ListGodowns();
-            //cmbGodown.DisplayMemberPath = "Name";
-            //cmbGodown.SelectedValuePath = "sysSerial";
-            //cmbGodown.SelectedIndex = 0;
-
-            //cmbClient.ItemsSource = SSClientLINQ.GetClients();
-            //cmbClient.DisplayMemberPath = "Name";
-            //cmbClient.SelectedValuePath = "sysSerial";
-            //cmbClient.SelectedIndex = 0;
-
-            //cmbInvType.ItemsSource = Enum.GetValues(typeof(SSEnums.InvType)).Cast<SSEnums.InvType>();
-            //cmbInvType.SelectedIndex = 0;
-
-            //cmbPosted.ItemsSource = new List<string> { "Yes","No"};
-            //cmbPosted.SelectedIndex = 0;
-
-            //cmbItems.ItemsSource = SSItemsLINQ.GetItems();
-            //cmbItems.DisplayMemberPath = "Name";
-            //cmbItems.SelectedValuePath = "sysSerial";
+            
             
             //#endregion
         }
