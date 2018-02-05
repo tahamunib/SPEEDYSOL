@@ -17,11 +17,11 @@
             <RowDefinition Height="80*"/>
 
         </Grid.RowDefinitions>
-        <!--<StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
-            <Button Name="btnCreatePOrder" Width="80" Height="80" Click="btnCreatePOrder_Click">Create Order</Button>
-        </StackPanel>-->
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnAddItem" Width="80" Height="80" Click="btnAddItem_Click">Add Item</Button>
+        </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ITEMS</TextBlock>
-        <DataGrid RowEditEnding="itemsGrid_RowEditEnding" CellEditEnding="itemsGrid_CellEditEnding" Background="#FFAEABAB" AutoGeneratingColumn="itemsGrid_AutoGeneratingColumn" Name="itemsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Items, Mode=TwoWay}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="True" CanUserAddRows="True">
+        <DataGrid Background="#FFAEABAB" AutoGeneratingColumn="itemsGrid_AutoGeneratingColumn" Name="itemsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" AutoGenerateColumns="True">
 
             
             <DataGrid.ColumnHeaderStyle>

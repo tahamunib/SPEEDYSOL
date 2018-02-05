@@ -241,7 +241,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_GodownItems_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="GodownItems" Type="Self.GodownItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Items">
@@ -277,7 +279,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_PurchaseOrderDetail_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="PurchaseOrderDetail" Type="Self.PurchaseOrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Items">
@@ -337,7 +341,9 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_SaleOrderDetail_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="0..1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="SaleOrderDetail" Type="Self.SaleOrderDetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Items">

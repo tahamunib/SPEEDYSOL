@@ -23,6 +23,7 @@ namespace SPEEDYSOL.Screens.Items
     public partial class Items : Page
     {
         MainWindow window;
+        VMItems vmItems;
         public Items(MainWindow _window)
         {
             window = _window;
@@ -31,18 +32,44 @@ namespace SPEEDYSOL.Screens.Items
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            VMItems items = new VMItems();
-            this.DataContext = items;
+            vmItems = new VMItems();
+            this.DataContext = vmItems;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
-
+            try
+            {
+                var selectedItem = (SPEEDYDAL.Item)itemsGrid.SelectedItem;
+                window.mainFrame.Navigate(new AddItem(selectedItem));
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            
         }
 
         private void btnDelete_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                var result = MessageBox.Show("Delete Item? This will delete item from Purchase, Sales Order and Godwon Items.", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
+                if (result == MessageBoxResult.Yes)
+                {
+                    var selectedItem = (SPEEDYDAL.Item)itemsGrid.SelectedItem;
+                    if (SSItemsLINQ.DeleteItem(selectedItem))
+                    {
+                        vmItems.Items.Remove(selectedItem);
+                        this.DataContext = vmItems;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
         }
 
         private void itemsGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
@@ -119,6 +146,11 @@ namespace SPEEDYSOL.Screens.Items
                 case 4:
                     break;
             }
+        }
+
+        private void btnAddItem_Click(object sender, RoutedEventArgs e)
+        {
+            window.mainFrame.Navigate(new Screens.Items.AddItem());
         }
     }
 }
