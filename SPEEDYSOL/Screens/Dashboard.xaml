@@ -55,6 +55,11 @@
                 <TextBlock FontSize="18">USERS</TextBlock>
             </StackPanel>
         </Button>
+        <Button Name="btnAccount" Grid.Row="2" Grid.Column="1" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnAccount_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">ACCOUNTS</TextBlock>
+            </StackPanel>
+        </Button>
         
     </Grid>
 </Page>

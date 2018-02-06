@@ -80,6 +80,9 @@ namespace SPEEDYSOL.Screens
 
         }
 
-        
+        private void btnAccount_Click(object sender, RoutedEventArgs e)
+        {
+            window.mainFrame.Navigate(new Accounts.Accounts(window));
+        }
     }
 }
