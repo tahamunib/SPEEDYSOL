@@ -36,9 +36,8 @@ namespace SPEEDYDAL
         public virtual DbSet<SSClient> SSClients { get; set; }
         public virtual DbSet<SSUser> SSUsers { get; set; }
         public virtual DbSet<SSUsersRole> SSUsersRoles { get; set; }
-        public virtual DbSet<Voucher> Vouchers { get; set; }
-        public virtual DbSet<VoucherDetail> VoucherDetails { get; set; }
         public virtual DbSet<GodownItem> GodownItems { get; set; }
         public virtual DbSet<Item> Items { get; set; }
+        public virtual DbSet<Voucher> Vouchers { get; set; }
     }
 }

@@ -48,9 +48,12 @@
     <Compile Include="SSPurchaseOrdersLINQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSUsersLINQ.cs" />
+    <Compile Include="SSVouchersLINQ.cs" />
     <Compile Include="ViewModels\Account\VMAccount.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
+    <Compile Include="ViewModels\Voucher\VMCreateVoucher.cs" />
+    <Compile Include="ViewModels\Voucher\VMVoucher.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SPEEDYAuthorization\SPEEDYAuthorization.csproj">

@@ -17,7 +17,7 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SSAccount()
         {
-            this.VoucherDetails = new HashSet<VoucherDetail>();
+            this.Vouchers = new HashSet<Voucher>();
         }
     
         public long sysSerial { get; set; }
@@ -30,6 +30,6 @@ namespace SPEEDYDAL
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VoucherDetail> VoucherDetails { get; set; }
+        public virtual ICollection<Voucher> Vouchers { get; set; }
     }
 }

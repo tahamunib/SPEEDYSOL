@@ -11,21 +11,20 @@ namespace SPEEDYDAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
     public partial class Voucher
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Voucher()
-        {
-            this.VoucherDetails = new HashSet<VoucherDetail>();
-        }
-    
         public long sysSerial { get; set; }
-        public Nullable<int> Total { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public string VoucherCode { get; set; }
+        public long AccountID { get; set; }
+        public long Amount { get; set; }
+        public string Remarks { get; set; }
+        public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VoucherDetail> VoucherDetails { get; set; }
+        public virtual SSAccount SSAccount { get; set; }
+        
     }
 }

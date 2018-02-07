@@ -107,9 +107,6 @@
     <Compile Include="Voucher.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="VoucherDetail.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

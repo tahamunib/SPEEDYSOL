@@ -100,6 +100,12 @@
     <Compile Include="Screens\Sales\CreateOrder_Sales.xaml.cs">
       <DependentUpon>CreateOrder_Sales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Vouchers\CreateVoucher.xaml.cs">
+      <DependentUpon>CreateVoucher.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Vouchers\Vouchers.xaml.cs">
+      <DependentUpon>Vouchers.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -160,6 +166,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Vouchers\CreateVoucher.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Vouchers\Vouchers.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -211,8 +225,6 @@
     <Resource Include="Content\Icons\back-logo-icon-27727.png" />
     <Resource Include="Content\Icons\minimize.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Screens\Vouchers\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

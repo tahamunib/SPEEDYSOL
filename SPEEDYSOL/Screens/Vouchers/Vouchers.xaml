@@ -1,0 +1,61 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Vouchers.Vouchers"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SPEEDYSOL.Screens.Vouchers"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Vouchers" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnIssueVoucher" Width="80" Height="80" HorizontalContentAlignment="Center" Click="btnIssueVoucher_Click">Issue Voucher</Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">VOUCHERS</TextBlock>
+        <DataGrid Background="#FFAEABAB" IsReadOnly="True"  Name="vouchersGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Vouchers}" SelectedItem="{Binding SelectedVoucher}" CanUserAddRows="False" AutoGenerateColumns="False">
+        
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style  TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="MinHeight" Value="20"></Setter>
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+
+            <DataGrid.Columns>
+                <DataGridTextColumn DisplayIndex="0" Header="Voucher Code" Width="300" Binding="{Binding VoucherCode}" x:Name="VoucherCode"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="1" Header="Account" Width="150" Binding="{Binding SSAccount.Name}" x:Name="Account"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="Amount" Width="60" Binding="{Binding Amount}" x:Name="Amount"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="Remarks" Width="150" Binding="{Binding Remarks}" x:Name="Remarks"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="4" Header="Created On" Width="65" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="5" Header="Updated On" Width="65" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTemplateColumn DisplayIndex="6">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Width="35" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="35" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

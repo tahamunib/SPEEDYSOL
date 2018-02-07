@@ -205,27 +205,16 @@
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
-        <EntityType Name="Voucher">
+        <EntityType Name="Vouchers">
           <Key>
             <PropertyRef Name="sysSerial" />
           </Key>
           <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Total" Type="int" />
-          <Property Name="CreatedOn" Type="date" />
-          <Property Name="UpdatedOn" Type="date" />
-        </EntityType>
-        <EntityType Name="VoucherDetail">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VoucherID" Type="bigint" />
-          <Property Name="AccountID" Type="bigint" />
-          <Property Name="VoucherCode" Type="varchar(max)" Nullable="false" />
-          <Property Name="RefNo" Type="nvarchar" MaxLength="255" />
-          <Property Name="Description" Type="varchar" MaxLength="255" />
-          <Property Name="Amount" Type="int" />
-          <Property Name="CreatedOn" Type="date" />
+          <Property Name="VoucherCode" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="AccountID" Type="bigint" Nullable="false" />
+          <Property Name="Amount" Type="bigint" Nullable="false" />
+          <Property Name="Remarks" Type="varchar(max)" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
         <Association Name="FK_GodownItems_Godowns">
@@ -378,27 +367,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VoucherDetail_SSAccounts">
-          <End Role="SSAccounts" Type="Self.SSAccounts" Multiplicity="0..1" />
-          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
+        <Association Name="FK_Vouchers_SSAccounts">
+          <End Role="SSAccounts" Type="Self.SSAccounts" Multiplicity="1" />
+          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="SSAccounts">
               <PropertyRef Name="sysSerial" />
             </Principal>
-            <Dependent Role="VoucherDetail">
+            <Dependent Role="Vouchers">
               <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VoucherDetail_Voucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
-          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voucher">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="VoucherDetail">
-              <PropertyRef Name="VoucherID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -416,8 +393,7 @@
           <EntitySet Name="SSClients" EntityType="Self.SSClients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsers" EntityType="Self.SSUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRoles" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Voucher" EntityType="Self.Voucher" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VoucherDetail" EntityType="Self.VoucherDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_GodownItems_Godowns" Association="Self.FK_GodownItems_Godowns">
             <End Role="Godowns" EntitySet="Godowns" />
             <End Role="GodownItems" EntitySet="GodownItems" />
@@ -466,13 +442,9 @@
             <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
             <End Role="SSUsers" EntitySet="SSUsers" />
           </AssociationSet>
-          <AssociationSet Name="FK_VoucherDetail_SSAccounts" Association="Self.FK_VoucherDetail_SSAccounts">
+          <AssociationSet Name="FK_Vouchers_SSAccounts" Association="Self.FK_Vouchers_SSAccounts">
             <End Role="SSAccounts" EntitySet="SSAccounts" />
-            <End Role="VoucherDetail" EntitySet="VoucherDetail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VoucherDetail_Voucher" Association="Self.FK_VoucherDetail_Voucher">
-            <End Role="Voucher" EntitySet="Voucher" />
-            <End Role="VoucherDetail" EntitySet="VoucherDetail" />
+            <End Role="Vouchers" EntitySet="Vouchers" />
           </AssociationSet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
@@ -628,7 +600,7 @@
           <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="VoucherDetails" Relationship="Self.FK_VoucherDetail_SSAccounts" FromRole="SSAccounts" ToRole="VoucherDetail" />
+          <NavigationProperty Name="Vouchers" Relationship="SPEEDYSOLModel.FK_Vouchers_SSAccounts" FromRole="SSAccount" ToRole="Voucher" />
         </EntityType>
         <EntityType Name="SSClient">
           <Key>
@@ -673,32 +645,6 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SSUsers" Relationship="Self.FK_SSUsers_SSUserRoles" FromRole="SSUsersRoles" ToRole="SSUsers" />
-        </EntityType>
-        <EntityType Name="Voucher">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Total" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="VoucherDetails" Relationship="Self.FK_VoucherDetail_Voucher" FromRole="Voucher" ToRole="VoucherDetail" />
-        </EntityType>
-        <EntityType Name="VoucherDetail">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VoucherID" Type="Int64" />
-          <Property Name="AccountID" Type="Int64" />
-          <Property Name="VoucherCode" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="RefNo" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
-          <Property Name="Amount" Type="Int32" />
-          <Property Name="CreatedOn" Type="DateTime" Precision="0" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="SSAccount" Relationship="Self.FK_VoucherDetail_SSAccounts" FromRole="VoucherDetail" ToRole="SSAccounts" />
-          <NavigationProperty Name="Voucher" Relationship="Self.FK_VoucherDetail_Voucher" FromRole="VoucherDetail" ToRole="Voucher" />
         </EntityType>
         <Association Name="FK_PurchaseOrder_Godown">
           <End Role="Godowns" Type="Self.Godown" Multiplicity="0..1" />
@@ -784,18 +730,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_VoucherDetail_SSAccounts">
-          <End Role="SSAccounts" Type="Self.SSAccount" Multiplicity="0..1" />
-          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="SSAccounts">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="VoucherDetail">
-              <PropertyRef Name="AccountID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_SSUsers_SSUserRoles">
           <End Role="SSUsersRoles" Type="Self.SSUsersRole" Multiplicity="0..1" />
           <End Role="SSUsers" Type="Self.SSUser" Multiplicity="*" />
@@ -805,18 +739,6 @@
             </Principal>
             <Dependent Role="SSUsers">
               <PropertyRef Name="RoleID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_VoucherDetail_Voucher">
-          <End Role="Voucher" Type="Self.Voucher" Multiplicity="0..1" />
-          <End Role="VoucherDetail" Type="Self.VoucherDetail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Voucher">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="VoucherDetail">
-              <PropertyRef Name="VoucherID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -832,8 +754,6 @@
           <EntitySet Name="SSClients" EntityType="Self.SSClient" />
           <EntitySet Name="SSUsers" EntityType="Self.SSUser" />
           <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRole" />
-          <EntitySet Name="Vouchers" EntityType="Self.Voucher" />
-          <EntitySet Name="VoucherDetails" EntityType="Self.VoucherDetail" />
           <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
             <End Role="Godowns" EntitySet="Godowns" />
             <End Role="PurchaseOrder" EntitySet="PurchaseOrders" />
@@ -862,17 +782,9 @@
             <End Role="SaleOrder" EntitySet="SaleOrders" />
             <End Role="SaleOrderDetail" EntitySet="SaleOrderDetails" />
           </AssociationSet>
-          <AssociationSet Name="FK_VoucherDetail_SSAccounts" Association="Self.FK_VoucherDetail_SSAccounts">
-            <End Role="SSAccounts" EntitySet="SSAccounts" />
-            <End Role="VoucherDetail" EntitySet="VoucherDetails" />
-          </AssociationSet>
           <AssociationSet Name="FK_SSUsers_SSUserRoles" Association="Self.FK_SSUsers_SSUserRoles">
             <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
             <End Role="SSUsers" EntitySet="SSUsers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_VoucherDetail_Voucher" Association="Self.FK_VoucherDetail_Voucher">
-            <End Role="Voucher" EntitySet="Vouchers" />
-            <End Role="VoucherDetail" EntitySet="VoucherDetails" />
           </AssociationSet>
           <EntitySet Name="GodownItems" EntityType="SPEEDYSOLModel.GodownItem" />
           <EntitySet Name="Items" EntityType="SPEEDYSOLModel.Item" />
@@ -891,6 +803,11 @@
           <AssociationSet Name="FK_GodownItems_Items" Association="SPEEDYSOLModel.FK_GodownItems_Items">
             <End Role="Item" EntitySet="Items" />
             <End Role="GodownItem" EntitySet="GodownItems" />
+          </AssociationSet>
+          <EntitySet Name="Vouchers" EntityType="SPEEDYSOLModel.Voucher" />
+          <AssociationSet Name="FK_Vouchers_SSAccounts" Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts">
+            <End Role="SSAccount" EntitySet="SSAccounts" />
+            <End Role="Voucher" EntitySet="Vouchers" />
           </AssociationSet>
           </EntityContainer>
         <EntityType Name="GodownItem">
@@ -968,6 +885,31 @@
             </Principal>
             <Dependent Role="GodownItem">
               <PropertyRef Name="itemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Voucher">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VoucherCode" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="AccountID" Type="Int64" Nullable="false" />
+          <Property Name="Amount" Type="Int64" Nullable="false" />
+          <Property Name="Remarks" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SSAccount" Relationship="SPEEDYSOLModel.FK_Vouchers_SSAccounts" FromRole="Voucher" ToRole="SSAccount" />
+        </EntityType>
+        <Association Name="FK_Vouchers_SSAccounts">
+          <End Type="SPEEDYSOLModel.SSAccount" Role="SSAccount" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.Voucher" Role="Voucher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSAccount">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Voucher">
+              <PropertyRef Name="AccountID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -1163,31 +1105,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Vouchers">
-            <EntityTypeMapping TypeName="SPEEDYSOLModel.Voucher">
-              <MappingFragment StoreEntitySet="Voucher">
-                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
-                <ScalarProperty Name="Total" ColumnName="Total" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="VoucherDetails">
-            <EntityTypeMapping TypeName="SPEEDYSOLModel.VoucherDetail">
-              <MappingFragment StoreEntitySet="VoucherDetail">
-                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
-                <ScalarProperty Name="VoucherID" ColumnName="VoucherID" />
-                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
-                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
-                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="GodownItems">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.GodownItem">
               <MappingFragment StoreEntitySet="GodownItems">
@@ -1211,6 +1128,19 @@
                 <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
                 <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vouchers">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Voucher">
+              <MappingFragment StoreEntitySet="Vouchers">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="AccountID" ColumnName="AccountID" />
+                <ScalarProperty Name="VoucherCode" ColumnName="VoucherCode" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
               </MappingFragment>
             </EntityTypeMapping>
