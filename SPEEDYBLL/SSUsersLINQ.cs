@@ -21,5 +21,75 @@ namespace SPEEDYBLL
             }
         }
 
+        public static List<SSUser> GetUsers()
+        {
+            using (var ssContext = new SPEEDYSOLEntities())
+            {
+                return ssContext.SSUsers.Include("SSUsersRole").ToList();
+            }
+        }
+
+        public static List<SSUsersRole> GetUserRoles()
+        {
+            using (var ssContext = new SPEEDYSOLEntities())
+            {
+                return ssContext.SSUsersRoles.ToList();
+            }
+        }
+
+        public static bool SaveUser(SSUser user)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    if (user.sysSerial > 0)
+                    {
+                        user.UpdatedOn = DateTime.UtcNow;
+                        ssContext.Entry(user).State = System.Data.Entity.EntityState.Modified;
+                        ssContext.SaveChanges();
+                    }
+                    else
+                    {
+                        user.CreatedOn = DateTime.UtcNow;
+
+                        ssContext.SSUsers.Add(user);
+                        ssContext.SaveChanges();
+                    }
+
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool DeleteUser(SSUser user)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    if (user != null)
+                    {
+                        ssContext.Entry(user).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        
+
     }
 }

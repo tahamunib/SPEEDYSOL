@@ -100,6 +100,15 @@
     <Compile Include="Screens\Sales\CreateOrder_Sales.xaml.cs">
       <DependentUpon>CreateOrder_Sales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Users\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Users\CreateUser.xaml.cs">
+      <DependentUpon>CreateUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Users\Users.xaml.cs">
+      <DependentUpon>Users.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Vouchers\CreateVoucher.xaml.cs">
       <DependentUpon>CreateVoucher.xaml</DependentUpon>
     </Compile>
@@ -166,6 +175,18 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Users\ChangePassword.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Users\CreateUser.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Users\Users.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Vouchers\CreateVoucher.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -203,6 +224,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SPEEDYAuthorization\SPEEDYAuthorization.csproj">
+      <Project>{3538364E-D9E3-4ADF-B627-055F66E20851}</Project>
+      <Name>SPEEDYAuthorization</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SPEEDYBLL\SPEEDYBLL.csproj">
       <Project>{BA1F0E18-5346-44EE-A29F-82203A4D0077}</Project>
       <Name>SPEEDYBLL</Name>

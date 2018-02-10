@@ -60,6 +60,11 @@
                 <TextBlock FontSize="18">ACCOUNTS</TextBlock>
             </StackPanel>
         </Button>
+        <Button Name="btnClients" Grid.Row="2" Grid.Column="3" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnClients_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">CLIENTS</TextBlock>
+            </StackPanel>
+        </Button>
         
     </Grid>
 </Page>

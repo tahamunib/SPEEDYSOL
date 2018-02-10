@@ -19,5 +19,16 @@ namespace SPEEDYAuthorization
                 return BitConverter.ToString(hash).Replace("-", String.Empty);
             }
         }
+
+        public static bool IsOldPasswordMatch(string passwordHash,string oldPasswordString)
+        {
+            var hash = GetHash(oldPasswordString);
+            if (hash.Equals(passwordHash))
+                return true;
+            else
+                return false;
+        }
+
+        
     }
 }

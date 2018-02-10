@@ -52,6 +52,8 @@
     <Compile Include="ViewModels\Account\VMAccount.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
+    <Compile Include="ViewModels\User\VMCreateUser.cs" />
+    <Compile Include="ViewModels\User\VMUser.cs" />
     <Compile Include="ViewModels\Voucher\VMCreateVoucher.cs" />
     <Compile Include="ViewModels\Voucher\VMVoucher.cs" />
   </ItemGroup>

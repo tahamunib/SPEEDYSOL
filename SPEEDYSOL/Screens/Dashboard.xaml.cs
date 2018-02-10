@@ -77,12 +77,17 @@ namespace SPEEDYSOL.Screens
 
         private void btnUsers_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(new Screens.Users.Users(window));
         }
 
         private void btnAccount_Click(object sender, RoutedEventArgs e)
         {
             window.mainFrame.Navigate(new Accounts.Accounts(window));
+        }
+
+        private void btnClients_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

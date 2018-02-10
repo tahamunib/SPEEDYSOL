@@ -11,17 +11,26 @@ namespace SPEEDYDAL
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations.Schema;
+
     public partial class SSUser
     {
         public long sysSerial { get; set; }
-        public Nullable<long> RoleID { get; set; }
+        private Nullable<long> _RoleID;
+        public Nullable<long> RoleID { get {return _RoleID; } set { _RoleID = value; _isEnabled = _RoleID != 1 ? true : false; } }
         public string Name { get; set; }
         public string ContactNum { get; set; }
         public string LoginID { get; set; }
         public string Password { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+
+        [NotMapped]
+        private Nullable<bool> _isEnabled;
+        [NotMapped]
+        public Nullable<bool> isEnabled { get { return _isEnabled; } set {
+                _isEnabled = value;
+            } } 
     
         public virtual SSUsersRole SSUsersRole { get; set; }
     }
