@@ -1,0 +1,55 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Clients.Clients"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SPEEDYSOL.Screens.Clients"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="Clients"  Height="600" Width="Auto" Background="#FFAEABAB" Loaded="Page_Loaded">
+
+    <Grid>
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnAddClient" Width="80" Height="80" Click="btnAddClient_Click">Add Client</Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">CLIENTS</TextBlock>
+        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True" AutoGeneratingColumn="clientsGrid_AutoGeneratingColumn" Name="clientsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Clients}" SelectedItem="{Binding SelectedClient}" CanUserAddRows="False" AutoGenerateColumns="True">
+
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style  TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="MinHeight" Value="20"></Setter>
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+
+            <DataGrid.Columns>
+                <DataGridTemplateColumn >
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Width="35" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="35" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

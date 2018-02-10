@@ -87,7 +87,7 @@ namespace SPEEDYSOL.Screens
 
         private void btnClients_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(new Clients.Clients(window));
         }
     }
 }
