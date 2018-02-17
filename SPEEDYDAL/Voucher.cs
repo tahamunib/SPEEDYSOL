@@ -11,9 +11,7 @@ namespace SPEEDYDAL
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel;
-    using System.Runtime.CompilerServices;
-
+    
     public partial class Voucher
     {
         public long sysSerial { get; set; }
@@ -25,6 +23,5 @@ namespace SPEEDYDAL
         public Nullable<System.DateTime> UpdatedOn { get; set; }
     
         public virtual SSAccount SSAccount { get; set; }
-        
     }
 }

@@ -21,7 +21,6 @@ namespace SPEEDYDAL
         public Nullable<long> Total { get; set; }
         public Nullable<int> ExtraDiscount { get; set; }
         public Nullable<int> SaleTO { get; set; }
-        public Nullable<int> SalePrice { get; set; }
         public int Qty { get; set; }
         public Nullable<int> Bonus { get; set; }
     

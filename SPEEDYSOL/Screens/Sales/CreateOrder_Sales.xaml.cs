@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPEEDYBLL.ViewModels.Sale;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,31 @@ namespace SPEEDYSOL.Screens.Sales
     /// </summary>
     public partial class CreateOrder_Sales : Window
     {
+        private VMSaleOrderDetail _viewModel;
         public CreateOrder_Sales()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            _viewModel = new VMSaleOrderDetail();
+            this.DataContext = _viewModel;
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void sOrderDetailGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+
         }
     }
 }

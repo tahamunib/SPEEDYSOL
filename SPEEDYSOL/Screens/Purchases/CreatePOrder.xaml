@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPEEDYSOL.Screens.Purchases"
-        mc:Ignorable="d"
+        mc:Ignorable="d" d:DesignHeight="800" d:DesignWidth="1300"
         Title="Purchase Order" WindowState="Maximized" ShowInTaskbar="True" WindowStyle="SingleBorderWindow" Loaded="Window_Loaded">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFAEABAB" Height="Auto" Width="Auto">
         <Grid.RowDefinitions>
@@ -14,7 +14,7 @@
             <RowDefinition Height="25*"></RowDefinition>
         </Grid.RowDefinitions>
         <TextBlock Name="pOrderHeader" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="Auto" Width="Auto" FontSize="30">PURCHASE ORDER</TextBlock>
-        <Grid Grid.Row="1" Name="pOrder1">
+        <Grid Grid.Row="1" Name="pOrder1" VerticalAlignment="Center" Width="Auto">
             <Grid.RowDefinitions>
                 <RowDefinition Height="50"></RowDefinition>
                 <RowDefinition Height="50"></RowDefinition>
@@ -24,28 +24,28 @@
                 <ColumnDefinition Width="10*"></ColumnDefinition>
                 <ColumnDefinition Width="10*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
                 <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbGodown" Margin="10,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding godownID}" SelectedItem="{Binding SelectedGodown}"></ComboBox>
             </StackPanel>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
                 <Label Content="Client" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbClient" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Clients}" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedItem="{Binding SelectedSSClient}"></ComboBox>
             </StackPanel>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
                 <Label Content="InvType" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbInvType" Margin="20,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding InvType}" DisplayMemberPath="DisplayName" SelectedValuePath="Value" SelectedItem="{Binding SelectedInvType}"></ComboBox>
             </StackPanel>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
                 <Label Content="Remarks" FontSize="13" HorizontalAlignment="Left"></Label>
                 <TextBox Name="tbRemarks" Margin="16,0,0,0" Width="160" HorizontalAlignment="Right"></TextBox>
             </StackPanel>
-            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+            <StackPanel Margin="10,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
                 <Label Content="Posted" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbPosted" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Posted}" DisplayMemberPath="DisplayName" SelectedValuePath="Value" SelectedItem="{Binding SelectedPosted}"></ComboBox>
             </StackPanel>
         </Grid>
-        <DataGrid RowEditEnding="pOrderDetailGrid_RowEditEnding"  ItemsSource="{Binding PurchaseOrderDetails, Mode=TwoWay}" Name="pOrderDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
+        <DataGrid Width="Auto" MinHeight="20" RowEditEnding="pOrderDetailGrid_RowEditEnding"  ItemsSource="{Binding PurchaseOrderDetails, Mode=TwoWay}" Name="pOrderDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
             <DataGrid.Columns>
                 <!--<DataGridTemplateColumn x:Name="templateCmb" Header="Item" Width="3*">
                     <DataGridTemplateColumn.CellTemplate>
@@ -111,7 +111,11 @@
                 <ColumnDefinition Width="80*"></ColumnDefinition>
                 <ColumnDefinition Width="20*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
-            <Grid Grid.Column="0" >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70*"></RowDefinition>
+                    <RowDefinition Height="30*"></RowDefinition>
+                </Grid.RowDefinitions>
+            <Grid Grid.Column="0" Grid.ColumnSpan="2">
                 
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="20*"></ColumnDefinition>
@@ -119,57 +123,60 @@
                     <ColumnDefinition Width="20*"></ColumnDefinition>
                     <ColumnDefinition Width="20*"></ColumnDefinition>
                     <ColumnDefinition Width="20*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    <ColumnDefinition Width="20*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="50"></RowDefinition>
-                    <RowDefinition Height="50"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="1*"></RowDefinition>
                 </Grid.RowDefinitions>
-                
-                <StackPanel HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
+
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center" HorizontalAlignment="Center" Grid.Column="0" Grid.Row="0">QtyPack</Label>
                         <TextBox Name="tbQtyPack" Text="{Binding pOrder.TotalQtyPack}" VerticalAlignment="Center" Margin="26,0,0,0" Width="40" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center" Grid.Column="1" Grid.Row="0">QtyLoose</Label>
-                        <TextBox Name="tbQtyLoose" VerticalAlignment="Center" Margin="10" Width="40" Height="35"></TextBox>
+                        <TextBox Name="tbQtyLoose" Text="{Binding pOrder.TotalQtyLoose}" VerticalAlignment="Center" Margin="10" Width="40" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">Qty</Label>
-                        <TextBox Name="tbQty" VerticalAlignment="Center" Margin="28,0,0,0" Width="40" Height="35"></TextBox>
+                        <TextBox Name="tbQty" Text="{Binding pOrder.TotalQty}" VerticalAlignment="Center" Margin="28,0,0,0" Width="40" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">QtyBonus</Label>
-                        <TextBox Name="tbQtyBonus" VerticalAlignment="Center" Width="40" Margin="10" Height="35"></TextBox>
+                        <TextBox Name="tbQtyBonus" Text="{Binding pOrder.TotalQtyBonus}" VerticalAlignment="Center" Width="40" Margin="10" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="4" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">Discount(%)</Label>
-                        <TextBox Name="tbDiscPerc" VerticalAlignment="Center" Width="40" Margin="6" Height="35"></TextBox>
+                        <TextBox Name="tbDiscPerc" Text="{Binding pOrder.TotalDiscountPercentage}" VerticalAlignment="Center" Width="40" Margin="6" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="5" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">FlatDiscount</Label>
-                        <TextBox Name="tbFlatDisc" VerticalAlignment="Center" Width="40" Margin="3,0,0,0" Height="35"></TextBox>
+                        <TextBox Name="tbFlatDisc" Text="{Binding pOrder.TotalFlatDiscount}" VerticalAlignment="Center" Width="40" Margin="3,0,0,0" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="6" Grid.Row="0" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Margin="10,0,0,0" Grid.Row="0">GST</Label>
-                        <TextBox Name="tbGst" VerticalAlignment="Center" Width="40" Margin="29,0,0,0" Height="35"></TextBox>
+                        <TextBox Name="tbGst" Text="{Binding pOrder.TotalGST}" VerticalAlignment="Center" Width="40" Margin="29,0,0,0" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="2" Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">ExclTax</Label>
-                        <TextBox Name="tbExclTax" VerticalAlignment="Center" Width="40" Margin="10" Height="35"></TextBox>
+                        <TextBox Name="tbExclTax" Text="{Binding pOrder.TotalExclTax}" VerticalAlignment="Center" Width="40" Margin="30,0,0,0" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="3" Grid.Row="1" Orientation="Horizontal">
+                    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="1" Orientation="Horizontal">
                         <Label VerticalAlignment="Center"  Grid.Column="0" Grid.Row="0">InclTax</Label>
-                        <TextBox Name="tbInclTax" VerticalAlignment="Center" Width="40" Margin="27,0,0,0" Height="35"></TextBox>
+                        <TextBox Name="tbInclTax" Text="{Binding pOrder.TotalInclTax}" VerticalAlignment="Center" Width="40" Margin="15,0,0,0" Height="35"></TextBox>
                     </StackPanel>
-                    <StackPanel HorizontalAlignment="Stretch" Grid.Column="4" Grid.Row="1" Orientation="Horizontal">
-                        <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">GrandTotal</Label>
-                        <TextBox Name="tbGrandTotal" VerticalAlignment="Center" Margin="8,0,0,0" Width="40" Height="35"></TextBox>
-                    </StackPanel>
+                    
                 
             </Grid>
-                <StackPanel Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Vertical">
-                    <Button VerticalAlignment="Center" Margin="0,0,0,10" Width="80" Height="30" Content="Save" Name="btnCreate" Click="btnCreate_Click"></Button>
+                <StackPanel Grid.Column="1" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                    <Button VerticalAlignment="Center" Margin="15,0,0,0" Width="80" Height="30" Content="Save" Name="btnCreate" Click="btnCreate_Click"></Button>
                     <Button VerticalAlignment="Center" Width="80" Height="30" Content="Close" Name="btnClose" Click="btnClose_Click"></Button>
+                </StackPanel>
+                <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="1" Orientation="Horizontal">
+                    <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">GrandTotal</Label>
+                    <TextBox Name="tbGrandTotal" Text="{Binding pOrder.GrandTotal}" VerticalAlignment="Center" Margin="8,0,0,0" Width="80" Height="35"></TextBox>
                 </StackPanel>
             </Grid>
         </GroupBox>

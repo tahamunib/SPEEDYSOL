@@ -27,7 +27,10 @@ namespace SPEEDYBLL
                 bool created = false;
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
+                    ssContext.PurchaseOrders.Add(purchaseOrder);
+                    ssContext.SaveChanges();
 
+                    created = true;
                 }
                 return created;
             }

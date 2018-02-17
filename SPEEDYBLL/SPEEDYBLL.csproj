@@ -45,8 +45,10 @@
     <Compile Include="SSClientLINQ.cs" />
     <Compile Include="SSGodownsLINQ.cs" />
     <Compile Include="SSItemsLINQ.cs" />
+    <Compile Include="SSOrderBookersLINQ.cs" />
     <Compile Include="SSPurchaseOrdersLINQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SSSalesManLINQ.cs" />
     <Compile Include="SSUsersLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />
     <Compile Include="ViewModels\Account\VMAccount.cs" />

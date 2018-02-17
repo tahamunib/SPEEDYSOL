@@ -52,7 +52,8 @@ namespace SPEEDYSOL.Screens
 
         private void btnSales_Click(object sender, RoutedEventArgs e)
         {
-
+            Screens.Sales.CreateOrder_Sales createPOrder = new Sales.CreateOrder_Sales();
+            createPOrder.Show();
         }
 
         private void btnPurchase_Click(object sender, RoutedEventArgs e)
@@ -88,6 +89,16 @@ namespace SPEEDYSOL.Screens
         private void btnClients_Click(object sender, RoutedEventArgs e)
         {
             window.mainFrame.Navigate(new Clients.Clients(window));
+        }
+
+        private void btnSalesMan_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBookers_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

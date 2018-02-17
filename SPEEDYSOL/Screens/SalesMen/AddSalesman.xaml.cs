@@ -14,49 +14,49 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SPEEDYSOL.Screens.Items
+namespace SPEEDYSOL.Screens.SalesMen
 {
     /// <summary>
-    /// Interaction logic for AddItem.xaml
+    /// Interaction logic for AddSalesman.xaml
     /// </summary>
-    public partial class AddItem : Page
+    public partial class AddSalesman : Page
     {
-        public SPEEDYDAL.Item _item;
-        public string _header = "ADD ITEM";
-        public AddItem(SPEEDYDAL.Item item = null)
+        public SPEEDYDAL.Salesman _salesman;
+        public string _header = "ADD SALESMAN";
+        public AddSalesman(SPEEDYDAL.Salesman salesman = null)
         {
-            if (item != null)
+            if (salesman != null)
             {
-                _item = item;
-                _header = "EDIT ITEM";
+                _salesman = salesman;
+                _header = "EDIT SALESMAN";
             }
             else
             {
 
-                _item = new SPEEDYDAL.Item();
+                _salesman = new SPEEDYDAL.Salesman();
             }
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = _salesman;
+            this.header.Text = _header;
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (SSItemsLINQ.SaveItem(_item))
-                    MessageBox.Show("Item Saved!");
+                if (SSSalesManLINQ.SaveSalesman(_salesman))
+                    MessageBox.Show("Salesman Saved!");
                 else
-                    MessageBox.Show("Error Ocuured: Could not save item.");
+                    MessageBox.Show("Error Ocuured: Could not save salesman.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.DataContext = _item;
-            this.header.Text = _header;
         }
     }
 }

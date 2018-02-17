@@ -60,6 +60,16 @@
                 <TextBlock FontSize="18">ACCOUNTS</TextBlock>
             </StackPanel>
         </Button>
+        <Button Name="btnSalesMan" Grid.Row="2" Grid.Column="0" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnSalesMan_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock FontSize="18">SALESMEN</TextBlock>
+            </StackPanel>
+        </Button>
+        <Button Name="btnBookers" Grid.Row="2" Grid.Column="4" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnBookers_Click" VerticalAlignment="Center" >
+            <StackPanel>
+                <TextBlock Width="80" HorizontalAlignment="Center" TextWrapping="Wrap" FontSize="18">   ORDER BOOKERS</TextBlock>
+            </StackPanel>
+        </Button>
         <Button Name="btnClients" Grid.Row="2" Grid.Column="3" Height="150" Width="150" HorizontalAlignment="Center"  Click="btnClients_Click" VerticalAlignment="Center" >
             <StackPanel>
                 <TextBlock FontSize="18">CLIENTS</TextBlock>

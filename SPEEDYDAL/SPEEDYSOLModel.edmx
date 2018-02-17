@@ -138,7 +138,6 @@
           <Property Name="Total" Type="bigint" />
           <Property Name="ExtraDiscount" Type="int" />
           <Property Name="SaleTO" Type="int" />
-          <Property Name="SalePrice" Type="int" />
           <Property Name="Qty" Type="int" Nullable="false" />
           <Property Name="Bonus" Type="int" />
         </EntityType>
@@ -571,7 +570,6 @@
           <Property Name="Total" Type="Int64" />
           <Property Name="ExtraDiscount" Type="Int32" />
           <Property Name="SaleTO" Type="Int32" />
-          <Property Name="SalePrice" Type="Int32" />
           <Property Name="Qty" Type="Int32" Nullable="false" />
           <Property Name="Bonus" Type="Int32" />
           <NavigationProperty Name="SaleOrder" Relationship="Self.FK_SaleOrderDetail_SOrder" FromRole="SaleOrderDetail" ToRole="SaleOrder" />
@@ -1031,7 +1029,6 @@
                 <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="ExtraDiscount" ColumnName="ExtraDiscount" />
                 <ScalarProperty Name="SaleTO" ColumnName="SaleTO" />
-                <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
                 <ScalarProperty Name="Qty" ColumnName="Qty" />
                 <ScalarProperty Name="Bonus" ColumnName="Bonus" />
               </MappingFragment>
