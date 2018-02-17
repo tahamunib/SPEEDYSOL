@@ -103,6 +103,12 @@
     <Compile Include="Screens\Purchases\CreateOrder_Purchase.xaml.cs">
       <DependentUpon>CreateOrder_Purchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\SalesMen\AddSalesman.xaml.cs">
+      <DependentUpon>AddSalesman.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\SalesMen\SalesMen.xaml.cs">
+      <DependentUpon>SalesMen.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Sales\CreateOrder_Sales.xaml.cs">
       <DependentUpon>CreateOrder_Sales.xaml</DependentUpon>
     </Compile>
@@ -182,6 +188,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Purchases\CreateOrder_Purchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\SalesMen\AddSalesman.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\SalesMen\SalesMen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

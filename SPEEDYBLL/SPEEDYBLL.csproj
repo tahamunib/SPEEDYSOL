@@ -55,6 +55,7 @@
     <Compile Include="ViewModels\Client\VMClient.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
+    <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />
     <Compile Include="ViewModels\Sale\VMSaleOrderDetails.cs" />
     <Compile Include="ViewModels\User\VMCreateUser.cs" />
     <Compile Include="ViewModels\User\VMUser.cs" />
