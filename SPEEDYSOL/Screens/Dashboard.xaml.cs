@@ -93,12 +93,12 @@ namespace SPEEDYSOL.Screens
 
         private void btnSalesMan_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(new SalesMen.SalesMen(window));
         }
 
         private void btnBookers_Click(object sender, RoutedEventArgs e)
         {
-
+            window.mainFrame.Navigate(new Bookers.Bookers(window));
         }
     }
 }

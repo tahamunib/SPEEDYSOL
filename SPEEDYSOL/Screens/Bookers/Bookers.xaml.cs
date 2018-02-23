@@ -1,5 +1,5 @@
 ﻿using SPEEDYBLL;
-using SPEEDYBLL.ViewModels.Salesmen;
+using SPEEDYBLL.ViewModels.Booker;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,22 +15,22 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SPEEDYSOL.Screens.SalesMen
+namespace SPEEDYSOL.Screens.Bookers
 {
     /// <summary>
-    /// Interaction logic for SalesMen.xaml
+    /// Interaction logic for Bookers.xaml
     /// </summary>
-    public partial class SalesMen : Page
+    public partial class Bookers : Page
     {
         MainWindow window;
-        VMSalesmen vmSalesmen;
-        public SalesMen(MainWindow _window)
+        VMBooker vmBooker; 
+        public Bookers(MainWindow _window)
         {
             window = _window;
             InitializeComponent();
         }
 
-        private void salesmenGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
+        private void bookerGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)
         {
             switch (e.PropertyName)
             {
@@ -40,14 +40,20 @@ namespace SPEEDYSOL.Screens.SalesMen
                 case "Name":
                     e.Column.DisplayIndex = 0;
                     break;
-                case "Type":
+                case "Address":
                     e.Column.DisplayIndex = 1;
                     break;
-                case "CreatedOn":
+                case "Type":
                     e.Column.DisplayIndex = 2;
                     break;
-                case "UpdatedOn":
+                case "ContactNum":
                     e.Column.DisplayIndex = 3;
+                    break;
+                case "CreatedOn":
+                    e.Column.DisplayIndex = 4;
+                    break;
+                case "UpdatedOn":
+                    e.Column.DisplayIndex = 5;
                     break;
                 case "SaleOrders":
                     e.Cancel = true;
@@ -56,18 +62,12 @@ namespace SPEEDYSOL.Screens.SalesMen
             }
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            vmSalesmen = new VMSalesmen();
-            this.DataContext = vmSalesmen;
-        }
-
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.Salesman)salesmenGrid.SelectedItem;
-                window.mainFrame.Navigate(new AddSalesman(selectedItem));
+                var selectedItem = (SPEEDYDAL.OrderBooker)bookerGrid.SelectedItem;
+                window.mainFrame.Navigate(new AddBooker(selectedItem));
             }
             catch (Exception ex)
             {
@@ -79,15 +79,15 @@ namespace SPEEDYSOL.Screens.SalesMen
         {
             try
             {
-                var result = MessageBox.Show("Delete Salesman?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Delete Order Booker?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    var selectedItem = (SPEEDYDAL.Salesman)salesmenGrid.SelectedItem;
-                    if (SSSalesManLINQ.DeleteItem(selectedItem))
+                    var selectedItem = (SPEEDYDAL.OrderBooker)bookerGrid.SelectedItem;
+                    if (SSOrderBookersLINQ.DeleteItem(selectedItem))
                     {
-                        vmSalesmen.Salesmen.Remove(selectedItem);
-                        this.DataContext = vmSalesmen;
+                        vmBooker.Bookers.Remove(selectedItem);
+                        this.DataContext = vmBooker;
                     }
                 }
             }
@@ -97,9 +97,15 @@ namespace SPEEDYSOL.Screens.SalesMen
             }
         }
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            vmBooker = new VMBooker();
+            this.DataContext = vmBooker;
+        }
+
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(new Screens.SalesMen.AddSalesman());
+            window.mainFrame.Navigate(new Screens.Bookers.AddBooker());
         }
     }
 }

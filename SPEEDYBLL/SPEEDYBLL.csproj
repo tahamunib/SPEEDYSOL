@@ -52,6 +52,7 @@
     <Compile Include="SSUsersLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />
     <Compile Include="ViewModels\Account\VMAccount.cs" />
+    <Compile Include="ViewModels\Booker\VMBooker.cs" />
     <Compile Include="ViewModels\Client\VMClient.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />

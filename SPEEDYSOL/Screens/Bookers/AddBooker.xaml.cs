@@ -14,52 +14,52 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SPEEDYSOL.Screens.SalesMen
+namespace SPEEDYSOL.Screens.Bookers
 {
     /// <summary>
-    /// Interaction logic for AddSalesman.xaml
+    /// Interaction logic for AddBooker.xaml
     /// </summary>
-    public partial class AddSalesman : Page
+    public partial class AddBooker : Page
     {
-        public SPEEDYDAL.Salesman _salesman;
-        public string _header = "ADD SALESMAN";
+        public SPEEDYDAL.OrderBooker _booker;
+        public string _header = "ADD ORDER BOOKER";
         public string _btnText = "ADD";
-        public AddSalesman(SPEEDYDAL.Salesman salesman = null)
+        public AddBooker(SPEEDYDAL.OrderBooker booker = null)
         {
-            if (salesman != null)
+            if (booker != null)
             {
-                _salesman = salesman;
+                _booker = booker;
                 _header = "EDIT SALESMAN";
                 _btnText = "SAVE";
             }
             else
             {
 
-                _salesman = new SPEEDYDAL.Salesman();
+                _booker = new SPEEDYDAL.OrderBooker();
             }
             InitializeComponent();
-        }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            this.DataContext = _salesman;
-            this.header.Text = _header;
-            this.btnAddItem.Content = _btnText;
         }
 
         private void btnAddItem_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (SSSalesManLINQ.SaveSalesman(_salesman))
-                    MessageBox.Show("Salesman Saved!");
+                if (SSOrderBookersLINQ.SaveBooker(_booker))
+                    MessageBox.Show("Order Booker Saved!");
                 else
-                    MessageBox.Show("Error Ocuured: Could not save salesman.");
+                    MessageBox.Show("Error Occured: Could not save booker.");
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            this.DataContext = _booker;
+            this.header.Text = _header;
+            this.btnAddItem.Content = _btnText;
         }
     }
 }

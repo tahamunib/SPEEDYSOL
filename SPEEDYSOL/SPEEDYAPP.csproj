@@ -70,6 +70,12 @@
     <Compile Include="Screens\Accounts\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Bookers\AddBooker.xaml.cs">
+      <DependentUpon>AddBooker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Bookers\Bookers.xaml.cs">
+      <DependentUpon>Bookers.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Clients\Clients.xaml.cs">
       <DependentUpon>Clients.xaml</DependentUpon>
     </Compile>
@@ -144,6 +150,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Accounts\CreateAccount.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Bookers\AddBooker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Bookers\Bookers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
