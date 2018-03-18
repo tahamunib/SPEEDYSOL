@@ -49,6 +49,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountCategory.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AccountGroup.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DailySales.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Godown.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
@@ -58,14 +67,41 @@
     <Compile Include="Item.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ItemBrand.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemGroup.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ItemManufacturer.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderBooker.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PurchaseDamageChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseDamageChallanItems.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PurchaseOrder.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderDetail.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseRecievingChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseRecievingChallanItems.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseReturnChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PurchaseReturnChallanItems.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleOrder.cs">
@@ -74,7 +110,25 @@
     <Compile Include="SaleOrderDetail.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SalesDamageChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesDamageChallanItems.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesDeliveryChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesDeliveryChallanItems.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Salesman.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesReturnChallan.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SalesReturnChallanItems.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SPEEDYSOLModel.Context.cs">
@@ -102,6 +156,12 @@
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SSUsersRole.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="uspGetUser_Result.cs">
+      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Vendor.cs">
       <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Voucher.cs">

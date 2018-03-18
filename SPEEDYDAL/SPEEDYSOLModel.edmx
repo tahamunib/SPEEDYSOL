@@ -5,6 +5,33 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="SPEEDYSOLModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AccountCategory">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="DailySales">
+          <Key>
+            <PropertyRef Name="DSRNumber" />
+          </Key>
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="SalesManID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+        </EntityType>
         <EntityType Name="GodownItems">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -19,8 +46,39 @@
             <PropertyRef Name="sysSerial" />
           </Key>
           <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="CreatedOn" Type="date" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="ItemBrand">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="ItemGroup">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="ItemManufacturer">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
         <EntityType Name="Items">
@@ -31,10 +89,14 @@
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="PurchasePrice" Type="int" Nullable="false" />
           <Property Name="SalePrice" Type="int" Nullable="false" />
-          <Property Name="Manufacturer" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="RetailPrice" Type="int" Nullable="false" />
+          <Property Name="ManufacturerID" Type="int" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" />
+          <Property Name="BrandID" Type="int" Nullable="false" />
           <Property Name="Remarks" Type="varchar" MaxLength="255" />
           <Property Name="PackUnit" Type="int" Nullable="false" />
-          <Property Name="RecentPurchase" Type="int" />
+          <Property Name="CTNSize" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="UnitWeight" Type="int" />
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
@@ -50,6 +112,26 @@
           <Property Name="ContactNum" Type="nvarchar" MaxLength="255" />
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseDamageChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VendorID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseDamageChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PDamCID" Type="bigint" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="int" Nullable="false" />
+          <Property Name="PC" Type="int" />
         </EntityType>
         <EntityType Name="PurchaseOrder">
           <Key>
@@ -96,6 +178,46 @@
           <Property Name="GrossAmount" Type="bigint" />
           <Property Name="DiscPercentage" Type="int" />
         </EntityType>
+        <EntityType Name="PurchaseRecievingChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VendorID" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseRecievingChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="PRCID" Type="int" Nullable="false" />
+          <Property Name="Ctn" Type="bigint" Nullable="false" />
+          <Property Name="Pcs" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PurchaseReturnChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VendorID" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="PurchaseReturnChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PRCID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="int" Nullable="false" />
+          <Property Name="PC" Type="int" />
+        </EntityType>
         <EntityType Name="SaleOrder">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -141,6 +263,46 @@
           <Property Name="Qty" Type="int" Nullable="false" />
           <Property Name="Bonus" Type="int" />
         </EntityType>
+        <EntityType Name="SalesDamageChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SalesDamageChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" Nullable="false" />
+          <Property Name="DamCID" Type="bigint" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="int" Nullable="false" />
+          <Property Name="PC" Type="int" />
+        </EntityType>
+        <EntityType Name="SalesDeliveryChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SalesDeliveryChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DCID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="int" Nullable="false" />
+          <Property Name="PC" Type="int" />
+        </EntityType>
         <EntityType Name="Salesman">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -151,12 +313,33 @@
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
+        <EntityType Name="SalesReturnChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
+        <EntityType Name="SalesReturnChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" Nullable="false" />
+          <Property Name="RCID" Type="int" Nullable="false" />
+          <Property Name="ItemID" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="int" Nullable="false" />
+          <Property Name="PC" Type="int" Nullable="false" />
+        </EntityType>
         <EntityType Name="SSAccounts">
           <Key>
             <PropertyRef Name="sysSerial" />
           </Key>
           <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="AccNo" Type="varchar(max)" Nullable="false" />
+          <Property Name="CategoryID" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
           <Property Name="BalanceLimit" Type="bigint" Nullable="false" />
           <Property Name="DiscountInPercentage" Type="int" />
@@ -204,6 +387,16 @@
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Name" Type="varchar(max)" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+        </EntityType>
         <EntityType Name="Vouchers">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -216,6 +409,30 @@
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
         </EntityType>
+        <Association Name="FK_AccountCategory_AccountGroup">
+          <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="1" />
+          <End Role="AccountCategory" Type="Self.AccountCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountGroup">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="AccountCategory">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailySales_DailySales">
+          <End Role="Salesman" Type="Self.Salesman" Multiplicity="1" />
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salesman">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="DailySales">
+              <PropertyRef Name="SalesManID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_GodownItems_Godowns">
           <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
           <End Role="GodownItems" Type="Self.GodownItems" Multiplicity="*" />
@@ -228,17 +445,75 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_GodownItems_Items">
-          <End Role="Items" Type="Self.Items" Multiplicity="1">
-            <OnDelete Action="Cascade" />
-          </End>
-          <End Role="GodownItems" Type="Self.GodownItems" Multiplicity="*" />
+        <Association Name="FK_Items_ItemBrand">
+          <End Role="ItemBrand" Type="Self.ItemBrand" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemBrand">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_ItemGroup">
+          <End Role="ItemGroup" Type="Self.ItemGroup" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroup">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_ItemManufacturer">
+          <End Role="ItemManufacturer" Type="Self.ItemManufacturer" Multiplicity="1" />
+          <End Role="Items" Type="Self.Items" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemManufacturer">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Items">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallan_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="PurchaseDamageChallan" Type="Self.PurchaseDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallanItems_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="PurchaseDamageChallanItems" Type="Self.PurchaseDamageChallanItems" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Items">
               <PropertyRef Name="sysSerial" />
             </Principal>
-            <Dependent Role="GodownItems">
-              <PropertyRef Name="itemID" />
+            <Dependent Role="PurchaseDamageChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallanItems_PurchaseDamageChallan">
+          <End Role="PurchaseDamageChallan" Type="Self.PurchaseDamageChallan" Multiplicity="1" />
+          <End Role="PurchaseDamageChallanItems" Type="Self.PurchaseDamageChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseDamageChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallanItems">
+              <PropertyRef Name="PDamCID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -289,6 +564,78 @@
             </Principal>
             <Dependent Role="PurchaseOrderDetail">
               <PropertyRef Name="POrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallan_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="PurchaseRecievingChallan" Type="Self.PurchaseRecievingChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallanItems_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="PurchaseRecievingChallanItems" Type="Self.PurchaseRecievingChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan">
+          <End Role="PurchaseRecievingChallan" Type="Self.PurchaseRecievingChallan" Multiplicity="1" />
+          <End Role="PurchaseRecievingChallanItems" Type="Self.PurchaseRecievingChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRecievingChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallanItems">
+              <PropertyRef Name="PRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallan_Vendor">
+          <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
+          <End Role="PurchaseReturnChallan" Type="Self.PurchaseReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallanItems_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="PurchaseReturnChallanItems" Type="Self.PurchaseReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallanItems_PurchaseReturnChallan">
+          <End Role="PurchaseReturnChallan" Type="Self.PurchaseReturnChallan" Multiplicity="1" />
+          <End Role="PurchaseReturnChallanItems" Type="Self.PurchaseReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseReturnChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallanItems">
+              <PropertyRef Name="PRCID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -354,6 +701,102 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SalesDamageChallanItems_SalesDamageChallan">
+          <End Role="SalesDamageChallan" Type="Self.SalesDamageChallan" Multiplicity="1" />
+          <End Role="SalesDamageChallanItems" Type="Self.SalesDamageChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesDamageChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDamageChallanItems">
+              <PropertyRef Name="DamCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDC_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="SalesDeliveryChallan" Type="Self.SalesDeliveryChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDCItems_SalesDC">
+          <End Role="SalesDeliveryChallan" Type="Self.SalesDeliveryChallan" Multiplicity="1" />
+          <End Role="SalesDeliveryChallanItems" Type="Self.SalesDeliveryChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesDeliveryChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallanItems">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDCItems_SalesDCItems">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="SalesDeliveryChallanItems" Type="Self.SalesDeliveryChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRC_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="SalesReturnChallan" Type="Self.SalesReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesReturnChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRCItems_Items">
+          <End Role="Items" Type="Self.Items" Multiplicity="1" />
+          <End Role="SalesReturnChallanItems" Type="Self.SalesReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Items">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRCItems_SalesRC">
+          <End Role="SalesReturnChallan" Type="Self.SalesReturnChallan" Multiplicity="1" />
+          <End Role="SalesReturnChallanItems" Type="Self.SalesReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturnChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallanItems">
+              <PropertyRef Name="RCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSAccounts_AccountCategory">
+          <End Role="AccountCategory" Type="Self.AccountCategory" Multiplicity="0..1" />
+          <End Role="SSAccounts" Type="Self.SSAccounts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountCategory">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSAccounts">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SSUsers_SSUserRoles">
           <End Role="SSUsersRoles" Type="Self.SSUsersRoles" Multiplicity="0..1" />
           <End Role="SSUsers" Type="Self.SSUsers" Multiplicity="*" />
@@ -378,28 +821,78 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="uspGetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="loginid" Type="nvarchar" Mode="In" />
+        </Function>
         <EntityContainer Name="SPEEDYSOLModelStoreContainer">
+          <EntitySet Name="AccountCategory" EntityType="Self.AccountCategory" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AccountGroup" EntityType="Self.AccountGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DailySales" EntityType="Self.DailySales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GodownItems" EntityType="Self.GodownItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Godowns" EntityType="Self.Godowns" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemBrand" EntityType="Self.ItemBrand" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemGroup" EntityType="Self.ItemGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ItemManufacturer" EntityType="Self.ItemManufacturer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Items" EntityType="Self.Items" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderBooker" EntityType="Self.OrderBooker" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDamageChallan" EntityType="Self.PurchaseDamageChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseDamageChallanItems" EntityType="Self.PurchaseDamageChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrder" EntityType="Self.PurchaseOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseOrderDetail" EntityType="Self.PurchaseOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseRecievingChallan" EntityType="Self.PurchaseRecievingChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseRecievingChallanItems" EntityType="Self.PurchaseRecievingChallanItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseReturnChallan" EntityType="Self.PurchaseReturnChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PurchaseReturnChallanItems" EntityType="Self.PurchaseReturnChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleOrder" EntityType="Self.SaleOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleOrderDetail" EntityType="Self.SaleOrderDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesDamageChallan" EntityType="Self.SalesDamageChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesDamageChallanItems" EntityType="Self.SalesDamageChallanItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesDeliveryChallan" EntityType="Self.SalesDeliveryChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesDeliveryChallanItems" EntityType="Self.SalesDeliveryChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Salesman" EntityType="Self.Salesman" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesReturnChallan" EntityType="Self.SalesReturnChallan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SalesReturnChallanItems" EntityType="Self.SalesReturnChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSAccounts" EntityType="Self.SSAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSClients" EntityType="Self.SSClients" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsers" EntityType="Self.SSUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRoles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_AccountCategory_AccountGroup" Association="Self.FK_AccountCategory_AccountGroup">
+            <End Role="AccountGroup" EntitySet="AccountGroup" />
+            <End Role="AccountCategory" EntitySet="AccountCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailySales_DailySales" Association="Self.FK_DailySales_DailySales">
+            <End Role="Salesman" EntitySet="Salesman" />
+            <End Role="DailySales" EntitySet="DailySales" />
+          </AssociationSet>
           <AssociationSet Name="FK_GodownItems_Godowns" Association="Self.FK_GodownItems_Godowns">
             <End Role="Godowns" EntitySet="Godowns" />
             <End Role="GodownItems" EntitySet="GodownItems" />
           </AssociationSet>
-          <AssociationSet Name="FK_GodownItems_Items" Association="Self.FK_GodownItems_Items">
+          <AssociationSet Name="FK_Items_ItemBrand" Association="Self.FK_Items_ItemBrand">
+            <End Role="ItemBrand" EntitySet="ItemBrand" />
             <End Role="Items" EntitySet="Items" />
-            <End Role="GodownItems" EntitySet="GodownItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_ItemGroup" Association="Self.FK_Items_ItemGroup">
+            <End Role="ItemGroup" EntitySet="ItemGroup" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_ItemManufacturer" Association="Self.FK_Items_ItemManufacturer">
+            <End Role="ItemManufacturer" EntitySet="ItemManufacturer" />
+            <End Role="Items" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallan_Vendor" Association="Self.FK_PurchaseDamageChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallanItems_Items" Association="Self.FK_PurchaseDamageChallanItems_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="PurchaseDamageChallanItems" EntitySet="PurchaseDamageChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallanItems_PurchaseDamageChallan" Association="Self.FK_PurchaseDamageChallanItems_PurchaseDamageChallan">
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+            <End Role="PurchaseDamageChallanItems" EntitySet="PurchaseDamageChallanItems" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseOrder_Godown" Association="Self.FK_PurchaseOrder_Godown">
             <End Role="Godowns" EntitySet="Godowns" />
@@ -416,6 +909,30 @@
           <AssociationSet Name="FK_PurchaseOrderDetail_POrder" Association="Self.FK_PurchaseOrderDetail_POrder">
             <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallan_Vendor" Association="Self.FK_PurchaseRecievingChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallanItems_Items" Association="Self.FK_PurchaseRecievingChallanItems_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="PurchaseRecievingChallanItems" EntitySet="PurchaseRecievingChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" Association="Self.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan">
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+            <End Role="PurchaseRecievingChallanItems" EntitySet="PurchaseRecievingChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallan_Vendor" Association="Self.FK_PurchaseReturnChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallanItems_Items" Association="Self.FK_PurchaseReturnChallanItems_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="PurchaseReturnChallanItems" EntitySet="PurchaseReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallanItems_PurchaseReturnChallan" Association="Self.FK_PurchaseReturnChallanItems_PurchaseReturnChallan">
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
+            <End Role="PurchaseReturnChallanItems" EntitySet="PurchaseReturnChallanItems" />
           </AssociationSet>
           <AssociationSet Name="FK_SaleOrder_Booker" Association="Self.FK_SaleOrder_Booker">
             <End Role="OrderBooker" EntitySet="OrderBooker" />
@@ -436,6 +953,38 @@
           <AssociationSet Name="FK_SaleOrderDetail_SOrder" Association="Self.FK_SaleOrderDetail_SOrder">
             <End Role="SaleOrder" EntitySet="SaleOrder" />
             <End Role="SaleOrderDetail" EntitySet="SaleOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDamageChallanItems_SalesDamageChallan" Association="Self.FK_SalesDamageChallanItems_SalesDamageChallan">
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
+            <End Role="SalesDamageChallanItems" EntitySet="SalesDamageChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDC_DailySales" Association="Self.FK_SalesDC_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDCItems_SalesDC" Association="Self.FK_SalesDCItems_SalesDC">
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+            <End Role="SalesDeliveryChallanItems" EntitySet="SalesDeliveryChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDCItems_SalesDCItems" Association="Self.FK_SalesDCItems_SalesDCItems">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="SalesDeliveryChallanItems" EntitySet="SalesDeliveryChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRC_DailySales" Association="Self.FK_SalesRC_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRCItems_Items" Association="Self.FK_SalesRCItems_Items">
+            <End Role="Items" EntitySet="Items" />
+            <End Role="SalesReturnChallanItems" EntitySet="SalesReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRCItems_SalesRC" Association="Self.FK_SalesRCItems_SalesRC">
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
+            <End Role="SalesReturnChallanItems" EntitySet="SalesReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSAccounts_AccountCategory" Association="Self.FK_SSAccounts_AccountCategory">
+            <End Role="AccountCategory" EntitySet="AccountCategory" />
+            <End Role="SSAccounts" EntitySet="SSAccounts" />
           </AssociationSet>
           <AssociationSet Name="FK_SSUsers_SSUserRoles" Association="Self.FK_SSUsers_SSUserRoles">
             <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
@@ -460,6 +1009,7 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Godown" FromRole="Godowns" ToRole="PurchaseOrder" />
           <NavigationProperty Name="GodownItems" Relationship="SPEEDYSOLModel.FK_GodownItems_Godowns" FromRole="Godown" ToRole="GodownItem" />
+          <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="OrderBooker">
           <Key>
@@ -585,6 +1135,7 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SaleOrders" Relationship="Self.FK_SaleOrder_SalesMan" FromRole="Salesman" ToRole="SaleOrder" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_DailySales_DailySales" FromRole="Salesman" ToRole="DailySales" />
         </EntityType>
         <EntityType Name="SSAccount">
           <Key>
@@ -599,6 +1150,8 @@
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Vouchers" Relationship="SPEEDYSOLModel.FK_Vouchers_SSAccounts" FromRole="SSAccount" ToRole="Voucher" />
+          <Property Name="CategoryID" Type="Int32" />
+          <NavigationProperty Name="AccountCategory" Relationship="SPEEDYSOLModel.FK_SSAccounts_AccountCategory" FromRole="SSAccount" ToRole="AccountCategory" />
         </EntityType>
         <EntityType Name="SSClient">
           <Key>
@@ -807,6 +1360,116 @@
             <End Role="SSAccount" EntitySet="SSAccounts" />
             <End Role="Voucher" EntitySet="Vouchers" />
           </AssociationSet>
+          <EntitySet Name="AccountCategory" EntityType="SPEEDYSOLModel.AccountCategory" />
+          <EntitySet Name="AccountGroup" EntityType="SPEEDYSOLModel.AccountGroup" />
+          <EntitySet Name="DailySales" EntityType="SPEEDYSOLModel.DailySales" />
+          <EntitySet Name="ItemBrand" EntityType="SPEEDYSOLModel.ItemBrand" />
+          <EntitySet Name="ItemGroup" EntityType="SPEEDYSOLModel.ItemGroup" />
+          <EntitySet Name="ItemManufacturer" EntityType="SPEEDYSOLModel.ItemManufacturer" />
+          <EntitySet Name="PurchaseDamageChallan" EntityType="SPEEDYSOLModel.PurchaseDamageChallan" />
+          <EntitySet Name="PurchaseDamageChallanItems" EntityType="SPEEDYSOLModel.PurchaseDamageChallanItems" />
+          <EntitySet Name="PurchaseRecievingChallan" EntityType="SPEEDYSOLModel.PurchaseRecievingChallan" />
+          <EntitySet Name="PurchaseRecievingChallanItems" EntityType="SPEEDYSOLModel.PurchaseRecievingChallanItems" />
+          <EntitySet Name="PurchaseReturnChallan" EntityType="SPEEDYSOLModel.PurchaseReturnChallan" />
+          <EntitySet Name="PurchaseReturnChallanItems" EntityType="SPEEDYSOLModel.PurchaseReturnChallanItems" />
+          <EntitySet Name="SalesDamageChallan" EntityType="SPEEDYSOLModel.SalesDamageChallan" />
+          <EntitySet Name="SalesDamageChallanItems" EntityType="SPEEDYSOLModel.SalesDamageChallanItems" />
+          <EntitySet Name="SalesDeliveryChallan" EntityType="SPEEDYSOLModel.SalesDeliveryChallan" />
+          <EntitySet Name="SalesDeliveryChallanItems" EntityType="SPEEDYSOLModel.SalesDeliveryChallanItems" />
+          <EntitySet Name="SalesReturnChallan" EntityType="SPEEDYSOLModel.SalesReturnChallan" />
+          <EntitySet Name="SalesReturnChallanItems" EntityType="SPEEDYSOLModel.SalesReturnChallanItems" />
+          <EntitySet Name="Vendor" EntityType="SPEEDYSOLModel.Vendor" />
+          <AssociationSet Name="FK_AccountCategory_AccountGroup" Association="SPEEDYSOLModel.FK_AccountCategory_AccountGroup">
+            <End Role="AccountGroup" EntitySet="AccountGroup" />
+            <End Role="AccountCategory" EntitySet="AccountCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SSAccounts_AccountCategory" Association="SPEEDYSOLModel.FK_SSAccounts_AccountCategory">
+            <End Role="AccountCategory" EntitySet="AccountCategory" />
+            <End Role="SSAccount" EntitySet="SSAccounts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DailySales_DailySales" Association="SPEEDYSOLModel.FK_DailySales_DailySales">
+            <End Role="Salesman" EntitySet="Salesmen" />
+            <End Role="DailySales" EntitySet="DailySales" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDC_DailySales" Association="SPEEDYSOLModel.FK_SalesDC_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRC_DailySales" Association="SPEEDYSOLModel.FK_SalesRC_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_ItemBrand" Association="SPEEDYSOLModel.FK_Items_ItemBrand">
+            <End Role="ItemBrand" EntitySet="ItemBrand" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_ItemGroup" Association="SPEEDYSOLModel.FK_Items_ItemGroup">
+            <End Role="ItemGroup" EntitySet="ItemGroup" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Items_ItemManufacturer" Association="SPEEDYSOLModel.FK_Items_ItemManufacturer">
+            <End Role="ItemManufacturer" EntitySet="ItemManufacturer" />
+            <End Role="Item" EntitySet="Items" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallanItems_Items" Association="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseDamageChallanItems" EntitySet="PurchaseDamageChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallanItems_Items" Association="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseRecievingChallanItems" EntitySet="PurchaseRecievingChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallanItems_Items" Association="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="PurchaseReturnChallanItems" EntitySet="PurchaseReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDCItems_SalesDCItems" Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDCItems">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SalesDeliveryChallanItems" EntitySet="SalesDeliveryChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRCItems_Items" Association="SPEEDYSOLModel.FK_SalesRCItems_Items">
+            <End Role="Item" EntitySet="Items" />
+            <End Role="SalesReturnChallanItems" EntitySet="SalesReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallan_Vendor" Association="SPEEDYSOLModel.FK_PurchaseDamageChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallanItems_PurchaseDamageChallan" Association="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_PurchaseDamageChallan">
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+            <End Role="PurchaseDamageChallanItems" EntitySet="PurchaseDamageChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallan_Vendor" Association="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" Association="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan">
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+            <End Role="PurchaseRecievingChallanItems" EntitySet="PurchaseRecievingChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallan_Vendor" Association="SPEEDYSOLModel.FK_PurchaseReturnChallan_Vendor">
+            <End Role="Vendor" EntitySet="Vendor" />
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallanItems_PurchaseReturnChallan" Association="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_PurchaseReturnChallan">
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
+            <End Role="PurchaseReturnChallanItems" EntitySet="PurchaseReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDamageChallanItems_SalesDamageChallan" Association="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan">
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
+            <End Role="SalesDamageChallanItems" EntitySet="SalesDamageChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDCItems_SalesDC" Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDC">
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+            <End Role="SalesDeliveryChallanItems" EntitySet="SalesDeliveryChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesRCItems_SalesRC" Association="SPEEDYSOLModel.FK_SalesRCItems_SalesRC">
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
+            <End Role="SalesReturnChallanItems" EntitySet="SalesReturnChallanItems" />
+          </AssociationSet>
+          <FunctionImport Name="uspGetUser" ReturnType="Collection(SPEEDYSOLModel.uspGetUser_Result)">
+            <Parameter Name="loginid" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <EntityType Name="GodownItem">
           <Key>
@@ -827,16 +1490,28 @@
           <Property Name="Name" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PurchasePrice" Type="Int32" Nullable="false" />
           <Property Name="SalePrice" Type="Int32" Nullable="false" />
-          <Property Name="Manufacturer" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="PackUnit" Type="Int32" Nullable="false" />
-          <Property Name="RecentPurchase" Type="Int32" />
           <Property Name="UnitWeight" Type="Int32" />
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="PurchaseOrderDetails" Relationship="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" FromRole="Item" ToRole="PurchaseOrderDetail" />
           <NavigationProperty Name="SaleOrderDetails" Relationship="SPEEDYSOLModel.FK_SaleOrderDetail_Items" FromRole="Item" ToRole="SaleOrderDetail" />
           <NavigationProperty Name="GodownItems" Relationship="SPEEDYSOLModel.FK_GodownItems_Items" FromRole="Item" ToRole="GodownItem" />
+          <Property Name="RetailPrice" Type="Int32" Nullable="false" />
+          <Property Name="ManufacturerID" Type="Int32" Nullable="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="BrandID" Type="Int32" Nullable="false" />
+          <Property Name="CTNSize" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="ItemBrand" Relationship="SPEEDYSOLModel.FK_Items_ItemBrand" FromRole="Item" ToRole="ItemBrand" />
+          <NavigationProperty Name="ItemGroup" Relationship="SPEEDYSOLModel.FK_Items_ItemGroup" FromRole="Item" ToRole="ItemGroup" />
+          <NavigationProperty Name="ItemManufacturer" Relationship="SPEEDYSOLModel.FK_Items_ItemManufacturer" FromRole="Item" ToRole="ItemManufacturer" />
+          <NavigationProperty Name="PurchaseDamageChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_Items" FromRole="Item" ToRole="PurchaseDamageChallanItems" />
+          <NavigationProperty Name="PurchaseRecievingChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_Items" FromRole="Item" ToRole="PurchaseRecievingChallanItems" />
+          <NavigationProperty Name="PurchaseReturnChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_Items" FromRole="Item" ToRole="PurchaseReturnChallanItems" />
+          <NavigationProperty Name="SalesDeliveryChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDCItems_SalesDCItems" FromRole="Item" ToRole="SalesDeliveryChallanItems" />
+          <NavigationProperty Name="SalesReturnChallanItems" Relationship="SPEEDYSOLModel.FK_SalesRCItems_Items" FromRole="Item" ToRole="SalesReturnChallanItems" />
         </EntityType>
         <Association Name="FK_GodownItems_Godowns">
           <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
@@ -911,6 +1586,501 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="AccountCategory">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="GroupID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AccountGroup" Relationship="SPEEDYSOLModel.FK_AccountCategory_AccountGroup" FromRole="AccountCategory" ToRole="AccountGroup" />
+          <NavigationProperty Name="SSAccounts" Relationship="SPEEDYSOLModel.FK_SSAccounts_AccountCategory" FromRole="AccountCategory" ToRole="SSAccount" />
+        </EntityType>
+        <EntityType Name="AccountGroup">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="AccountCategory" Relationship="SPEEDYSOLModel.FK_AccountCategory_AccountGroup" FromRole="AccountGroup" ToRole="AccountCategory" />
+        </EntityType>
+        <EntityType Name="DailySales">
+          <Key>
+            <PropertyRef Name="DSRNumber" />
+          </Key>
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="SalesManID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <NavigationProperty Name="Salesman" Relationship="SPEEDYSOLModel.FK_DailySales_DailySales" FromRole="DailySales" ToRole="Salesman" />
+          <NavigationProperty Name="SalesDeliveryChallan" Relationship="SPEEDYSOLModel.FK_SalesDC_DailySales" FromRole="DailySales" ToRole="SalesDeliveryChallan" />
+          <NavigationProperty Name="SalesReturnChallan" Relationship="SPEEDYSOLModel.FK_SalesRC_DailySales" FromRole="DailySales" ToRole="SalesReturnChallan" />
+        </EntityType>
+        <EntityType Name="ItemBrand">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_Items_ItemBrand" FromRole="ItemBrand" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="ItemGroup">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_Items_ItemGroup" FromRole="ItemGroup" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="ItemManufacturer">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_Items_ItemManufacturer" FromRole="ItemManufacturer" ToRole="Item" />
+        </EntityType>
+        <EntityType Name="PurchaseDamageChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VendorID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallan_Vendor" FromRole="PurchaseDamageChallan" ToRole="Vendor" />
+          <NavigationProperty Name="PurchaseDamageChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_PurchaseDamageChallan" FromRole="PurchaseDamageChallan" ToRole="PurchaseDamageChallanItems" />
+        </EntityType>
+        <EntityType Name="PurchaseDamageChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PDamCID" Type="Int64" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="CTN" Type="Int32" Nullable="false" />
+          <Property Name="PC" Type="Int32" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_Items" FromRole="PurchaseDamageChallanItems" ToRole="Item" />
+          <NavigationProperty Name="PurchaseDamageChallan" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_PurchaseDamageChallan" FromRole="PurchaseDamageChallanItems" ToRole="PurchaseDamageChallan" />
+        </EntityType>
+        <EntityType Name="PurchaseRecievingChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VendorID" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Vendor" FromRole="PurchaseRecievingChallan" ToRole="Vendor" />
+          <NavigationProperty Name="PurchaseRecievingChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" FromRole="PurchaseRecievingChallan" ToRole="PurchaseRecievingChallanItems" />
+        </EntityType>
+        <EntityType Name="PurchaseRecievingChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="PRCID" Type="Int32" Nullable="false" />
+          <Property Name="Ctn" Type="Int64" Nullable="false" />
+          <Property Name="Pcs" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_Items" FromRole="PurchaseRecievingChallanItems" ToRole="Item" />
+          <NavigationProperty Name="PurchaseRecievingChallan" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" FromRole="PurchaseRecievingChallanItems" ToRole="PurchaseRecievingChallan" />
+        </EntityType>
+        <EntityType Name="PurchaseReturnChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VendorID" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallan_Vendor" FromRole="PurchaseReturnChallan" ToRole="Vendor" />
+          <NavigationProperty Name="PurchaseReturnChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_PurchaseReturnChallan" FromRole="PurchaseReturnChallan" ToRole="PurchaseReturnChallanItems" />
+        </EntityType>
+        <EntityType Name="PurchaseReturnChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PRCID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="CTN" Type="Int32" Nullable="false" />
+          <Property Name="PC" Type="Int32" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_Items" FromRole="PurchaseReturnChallanItems" ToRole="Item" />
+          <NavigationProperty Name="PurchaseReturnChallan" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_PurchaseReturnChallan" FromRole="PurchaseReturnChallanItems" ToRole="PurchaseReturnChallan" />
+        </EntityType>
+        <EntityType Name="SalesDamageChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="SalesDamageChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" FromRole="SalesDamageChallan" ToRole="SalesDamageChallanItems" />
+        </EntityType>
+        <EntityType Name="SalesDamageChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" />
+          <Property Name="DamCID" Type="Int64" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="CTN" Type="Int32" Nullable="false" />
+          <Property Name="PC" Type="Int32" />
+          <NavigationProperty Name="SalesDamageChallan" Relationship="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" FromRole="SalesDamageChallanItems" ToRole="SalesDamageChallan" />
+        </EntityType>
+        <EntityType Name="SalesDeliveryChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesDC_DailySales" FromRole="SalesDeliveryChallan" ToRole="DailySales" />
+          <NavigationProperty Name="SalesDeliveryChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" FromRole="SalesDeliveryChallan" ToRole="SalesDeliveryChallanItems" />
+        </EntityType>
+        <EntityType Name="SalesDeliveryChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DCID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="CTN" Type="Int32" Nullable="false" />
+          <Property Name="PC" Type="Int32" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_SalesDCItems_SalesDCItems" FromRole="SalesDeliveryChallanItems" ToRole="Item" />
+          <NavigationProperty Name="SalesDeliveryChallan" Relationship="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" FromRole="SalesDeliveryChallanItems" ToRole="SalesDeliveryChallan" />
+        </EntityType>
+        <EntityType Name="SalesReturnChallan">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesRC_DailySales" FromRole="SalesReturnChallan" ToRole="DailySales" />
+          <NavigationProperty Name="SalesReturnChallanItems" Relationship="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" FromRole="SalesReturnChallan" ToRole="SalesReturnChallanItems" />
+        </EntityType>
+        <EntityType Name="SalesReturnChallanItems">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" />
+          <Property Name="RCID" Type="Int32" Nullable="false" />
+          <Property Name="ItemID" Type="Int64" Nullable="false" />
+          <Property Name="CTN" Type="Int32" Nullable="false" />
+          <Property Name="PC" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Items" Relationship="SPEEDYSOLModel.FK_SalesRCItems_Items" FromRole="SalesReturnChallanItems" ToRole="Item" />
+          <NavigationProperty Name="SalesReturnChallan" Relationship="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" FromRole="SalesReturnChallanItems" ToRole="SalesReturnChallan" />
+        </EntityType>
+        <EntityType Name="Vendor">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="PurchaseDamageChallan" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallan_Vendor" FromRole="Vendor" ToRole="PurchaseDamageChallan" />
+          <NavigationProperty Name="PurchaseRecievingChallan" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Vendor" FromRole="Vendor" ToRole="PurchaseRecievingChallan" />
+          <NavigationProperty Name="PurchaseReturnChallan" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallan_Vendor" FromRole="Vendor" ToRole="PurchaseReturnChallan" />
+        </EntityType>
+        <Association Name="FK_AccountCategory_AccountGroup">
+          <End Type="SPEEDYSOLModel.AccountGroup" Role="AccountGroup" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.AccountCategory" Role="AccountCategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountGroup">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="AccountCategory">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SSAccounts_AccountCategory">
+          <End Type="SPEEDYSOLModel.AccountCategory" Role="AccountCategory" Multiplicity="0..1" />
+          <End Type="SPEEDYSOLModel.SSAccount" Role="SSAccount" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AccountCategory">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSAccount">
+              <PropertyRef Name="CategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DailySales_DailySales">
+          <End Type="SPEEDYSOLModel.Salesman" Role="Salesman" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Salesman">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="DailySales">
+              <PropertyRef Name="SalesManID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDC_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDeliveryChallan" Role="SalesDeliveryChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRC_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesReturnChallan" Role="SalesReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesReturnChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_ItemBrand">
+          <End Type="SPEEDYSOLModel.ItemBrand" Role="ItemBrand" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemBrand">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="BrandID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_ItemGroup">
+          <End Type="SPEEDYSOLModel.ItemGroup" Role="ItemGroup" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemGroup">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Items_ItemManufacturer">
+          <End Type="SPEEDYSOLModel.ItemManufacturer" Role="ItemManufacturer" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ItemManufacturer">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="Item">
+              <PropertyRef Name="ManufacturerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallanItems_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseDamageChallanItems" Role="PurchaseDamageChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallanItems_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseRecievingChallanItems" Role="PurchaseRecievingChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallanItems_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseReturnChallanItems" Role="PurchaseReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDCItems_SalesDCItems">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDeliveryChallanItems" Role="SalesDeliveryChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRCItems_Items">
+          <End Type="SPEEDYSOLModel.Item" Role="Item" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesReturnChallanItems" Role="SalesReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Item">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallanItems">
+              <PropertyRef Name="ItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallan_Vendor">
+          <End Type="SPEEDYSOLModel.Vendor" Role="Vendor" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseDamageChallan" Role="PurchaseDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallanItems_PurchaseDamageChallan">
+          <End Type="SPEEDYSOLModel.PurchaseDamageChallan" Role="PurchaseDamageChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseDamageChallanItems" Role="PurchaseDamageChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseDamageChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallanItems">
+              <PropertyRef Name="PDamCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallan_Vendor">
+          <End Type="SPEEDYSOLModel.Vendor" Role="Vendor" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseRecievingChallan" Role="PurchaseRecievingChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan">
+          <End Type="SPEEDYSOLModel.PurchaseRecievingChallan" Role="PurchaseRecievingChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseRecievingChallanItems" Role="PurchaseRecievingChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseRecievingChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallanItems">
+              <PropertyRef Name="PRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallan_Vendor">
+          <End Type="SPEEDYSOLModel.Vendor" Role="Vendor" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseReturnChallan" Role="PurchaseReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vendor">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallan">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallanItems_PurchaseReturnChallan">
+          <End Type="SPEEDYSOLModel.PurchaseReturnChallan" Role="PurchaseReturnChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseReturnChallanItems" Role="PurchaseReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="PurchaseReturnChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallanItems">
+              <PropertyRef Name="PRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDamageChallanItems_SalesDamageChallan">
+          <End Type="SPEEDYSOLModel.SalesDamageChallan" Role="SalesDamageChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDamageChallanItems" Role="SalesDamageChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesDamageChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDamageChallanItems">
+              <PropertyRef Name="DamCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDCItems_SalesDC">
+          <End Type="SPEEDYSOLModel.SalesDeliveryChallan" Role="SalesDeliveryChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDeliveryChallanItems" Role="SalesDeliveryChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesDeliveryChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallanItems">
+              <PropertyRef Name="DCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesRCItems_SalesRC">
+          <End Type="SPEEDYSOLModel.SalesReturnChallan" Role="SalesReturnChallan" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesReturnChallanItems" Role="SalesReturnChallanItems" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SalesReturnChallan">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallanItems">
+              <PropertyRef Name="RCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="uspGetUser_Result">
+          <Property Type="Int64" Name="sysSerial" Nullable="false" />
+          <Property Type="Int64" Name="RoleID" Nullable="true" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="255" />
+          <Property Type="String" Name="ContactNum" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="LoginID" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Password" Nullable="true" />
+          <Property Type="DateTime" Name="CreatedOn" Nullable="true" />
+          <Property Type="DateTime" Name="UpdatedOn" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -920,6 +2090,7 @@
           <EntitySetMapping Name="Godowns">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.Godown">
               <MappingFragment StoreEntitySet="Godowns">
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
@@ -1048,6 +2219,7 @@
           <EntitySetMapping Name="SSAccounts">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SSAccount">
               <MappingFragment StoreEntitySet="SSAccounts">
+                <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
                 <ScalarProperty Name="AccNo" ColumnName="AccNo" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1115,13 +2287,17 @@
           <EntitySetMapping Name="Items">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.Item">
               <MappingFragment StoreEntitySet="Items">
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CTNSize" ColumnName="CTNSize" />
+                <ScalarProperty Name="BrandID" ColumnName="BrandID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="ManufacturerID" ColumnName="ManufacturerID" />
+                <ScalarProperty Name="RetailPrice" ColumnName="RetailPrice" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UnitWeight" ColumnName="UnitWeight" />
-                <ScalarProperty Name="RecentPurchase" ColumnName="RecentPurchase" />
                 <ScalarProperty Name="PackUnit" ColumnName="PackUnit" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Manufacturer" ColumnName="Manufacturer" />
                 <ScalarProperty Name="SalePrice" ColumnName="SalePrice" />
                 <ScalarProperty Name="PurchasePrice" ColumnName="PurchasePrice" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -1142,6 +2318,226 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="AccountCategory">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.AccountCategory">
+              <MappingFragment StoreEntitySet="AccountCategory">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AccountGroup">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.AccountGroup">
+              <MappingFragment StoreEntitySet="AccountGroup">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DailySales">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.DailySales">
+              <MappingFragment StoreEntitySet="DailySales">
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="SalesManID" ColumnName="SalesManID" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemBrand">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.ItemBrand">
+              <MappingFragment StoreEntitySet="ItemBrand">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemGroup">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.ItemGroup">
+              <MappingFragment StoreEntitySet="ItemGroup">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ItemManufacturer">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.ItemManufacturer">
+              <MappingFragment StoreEntitySet="ItemManufacturer">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDamageChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseDamageChallan">
+              <MappingFragment StoreEntitySet="PurchaseDamageChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseDamageChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseDamageChallanItems">
+              <MappingFragment StoreEntitySet="PurchaseDamageChallanItems">
+                <ScalarProperty Name="PC" ColumnName="PC" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="PDamCID" ColumnName="PDamCID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseRecievingChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseRecievingChallan">
+              <MappingFragment StoreEntitySet="PurchaseRecievingChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseRecievingChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseRecievingChallanItems">
+              <MappingFragment StoreEntitySet="PurchaseRecievingChallanItems">
+                <ScalarProperty Name="Pcs" ColumnName="Pcs" />
+                <ScalarProperty Name="Ctn" ColumnName="Ctn" />
+                <ScalarProperty Name="PRCID" ColumnName="PRCID" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseReturnChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseReturnChallan">
+              <MappingFragment StoreEntitySet="PurchaseReturnChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PurchaseReturnChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseReturnChallanItems">
+              <MappingFragment StoreEntitySet="PurchaseReturnChallanItems">
+                <ScalarProperty Name="PC" ColumnName="PC" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="PRCID" ColumnName="PRCID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDamageChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDamageChallan">
+              <MappingFragment StoreEntitySet="SalesDamageChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDamageChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDamageChallanItems">
+              <MappingFragment StoreEntitySet="SalesDamageChallanItems">
+                <ScalarProperty Name="PC" ColumnName="PC" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="DamCID" ColumnName="DamCID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDeliveryChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDeliveryChallan">
+              <MappingFragment StoreEntitySet="SalesDeliveryChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesDeliveryChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDeliveryChallanItems">
+              <MappingFragment StoreEntitySet="SalesDeliveryChallanItems">
+                <ScalarProperty Name="PC" ColumnName="PC" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="DCID" ColumnName="DCID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesReturnChallan">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesReturnChallan">
+              <MappingFragment StoreEntitySet="SalesReturnChallan">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SalesReturnChallanItems">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesReturnChallanItems">
+              <MappingFragment StoreEntitySet="SalesReturnChallanItems">
+                <ScalarProperty Name="PC" ColumnName="PC" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
+                <ScalarProperty Name="ItemID" ColumnName="ItemID" />
+                <ScalarProperty Name="RCID" ColumnName="RCID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vendor">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.Vendor">
+              <MappingFragment StoreEntitySet="Vendor">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="uspGetUser" FunctionName="SPEEDYSOLModel.Store.uspGetUser">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SPEEDYSOLModel.uspGetUser_Result">
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+                <ScalarProperty Name="RoleID" ColumnName="RoleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactNum" ColumnName="ContactNum" />
+                <ScalarProperty Name="LoginID" ColumnName="LoginID" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -1156,7 +2552,7 @@
     <Options>
       <DesignerInfoPropertySet>
         <DesignerProperty Name="ValidateOnBuild" Value="true" />
-        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="False" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
         <DesignerProperty Name="UseLegacyProvider" Value="false" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />

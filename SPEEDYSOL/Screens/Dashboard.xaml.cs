@@ -1,4 +1,6 @@
-﻿using System;
+﻿using SPEEDYSOL.ApplicationLogic;
+using SSCommons.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -25,30 +27,10 @@ namespace SPEEDYSOL.Screens
         {
             window = _window;
             window.windowButtons.Visibility = Visibility.Visible;
-            
             InitializeComponent();
-            
-        }
-
-        private void SaleOrder_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void PurchaseOrder_Click(object sender, RoutedEventArgs e)
-        {
-            
-        }
-
-        private void createSalesOrder_Click(object sender, RoutedEventArgs e)
-        {
 
         }
-
-        private void listSalesOrder_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
+        
 
         private void btnSales_Click(object sender, RoutedEventArgs e)
         {
@@ -99,6 +81,26 @@ namespace SPEEDYSOL.Screens
         private void btnBookers_Click(object sender, RoutedEventArgs e)
         {
             window.mainFrame.Navigate(new Bookers.Bookers(window));
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            ResolvePermission();
+        }
+
+        private void ResolvePermission()
+        {
+            if (UserRoles.ResolveUserRole() == (long)SSEnums.UserRoles.billing)
+            {
+                btnAccount.Visibility = Visibility.Hidden;
+                btnBookers.Visibility = Visibility.Hidden;
+                btnClients.Visibility = Visibility.Hidden;
+                btnGodowns.Visibility = Visibility.Hidden;
+                btnSalesMan.Visibility = Visibility.Hidden;
+                btnUsers.Visibility = Visibility.Hidden;
+                btnVouchers.Visibility = Visibility.Hidden;
+                btnItems.Visibility = Visibility.Hidden;
+            }
         }
     }
 }

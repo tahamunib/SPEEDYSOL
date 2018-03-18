@@ -18,7 +18,7 @@
             <Button Name="btnCreatePOrder" Width="80" Height="80" Click="btnCreatePOrder_Click">Create Order</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">PURCHASE ORDERS</TextBlock>
-        <DataGrid Background="#FFAEABAB" Name="purchaseOrderGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False">
+        <DataGrid Width="Auto" Background="#FFAEABAB" Name="purchaseOrderGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
                 <DataGridHyperlinkColumn x:Name="OrderID" Binding="{Binding POrderID}" Header="OrderID" DisplayIndex="0"></DataGridHyperlinkColumn>
                 <DataGridTextColumn DisplayIndex="1" Header="Godown" Binding="{Binding Godown.Name}" x:Name="GodownName"></DataGridTextColumn>

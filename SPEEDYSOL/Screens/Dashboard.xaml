@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SPEEDYSOL.Screens"
         mc:Ignorable="d"
-        Title="Dashboard" Height="Auto" Width="Auto" >
+        Title="Dashboard" Height="Auto" Width="Auto" Loaded="Page_Loaded">
     
     <Grid Background="#FFAEABAB">
         <Grid.RowDefinitions>

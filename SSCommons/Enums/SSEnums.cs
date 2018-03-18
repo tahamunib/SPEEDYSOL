@@ -19,6 +19,13 @@ namespace SSCommons.Enums
             Yes = 0,
             No = 1
         }
+
+        public enum UserRoles
+        {
+            admin = 1,
+            billing = 2,
+            stockKeeper = 3
+        }
     }
     
 }

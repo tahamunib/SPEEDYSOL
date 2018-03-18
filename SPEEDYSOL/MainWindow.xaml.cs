@@ -22,7 +22,7 @@ namespace SPEEDYSOL
     /// </summary>
     public partial class MainWindow : Window
     {
-
+        public static SPEEDYDAL.SSUser currentlyLoggedInUser;
         
         public MainWindow()
         {
@@ -35,13 +35,14 @@ namespace SPEEDYSOL
         {
             string username = txtbxUsername.Text;
             string password = txtbxPassword.Password;
-            if (SSUsersLINQ.AuthenticateUser(username, password))
+            currentlyLoggedInUser = SSUsersLINQ.AuthenticateUser(username, password);
+            if (currentlyLoggedInUser != null)
             {
                 mainFrame.Navigate(new Dashboard(this));
             }
             else
             {
-                MessageBox.Show(this, "User cannot be authenticated, credentials not correct !","",MessageBoxButton.OK);
+                MessageBox.Show(this, "User cannot be authenticated, credentials not correct !", "", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
@@ -63,6 +64,16 @@ namespace SPEEDYSOL
         }
 
         private void btnExit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
         }

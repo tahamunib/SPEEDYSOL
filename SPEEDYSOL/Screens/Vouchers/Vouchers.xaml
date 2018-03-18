@@ -19,7 +19,7 @@
             <Button Name="btnIssueVoucher" Width="80" Height="80" HorizontalContentAlignment="Center" Click="btnIssueVoucher_Click">Issue Voucher</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">VOUCHERS</TextBlock>
-        <DataGrid Background="#FFAEABAB" IsReadOnly="True"  Name="vouchersGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Vouchers}" SelectedItem="{Binding SelectedVoucher}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True"  Name="vouchersGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Vouchers}" SelectedItem="{Binding SelectedVoucher}" CanUserAddRows="False" AutoGenerateColumns="False">
         
 
             <DataGrid.ColumnHeaderStyle>

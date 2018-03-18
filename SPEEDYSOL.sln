@@ -13,6 +13,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPEEDYAuthorization", "SPEE
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SSCommons", "SSCommons\SSCommons.csproj", "{53AEB0E4-08BF-421C-8CC1-3C191A646714}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SPEEDYAPPWIN", "SPEEDYAPPWIN\SPEEDYAPPWIN.csproj", "{BBC14AD7-A305-41E8-9A6F-E0F6AA349DC3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{53AEB0E4-08BF-421C-8CC1-3C191A646714}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{53AEB0E4-08BF-421C-8CC1-3C191A646714}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{53AEB0E4-08BF-421C-8CC1-3C191A646714}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BBC14AD7-A305-41E8-9A6F-E0F6AA349DC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BBC14AD7-A305-41E8-9A6F-E0F6AA349DC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BBC14AD7-A305-41E8-9A6F-E0F6AA349DC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BBC14AD7-A305-41E8-9A6F-E0F6AA349DC3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

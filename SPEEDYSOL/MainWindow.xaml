@@ -17,8 +17,12 @@
             <Button Name="btnBack" Click="btnBack_Click" Width="70" Height="70" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center">
                 <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/back-logo-icon-27727.png"></Image>
             </Button>
-            <Button Name="btnMinimize" Content="" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10"></Button>
-            <Button Name="btnClose" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10"></Button>
+            <Button Name="btnMinimize" Click="btnMinimize_Click" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/minimize.png"></Image>
+            </Button>
+            <Button Name="btnClose" Click="btnClose_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10">
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Content/Icons/x-mark.png"></Image>
+            </Button>
         </StackPanel>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>

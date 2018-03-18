@@ -64,6 +64,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ApplicationLogic\UserRoles.cs" />
     <Compile Include="Screens\Accounts\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
     </Compile>
@@ -117,6 +118,9 @@
     </Compile>
     <Compile Include="Screens\Sales\CreateOrder_Sales.xaml.cs">
       <DependentUpon>CreateOrder_Sales.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Sales\SaleOrders.xaml.cs">
+      <DependentUpon>SaleOrders.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Users\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
@@ -217,6 +221,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Sales\SaleOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Users\ChangePassword.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -292,6 +300,8 @@
     <Resource Include="Content\Icons\back-logo-icon-27727.png" />
     <Resource Include="Content\Icons\minimize.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Content\Icons\x-mark.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

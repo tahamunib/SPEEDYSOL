@@ -19,7 +19,7 @@
             <Button Name="btnAddUser" Width="80" Height="80" Click="btnAddUser_Click">Add User</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">USERS</TextBlock>
-        <DataGrid LoadingRow="usersGrid_LoadingRow" Background="#FFAEABAB" IsReadOnly="True"  Name="usersGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <DataGrid Width="Auto" LoadingRow="usersGrid_LoadingRow" Background="#FFAEABAB" IsReadOnly="True"  Name="usersGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Users}" SelectedItem="{Binding SelectedUser}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.ColumnHeaderStyle>
                 <Style  TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="ContentTemplate">

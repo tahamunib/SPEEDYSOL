@@ -41,6 +41,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SSAccountGroupsLINQ.cs" />
     <Compile Include="SSAccountsLINQ.cs" />
     <Compile Include="SSClientLINQ.cs" />
     <Compile Include="SSGodownsLINQ.cs" />
@@ -48,6 +49,7 @@
     <Compile Include="SSOrderBookersLINQ.cs" />
     <Compile Include="SSPurchaseOrdersLINQ.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SSSaleOrdersLINQ.cs" />
     <Compile Include="SSSalesManLINQ.cs" />
     <Compile Include="SSUsersLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />

@@ -19,7 +19,7 @@
             <Button Name="btnAddGodown" Width="80" Height="80" Click="btnAddGodown_Click">ADD</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="153">GODOWNS</TextBlock>
-        <DataGrid SelectionChanged="godownGrid_SelectionChanged" ColumnWidth="*" Background="#FFAEABAB" Name="godownGrid" Grid.Row="1" ItemsSource="{Binding}" AutoGeneratingColumn="godownGrid_AutoGeneratingColumn" AutoGenerateColumns="True">
+        <DataGrid Width="Auto" SelectionChanged="godownGrid_SelectionChanged" ColumnWidth="*" Background="#FFAEABAB" Name="godownGrid" Grid.Row="1" ItemsSource="{Binding}" AutoGeneratingColumn="godownGrid_AutoGeneratingColumn" AutoGenerateColumns="True">
             <DataGrid.Columns>
                 <DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>

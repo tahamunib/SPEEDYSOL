@@ -44,5 +44,11 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSHelper.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SPEEDYDAL\SPEEDYDAL.csproj">
+      <Project>{0E4B56D6-A258-4257-BA6A-9537CEA2380E}</Project>
+      <Name>SPEEDYDAL</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

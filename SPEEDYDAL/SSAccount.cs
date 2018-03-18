@@ -28,8 +28,10 @@ namespace SPEEDYDAL
         public string Remarks { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public Nullable<int> CategoryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Voucher> Vouchers { get; set; }
+        public virtual AccountCategory AccountCategory { get; set; }
     }
 }

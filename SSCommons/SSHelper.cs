@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPEEDYDAL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,9 +9,9 @@ namespace SSCommons
 {
     public class SSHelper
     {
-        //public static void ValidatePOrder(VMPurchaseOrderDetail)
+        //public static SSUser GetCurrentlyLoggedInUser()
         //{
-
+        //    return SPEEDYAPP.
         //}
     }
 }

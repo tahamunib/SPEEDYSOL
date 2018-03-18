@@ -18,6 +18,7 @@ namespace SPEEDYDAL
         public Salesman()
         {
             this.SaleOrders = new HashSet<SaleOrder>();
+            this.DailySales = new HashSet<DailySales>();
         }
     
         public long sysSerial { get; set; }
@@ -28,5 +29,7 @@ namespace SPEEDYDAL
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleOrder> SaleOrders { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DailySales> DailySales { get; set; }
     }
 }

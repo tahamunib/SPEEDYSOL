@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Accounts" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid >
         <Grid.RowDefinitions>
 
             <RowDefinition Height="20*"/>
@@ -19,7 +19,7 @@
             <Button Name="btnAddAccount" Width="80" Height="80" Click="btnAddAccount_Click">Add Account</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ACCOUNTS</TextBlock>
-        <DataGrid Background="#FFAEABAB" IsReadOnly="True" AutoGeneratingColumn="accountsGrid_AutoGeneratingColumn" Name="accountsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" CanUserAddRows="False" AutoGenerateColumns="True">
+        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True" AutoGeneratingColumn="accountsGrid_AutoGeneratingColumn" Name="accountsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" CanUserAddRows="False" AutoGenerateColumns="True">
 
 
             <DataGrid.ColumnHeaderStyle>

@@ -8,7 +8,7 @@
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Bookers" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
 
-    <Grid>
+    <Grid Width="Auto">
         <Grid.RowDefinitions>
 
             <RowDefinition Height="20*"/>
@@ -19,7 +19,7 @@
             <Button Name="btnAddItem" Width="80" Height="80" Click="btnAddItem_Click">Add Booker</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ORDER BOOKER</TextBlock>
-        <DataGrid Background="#FFAEABAB" AutoGeneratingColumn="bookerGrid_AutoGeneratingColumn" Name="bookerGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Bookers}" SelectedItem="{Binding SelectedBooker}" CanUserAddRows="False" AutoGenerateColumns="True">
+        <DataGrid Width="Auto" Background="#FFAEABAB" AutoGeneratingColumn="bookerGrid_AutoGeneratingColumn" Name="bookerGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Bookers}" SelectedItem="{Binding SelectedBooker}" CanUserAddRows="False" AutoGenerateColumns="True">
             <DataGrid.ColumnHeaderStyle>
                 <Style  TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="ContentTemplate">
