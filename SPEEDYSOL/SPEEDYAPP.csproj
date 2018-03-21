@@ -86,6 +86,9 @@
     <Compile Include="Screens\Dashboard.xaml.cs">
       <DependentUpon>Dashboard.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\DashboardWin.xaml.cs">
+      <DependentUpon>DashboardWin.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Godowns\Create_Godown.xaml.cs">
       <DependentUpon>Create_Godown.xaml</DependentUpon>
     </Compile>
@@ -174,6 +177,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Dashboard.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\DashboardWin.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

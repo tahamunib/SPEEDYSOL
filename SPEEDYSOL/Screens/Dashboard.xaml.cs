@@ -85,7 +85,7 @@ namespace SPEEDYSOL.Screens
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ResolvePermission();
+            //ResolvePermission();
         }
 
         private void ResolvePermission()

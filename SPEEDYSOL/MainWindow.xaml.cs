@@ -28,22 +28,25 @@ namespace SPEEDYSOL
         {
             InitializeComponent();
             windowButtons.Visibility = Visibility.Hidden;
-            
+            mainMenu.Visibility = Visibility.Hidden;
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
         {
-            string username = txtbxUsername.Text;
-            string password = txtbxPassword.Password;
-            currentlyLoggedInUser = SSUsersLINQ.AuthenticateUser(username, password);
-            if (currentlyLoggedInUser != null)
-            {
-                mainFrame.Navigate(new Dashboard(this));
-            }
-            else
-            {
-                MessageBox.Show(this, "User cannot be authenticated, credentials not correct !", "", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
+            
+            mainFrame.Navigate(new Screens.Dashboard(this));
+            mainMenu.Visibility = Visibility.Visible;
+            //string username = txtbxUsername.Text;
+            //string password = txtbxPassword.Password;
+            //currentlyLoggedInUser = SSUsersLINQ.AuthenticateUser(username, password);
+            //if (currentlyLoggedInUser != null)
+            //{
+            //    mainFrame.Navigate(new Dashboard(this));
+            //}
+            //else
+            //{
+            //    MessageBox.Show(this, "User cannot be authenticated, credentials not correct !", "", MessageBoxButton.OK, MessageBoxImage.Error);
+            //}
         }
 
         private void Main_Loaded(object sender, RoutedEventArgs e)
