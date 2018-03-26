@@ -65,8 +65,20 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ApplicationLogic\UserRoles.cs" />
+    <Compile Include="Screens\Accounts\AccCategories.xaml.cs">
+      <DependentUpon>AccCategories.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Accounts\AccGroups.xaml.cs">
+      <DependentUpon>AccGroups.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Accounts\Accounts.xaml.cs">
       <DependentUpon>Accounts.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Accounts\CreateAccCategory.xaml.cs">
+      <DependentUpon>CreateAccCategory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Accounts\CreateAccGroup.xaml.cs">
+      <DependentUpon>CreateAccGroup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Accounts\CreateAccount.xaml.cs">
       <DependentUpon>CreateAccount.xaml</DependentUpon>
@@ -152,7 +164,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Screens\Accounts\AccCategories.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Accounts\AccGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Accounts\Accounts.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Accounts\CreateAccCategory.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Accounts\CreateAccGroup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

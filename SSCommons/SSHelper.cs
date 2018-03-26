@@ -9,9 +9,9 @@ namespace SSCommons
 {
     public class SSHelper
     {
-        //public static SSUser GetCurrentlyLoggedInUser()
-        //{
-        //    return SPEEDYAPP.
-        //}
+        public static string GenerateSystemCode(string entity)
+        {
+            return string.Format("{0}_{1}", entity, DateTime.Now.Ticks.ToString());
+        }
     }
 }

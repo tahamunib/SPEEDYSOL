@@ -41,7 +41,8 @@ namespace SPEEDYSOL.Screens.Accounts
             try
             {
                 var selectedItem = (SPEEDYDAL.SSAccount)accountsGrid.SelectedItem;
-                window.mainFrame.Navigate(new CreateAccount(selectedItem));
+                VMCreateAccount accToEdit = new VMCreateAccount { Account = selectedItem };
+                window.mainFrame.Navigate(new CreateAccount(accToEdit));
             }
             catch (Exception ex)
             {
@@ -92,7 +93,6 @@ namespace SPEEDYSOL.Screens.Accounts
                     e.Column.DisplayIndex = 2;
                     e.Column.Width = 40;
                     e.Column.Header = "Bal Limit";
-
                     break;
                 case "DiscountInPercentage":
                     e.Cancel = true;
@@ -100,7 +100,6 @@ namespace SPEEDYSOL.Screens.Accounts
                 case "Remarks":
                     e.Column.DisplayIndex = 3;
                     break;
-                
                 case "CreatedOn":
                     e.Column.DisplayIndex = 4;
                     e.Column.Width = 60;
@@ -114,8 +113,17 @@ namespace SPEEDYSOL.Screens.Accounts
                 case "VoucherDetails":
                     e.Cancel = true;
                     break;
-                
-
+                case "Vouchers":
+                    e.Cancel = true;
+                    break;
+                case "CategoryID":
+                    e.Cancel = true;
+                    break;
+                case "AccountCategory":
+                    e.Column.DisplayIndex = 6;
+                    e.Column.Width = 60;
+                    e.Column.Header = "Category";
+                    break;
             }
         }
 

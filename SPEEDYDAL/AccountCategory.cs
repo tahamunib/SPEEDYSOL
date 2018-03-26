@@ -25,6 +25,7 @@ namespace SPEEDYDAL
         public int GroupID { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string Code { get; set; }
     
         public virtual AccountGroup AccountGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

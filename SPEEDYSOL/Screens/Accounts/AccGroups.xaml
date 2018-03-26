@@ -1,4 +1,4 @@
-﻿<Page x:Class="SPEEDYSOL.Screens.Accounts.Accounts"
+﻿<Page x:Class="SPEEDYSOL.Screens.Accounts.AccGroups"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SPEEDYSOL.Screens.Accounts"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="Accounts" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+      Title="AccGroups" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.RowDefinitions>
@@ -16,10 +16,12 @@
 
         </Grid.RowDefinitions>
         <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
-            <Button Name="btnAddAccount" Width="80" Height="80" Click="btnAddAccount_Click">Add Account</Button>
+            <Button Name="btnAddAccGroup" Width="80" Height="80" Click="btnAddAccGroup_Click">
+                <TextBlock TextWrapping="Wrap">Add Account Group</TextBlock>
+            </Button>
         </StackPanel>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ACCOUNTS</TextBlock>
-        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True"  Name="accountsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Accounts}" SelectedItem="{Binding SelectedAccount}" CanUserAddRows="False" AutoGenerateColumns="False">
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ACCOUNT GROUPS</TextBlock>
+        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True" Name="accGroupGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding AccGroups}" SelectedItem="{Binding SelectedAccGroup}" CanUserAddRows="False" AutoGenerateColumns="False">
 
 
             <DataGrid.ColumnHeaderStyle>
@@ -38,13 +40,10 @@
 
 
             <DataGrid.Columns>
-                <DataGridTextColumn DisplayIndex="0" Header="AccNo" Width="Auto" Binding="{Binding AccNo}" x:Name="AccNo"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="0" Header="Code" Width="Auto" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
                 <DataGridTextColumn DisplayIndex="1" Header="Name" Width="150" Binding="{Binding Name}" x:Name="Name"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="2" Header="Category" Width="Auto" Binding="{Binding AccountCategory.Name}" x:Name="AccountCategory"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="3" Header="Balance Limit" Width="Auto" Binding="{Binding BalanceLimit}" x:Name="BalanceLimit"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="4" Header="Remarks" Width="120" Binding="{Binding Remarks}" x:Name="Remarks"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="5" Header="Created On" Width="65" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="6" Header="Updated On" Width="65" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="Created On" Width="65" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="Updated On" Width="65" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
                 <DataGridTemplateColumn >
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

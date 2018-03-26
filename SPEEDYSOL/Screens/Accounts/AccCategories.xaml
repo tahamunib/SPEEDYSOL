@@ -1,0 +1,62 @@
+﻿<Page x:Class="SPEEDYSOL.Screens.Accounts.AccCategories"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:SPEEDYSOL.Screens.Accounts"
+      mc:Ignorable="d" 
+      d:DesignHeight="300" d:DesignWidth="300"
+      Title="AccCategories" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+
+    <Grid >
+        <Grid.RowDefinitions>
+
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="80*"/>
+
+        </Grid.RowDefinitions>
+        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+            <Button Name="btnAddAccCatgeory" Width="80" Height="80" Click="btnAddAccCatgeory_Click">
+                <TextBlock TextWrapping="Wrap">Add Account Category</TextBlock>
+            </Button>
+        </StackPanel>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ACCOUNT CATEGORIES</TextBlock>
+        <DataGrid Width="Auto" Background="#FFAEABAB" IsReadOnly="True"  Name="accCategoryGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding AccCategories}" SelectedItem="{Binding SelectedAccCategory}" CanUserAddRows="False" AutoGenerateColumns="False">
+
+
+            <DataGrid.ColumnHeaderStyle>
+                <Style  TargetType="{x:Type DataGridColumnHeader}">
+                    <Setter Property="ContentTemplate">
+                        <Setter.Value>
+                            <DataTemplate>
+                                <TextBlock TextWrapping="Wrap" Text="{Binding}"></TextBlock>
+                            </DataTemplate>
+                        </Setter.Value>
+                    </Setter>
+                    <Setter Property="MinHeight" Value="20"></Setter>
+                </Style>
+
+            </DataGrid.ColumnHeaderStyle>
+
+
+            <DataGrid.Columns>
+                <DataGridTextColumn DisplayIndex="0" Header="Code" MinWidth="100" Width="160" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="1" Header="Name" MinWidth="150" Binding="{Binding Name}" x:Name="Name"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="Group" MinWidth="100" Width="150" Binding="{Binding AccountGroup.Name}" x:Name="Group"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="Created On" MinWidth="65" Width="100" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="4" Header="Updated On" MinWidth="65" Width="100" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTemplateColumn MinWidth="80" Width="200">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                                <Button Name="btnEdit" Width="40" Height="25" Tag="{Binding sysSerial}" Click="btnEdit_Click">Edit</Button>
+                                <Button Name="btnDelete" Width="45" Height="25" Margin="10,0,0,0" Click="btnDelete_Click">Delete</Button>
+                            </StackPanel>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
+
+    </Grid>
+</Page>

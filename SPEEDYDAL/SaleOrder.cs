@@ -46,6 +46,7 @@ namespace SPEEDYDAL
         public Nullable<bool> isPosted { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string Code { get; set; }
     
         public virtual OrderBooker OrderBooker { get; set; }
         public virtual Salesman Salesman { get; set; }

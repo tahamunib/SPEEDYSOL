@@ -1,5 +1,11 @@
 ﻿using SPEEDYBLL;
 using SPEEDYSOL.Screens;
+using SPEEDYSOL.Screens.Accounts;
+using SPEEDYSOL.Screens.Bookers;
+using SPEEDYSOL.Screens.Items;
+using SPEEDYSOL.Screens.Purchases;
+using SPEEDYSOL.Screens.Sales;
+using SPEEDYSOL.Screens.SalesMen;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -79,6 +85,116 @@ namespace SPEEDYSOL
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
+        }
+
+        private void MI_BankPay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_BankRec_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_CashPay_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_CashRec_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_PurInv_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new PurchaseOrder(this));
+        }
+
+        private void MI_PurDamC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_PurRetC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_PurRecC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_SalesInv_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new SaleOrders(this));
+        }
+
+        private void MI_SalesDamC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_SalesRC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_SalesDC_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Accounts_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Accounts(this));
+        }
+
+        private void MI_AccGrp_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new AccGroups(this));
+        }
+
+        private void MI_AccCat_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new AccCategories(this));
+        }
+
+        private void MI_Items_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Items(this));
+        }
+
+        private void MI_ItemsGrp_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Godowns_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Screens.Godowns.GodownList(this));
+        }
+
+        private void MI_ItemsMfc_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_ItemsBrand_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Salesmen_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new SalesMen(this));
+        }
+
+        private void MI_Booker_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Bookers(this));
         }
     }
 }

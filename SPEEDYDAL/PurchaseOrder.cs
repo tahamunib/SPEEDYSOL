@@ -39,6 +39,7 @@ namespace SPEEDYDAL
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string POrderID { get; set; }
+        public string Code { get; set; }
     
         public virtual Godown Godown { get; set; }
         public virtual SSClient SSClient { get; set; }

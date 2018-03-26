@@ -1,5 +1,4 @@
 ﻿using SPEEDYBLL;
-using SPEEDYBLL.ViewModels.Account;
 using SPEEDYDAL;
 using System;
 using System.Collections.Generic;
@@ -19,47 +18,47 @@ using System.Windows.Shapes;
 namespace SPEEDYSOL.Screens.Accounts
 {
     /// <summary>
-    /// Interaction logic for CreateAccount.xaml
+    /// Interaction logic for CreateAccGroup.xaml
     /// </summary>
-    public partial class CreateAccount : Page
+    public partial class CreateAccGroup : Page
     {
-        VMCreateAccount account;
+        AccountGroup accGroup;
         string _header = "";
         int _Visibilty = 0;
-        public CreateAccount(VMCreateAccount _account = null)
+        public CreateAccGroup(AccountGroup _accGroup = null)
         {
-            if(_account != null)
+            if (_accGroup != null)
             {
-                account = _account;
-                _header = "EDIT ACCOUNT";
+                accGroup = _accGroup;
+                _header = "EDIT ACCOUNT GROUP";
                 _Visibilty = (int)Visibility.Visible;
             }
             else
             {
                 _Visibilty = (int)Visibility.Hidden;
-                account = new VMCreateAccount();
-                _header = "CREATE ACCOUNT";
+                accGroup = new AccountGroup();
+                _header = "CREATE ACCOUNT GROUP";
             }
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = account;
+            this.DataContext = accGroup;
             this.header.Text = _header;
             var visibilityEnumVal = (Visibility)Enum.Parse(typeof(Visibility), Convert.ToString(_Visibilty));
-            this.lblAccNo.Visibility = visibilityEnumVal;
-            this.txtAccNo.Visibility = visibilityEnumVal;
+            this.lblCode.Visibility = visibilityEnumVal;
+            this.txtCode.Visibility = visibilityEnumVal;
         }
 
-        private void btnCreateAccount_Click(object sender, RoutedEventArgs e)
+        private void btnCreateAccGroup_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (SSAccountsLINQ.SaveAccount(account.Account))
-                    MessageBox.Show("Account Saved!");
+                if (SSAccountsLINQ.SaveAccGroup(accGroup))
+                    MessageBox.Show("Account Group Saved!");
                 else
-                    MessageBox.Show("Error Ocuured: Could not save item.");
+                    MessageBox.Show("Error Occured: Could not save Account Group.");
             }
             catch (Exception ex)
             {

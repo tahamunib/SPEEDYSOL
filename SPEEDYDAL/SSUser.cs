@@ -22,6 +22,7 @@ namespace SPEEDYDAL
         public string Password { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string Code { get; set; }
     
         public virtual SSUsersRole SSUsersRole { get; set; }
     }

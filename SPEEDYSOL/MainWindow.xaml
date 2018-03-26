@@ -10,66 +10,68 @@
     
     <Grid Width="Auto" Height="Auto" Background="#FFAEABAB">
         <Grid.RowDefinitions>
-            <RowDefinition Height="20*"/>
-            <RowDefinition Height="80*"/>
+            <RowDefinition Height="10*"/>
+            <RowDefinition Height="90*"/>
         </Grid.RowDefinitions>
-        <StackPanel Name="windowButtons" Orientation="Horizontal" Margin="0,20,0,0"  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right">
-            <Button Name="btnBack" Click="btnBack_Click" Width="70" Height="70" HorizontalAlignment="Left" Margin="10" VerticalAlignment="Center">
-                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/back-logo-icon-27727.png"></Image>
-            </Button>
-            <Button Name="btnMinimize" Click="btnMinimize_Click" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10">
-                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/minimize.png"></Image>
-            </Button>
-            <Button Name="btnClose" Click="btnClose_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="70" Width="70" Margin="10">
-                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Content/Icons/x-mark.png"></Image>
-            </Button>
-        </StackPanel>
-        <Menu Name="mainMenu" Height="20" HorizontalAlignment="Stretch" VerticalAlignment="Top">
-            <MenuItem Header="_Main">
+        <Menu Name="mainMenu" Height="40" FontSize="16"  HorizontalAlignment="Stretch" VerticalAlignment="Top">
+            <MenuItem Header="_Main" Margin="0,5"  HorizontalContentAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center">
                 <MenuItem Header="_Accounting" >
-                    <MenuItem Header="_Account Groups" />
-                    <MenuItem Header="_Account Category" />
-                    <MenuItem Header="_Accounts" />
+                    <MenuItem Header="_Accounts" Name="MI_Accounts" Click="MI_Accounts_Click"/>
+                    <MenuItem Header="_Account Groups" Name="MI_AccGrp" Click="MI_AccGrp_Click"/>
+                    <MenuItem Header="_Account Category" Name="MI_AccCat" Click="MI_AccCat_Click"/>
+                   
                 </MenuItem>
                 <MenuItem Header="_Items" >
-                    <MenuItem Header="_Items" />
-                    <MenuItem Header="_Item Groups" />
-                    <MenuItem Header="_Godown" />
-                    <MenuItem Header="_Manufacturer" />
-                    <MenuItem Header="_Brand" />
+                    <MenuItem Header="_Items" Name="MI_Items" Click="MI_Items_Click"/>
+                    <MenuItem Header="_Item Groups" Name="MI_ItemsGrp" Click="MI_ItemsGrp_Click"/>
+                    <MenuItem Header="_Godown" Name="MI_Godowns" Click="MI_Godowns_Click"/>
+                    <MenuItem Header="_Manufacturer" Name="MI_ItemsMfc" Click="MI_ItemsMfc_Click"/>
+                    <MenuItem Header="_Brand" Name="MI_ItemsBrand" Click="MI_ItemsBrand_Click"/>
                 </MenuItem>
 
-                <MenuItem Header="_Salesman" />
-                <MenuItem Header="_OrderBooker" />
-                
+                <MenuItem Header="_Salesman" Name="MI_Salesmen" Click="MI_Salesmen_Click"/>
+                <MenuItem Header="_OrderBooker" Name="MI_Booker" Click="MI_Booker_Click"/>
+
                 <Separator />
                 <MenuItem Header="_Exit" />
             </MenuItem>
             <MenuItem Header="_Transactions">
                 <MenuItem Header="_Sales" >
-                    <MenuItem Header="_Delivery Challan" />
-                    <MenuItem Header="_Return Challan" />
-                    <MenuItem Header="_Damage Challan" />
-                    <MenuItem Header="_Sale Invoice" />
+                    <MenuItem Header="_Delivery Challan" Name="MI_SalesDC" Click="MI_SalesDC_Click"/>
+                    <MenuItem Header="_Return Challan" Name="MI_SalesRC" Click="MI_SalesRC_Click"/>
+                    <MenuItem Header="_Damage Challan" Name="MI_SalesDamC" Click="MI_SalesDamC_Click"/>
+                    <MenuItem Header="_Sale Invoice" Name="MI_SalesInv" Click="MI_SalesInv_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Purchase" >
-                    <MenuItem Header="_Recieving Challan" />
-                    <MenuItem Header="_Return" />
-                    <MenuItem Header="_Damage" />
-                    <MenuItem Header="_Purchase Invoice" />
+                    <MenuItem Header="_Recieving Challan" Name="MI_PurRecC" Click="MI_PurRecC_Click"/>
+                    <MenuItem Header="_Return" Name="MI_PurRetC" Click="MI_PurRetC_Click"/>
+                    <MenuItem Header="_Damage" Name="MI_PurDamC" Click="MI_PurDamC_Click"/>
+                    <MenuItem Header="_Purchase Invoice" Name="MI_PurInv" Click="MI_PurInv_Click"/>
                 </MenuItem>
                 <MenuItem Header="_Vouchers" >
                     <MenuItem Header="_Cash">
-                        <MenuItem Header="_Cash Reciepts" />
-                        <MenuItem Header="_Cash Payments" />
+                        <MenuItem Header="_Cash Reciepts" Name="MI_CashRec" Click="MI_CashRec_Click"/>
+                        <MenuItem Header="_Cash Payments" Name="MI_CashPay" Click="MI_CashPay_Click"/>
                     </MenuItem>
                     <MenuItem Header="_Bank">
-                        <MenuItem Header="_Bank Reciepts" />
-                        <MenuItem Header="_Bank Payments" />
+                        <MenuItem Header="_Bank Reciepts" Name="MI_BankRec" Click="MI_BankRec_Click"/>
+                        <MenuItem Header="_Bank Payments" Name="MI_BankPay" Click="MI_BankPay_Click"/>
                     </MenuItem>
                 </MenuItem>
             </MenuItem>
         </Menu>
+        <StackPanel Name="windowButtons" Orientation="Horizontal" Margin="0,-2,0,0"  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top">
+            <Button Name="btnBack" Click="btnBack_Click" Width="35" Height="35" HorizontalAlignment="Left" Margin="0" VerticalAlignment="Center">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/back-logo-icon-27727.png"></Image>
+            </Button>
+            <Button Name="btnMinimize" Click="btnMinimize_Click" FontSize="16" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="35" Margin="5,0,0,0">
+                <Image HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Source="/Content/Icons/minimize.png"></Image>
+            </Button>
+            <Button Name="btnClose" Click="btnClose_Click" VerticalAlignment="Center" HorizontalAlignment="Center" Height="35" Width="35" Margin="5">
+                <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Content/Icons/x-mark.png"></Image>
+            </Button>
+        </StackPanel>
+        
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
@@ -89,7 +91,7 @@
             <Button Grid.Row="1" Grid.Column="1" HorizontalAlignment="Left" Margin="10,150,0,0" x:Name="btnExit" Width="130" Height="40" FontSize="20" Click="btnExit_Click">Exit</Button>
         
         </Grid>
-        <Frame Grid.Row="1" Name="mainFrame" NavigationUIVisibility="Hidden"></Frame>
+        <Frame Width="Auto" Height="Auto" Grid.Row="1" Name="mainFrame" NavigationUIVisibility="Hidden"></Frame>
     </Grid>
     
     

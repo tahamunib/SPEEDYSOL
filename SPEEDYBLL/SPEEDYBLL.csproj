@@ -53,7 +53,11 @@
     <Compile Include="SSSalesManLINQ.cs" />
     <Compile Include="SSUsersLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />
+    <Compile Include="ViewModels\Account\VMAccCategory.cs" />
+    <Compile Include="ViewModels\Account\VMAccGroup.cs" />
     <Compile Include="ViewModels\Account\VMAccount.cs" />
+    <Compile Include="ViewModels\Account\VMCreateAccCategory.cs" />
+    <Compile Include="ViewModels\Account\VMCreateAccount.cs" />
     <Compile Include="ViewModels\Booker\VMBooker.cs" />
     <Compile Include="ViewModels\Client\VMClient.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
