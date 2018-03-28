@@ -41,7 +41,9 @@ namespace SPEEDYSOL.Screens.Items
             try
             {
                 var selectedItem = (SPEEDYDAL.Item)itemsGrid.SelectedItem;
-                window.mainFrame.Navigate(new AddItem(selectedItem));
+                VMCreateItem item = new VMCreateItem();
+                item.Item = selectedItem;
+                window.mainFrame.Navigate(new AddItem(item));
             }
             catch (Exception ex)
             {

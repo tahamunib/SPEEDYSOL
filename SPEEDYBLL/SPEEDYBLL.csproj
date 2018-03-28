@@ -60,6 +60,8 @@
     <Compile Include="ViewModels\Account\VMCreateAccount.cs" />
     <Compile Include="ViewModels\Booker\VMBooker.cs" />
     <Compile Include="ViewModels\Client\VMClient.cs" />
+    <Compile Include="ViewModels\Item\VMBrands.cs" />
+    <Compile Include="ViewModels\Item\VMCreateItem.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
     <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />

@@ -110,8 +110,14 @@
     <Compile Include="Screens\Godowns\ViewGodownDetails.xaml.cs">
       <DependentUpon>ViewGodownDetails.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Items\AddBrand.xaml.cs">
+      <DependentUpon>AddBrand.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Items\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Items\ItemBrands.xaml.cs">
+      <DependentUpon>ItemBrands.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Items\Items.xaml.cs">
       <DependentUpon>Items.xaml</DependentUpon>
@@ -224,7 +230,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Items\AddBrand.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Items\AddItem.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Items\ItemBrands.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

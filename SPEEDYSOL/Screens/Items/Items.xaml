@@ -21,9 +21,7 @@
             <Button Name="btnAddItem" Width="80" Height="80" Click="btnAddItem_Click">Add Item</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ITEMS</TextBlock>
-        <DataGrid Width="Auto" Background="#FFAEABAB" AutoGeneratingColumn="itemsGrid_AutoGeneratingColumn" Name="itemsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" AutoGenerateColumns="True">
-
-            
+        <DataGrid Width="Auto" Background="#FFAEABAB" Name="itemsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.ColumnHeaderStyle>
                 <Style  TargetType="{x:Type DataGridColumnHeader}">
                     <Setter Property="ContentTemplate">
@@ -40,7 +38,18 @@
 
 
             <DataGrid.Columns>
-                <DataGridTemplateColumn >
+                <DataGridTextColumn DisplayIndex="0" Header="Code" Width="Auto" MinWidth="100" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="1" Header="Name" Width="Auto" MinWidth="100" Binding="{Binding Name}" x:Name="name"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="Purchase Price" Width="65" MinWidth="40" Binding="{Binding PurchasePrice}" x:Name="PurchasePrice"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="Sale Price" Width="65" MinWidth="65" Binding="{Binding SalePrice}" x:Name="SalePrice"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="4" Header="Pack Unit" Width="Auto" MinWidth="65" Binding="{Binding PackUnit}" x:Name="PackUnit"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="5" Header="Unit Weight" Width="65" MinWidth="65" Binding="{Binding UnitWeight}" x:Name="UnitWeight"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="6" Header="Retail Price" Width="65" MinWidth="65" Binding="{Binding RetailPrice}" x:Name="RetailPrice"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="7" Header="CTN Size" Width="65" MinWidth="65" Binding="{Binding CTNSize}" x:Name="CTNSize"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="8" Header="Manufacturer" Width="Auto" MinWidth="65" Binding="{Binding ItemManufacturer}" x:Name="Manu"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="9" Header="Brand" Width="65" Binding="{Binding ItemBrand}" x:Name="Brand"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="10" Header="Group" Width="65" Binding="{Binding ItemGroup}" x:Name="Group"></DataGridTextColumn>
+                <DataGridTemplateColumn DisplayIndex="11">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">

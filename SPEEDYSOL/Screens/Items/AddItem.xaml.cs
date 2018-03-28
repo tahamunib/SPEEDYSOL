@@ -1,4 +1,5 @@
 ﻿using SPEEDYBLL;
+using SPEEDYBLL.ViewModels.Item;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,9 @@ namespace SPEEDYSOL.Screens.Items
     /// </summary>
     public partial class AddItem : Page
     {
-        public SPEEDYDAL.Item _item;
+        public VMCreateItem _item;
         public string _header = "ADD ITEM";
-        public AddItem(SPEEDYDAL.Item item = null)
+        public AddItem(VMCreateItem item = null)
         {
             if (item != null)
             {
@@ -33,7 +34,7 @@ namespace SPEEDYSOL.Screens.Items
             else
             {
 
-                _item = new SPEEDYDAL.Item();
+                _item = new VMCreateItem();
             }
             InitializeComponent();
         }
@@ -42,7 +43,7 @@ namespace SPEEDYSOL.Screens.Items
         {
             try
             {
-                if (SSItemsLINQ.SaveItem(_item))
+                if (SSItemsLINQ.SaveItem(_item.Item))
                     MessageBox.Show("Item Saved!");
                 else
                     MessageBox.Show("Error Ocuured: Could not save item.");
