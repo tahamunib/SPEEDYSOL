@@ -26,6 +26,8 @@ namespace SSCommons.Enums
             billing = 2,
             stockKeeper = 3
         }
+
+        
     }
     
 }

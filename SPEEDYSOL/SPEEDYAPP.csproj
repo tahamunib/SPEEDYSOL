@@ -116,8 +116,20 @@
     <Compile Include="Screens\Items\AddItem.xaml.cs">
       <DependentUpon>AddItem.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Items\AddItemGroup.xaml.cs">
+      <DependentUpon>AddItemGroup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Items\AddManufacturer.xaml.cs">
+      <DependentUpon>AddManufacturer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Items\ItemBrands.xaml.cs">
       <DependentUpon>ItemBrands.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Items\ItemGroups.xaml.cs">
+      <DependentUpon>ItemGroups.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Items\ItemManufacturers.xaml.cs">
+      <DependentUpon>ItemManufacturers.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Items\Items.xaml.cs">
       <DependentUpon>Items.xaml</DependentUpon>
@@ -238,7 +250,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Items\AddItemGroup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Items\AddManufacturer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Items\ItemBrands.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Items\ItemGroups.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Items\ItemManufacturers.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

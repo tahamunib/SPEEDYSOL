@@ -16,6 +16,7 @@
             <RowDefinition Height="10*" />
             <RowDefinition Height="10*" />
             <RowDefinition Height="10*"/>
+            <RowDefinition Height="10*"/>
             <RowDefinition Height="15*"/>
             <RowDefinition Height="20*"/>
 
@@ -39,7 +40,7 @@
                  Grid.Row="1"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="180" Height="30" Margin="10" FontSize="16" Text="{Binding Name,Mode=TwoWay}" />
+        Width="180" Height="30" Margin="10" FontSize="16" Text="{Binding Item.Name,Mode=TwoWay}" />
 
         <Label
         Content="Purchase Price"
@@ -49,7 +50,7 @@
                  Grid.Row="2"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding PurchasePrice,Mode=TwoWay}"/>
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.PurchasePrice,Mode=TwoWay}"/>
 
         <Label
         Content="Sale Price"
@@ -59,56 +60,97 @@
                  Grid.Row="3"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding SalePrice,Mode=TwoWay}" />
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.SalePrice,Mode=TwoWay}" />
+        <Label
+        Content="Retail Price"
+        Grid.Row="2" Grid.Column="2" 
+        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="txtRPrice"
+                 Grid.Row="2"
+        Grid.Column="3"
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.RetailPrice,Mode=TwoWay}" />
         <Label
         Content="Manufacturer"
         Grid.Row="4" Grid.Column="0" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtManufacturer"
+        <ComboBox Name="cmbManufacturer"
                  Grid.Row="4"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="180" Height="30" Margin="10" FontSize="16" Text="{Binding Manufacturer,Mode=TwoWay}"/>
+        Width="180" Height="30" Margin="10" FontSize="16" ItemsSource="{Binding ItemManufacturers,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding Item.ManufacturerID}"/>
+
         <Label
-        Content="Pack Unit"
-        Grid.Row="5" Grid.Column="0" 
+        Content="Brand"
+        Grid.Row="6" Grid.Column="0" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtPackUnit"
-                 Grid.Row="5"
+        <ComboBox Name="cmbBrand"
+                 Grid.Row="6"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding PackUnit,Mode=TwoWay}"/>
+        Width="180" Height="30" Margin="10" FontSize="16" ItemsSource="{Binding ItemBrands,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding Item.BrandID}"/>
+
+
         <Label
-        Content="Recent Purchase"
+        Content="Active"
         Grid.Row="1" Grid.Column="2" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtRecPurchase"
+        <CheckBox Name="cmbIsActive"
                  Grid.Row="1"
         Grid.Column="3"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding RecentPurchase,Mode=TwoWay}"/>
-        <Label
-        Content="Unit Weight"
-        Grid.Row="2" Grid.Column="2" 
-        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtUnitWeight"
-                 Grid.Row="2"
-        Grid.Column="3"
-        HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding UnitWeight,Mode=TwoWay}"/>
+        Width="Auto"  Height="Auto" Margin="0" IsChecked="{Binding Item.IsActive}"/>
 
         <Label
-        Content="Remarks"
+        Content="Group"
+        Grid.Row="5" Grid.Column="0" 
+        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <ComboBox Name="cmbGroup"
+                 Grid.Row="5"
+        Grid.Column="1"
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Width="180" Height="30" Margin="10" FontSize="16" ItemsSource="{Binding ItemGroups,Mode=TwoWay}" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding Item.GroupID}"/>
+
+        <Label
+        Content="Pack Unit"
         Grid.Row="3" Grid.Column="2" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtRemarks"
+        <TextBox Name="txtPackUnit"
                  Grid.Row="3"
         Grid.Column="3"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="250" Height="30" Margin="10" FontSize="16" Text="{Binding Remarks,Mode=TwoWay}"/>
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.PackUnit,Mode=TwoWay}"/>
+        <Label
+        Content="Unit Weight"
+        Grid.Row="4" Grid.Column="2" 
+        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="txtUnitWeight"
+                 Grid.Row="4"
+        Grid.Column="3"
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.UnitWeight,Mode=TwoWay}"/>
+        <Label
+        Content="CTN Size"
+        Grid.Row="5" Grid.Column="2" 
+        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="txtCTNSize"
+                 Grid.Row="5"
+        Grid.Column="3"
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Item.CTNSize,Mode=TwoWay}"/>
+
+        <Label
+        Content="Remarks"
+        Grid.Row="6" Grid.Column="2" 
+        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        <TextBox Name="txtRemarks"
+                 Grid.Row="6"
+        Grid.Column="3"
+        HorizontalAlignment="Left" VerticalAlignment="Center"
+        Width="250" Height="30" Margin="10" FontSize="16" Text="{Binding Item.Remarks,Mode=TwoWay}"/>
 
 
-        <Button Name="btnAddItem" Width="100" Height="40" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="16" Click="btnAddItem_Click">Add</Button>
+        <Button Name="btnAddItem" Width="100" Height="40" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="16" Click="btnAddItem_Click">Add</Button>
 
     </Grid>
 </Page>

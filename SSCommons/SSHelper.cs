@@ -9,9 +9,9 @@ namespace SSCommons
 {
     public class SSHelper
     {
-        public static string GenerateSystemCode(string entity)
+        public static string GenerateSystemCode()
         {
-            return string.Format("{0}_{1}", entity, DateTime.Now.Ticks.ToString());
+            return DateTime.Now.Ticks.ToString();
         }
     }
 }

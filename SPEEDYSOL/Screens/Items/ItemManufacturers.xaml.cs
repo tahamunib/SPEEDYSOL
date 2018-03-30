@@ -18,36 +18,30 @@ using System.Windows.Shapes;
 namespace SPEEDYSOL.Screens.Items
 {
     /// <summary>
-    /// Interaction logic for ItemBrands.xaml
+    /// Interaction logic for ItemManufacturers.xaml
     /// </summary>
-    public partial class ItemBrands : Page
+    public partial class ItemManufacturers : Page
     {
         MainWindow window;
-        VMBrands vmBrands;
-        public ItemBrands(MainWindow _window)
+        VMManufacturer vmManufacturers;
+        public ItemManufacturers(MainWindow _window)
         {
             window = _window;
             InitializeComponent();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private void btnAddItemManufacturer_Click(object sender, RoutedEventArgs e)
         {
-            vmBrands = new VMBrands();
-            this.DataContext = vmBrands;
-        }
-
-        private void btnAddItemBrand_Click(object sender, RoutedEventArgs e)
-        {
-            window.mainFrame.Navigate(new AddBrand());
+            window.mainFrame.Navigate(new AddManufacturer());
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.ItemBrand)brandsGrid.SelectedItem;
-                
-                window.mainFrame.Navigate(new AddBrand(selectedItem));
+                var selectedItem = (SPEEDYDAL.ItemManufacturer)manufacturersGrid.SelectedItem;
+
+                window.mainFrame.Navigate(new AddManufacturer(selectedItem));
             }
             catch (Exception ex)
             {
@@ -59,15 +53,15 @@ namespace SPEEDYSOL.Screens.Items
         {
             try
             {
-                var result = MessageBox.Show("Delete Item Brand?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Delete Item Manufacturer?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    var selectedItem = (SPEEDYDAL.ItemBrand)brandsGrid.SelectedItem;
-                    if (SSItemsLINQ.DeleteItemBrand(selectedItem))
+                    var selectedItem = (SPEEDYDAL.ItemManufacturer)manufacturersGrid.SelectedItem;
+                    if (SSItemsLINQ.DeleteItemManufacturer(selectedItem))
                     {
-                        vmBrands.Brands.Remove(selectedItem);
-                        this.DataContext = vmBrands;
+                        vmManufacturers.Manufacturers.Remove(selectedItem);
+                        this.DataContext = vmManufacturers;
                     }
                 }
             }
@@ -75,6 +69,12 @@ namespace SPEEDYSOL.Screens.Items
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            vmManufacturers = new VMManufacturer();
+            this.DataContext = vmManufacturers;
         }
     }
 }

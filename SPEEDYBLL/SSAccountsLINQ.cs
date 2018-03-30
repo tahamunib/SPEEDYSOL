@@ -115,7 +115,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        accGroup.Code = SSCommons.SSHelper.GenerateSystemCode(accGroup.GetType().Name);
+                        accGroup.Code = SSCommons.SSHelper.GenerateSystemCode();
                         accGroup.CreatedOn = DateTime.UtcNow.Date;
                         accGroup.UpdatedOn = DateTime.UtcNow.Date;
 
@@ -182,7 +182,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        accCategory.Code = SSCommons.SSHelper.GenerateSystemCode(accCategory.GetType().Name);
+                        accCategory.Code = SSCommons.SSHelper.GenerateSystemCode();
                         accCategory.CreatedOn = DateTime.UtcNow.Date;
                         accCategory.UpdatedOn = DateTime.UtcNow.Date;
 

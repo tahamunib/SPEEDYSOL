@@ -169,7 +169,7 @@ namespace SPEEDYSOL
 
         private void MI_ItemsGrp_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new ItemGroups(this));
         }
 
         private void MI_Godowns_Click(object sender, RoutedEventArgs e)
@@ -179,12 +179,12 @@ namespace SPEEDYSOL
 
         private void MI_ItemsMfc_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new ItemManufacturers(this));
         }
 
         private void MI_ItemsBrand_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new ItemBrands(this));
         }
 
         private void MI_Salesmen_Click(object sender, RoutedEventArgs e)

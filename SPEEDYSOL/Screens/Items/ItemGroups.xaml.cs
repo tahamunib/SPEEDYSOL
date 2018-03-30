@@ -18,13 +18,13 @@ using System.Windows.Shapes;
 namespace SPEEDYSOL.Screens.Items
 {
     /// <summary>
-    /// Interaction logic for ItemBrands.xaml
+    /// Interaction logic for ItemGroups.xaml
     /// </summary>
-    public partial class ItemBrands : Page
+    public partial class ItemGroups : Page
     {
         MainWindow window;
-        VMBrands vmBrands;
-        public ItemBrands(MainWindow _window)
+        VMItemGroups vmGroups;
+        public ItemGroups(MainWindow _window)
         {
             window = _window;
             InitializeComponent();
@@ -32,22 +32,17 @@ namespace SPEEDYSOL.Screens.Items
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            vmBrands = new VMBrands();
-            this.DataContext = vmBrands;
-        }
-
-        private void btnAddItemBrand_Click(object sender, RoutedEventArgs e)
-        {
-            window.mainFrame.Navigate(new AddBrand());
+            vmGroups = new VMItemGroups();
+            this.DataContext = vmGroups;
         }
 
         private void btnEdit_Click(object sender, RoutedEventArgs e)
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.ItemBrand)brandsGrid.SelectedItem;
-                
-                window.mainFrame.Navigate(new AddBrand(selectedItem));
+                var selectedItem = (SPEEDYDAL.ItemGroup)groupsGrid.SelectedItem;
+
+                window.mainFrame.Navigate(new AddItemGroup(selectedItem));
             }
             catch (Exception ex)
             {
@@ -59,15 +54,15 @@ namespace SPEEDYSOL.Screens.Items
         {
             try
             {
-                var result = MessageBox.Show("Delete Item Brand?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+                var result = MessageBox.Show("Delete Item Group?", "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    var selectedItem = (SPEEDYDAL.ItemBrand)brandsGrid.SelectedItem;
-                    if (SSItemsLINQ.DeleteItemBrand(selectedItem))
+                    var selectedItem = (SPEEDYDAL.ItemGroup)groupsGrid.SelectedItem;
+                    if (SSItemsLINQ.DeleteItemGroup(selectedItem))
                     {
-                        vmBrands.Brands.Remove(selectedItem);
-                        this.DataContext = vmBrands;
+                        vmGroups.Groups.Remove(selectedItem);
+                        this.DataContext = vmGroups;
                     }
                 }
             }
@@ -75,6 +70,11 @@ namespace SPEEDYSOL.Screens.Items
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnAddItemGroup_Click(object sender, RoutedEventArgs e)
+        {
+            window.mainFrame.Navigate(new AddItemGroup());
         }
     }
 }

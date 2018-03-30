@@ -46,9 +46,9 @@
                 <DataGridTextColumn DisplayIndex="5" Header="Unit Weight" Width="65" MinWidth="65" Binding="{Binding UnitWeight}" x:Name="UnitWeight"></DataGridTextColumn>
                 <DataGridTextColumn DisplayIndex="6" Header="Retail Price" Width="65" MinWidth="65" Binding="{Binding RetailPrice}" x:Name="RetailPrice"></DataGridTextColumn>
                 <DataGridTextColumn DisplayIndex="7" Header="CTN Size" Width="65" MinWidth="65" Binding="{Binding CTNSize}" x:Name="CTNSize"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="8" Header="Manufacturer" Width="Auto" MinWidth="65" Binding="{Binding ItemManufacturer}" x:Name="Manu"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="9" Header="Brand" Width="65" Binding="{Binding ItemBrand}" x:Name="Brand"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="10" Header="Group" Width="65" Binding="{Binding ItemGroup}" x:Name="Group"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="8" Header="Manufacturer" Width="Auto" MinWidth="65" Binding="{Binding ItemManufacturer.Name}" x:Name="Manu"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="9" Header="Brand" Width="65" Binding="{Binding ItemBrand.Name}" x:Name="Brand"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="10" Header="Group" Width="65" Binding="{Binding ItemGroup.Name}" x:Name="Group"></DataGridTextColumn>
                 <DataGridTemplateColumn DisplayIndex="11">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>

@@ -83,6 +83,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
+                        item.Code = SSCommons.SSHelper.GenerateSystemCode();
                         item.CreatedOn = DateTime.UtcNow;
                         item.UpdatedOn = DateTime.UtcNow;
 
@@ -136,6 +137,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
+                        itemBrand.Code = SSCommons.SSHelper.GenerateSystemCode();
                         itemBrand.CreatedOn = DateTime.UtcNow;
                         itemBrand.UpdatedOn = DateTime.UtcNow;
 
@@ -145,6 +147,52 @@ namespace SPEEDYBLL
 
                     return true;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool DeleteItemBrand(ItemBrand itemBrand)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    if (itemBrand != null)
+                    {
+                        ssContext.Entry(itemBrand).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool DeleteItemManufacturer(ItemManufacturer itemManufacturer)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    if (itemManufacturer != null)
+                    {
+                        ssContext.Entry(itemManufacturer).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+
             }
             catch (Exception ex)
             {
@@ -166,6 +214,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
+                        itemManufacturer.Code = SSCommons.SSHelper.GenerateSystemCode();
                         itemManufacturer.CreatedOn = DateTime.UtcNow;
                         itemManufacturer.UpdatedOn = DateTime.UtcNow;
 
@@ -196,6 +245,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
+                        itemGroup.Code = SSCommons.SSHelper.GenerateSystemCode();
                         itemGroup.CreatedOn = DateTime.UtcNow;
                         itemGroup.UpdatedOn = DateTime.UtcNow;
 
@@ -205,6 +255,29 @@ namespace SPEEDYBLL
 
                     return true;
                 }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool DeleteItemGroup(ItemGroup itemGroup)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    if (itemGroup != null)
+                    {
+                        ssContext.Entry(itemGroup).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+
             }
             catch (Exception ex)
             {

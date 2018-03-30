@@ -11,17 +11,17 @@ namespace SPEEDYBLL.ViewModels.Item
     {
         public VMCreateItem(SPEEDYDAL.Item _Item = null)
         {
-            ItemManufacturer = new ObservableCollection<SPEEDYDAL.ItemManufacturer>(SSItemsLINQ.GetItemManufacturers());
-            ItemBrand = new ObservableCollection<SPEEDYDAL.ItemBrand>(SSItemsLINQ.GetItemBrands());
-            ItemGroup = new ObservableCollection<SPEEDYDAL.ItemGroup>(SSItemsLINQ.GetItemGroups());
+            ItemManufacturers = new ObservableCollection<SPEEDYDAL.ItemManufacturer>(SSItemsLINQ.GetItemManufacturers());
+            ItemBrands = new ObservableCollection<SPEEDYDAL.ItemBrand>(SSItemsLINQ.GetItemBrands());
+            ItemGroups = new ObservableCollection<SPEEDYDAL.ItemGroup>(SSItemsLINQ.GetItemGroups());
             if (_Item != null)
                 Item = _Item;
             else
                 Item = new SPEEDYDAL.Item();
         }
         public SPEEDYDAL.Item Item { get; set; }
-        public ObservableCollection<SPEEDYDAL.ItemBrand> ItemBrand { get; set; }
-        public ObservableCollection<SPEEDYDAL.ItemGroup> ItemGroup { get; set; }
-        public ObservableCollection<SPEEDYDAL.ItemManufacturer> ItemManufacturer { get; set; }
+        public ObservableCollection<SPEEDYDAL.ItemBrand> ItemBrands { get; set; }
+        public ObservableCollection<SPEEDYDAL.ItemGroup> ItemGroups { get; set; }
+        public ObservableCollection<SPEEDYDAL.ItemManufacturer> ItemManufacturers { get; set; }
     }
 }
