@@ -152,6 +152,9 @@
     <Compile Include="Screens\Sales\CreateOrder_Sales.xaml.cs">
       <DependentUpon>CreateOrder_Sales.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Sales\CreateSalesDelChallan.xaml.cs">
+      <DependentUpon>CreateSalesDelChallan.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Sales\SaleOrders.xaml.cs">
       <DependentUpon>SaleOrders.xaml</DependentUpon>
     </Compile>
@@ -295,6 +298,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Sales\CreateOrder_Sales.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Sales\CreateSalesDelChallan.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

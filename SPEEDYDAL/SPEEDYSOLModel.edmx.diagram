@@ -73,6 +73,7 @@
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

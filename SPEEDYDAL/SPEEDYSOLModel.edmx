@@ -41,7 +41,8 @@
           <Property Name="sysSerial" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="godownID" Type="bigint" Nullable="false" />
           <Property Name="itemID" Type="bigint" Nullable="false" />
-          <Property Name="Qty" Type="bigint" Nullable="false" />
+          <Property Name="CTN" Type="bigint" Nullable="false" />
+          <Property Name="Pcs" Type="int" />
         </EntityType>
         <EntityType Name="Godowns">
           <Key>
@@ -711,6 +712,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SalesDamageChallan_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="SalesDamageChallan" Type="Self.SalesDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesDamageChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SalesDamageChallanItems_SalesDamageChallan">
           <End Role="SalesDamageChallan" Type="Self.SalesDamageChallan" Multiplicity="1" />
           <End Role="SalesDamageChallanItems" Type="Self.SalesDamageChallanItems" Multiplicity="*" />
@@ -963,6 +976,10 @@
           <AssociationSet Name="FK_SaleOrderDetail_SOrder" Association="Self.FK_SaleOrderDetail_SOrder">
             <End Role="SaleOrder" EntitySet="SaleOrder" />
             <End Role="SaleOrderDetail" EntitySet="SaleOrderDetail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDamageChallan_DailySales" Association="Self.FK_SalesDamageChallan_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
           </AssociationSet>
           <AssociationSet Name="FK_SalesDamageChallanItems_SalesDamageChallan" Association="Self.FK_SalesDamageChallanItems_SalesDamageChallan">
             <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
@@ -1487,6 +1504,10 @@
           <FunctionImport Name="uspGetUser" ReturnType="Collection(SPEEDYSOLModel.uspGetUser_Result)">
           <Parameter Name="loginid" Mode="In" Type="String" />
           </FunctionImport>
+          <AssociationSet Name="FK_SalesDamageChallan_DailySales" Association="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GodownItem">
           <Key>
@@ -1495,9 +1516,10 @@
           <Property Name="sysSerial" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="godownID" Type="Int64" Nullable="false" />
           <Property Name="itemID" Type="Int64" Nullable="false" />
-          <Property Name="Qty" Type="Int64" Nullable="false" />
           <NavigationProperty Name="Godown" Relationship="SPEEDYSOLModel.FK_GodownItems_Godowns" FromRole="GodownItem" ToRole="Godown" />
           <NavigationProperty Name="Item" Relationship="SPEEDYSOLModel.FK_GodownItems_Items" FromRole="GodownItem" ToRole="Item" />
+          <Property Name="CTN" Type="Int64" Nullable="false" />
+          <Property Name="Pcs" Type="Int32" />
         </EntityType>
         <EntityType Name="Item">
           <Key>
@@ -1638,6 +1660,7 @@
           <NavigationProperty Name="Salesman" Relationship="SPEEDYSOLModel.FK_DailySales_DailySales" FromRole="DailySales" ToRole="Salesman" />
           <NavigationProperty Name="SalesDeliveryChallan" Relationship="SPEEDYSOLModel.FK_SalesDC_DailySales" FromRole="DailySales" ToRole="SalesDeliveryChallan" />
           <NavigationProperty Name="SalesReturnChallan" Relationship="SPEEDYSOLModel.FK_SalesRC_DailySales" FromRole="DailySales" ToRole="SalesReturnChallan" />
+          <NavigationProperty Name="SalesDamageChallan" Relationship="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" FromRole="DailySales" ToRole="SalesDamageChallan" />
         </EntityType>
         <EntityType Name="ItemBrand">
           <Key>
@@ -1754,6 +1777,7 @@
           <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SalesDamageChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" FromRole="SalesDamageChallan" ToRole="SalesDamageChallanItems" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" FromRole="SalesDamageChallan" ToRole="DailySales" />
         </EntityType>
         <EntityType Name="SalesDamageChallanItems">
           <Key>
@@ -2101,6 +2125,18 @@
           <Property Type="DateTime" Name="CreatedOn" Nullable="true" />
           <Property Type="DateTime" Name="UpdatedOn" Nullable="true" />
         </ComplexType>
+        <Association Name="FK_SalesDamageChallan_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDamageChallan" Role="SalesDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="DSRNumber" />
+            </Principal>
+            <Dependent Role="SalesDamageChallan">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2304,7 +2340,8 @@
           <EntitySetMapping Name="GodownItems">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.GodownItem">
               <MappingFragment StoreEntitySet="GodownItems">
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="Pcs" ColumnName="Pcs" />
+                <ScalarProperty Name="CTN" ColumnName="CTN" />
                 <ScalarProperty Name="itemID" ColumnName="itemID" />
                 <ScalarProperty Name="godownID" ColumnName="godownID" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />

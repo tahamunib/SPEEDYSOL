@@ -17,7 +17,8 @@ namespace SPEEDYDAL
         public long sysSerial { get; set; }
         public long godownID { get; set; }
         public long itemID { get; set; }
-        public long Qty { get; set; }
+        public long CTN { get; set; }
+        public Nullable<int> Pcs { get; set; }
     
         public virtual Godown Godown { get; set; }
         public virtual Item Item { get; set; }

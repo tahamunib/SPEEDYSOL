@@ -44,6 +44,7 @@
     <Compile Include="SSAccountGroupsLINQ.cs" />
     <Compile Include="SSAccountsLINQ.cs" />
     <Compile Include="SSClientLINQ.cs" />
+    <Compile Include="SSDailySalesLINQ.cs" />
     <Compile Include="SSGodownsLINQ.cs" />
     <Compile Include="SSItemsLINQ.cs" />
     <Compile Include="SSOrderBookersLINQ.cs" />
@@ -67,7 +68,9 @@
     <Compile Include="ViewModels\Item\VMManufacturer.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
     <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />
+    <Compile Include="ViewModels\Sale\VMCreateSalesDelChallan.cs" />
     <Compile Include="ViewModels\Sale\VMSaleOrderDetails.cs" />
+    <Compile Include="ViewModels\Sale\VMSalesDelChallan.cs" />
     <Compile Include="ViewModels\User\VMCreateUser.cs" />
     <Compile Include="ViewModels\User\VMUser.cs" />
     <Compile Include="ViewModels\Voucher\VMCreateVoucher.cs" />

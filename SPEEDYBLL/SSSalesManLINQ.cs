@@ -31,6 +31,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
+                        salesman.Code = SSCommons.SSHelper.GenerateSystemCode();
                         salesman.CreatedOn = DateTime.UtcNow;
                         salesman.UpdatedOn = DateTime.UtcNow;
 
@@ -68,6 +69,27 @@ namespace SPEEDYBLL
             {
                 throw ex;
             }
+        }
+
+        public static long isDSRCreated(long salesmanID)
+        {
+            long dsrNumber = 0;
+            using(var sscontext =new SPEEDYSOLEntities())
+            {
+                if (salesmanID > 0)
+                {
+                    var dsr = sscontext.DailySales.Where(x => x.SalesManID == salesmanID && x.CreatedOn.ToString() == DateTime.Today.Date.ToString()).FirstOrDefault();
+                    if (dsr != null)
+                    {
+                        dsrNumber = dsr.DSRNumber;
+                    }
+                    else
+                    {
+                        dsrNumber = long.Parse(salesmanID.ToString()+DateTime.Now.ToString("yyMMdd"));
+                    }
+                }
+            }
+            return dsrNumber;
         }
     }
 }

@@ -144,7 +144,7 @@ namespace SPEEDYSOL
 
         private void MI_SalesDC_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new CreateSalesDelChallan());
         }
 
         private void MI_Accounts_Click(object sender, RoutedEventArgs e)

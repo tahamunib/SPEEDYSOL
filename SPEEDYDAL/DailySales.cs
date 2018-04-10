@@ -19,6 +19,7 @@ namespace SPEEDYDAL
         {
             this.SalesDeliveryChallan = new HashSet<SalesDeliveryChallan>();
             this.SalesReturnChallan = new HashSet<SalesReturnChallan>();
+            this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
         }
     
         public long DSRNumber { get; set; }
@@ -30,5 +31,7 @@ namespace SPEEDYDAL
         public virtual ICollection<SalesDeliveryChallan> SalesDeliveryChallan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesReturnChallan> SalesReturnChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesDamageChallan> SalesDamageChallan { get; set; }
     }
 }
