@@ -84,6 +84,7 @@ namespace SPEEDYBLL
                 {
                     Godown godown = new Godown();
                     godown.Name = godownName;
+                    godown.Code = SSCommons.SSHelper.GenerateSystemCode();
                     godown.CreatedOn = DateTime.Now;
                     godown.UpdatedOn = DateTime.Now;
 

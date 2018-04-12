@@ -53,6 +53,7 @@
     <Compile Include="SSSaleOrdersLINQ.cs" />
     <Compile Include="SSSalesManLINQ.cs" />
     <Compile Include="SSUsersLINQ.cs" />
+    <Compile Include="SSVendorsLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />
     <Compile Include="ViewModels\Account\VMAccCategory.cs" />
     <Compile Include="ViewModels\Account\VMAccGroup.cs" />
@@ -66,13 +67,17 @@
     <Compile Include="ViewModels\Item\VMItemGroups.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Item\VMManufacturer.cs" />
+    <Compile Include="ViewModels\Purchase\VMCreatePurchaseRecChalan.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
     <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />
+    <Compile Include="ViewModels\Sale\VMCreateSalesDamChallan.cs" />
     <Compile Include="ViewModels\Sale\VMCreateSalesDelChallan.cs" />
+    <Compile Include="ViewModels\Sale\VMCreateSalesRetChallan.cs" />
     <Compile Include="ViewModels\Sale\VMSaleOrderDetails.cs" />
     <Compile Include="ViewModels\Sale\VMSalesDelChallan.cs" />
     <Compile Include="ViewModels\User\VMCreateUser.cs" />
     <Compile Include="ViewModels\User\VMUser.cs" />
+    <Compile Include="ViewModels\Vendors\VMVendors.cs" />
     <Compile Include="ViewModels\Voucher\VMCreateVoucher.cs" />
     <Compile Include="ViewModels\Voucher\VMVoucher.cs" />
   </ItemGroup>

@@ -188,7 +188,7 @@
           <Key>
             <PropertyRef Name="sysSerial" />
           </Key>
-          <Property Name="sysSerial" Type="int" Nullable="false" />
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="VendorID" Type="bigint" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
