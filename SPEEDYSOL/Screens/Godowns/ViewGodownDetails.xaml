@@ -20,7 +20,8 @@
         <DataGrid  ColumnWidth="*" Background="#FFAEABAB" Name="godownDetailsGrid" Grid.Row="1" ItemsSource="{Binding}"  AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Item.Name}" Header="Item"></DataGridTextColumn>
-                <DataGridTextColumn Binding="{Binding Qty}" Header="Quantity"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding CTN}" Header="CTN"></DataGridTextColumn>
+                <DataGridTextColumn Binding="{Binding Pcs}" Header="PCS"></DataGridTextColumn>
             </DataGrid.Columns>
         </DataGrid>
 

@@ -31,6 +31,7 @@
 
                 <MenuItem Header="_Salesman" Name="MI_Salesmen" Click="MI_Salesmen_Click"/>
                 <MenuItem Header="_OrderBooker" Name="MI_Booker" Click="MI_Booker_Click"/>
+                <MenuItem Header="_Vendors" Name="MI_Vendors" Click="MI_Vendors_Click"/>
 
                 <Separator />
                 <MenuItem Header="_Exit" />

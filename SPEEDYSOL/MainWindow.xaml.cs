@@ -6,6 +6,7 @@ using SPEEDYSOL.Screens.Items;
 using SPEEDYSOL.Screens.Purchases;
 using SPEEDYSOL.Screens.Sales;
 using SPEEDYSOL.Screens.SalesMen;
+using SPEEDYSOL.Screens.Vendor;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -124,7 +125,7 @@ namespace SPEEDYSOL
 
         private void MI_PurRecC_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new CreatePurchaseRecChallan());
         }
 
         private void MI_SalesInv_Click(object sender, RoutedEventArgs e)
@@ -134,12 +135,12 @@ namespace SPEEDYSOL
 
         private void MI_SalesDamC_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new CreateSalesDamChallan());
         }
 
         private void MI_SalesRC_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new CreateSalesRetChallan());
         }
 
         private void MI_SalesDC_Click(object sender, RoutedEventArgs e)
@@ -195,6 +196,11 @@ namespace SPEEDYSOL
         private void MI_Booker_Click(object sender, RoutedEventArgs e)
         {
             mainFrame.Navigate(new Bookers(this));
+        }
+
+        private void MI_Vendors_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Vendors(this));
         }
     }
 }
