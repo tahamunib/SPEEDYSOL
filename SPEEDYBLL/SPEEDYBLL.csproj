@@ -68,6 +68,7 @@
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Item\VMManufacturer.cs" />
     <Compile Include="ViewModels\Purchase\VMCreatePurchaseRecChalan.cs" />
+    <Compile Include="ViewModels\Purchase\VMCreatePurchaseRetChallan.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
     <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />
     <Compile Include="ViewModels\Sale\VMCreateSalesDamChallan.cs" />

@@ -121,6 +121,62 @@ namespace SPEEDYBLL
             }
         }
 
+        public static void CreatePurRetChallan(ViewModels.Purchase.VMCreatePurchaseRetChallan purchaseRC)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
 
+                    PurchaseReturnChallan prc = new PurchaseReturnChallan();
+                    prc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                    prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
+                    prc.CreatedOn = DateTime.UtcNow.Date;
+
+                    ssContext.PurchaseReturnChallan.Add(prc);
+                    ssContext.SaveChanges();
+
+
+                    List<PurchaseReturnChallanItems> prcItems = new List<PurchaseReturnChallanItems>();
+                    foreach (var item in purchaseRC.PurchaseRCDetails)
+                    {
+                        PurchaseReturnChallanItems prcItem = new PurchaseReturnChallanItems();
+                        prcItem.CTN = item.CTN;
+                        prcItem.ItemID = item.SelectedItem.sysSerial;
+                        prcItem.PC = item.PC != null ? (int)item.PC : 0;
+                        prcItem.PRCID = prc.sysSerial;
+
+                        var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+
+
+                        if (gItem == null)
+                        {
+                            throw new Exception("Item not found in Godown, Please add this item in godown");
+                        }
+                        else
+                        {
+                            var purchasedPcs = (item.SelectedItem.CTNSize * item.CTN) + prcItem.PC;
+                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                            var resultingPcs = stockPcs + purchasedPcs;
+                            long updatedCTN = (long)resultingPcs / item.SelectedItem.CTNSize;
+                            int updatedPcs = (int)resultingPcs % item.SelectedItem.CTNSize;
+
+                            gItem.CTN = updatedCTN;
+                            gItem.Pcs = updatedPcs;
+                            ssContext.SaveChanges();
+                        }
+
+                    }
+
+                    ssContext.PurchaseReturnChallanItems.AddRange(prcItems);
+                    ssContext.SaveChanges();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
