@@ -10,13 +10,20 @@ namespace SPEEDYBLL.ViewModels.Purchase
 {
     public class VMCreatePurchaseRetChallan
     {
-        public VMCreatePurchaseRetChallan()
+        public VMCreatePurchaseRetChallan(PurchaseReturnChallan _PurchaseReturnChallan = null)
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
-            PurchaseReturnChallan = new PurchaseReturnChallan();
-            PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>();
-
+            if (_PurchaseReturnChallan != null)
+            {
+                PurchaseReturnChallan = _PurchaseReturnChallan;
+                PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>(SSPurchaseOrdersLINQ.GetPurchaseRetChallanItems(_PurchaseReturnChallan.sysSerial));
+            }
+            else
+            {
+                PurchaseReturnChallan = new PurchaseReturnChallan();
+                PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>();
+            }
         }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }

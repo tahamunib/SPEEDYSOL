@@ -18,25 +18,21 @@ using System.Windows.Shapes;
 namespace SPEEDYSOL.Screens.Purchases
 {
     /// <summary>
-    /// Interaction logic for CreatePurRetChallan.xaml
+    /// Interaction logic for CreatePurchaseDamChallan.xaml
     /// </summary>
-    public partial class CreatePurRetChallan : Page
+    public partial class CreatePurchaseDamChallan : Page
     {
-        private VMCreatePurchaseRetChallan purchaseRCVM;
-        string headerText = "";
-        public CreatePurRetChallan(SPEEDYDAL.PurchaseReturnChallan challan = null)
+        private VMCreatePurchaseDamChallan purchaseDamCVM;
+        public CreatePurchaseDamChallan()
         {
-            if(challan != null)
-            {
-                purchaseRCVM = new VMCreatePurchaseRetChallan(challan);
-                headerText = "EDIT PURCHASE RETURN CHALLAN";
-            }
-            else
-            {
-                purchaseRCVM = new VMCreatePurchaseRetChallan();
-                headerText = "CREATE PURCHASE RETURN CHALLAN";
-            }
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            purchaseDamCVM = new VMCreatePurchaseDamChallan();
+            purchaseDamCVM.PurchaseDamageChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            this.DataContext = purchaseDamCVM;
         }
 
         private void cmbVendor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -44,12 +40,12 @@ namespace SPEEDYSOL.Screens.Purchases
 
         }
 
-        private void purchaseRetCDetailGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        private void purchaseDamCDetailGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
             PurchaseRCDetail row = (PurchaseRCDetail)e.Row.Item;
             var totalCTN = 0;
             var totalPcs = 0;
-            foreach (var item in purchaseRCVM.PurchaseRCDetails)
+            foreach (var item in purchaseDamCVM.PurchaseDamCDetails)
             {
                 totalCTN = totalCTN + item.CTN;
                 totalPcs = (int)(totalPcs + item.PC != null ? item.PC : 0);
@@ -62,8 +58,8 @@ namespace SPEEDYSOL.Screens.Purchases
         {
             try
             {
-                SSPurchaseOrdersLINQ.CreatePurRetChallan(purchaseRCVM);
-                MessageBox.Show("Purchase Return Challan Created.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
+                SSPurchaseOrdersLINQ.CreatePurDamChallan(purchaseDamCVM);
+                MessageBox.Show("Purchase Damage Challan Created.", "Success", MessageBoxButton.OK, MessageBoxImage.Information);
             }
             catch (Exception ex)
             {
@@ -76,15 +72,5 @@ namespace SPEEDYSOL.Screens.Purchases
         {
 
         }
-
-        private void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            
-            purchaseRCVM.PurchaseReturnChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
-            this.DataContext = purchaseRCVM;
-            sOrderHeader.Text = headerText;
-        }
-
-        
     }
 }

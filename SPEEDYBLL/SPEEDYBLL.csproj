@@ -67,6 +67,7 @@
     <Compile Include="ViewModels\Item\VMItemGroups.cs" />
     <Compile Include="ViewModels\Item\VMItems.cs" />
     <Compile Include="ViewModels\Item\VMManufacturer.cs" />
+    <Compile Include="ViewModels\Purchase\VMCreatePurchaseDamChallan.cs" />
     <Compile Include="ViewModels\Purchase\VMCreatePurchaseRecChalan.cs" />
     <Compile Include="ViewModels\Purchase\VMCreatePurchaseRetChallan.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
