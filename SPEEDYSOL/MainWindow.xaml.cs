@@ -120,7 +120,7 @@ namespace SPEEDYSOL
 
         private void MI_PurRetC_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new CreatePurRetChallan());
+            mainFrame.Navigate(new PurchaseRetChallans(this));
         }
 
         private void MI_PurRecC_Click(object sender, RoutedEventArgs e)

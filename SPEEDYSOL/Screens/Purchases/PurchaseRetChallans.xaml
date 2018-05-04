@@ -21,13 +21,12 @@
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">PURCHASE RETURN CHALLANS</TextBlock>
         <DataGrid Width="Auto" Background="#FFAEABAB" Name="challanGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                <DataGridHyperlinkColumn x:Name="OrderID" Binding="{Binding POrderID}" Header="OrderID" DisplayIndex="0"></DataGridHyperlinkColumn>
-                <DataGridTextColumn DisplayIndex="1" Header="Godown" Binding="{Binding Godown.Name}" x:Name="GodownName"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="2" Header="Client" Binding="{Binding SSClient.Name}" x:Name="ClientName"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="3" Header="Total" Binding="{Binding GrandTotal}" x:Name="GrandTotal"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="4" Header="CreatedOn" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
-                <DataGridTextColumn DisplayIndex="5" Header="UpdatedOn" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
-                <DataGridTemplateColumn DisplayIndex="6">
+                
+                <DataGridTextColumn DisplayIndex="0" Header="Code" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
+                <DataGridHyperlinkColumn x:Name="Vendor" Binding="{Binding Vendor.Name}" Header="Vendor" DisplayIndex="1"></DataGridHyperlinkColumn>
+                <DataGridTextColumn DisplayIndex="2" Header="CreatedOn" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
+                <DataGridTextColumn DisplayIndex="3" Header="UpdatedOn" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
+                <DataGridTemplateColumn DisplayIndex="4">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">

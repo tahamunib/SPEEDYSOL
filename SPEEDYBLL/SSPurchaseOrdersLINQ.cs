@@ -29,18 +29,19 @@ namespace SPEEDYBLL
             }
         }
 
-        public static List<PurchaseRCDetail> GetPurchaseRetChallanItems(int prcID)
+        public static List<PurchaseRetCDetail> GetPurchaseRetChallanItems(int prcID)
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
                 var items = ssContext.PurchaseReturnChallanItems.Where(x=>x.PRCID == prcID).ToList();
-                List<PurchaseRCDetail> vmList = new List<PurchaseRCDetail>();
+                List<PurchaseRetCDetail> vmList = new List<PurchaseRetCDetail>();
                 if(items.Count > 0)
                 {
                     foreach(var item in items)
                     {
-                        PurchaseRCDetail prcDetail = new PurchaseRCDetail
+                        PurchaseRetCDetail prcDetail = new PurchaseRetCDetail
                         {
+                            sysSerial = item.sysSerial,
                             ItemID = item.ItemID,
                             CTN = item.CTN,
                             PC = item.PC
@@ -197,49 +198,129 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-
-                    PurchaseReturnChallan prc = new PurchaseReturnChallan();
-                    prc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                    prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
-                    prc.CreatedOn = DateTime.UtcNow.Date;
-
-                    ssContext.PurchaseReturnChallan.Add(prc);
-                    ssContext.SaveChanges();
-
-
-                    List<PurchaseReturnChallanItems> prcItems = new List<PurchaseReturnChallanItems>();
-                    foreach (var item in purchaseRC.PurchaseRCDetails)
+                    if (purchaseRC.PurchaseReturnChallan.sysSerial > 0)
                     {
-                        PurchaseReturnChallanItems prcItem = new PurchaseReturnChallanItems();
-                        prcItem.CTN = item.CTN;
-                        prcItem.ItemID = item.SelectedItem.sysSerial;
-                        prcItem.PC = item.PC != null ? (int)item.PC : 0;
-                        prcItem.PRCID = prc.sysSerial;
+                        purchaseRC.PurchaseReturnChallan.UpdatedOn = DateTime.UtcNow;
+                        ssContext.Entry(purchaseRC.PurchaseReturnChallan).State = System.Data.Entity.EntityState.Modified;
+                        ssContext.SaveChanges();
 
-                        var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
-
-
-                        if (gItem == null)
+                        foreach (var item in purchaseRC.PurchaseRCDetails)
                         {
-                            throw new Exception("Item not found in Godown, Please add this item in godown");
-                        }
-                        else
-                        {
-                            var purchasedPcs = (item.SelectedItem.CTNSize * item.CTN) + prcItem.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
-                            var resultingPcs = stockPcs + purchasedPcs;
-                            long updatedCTN = (long)resultingPcs / item.SelectedItem.CTNSize;
-                            int updatedPcs = (int)resultingPcs % item.SelectedItem.CTNSize;
+                            PurchaseReturnChallanItems prcItem = ssContext.PurchaseReturnChallanItems.Where(x => x.sysSerial == item.sysSerial).FirstOrDefault();
+                            if (prcItem == null)
+                            {
+                                List<PurchaseReturnChallanItems> prcItems = new List<PurchaseReturnChallanItems>();
+                                prcItem.CTN = item.CTN;
+                                prcItem.ItemID = item.SelectedItem.sysSerial;
+                                prcItem.PC = item.PC != null ? (int)item.PC : 0;
+                                prcItem.PRCID = purchaseRC.PurchaseReturnChallan.sysSerial;
+                                
+                                var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+                                
+                                if (gItem == null)
+                                {
+                                    throw new Exception("Item not found in Godown, Please add this item in godown");
+                                }
+                                else
+                                {
+                                    var purchasedPcs = (item.SelectedItem.CTNSize * item.CTN) + prcItem.PC;
+                                    var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                                    var resultingPcs = stockPcs + purchasedPcs;
+                                    long updatedCTN = (long)resultingPcs / item.SelectedItem.CTNSize;
+                                    int updatedPcs = (int)resultingPcs % item.SelectedItem.CTNSize;
 
-                            gItem.CTN = updatedCTN;
-                            gItem.Pcs = updatedPcs;
-                            ssContext.SaveChanges();
-                        }
+                                    gItem.CTN = updatedCTN;
+                                    gItem.Pcs = updatedPcs;
+                                    ssContext.SaveChanges();
 
+                                    prcItems.Add(prcItem);
+                                }
+
+
+
+                                ssContext.PurchaseReturnChallanItems.AddRange(prcItems);
+                                ssContext.SaveChanges();
+                            }
+                            else
+                            {
+                                prcItem.ItemID = item.ItemID;
+                                prcItem.CTN = item.CTN;
+                                prcItem.PC = item.PC;
+                                
+                                ssContext.Entry(prcItem).State = System.Data.Entity.EntityState.Modified;
+
+                                var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+
+                                if (gItem == null)
+                                {
+                                    throw new Exception("Item not found in Godown, Please add this item in godown");
+                                }
+                                else
+                                {
+                                    var purchasedPcs = (item.SelectedItem.CTNSize * item.CTN) + prcItem.PC;
+                                    var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                                    var resultingPcs = stockPcs - purchasedPcs;
+                                    long updatedCTN = (long)resultingPcs / item.SelectedItem.CTNSize;
+                                    int updatedPcs = (int)resultingPcs % item.SelectedItem.CTNSize;
+
+                                    gItem.CTN = updatedCTN;
+                                    gItem.Pcs = updatedPcs;
+                                    
+                                }
+                                ssContext.SaveChanges();
+
+
+                            }
+
+                        }
                     }
+                    else
+                    {
+                        PurchaseReturnChallan prc = new PurchaseReturnChallan();
+                        prc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
+                        prc.CreatedOn = DateTime.UtcNow.Date;
 
-                    ssContext.PurchaseReturnChallanItems.AddRange(prcItems);
-                    ssContext.SaveChanges();
+                        ssContext.PurchaseReturnChallan.Add(prc);
+                        ssContext.SaveChanges();
+
+
+                        List<PurchaseReturnChallanItems> prcItems = new List<PurchaseReturnChallanItems>();
+                        foreach (var item in purchaseRC.PurchaseRCDetails)
+                        {
+                            PurchaseReturnChallanItems prcItem = new PurchaseReturnChallanItems();
+                            prcItem.CTN = item.CTN;
+                            prcItem.ItemID = item.SelectedItem.sysSerial;
+                            prcItem.PC = item.PC != null ? (int)item.PC : 0;
+                            prcItem.PRCID = prc.sysSerial;
+
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+
+
+                            if (gItem == null)
+                            {
+                                throw new Exception("Item not found in Godown, Please add this item in godown");
+                            }
+                            else
+                            {
+                                var purchasedPcs = (item.SelectedItem.CTNSize * item.CTN) + prcItem.PC;
+                                var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                                var resultingPcs = stockPcs + purchasedPcs;
+                                long updatedCTN = (long)resultingPcs / item.SelectedItem.CTNSize;
+                                int updatedPcs = (int)resultingPcs % item.SelectedItem.CTNSize;
+
+                                gItem.CTN = updatedCTN;
+                                gItem.Pcs = updatedPcs;
+                                ssContext.SaveChanges();
+
+                                prcItems.Add(prcItem);
+                            }
+
+                        }
+
+                        ssContext.PurchaseReturnChallanItems.AddRange(prcItems);
+                        ssContext.SaveChanges();
+                    }
 
                 }
             }
