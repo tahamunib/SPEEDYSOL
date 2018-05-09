@@ -125,7 +125,7 @@ namespace SPEEDYSOL
 
         private void MI_PurRecC_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new CreatePurchaseRecChallan());
+            mainFrame.Navigate(new PurchaseRecChallans(this));
         }
 
         private void MI_SalesInv_Click(object sender, RoutedEventArgs e)

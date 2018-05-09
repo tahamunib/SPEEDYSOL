@@ -23,16 +23,28 @@ namespace SPEEDYSOL.Screens.Purchases
     public partial class CreatePurchaseDamChallan : Page
     {
         private VMCreatePurchaseDamChallan purchaseDamCVM;
-        public CreatePurchaseDamChallan()
+        string headerText = "";
+        public CreatePurchaseDamChallan(SPEEDYDAL.PurchaseDamageChallan challan = null)
         {
+            if (challan != null)
+            {
+                purchaseDamCVM = new VMCreatePurchaseDamChallan(challan);
+                headerText = "EDIT PURCHASE DAMAGE CHALLAN";
+            }
+            else
+            {
+                purchaseDamCVM = new VMCreatePurchaseDamChallan();
+                headerText = "CREATE PURCHASE DAMAGE CHALLAN";
+            }
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            purchaseDamCVM = new VMCreatePurchaseDamChallan();
-            purchaseDamCVM.PurchaseDamageChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            purchaseDamCVM.PurchaseDamageChallan.Code = purchaseDamCVM.PurchaseDamageChallan.Code != null ? purchaseDamCVM.PurchaseDamageChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+
             this.DataContext = purchaseDamCVM;
+            sOrderHeader.Text = headerText;
         }
 
         private void cmbVendor_SelectionChanged(object sender, SelectionChangedEventArgs e)

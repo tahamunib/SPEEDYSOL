@@ -73,11 +73,11 @@
                 </StackPanel>
                 <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                     <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">QTY</Label>
-                    <TextBox Name="tbCTNTotal" VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
+                    <TextBox Name="tbCTNTotal" Text="{Binding TotalCTN}" VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
                 </StackPanel>
                 <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                     <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">Pcs</Label>
-                    <TextBox Name="tbPcsTotal"  VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
+                    <TextBox Name="tbPcsTotal" Text="{Binding TotalPcs}" VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
                 </StackPanel>
             </Grid>
         </GroupBox>
