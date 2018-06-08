@@ -254,6 +254,7 @@ namespace SPEEDYBLL
                         prc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
                         prc.CreatedOn = DateTime.UtcNow.Date;
+                        prc.GodownID = purchaseRC.SelectedGodown.sysSerial;
 
                         ssContext.PurchaseRecievingChallan.Add(prc);
                         ssContext.SaveChanges();
@@ -268,12 +269,18 @@ namespace SPEEDYBLL
                             prcItem.Pcs = item.PC != null ? (int)item.PC : 0;
                             prcItem.PRCID = prc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID && x.godownID == prc.GodownID).FirstOrDefault();
 
 
                             if (gItem == null)
                             {
-                                throw new Exception("Item not found in Godown, Please add this item in godown");
+                                GodownItem newGodownItem = new GodownItem();
+                                newGodownItem.CTN = prcItem.Ctn;
+                                newGodownItem.Pcs = (int)prcItem.Pcs;
+                                newGodownItem.itemID = prcItem.ItemID;
+                                newGodownItem.godownID = prc.GodownID;
+
+                                ssContext.GodownItems.Add(newGodownItem);
                             }
                             else
                             {
@@ -392,6 +399,7 @@ namespace SPEEDYBLL
                         prc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
                         prc.CreatedOn = DateTime.UtcNow.Date;
+                        prc.GodownID = purchaseRC.SelectedGodown.sysSerial;
 
                         ssContext.PurchaseReturnChallan.Add(prc);
                         ssContext.SaveChanges();
@@ -406,7 +414,7 @@ namespace SPEEDYBLL
                             prcItem.PC = item.PC != null ? (int)item.PC : 0;
                             prcItem.PRCID = prc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prcItem.ItemID && x.godownID == prc.GodownID).FirstOrDefault();
 
 
                             if (gItem == null)
@@ -530,6 +538,8 @@ namespace SPEEDYBLL
                         prd.Code = SSCommons.SSHelper.GenerateSystemCode();
                         prd.VendorID = purchaseDC.SelectedVendor.sysSerial;
                         prd.CreatedOn = DateTime.UtcNow.Date;
+                        prd.GodownID = purchaseDC.SelectedGodown.sysSerial;
+                        
 
                         ssContext.PurchaseDamageChallan.Add(prd);
                         ssContext.SaveChanges();
@@ -544,7 +554,7 @@ namespace SPEEDYBLL
                             prdItem.PC = item.PC != null ? (int)item.PC : 0;
                             prdItem.PDamCID = prd.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prdItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == prdItem.ItemID && x.godownID == prd.GodownID).FirstOrDefault();
 
 
                             if (gItem == null)

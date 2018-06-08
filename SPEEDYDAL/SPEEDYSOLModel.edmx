@@ -127,6 +127,7 @@
           <Property Name="VendorID" Type="bigint" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseDamageChallanItems">
           <Key>
@@ -193,6 +194,7 @@
           <Property Name="VendorID" Type="bigint" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseRecievingChallanItems">
           <Key>
@@ -213,6 +215,7 @@
           <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="PurchaseReturnChallanItems">
           <Key>
@@ -279,6 +282,7 @@
           <Property Name="DSRNumber" Type="bigint" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="SalesDamageChallanItems">
           <Key>
@@ -299,6 +303,7 @@
           <Property Name="DSRNumber" Type="bigint" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="SalesDeliveryChallanItems">
           <Key>
@@ -330,6 +335,7 @@
           <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
           <Property Name="CreatedOn" Type="date" Nullable="false" />
           <Property Name="UpdatedOn" Type="date" />
+          <Property Name="GodownID" Type="bigint" Nullable="false" />
         </EntityType>
         <EntityType Name="SalesReturnChallanItems">
           <Key>
@@ -492,6 +498,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PurchaseDamageChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="PurchaseDamageChallan" Type="Self.PurchaseDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PurchaseDamageChallan_Vendor">
           <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
           <End Role="PurchaseDamageChallan" Type="Self.PurchaseDamageChallan" Multiplicity="*" />
@@ -578,6 +596,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_PurchaseRecievingChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="PurchaseRecievingChallan" Type="Self.PurchaseRecievingChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_PurchaseRecievingChallan_Vendor">
           <End Role="Vendor" Type="Self.Vendor" Multiplicity="1" />
           <End Role="PurchaseRecievingChallan" Type="Self.PurchaseRecievingChallan" Multiplicity="*" />
@@ -611,6 +641,18 @@
             </Principal>
             <Dependent Role="PurchaseRecievingChallanItems">
               <PropertyRef Name="PRCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="PurchaseReturnChallan" Type="Self.PurchaseReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallan">
+              <PropertyRef Name="GodownID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -724,6 +766,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SalesDamageChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="SalesDamageChallan" Type="Self.SalesDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDamageChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SalesDamageChallanItems_SalesDamageChallan">
           <End Role="SalesDamageChallan" Type="Self.SalesDamageChallan" Multiplicity="1" />
           <End Role="SalesDamageChallanItems" Type="Self.SalesDamageChallanItems" Multiplicity="*" />
@@ -772,6 +826,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SalesDeliveryChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="SalesDeliveryChallan" Type="Self.SalesDeliveryChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SalesRC_DailySales">
           <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
           <End Role="SalesReturnChallan" Type="Self.SalesReturnChallan" Multiplicity="*" />
@@ -805,6 +871,18 @@
             </Principal>
             <Dependent Role="SalesReturnChallanItems">
               <PropertyRef Name="RCID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturnChallan_Godowns">
+          <End Role="Godowns" Type="Self.Godowns" Multiplicity="1" />
+          <End Role="SalesReturnChallan" Type="Self.SalesReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godowns">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallan">
+              <PropertyRef Name="GodownID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -905,6 +983,10 @@
             <End Role="ItemManufacturer" EntitySet="ItemManufacturer" />
             <End Role="Items" EntitySet="Items" />
           </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallan_Godowns" Association="Self.FK_PurchaseDamageChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+          </AssociationSet>
           <AssociationSet Name="FK_PurchaseDamageChallan_Vendor" Association="Self.FK_PurchaseDamageChallan_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
@@ -933,6 +1015,10 @@
             <End Role="PurchaseOrder" EntitySet="PurchaseOrder" />
             <End Role="PurchaseOrderDetail" EntitySet="PurchaseOrderDetail" />
           </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallan_Godowns" Association="Self.FK_PurchaseRecievingChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+          </AssociationSet>
           <AssociationSet Name="FK_PurchaseRecievingChallan_Vendor" Association="Self.FK_PurchaseRecievingChallan_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
             <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
@@ -944,6 +1030,10 @@
           <AssociationSet Name="FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" Association="Self.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan">
             <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
             <End Role="PurchaseRecievingChallanItems" EntitySet="PurchaseRecievingChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallan_Godowns" Association="Self.FK_PurchaseReturnChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
           </AssociationSet>
           <AssociationSet Name="FK_PurchaseReturnChallan_Vendor" Association="Self.FK_PurchaseReturnChallan_Vendor">
             <End Role="Vendor" EntitySet="Vendor" />
@@ -981,6 +1071,10 @@
             <End Role="DailySales" EntitySet="DailySales" />
             <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
           </AssociationSet>
+          <AssociationSet Name="FK_SalesDamageChallan_Godowns" Association="Self.FK_SalesDamageChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
+          </AssociationSet>
           <AssociationSet Name="FK_SalesDamageChallanItems_SalesDamageChallan" Association="Self.FK_SalesDamageChallanItems_SalesDamageChallan">
             <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
             <End Role="SalesDamageChallanItems" EntitySet="SalesDamageChallanItems" />
@@ -997,6 +1091,10 @@
             <End Role="Items" EntitySet="Items" />
             <End Role="SalesDeliveryChallanItems" EntitySet="SalesDeliveryChallanItems" />
           </AssociationSet>
+          <AssociationSet Name="FK_SalesDeliveryChallan_Godowns" Association="Self.FK_SalesDeliveryChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+          </AssociationSet>
           <AssociationSet Name="FK_SalesRC_DailySales" Association="Self.FK_SalesRC_DailySales">
             <End Role="DailySales" EntitySet="DailySales" />
             <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
@@ -1008,6 +1106,10 @@
           <AssociationSet Name="FK_SalesRCItems_SalesRC" Association="Self.FK_SalesRCItems_SalesRC">
             <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
             <End Role="SalesReturnChallanItems" EntitySet="SalesReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturnChallan_Godowns" Association="Self.FK_SalesReturnChallan_Godowns">
+            <End Role="Godowns" EntitySet="Godowns" />
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
           </AssociationSet>
           <AssociationSet Name="FK_SSAccounts_AccountCategory" Association="Self.FK_SSAccounts_AccountCategory">
             <End Role="AccountCategory" EntitySet="AccountCategory" />
@@ -1037,6 +1139,12 @@
           <NavigationProperty Name="PurchaseOrders" Relationship="Self.FK_PurchaseOrder_Godown" FromRole="Godowns" ToRole="PurchaseOrder" />
           <NavigationProperty Name="GodownItems" Relationship="SPEEDYSOLModel.FK_GodownItems_Godowns" FromRole="Godown" ToRole="GodownItem" />
           <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="PurchaseDamageChallan" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallan_Godowns" FromRole="Godown" ToRole="PurchaseDamageChallan" />
+          <NavigationProperty Name="PurchaseRecievingChallan" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Godowns" FromRole="Godown" ToRole="PurchaseRecievingChallan" />
+          <NavigationProperty Name="PurchaseReturnChallan" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallan_Godowns" FromRole="Godown" ToRole="PurchaseReturnChallan" />
+          <NavigationProperty Name="SalesDamageChallan" Relationship="SPEEDYSOLModel.FK_SalesDamageChallan_Godowns" FromRole="Godown" ToRole="SalesDamageChallan" />
+          <NavigationProperty Name="SalesDeliveryChallan" Relationship="SPEEDYSOLModel.FK_SalesDeliveryChallan_Godowns" FromRole="Godown" ToRole="SalesDeliveryChallan" />
+          <NavigationProperty Name="SalesReturnChallan" Relationship="SPEEDYSOLModel.FK_SalesReturnChallan_Godowns" FromRole="Godown" ToRole="SalesReturnChallan" />
         </EntityType>
         <EntityType Name="OrderBooker">
           <Key>
@@ -1508,6 +1616,30 @@
             <End Role="DailySales" EntitySet="DailySales" />
             <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
           </AssociationSet>
+          <AssociationSet Name="FK_PurchaseDamageChallan_Godowns" Association="SPEEDYSOLModel.FK_PurchaseDamageChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="PurchaseDamageChallan" EntitySet="PurchaseDamageChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseRecievingChallan_Godowns" Association="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="PurchaseRecievingChallan" EntitySet="PurchaseRecievingChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_PurchaseReturnChallan_Godowns" Association="SPEEDYSOLModel.FK_PurchaseReturnChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDamageChallan_Godowns" Association="SPEEDYSOLModel.FK_SalesDamageChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="SalesDamageChallan" EntitySet="SalesDamageChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesDeliveryChallan_Godowns" Association="SPEEDYSOLModel.FK_SalesDeliveryChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="SalesDeliveryChallan" EntitySet="SalesDeliveryChallan" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SalesReturnChallan_Godowns" Association="SPEEDYSOLModel.FK_SalesReturnChallan_Godowns">
+            <End Role="Godown" EntitySet="Godowns" />
+            <End Role="SalesReturnChallan" EntitySet="SalesReturnChallan" />
+          </AssociationSet>
           </EntityContainer>
         <EntityType Name="GodownItem">
           <Key>
@@ -1706,6 +1838,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallan_Vendor" FromRole="PurchaseDamageChallan" ToRole="Vendor" />
           <NavigationProperty Name="PurchaseDamageChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_PurchaseDamageChallan" FromRole="PurchaseDamageChallan" ToRole="PurchaseDamageChallanItems" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_PurchaseDamageChallan_Godowns" FromRole="PurchaseDamageChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="PurchaseDamageChallanItems">
           <Key>
@@ -1730,6 +1864,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Vendor" FromRole="PurchaseRecievingChallan" ToRole="Vendor" />
           <NavigationProperty Name="PurchaseRecievingChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" FromRole="PurchaseRecievingChallan" ToRole="PurchaseRecievingChallanItems" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Godowns" FromRole="PurchaseRecievingChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="PurchaseRecievingChallanItems">
           <Key>
@@ -1754,6 +1890,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="Vendor" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallan_Vendor" FromRole="PurchaseReturnChallan" ToRole="Vendor" />
           <NavigationProperty Name="PurchaseReturnChallanItems" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_PurchaseReturnChallan" FromRole="PurchaseReturnChallan" ToRole="PurchaseReturnChallanItems" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_PurchaseReturnChallan_Godowns" FromRole="PurchaseReturnChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="PurchaseReturnChallanItems">
           <Key>
@@ -1778,6 +1916,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="SalesDamageChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" FromRole="SalesDamageChallan" ToRole="SalesDamageChallanItems" />
           <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" FromRole="SalesDamageChallan" ToRole="DailySales" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_SalesDamageChallan_Godowns" FromRole="SalesDamageChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="SalesDamageChallanItems">
           <Key>
@@ -1801,6 +1941,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesDC_DailySales" FromRole="SalesDeliveryChallan" ToRole="DailySales" />
           <NavigationProperty Name="SalesDeliveryChallanItems" Relationship="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" FromRole="SalesDeliveryChallan" ToRole="SalesDeliveryChallanItems" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_SalesDeliveryChallan_Godowns" FromRole="SalesDeliveryChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="SalesDeliveryChallanItems">
           <Key>
@@ -1825,6 +1967,8 @@
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_SalesRC_DailySales" FromRole="SalesReturnChallan" ToRole="DailySales" />
           <NavigationProperty Name="SalesReturnChallanItems" Relationship="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" FromRole="SalesReturnChallan" ToRole="SalesReturnChallanItems" />
+          <Property Name="GodownID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="Godowns" Relationship="SPEEDYSOLModel.FK_SalesReturnChallan_Godowns" FromRole="SalesReturnChallan" ToRole="Godown" />
         </EntityType>
         <EntityType Name="SalesReturnChallanItems">
           <Key>
@@ -2134,6 +2278,78 @@
             </Principal>
             <Dependent Role="SalesDamageChallan">
               <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseDamageChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseDamageChallan" Role="PurchaseDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseDamageChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseRecievingChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseRecievingChallan" Role="PurchaseRecievingChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseRecievingChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_PurchaseReturnChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.PurchaseReturnChallan" Role="PurchaseReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="PurchaseReturnChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDamageChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDamageChallan" Role="SalesDamageChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDamageChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesDeliveryChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesDeliveryChallan" Role="SalesDeliveryChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesDeliveryChallan">
+              <PropertyRef Name="GodownID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SalesReturnChallan_Godowns">
+          <End Type="SPEEDYSOLModel.Godown" Role="Godown" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SalesReturnChallan" Role="SalesReturnChallan" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Godown">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SalesReturnChallan">
+              <PropertyRef Name="GodownID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2451,6 +2667,7 @@
           <EntitySetMapping Name="PurchaseDamageChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseDamageChallan">
               <MappingFragment StoreEntitySet="PurchaseDamageChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
@@ -2473,6 +2690,7 @@
           <EntitySetMapping Name="PurchaseRecievingChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseRecievingChallan">
               <MappingFragment StoreEntitySet="PurchaseRecievingChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="VendorID" ColumnName="VendorID" />
@@ -2495,6 +2713,7 @@
           <EntitySetMapping Name="PurchaseReturnChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.PurchaseReturnChallan">
               <MappingFragment StoreEntitySet="PurchaseReturnChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
@@ -2517,6 +2736,7 @@
           <EntitySetMapping Name="SalesDamageChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDamageChallan">
               <MappingFragment StoreEntitySet="SalesDamageChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
@@ -2539,6 +2759,7 @@
           <EntitySetMapping Name="SalesDeliveryChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesDeliveryChallan">
               <MappingFragment StoreEntitySet="SalesDeliveryChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
@@ -2561,6 +2782,7 @@
           <EntitySetMapping Name="SalesReturnChallan">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SalesReturnChallan">
               <MappingFragment StoreEntitySet="SalesReturnChallan">
+                <ScalarProperty Name="GodownID" ColumnName="GodownID" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="Code" ColumnName="Code" />

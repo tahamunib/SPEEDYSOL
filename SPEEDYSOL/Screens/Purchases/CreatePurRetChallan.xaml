@@ -23,10 +23,15 @@
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"></ColumnDefinition>
                 <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
                 <Label Content="Vendor" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbVendor" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Vendors}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding PurchaseReturnChallan.VendorID,Mode=TwoWay}" SelectedItem="{Binding SelectedVendor,Mode=TwoWay}"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbGodown" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding PurchaseReturnChallan.GodownID,Mode=TwoWay}" SelectedItem="{Binding SelectedGodown,Mode=TwoWay}"></ComboBox>
             </StackPanel>
 
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">

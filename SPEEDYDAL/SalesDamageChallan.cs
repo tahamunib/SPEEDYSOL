@@ -25,9 +25,11 @@ namespace SPEEDYDAL
         public long DSRNumber { get; set; }
         public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public long GodownID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesDamageChallanItems> SalesDamageChallanItems { get; set; }
         public virtual DailySales DailySales { get; set; }
+        public virtual Godown Godowns { get; set; }
     }
 }

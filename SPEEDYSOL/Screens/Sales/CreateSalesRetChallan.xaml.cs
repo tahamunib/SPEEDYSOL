@@ -24,17 +24,28 @@ namespace SPEEDYSOL.Screens.Sales
     public partial class CreateSalesRetChallan : Page
     {
         private VMCreateSalesRetChallan salesrcVM;
-        
-        public CreateSalesRetChallan()
+        string headerText = "";
+        public CreateSalesRetChallan(SPEEDYDAL.SalesReturnChallan challan = null)
         {
+            if (challan != null)
+            {
+                salesrcVM = new VMCreateSalesRetChallan();
+                headerText = "EDIT SALES RETURN CHALLAN";
+            }
+            else
+            {
+                salesrcVM = new VMCreateSalesRetChallan();
+                headerText = "CREATE SALES RETURN CHALLAN";
+            }
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            salesrcVM = new VMCreateSalesRetChallan();
-            salesrcVM.SalesReturnChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            
+            salesrcVM.SalesReturnChallan.Code = salesrcVM.SalesReturnChallan.Code != null ? salesrcVM.SalesReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
             this.DataContext = salesrcVM;
+            sOrderHeader.Text = headerText;
         }
 
         

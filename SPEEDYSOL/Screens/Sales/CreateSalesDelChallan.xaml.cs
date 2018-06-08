@@ -24,17 +24,28 @@ namespace SPEEDYSOL.Screens.Sales
     public partial class CreateSalesDelChallan : Page
     {
         private VMCreateSalesDelChallan salesdcVM;
-        
-        public CreateSalesDelChallan()
+        string headerText = "";
+        public CreateSalesDelChallan(SPEEDYDAL.SalesDeliveryChallan challan = null)
         {
+            if (challan != null)
+            {
+                salesdcVM = new VMCreateSalesDelChallan();
+                headerText = "EDIT SALES DELIVERY CHALLAN";
+            }
+            else
+            {
+                salesdcVM = new VMCreateSalesDelChallan();
+                headerText = "CREATE SALES DELIVERY CHALLAN";
+            }
+
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            salesdcVM = new VMCreateSalesDelChallan();
             salesdcVM.SalesDeliveryChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
             this.DataContext = salesdcVM;
+            sOrderHeader.Text = headerText;
         }
 
         private void btnCreate_Click(object sender, RoutedEventArgs e)

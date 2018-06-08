@@ -19,6 +19,12 @@ namespace SPEEDYDAL
         {
             this.PurchaseOrders = new HashSet<PurchaseOrder>();
             this.GodownItems = new HashSet<GodownItem>();
+            this.PurchaseDamageChallan = new HashSet<PurchaseDamageChallan>();
+            this.PurchaseRecievingChallan = new HashSet<PurchaseRecievingChallan>();
+            this.PurchaseReturnChallan = new HashSet<PurchaseReturnChallan>();
+            this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
+            this.SalesDeliveryChallan = new HashSet<SalesDeliveryChallan>();
+            this.SalesReturnChallan = new HashSet<SalesReturnChallan>();
         }
     
         public long sysSerial { get; set; }
@@ -31,5 +37,17 @@ namespace SPEEDYDAL
         public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<GodownItem> GodownItems { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseDamageChallan> PurchaseDamageChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseRecievingChallan> PurchaseRecievingChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseReturnChallan> PurchaseReturnChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesDamageChallan> SalesDamageChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesDeliveryChallan> SalesDeliveryChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesReturnChallan> SalesReturnChallan { get; set; }
     }
 }

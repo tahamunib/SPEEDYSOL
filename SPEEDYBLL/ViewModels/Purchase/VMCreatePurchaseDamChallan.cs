@@ -13,6 +13,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public VMCreatePurchaseDamChallan(PurchaseDamageChallan _PurchaseDamageChallan = null)
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
+            Godowns = new ObservableCollection<Godown>(SSGodownsLINQ.ListGodowns());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
             if (_PurchaseDamageChallan != null)
             {
@@ -36,6 +37,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Godown> Godowns { get; set; }
         public ObservableCollection<PurchaseRCDetail> PurchaseDamCDetails
         {
             get;
@@ -44,6 +46,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public PurchaseDamageChallan PurchaseDamageChallan { get; set; }
         public Vendor SelectedVendor { get; set; }
+        public Godown SelectedGodown { get; set; }
         public int TotalCTN { get; set; }
         public int TotalPcs { get; set; }
     }

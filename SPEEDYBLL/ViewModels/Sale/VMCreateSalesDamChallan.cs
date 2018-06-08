@@ -27,9 +27,11 @@ namespace SPEEDYBLL.ViewModels.Sale
             set;
         }
         public ObservableCollection<Salesman> SalesMen { get; set; }
+        public ObservableCollection<Godown> Godowns { get; set; }
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public SalesDamageChallan SalesDamageChallan { get; set; }
         public SPEEDYDAL.Salesman SelectedSalesMan { get; set; }
+        public SPEEDYDAL.Godown SelectedGodown { get; set; }
         public DailySales DailySale { get; set; }
     }
 

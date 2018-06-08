@@ -29,6 +29,7 @@ namespace SPEEDYBLL
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         sdc.DSRNumber = salesDC.SalesDeliveryChallan.DSRNumber;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
+                        sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
                         ssContext.SalesDeliveryChallan.Add(sdc);
                         ssContext.SaveChanges();
@@ -43,16 +44,20 @@ namespace SPEEDYBLL
                             sdcItem.PC = item.PC != null ? item.PC : 0;
                             sdcItem.DCID = sdc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.godownID == sdc.GodownID).FirstOrDefault();
 
-                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
-                            if (gItem == null || requestedPcs > stockPcs)
+                            if (gItem == null)
                             {
-                                throw new Exception("Requested Item not present in Godown or Quantity exceeds stock!");
+                                
+                                throw new Exception("Requested Item not present in Godown!");
                             }
                             else
                             {
+                                var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                                var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
+
+                                if (requestedPcs > stockPcs)
+                                    throw new Exception($"Requested Item {item.SelectedItem.Name} Quantity exceeds stock: {gItem.CTN} CTN and {gItem.Pcs} Pcs!");
                                 var resultingPcs = stockPcs - requestedPcs;
                                 long remainingCtn = (long)resultingPcs / item.SelectedItem.CTNSize;
                                 int remainingPC = (int)resultingPcs % item.SelectedItem.CTNSize;
@@ -73,6 +78,7 @@ namespace SPEEDYBLL
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         sdc.DSRNumber = dailySale.DSRNumber;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
+                        sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
                         ssContext.SalesDeliveryChallan.Add(sdc);
                         ssContext.SaveChanges();
@@ -87,16 +93,20 @@ namespace SPEEDYBLL
                             sdcItem.PC = item.PC;
                             sdcItem.DCID = sdc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.godownID == sdc.GodownID).FirstOrDefault();
 
-                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
-                            if (gItem == null || requestedPcs > stockPcs)
+                            if (gItem == null)
                             {
-                                throw new Exception("Requested Item not present in Godown or Quantity exceeds stock!");
+
+                                throw new Exception("Requested Item not present in Godown!");
                             }
                             else
                             {
+                                var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                                var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
+
+                                if (requestedPcs > stockPcs)
+                                    throw new Exception($"Requested Item {item.SelectedItem.Name} Quantity exceeds stock: {gItem.CTN} CTN and {gItem.Pcs} Pcs!");
                                 var resultingPcs = stockPcs - requestedPcs;
                                 long remainingCtn = (long)resultingPcs / item.SelectedItem.CTNSize;
                                 int remainingPC = (int)resultingPcs % item.SelectedItem.CTNSize;
@@ -138,6 +148,7 @@ namespace SPEEDYBLL
                         src.Code = SSCommons.SSHelper.GenerateSystemCode();
                         src.DSRNumber = salesRC.SalesReturnChallan.DSRNumber;
                         src.CreatedOn = DateTime.UtcNow.Date;
+                        src.GodownID = salesRC.SelectedGodown.sysSerial;
 
                         ssContext.SalesReturnChallan.Add(src);
                         ssContext.SaveChanges();
@@ -152,10 +163,10 @@ namespace SPEEDYBLL
                             srcItem.PC = item.PC != null ? (int)item.PC : 0;
                             srcItem.RCID = src.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == srcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == srcItem.ItemID && x.itemID == src.GodownID).FirstOrDefault();
 
-                            var returnedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                            var returnedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
                             if (gItem == null)
                             {
                                 throw new Exception("Requested Item not present in Godown!");
@@ -182,6 +193,7 @@ namespace SPEEDYBLL
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         sdc.DSRNumber = dailySale.DSRNumber;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
+                        sdc.GodownID = salesRC.SelectedGodown.sysSerial;
 
                         ssContext.SalesDeliveryChallan.Add(sdc);
                         ssContext.SaveChanges();
@@ -198,8 +210,8 @@ namespace SPEEDYBLL
 
                             var gItem = ssContext.GodownItems.Where(x => x.itemID == srcItem.ItemID).FirstOrDefault();
 
-                            var returnedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
+                            var returnedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
                             if (gItem == null)
                             {
                                 throw new Exception("Requested Item not present in Godown");
@@ -247,6 +259,7 @@ namespace SPEEDYBLL
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         sdc.DSRNumber = salesDC.SalesDamageChallan.DSRNumber;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
+                        sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
                         ssContext.SalesDamageChallan.Add(sdc);
                         ssContext.SaveChanges();
@@ -261,11 +274,11 @@ namespace SPEEDYBLL
                             sdcItem.PC = item.PC != null ? item.PC : 0;
                             sdcItem.DamCID = sdc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.godownID == sdc.GodownID).FirstOrDefault();
 
-                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
-                            if (gItem == null || requestedPcs > stockPcs)
+                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
+                            if (gItem == null)
                             {
                                 throw new Exception("Requested Item not present in Godown !");
                             }
@@ -291,6 +304,7 @@ namespace SPEEDYBLL
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
                         sdc.DSRNumber = salesDC.SalesDamageChallan.DSRNumber;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
+                        sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
                         ssContext.SalesDamageChallan.Add(sdc);
                         ssContext.SaveChanges();
@@ -305,11 +319,11 @@ namespace SPEEDYBLL
                             sdcItem.PC = item.PC != null ? item.PC : 0;
                             sdcItem.DamCID = sdc.sysSerial;
 
-                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID).FirstOrDefault();
+                            var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.itemID == sdc.GodownID).FirstOrDefault();
 
-                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC;
-                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + gItem.Pcs;
-                            if (gItem == null || requestedPcs > stockPcs)
+                            var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                            var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
+                            if (gItem == null)
                             {
                                 throw new Exception("Requested Item not present in Godown !");
                             }
@@ -336,5 +350,97 @@ namespace SPEEDYBLL
                 throw ex;
             }
         }
+
+        public static List<SalesReturnChallan> GetSalesReturnChallans()
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    return ssContext.SalesReturnChallan.ToList();
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static List<SalesDeliveryChallan> GetSalesDelChallans()
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    return ssContext.SalesDeliveryChallan.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static bool DeleteSalesRetChallan(SalesReturnChallan challan)
+        {
+            bool res = false;
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    var challanItems = ssContext.SalesReturnChallanItems.Where(x => x.RCID == challan.sysSerial).ToList();
+                    foreach (var item in challanItems)
+                    {
+                        ssContext.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                    }
+                    if (challan != null)
+                    {
+                        ssContext.Entry(challan).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        res = true;
+                    }
+                    else
+                        res = false;
+                }
+            }
+            catch (Exception e)
+            {
+                res = false;
+                throw e;
+            }
+            return res;
+        }
+
+        public static bool DeleteSalesDelChallan(SalesDeliveryChallan challan)
+        {
+            bool res = false;
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    var challanItems = ssContext.SalesDeliveryChallanItems.Where(x => x.DCID == challan.sysSerial).ToList();
+                    foreach (var item in challanItems)
+                    {
+                        ssContext.Entry(item).State = System.Data.Entity.EntityState.Deleted;
+                    }
+                    if (challan != null)
+                    {
+                        ssContext.Entry(challan).State = System.Data.Entity.EntityState.Deleted;
+                        ssContext.SaveChanges();
+                        res = true;
+                    }
+                    else
+                        res = false;
+                }
+            }
+            catch (Exception e)
+            {
+                res = false;
+                throw e;
+            }
+            return res;
+        }
     }
+
+    
 }

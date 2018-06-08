@@ -74,6 +74,12 @@
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseDamageChallan_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseReturnChallan_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallan_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDeliveryChallan_Godowns" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesReturnChallan_Godowns" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

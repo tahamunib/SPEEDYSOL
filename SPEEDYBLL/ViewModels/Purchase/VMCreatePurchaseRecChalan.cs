@@ -16,6 +16,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Godowns = new ObservableCollection<Godown>(SSGodownsLINQ.ListGodowns());
             if (_PurchaseReceivingChallan != null)
             {
                 PurchaseRecievingChallan = _PurchaseReceivingChallan;
@@ -41,6 +42,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public int TotalPcs { get; set; }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Godown> Godowns { get; set; }
         public ObservableCollection<PurchaseRCDetail> PurchaseRCDetails
         {
             get;
@@ -49,6 +51,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public PurchaseRecievingChallan PurchaseRecievingChallan { get; set; }
         public Vendor SelectedVendor { get; set; }
+        public Godown SelectedGodown { get; set; }
     }
 
     public class PurchaseRCDetail : INotifyPropertyChanged

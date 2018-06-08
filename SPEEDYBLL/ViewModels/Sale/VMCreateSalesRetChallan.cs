@@ -15,6 +15,7 @@ namespace SPEEDYBLL.ViewModels.Sale
         public VMCreateSalesRetChallan()
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
+            Godowns = new ObservableCollection<Godown>(SSGodownsLINQ.ListGodowns());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
             SalesReturnChallan = new SalesReturnChallan();
             SaleRCDetails = new ObservableCollection<SaleRCDetail>();
@@ -27,9 +28,11 @@ namespace SPEEDYBLL.ViewModels.Sale
             set;
         }
         public ObservableCollection<Salesman> SalesMen { get; set; }
+        public ObservableCollection<Godown> Godowns { get; set; }
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public SalesReturnChallan SalesReturnChallan { get; set; }
         public SPEEDYDAL.Salesman SelectedSalesMan { get; set; }
+        public SPEEDYDAL.Godown SelectedGodown { get; set; }
         public DailySales DailySale { get; set; }
     }
 

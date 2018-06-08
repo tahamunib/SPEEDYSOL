@@ -22,13 +22,17 @@
             </Grid.RowDefinitions>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="50*"></ColumnDefinition>
+                <ColumnDefinition Width="50*"></ColumnDefinition> 
                 <ColumnDefinition Width="50*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
                 <Label Content="Vendor" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbVendor" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Vendors}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding PurchaseRecievingChallan.VendorID,Mode=TwoWay}" SelectedItem="{Binding SelectedVendor,Mode=TwoWay}"></ComboBox>
             </StackPanel>
-
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbGodown" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding PurchaseRecievingChallan.GodownID,Mode=TwoWay}" SelectedItem="{Binding SelectedGodown,Mode=TwoWay}"></ComboBox>
+            </StackPanel>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
                 <Label Content="Code" FontSize="13" HorizontalAlignment="Left"></Label>
                 <TextBox IsReadOnly="True" Background="AntiqueWhite" Name="txtCode" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding PurchaseRecievingChallan.Code}"></TextBox>
@@ -37,7 +41,7 @@
 
 
         </Grid>
-        <DataGrid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="purchaseRetCDetailGrid_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,5,0,5" ItemsSource="{Binding PurchaseRCDetails, Mode=TwoWay}" Name="purchaseRetCDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
+        <DataGrid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="purchaseRCDetailGrid_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,5,0,5" ItemsSource="{Binding PurchaseRCDetails, Mode=TwoWay}" Name="purchaseRetCDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
             <DataGrid.Columns>
                 <DataGridComboBoxColumn Header="Item" Width="50*" DisplayMemberPath="Name" SelectedValuePath="ItemID" SelectedItemBinding="{Binding SelectedItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridComboBoxColumn.ElementStyle>

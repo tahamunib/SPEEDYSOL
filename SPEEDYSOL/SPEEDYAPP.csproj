@@ -185,6 +185,12 @@
     <Compile Include="Screens\Sales\SaleOrders.xaml.cs">
       <DependentUpon>SaleOrders.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Sales\SalesDelChallans.xaml.cs">
+      <DependentUpon>SalesDelChallans.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Sales\SalesRetChallans.xaml.cs">
+      <DependentUpon>SalesRetChallans.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Users\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
@@ -371,6 +377,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Sales\SaleOrders.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Sales\SalesDelChallans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Sales\SalesRetChallans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

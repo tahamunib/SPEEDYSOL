@@ -37,6 +37,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Godown> Godowns { get; set; }
         public ObservableCollection<PurchaseRetCDetail> PurchaseRCDetails
         {
             get;
@@ -45,6 +46,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public PurchaseReturnChallan PurchaseReturnChallan { get; set; }
         public Vendor SelectedVendor { get; set; }
+        public Godown SelectedGodown { get; set; }
 
         public int TotalCTN { get; set; }
         public int TotalPcs { get; set; }

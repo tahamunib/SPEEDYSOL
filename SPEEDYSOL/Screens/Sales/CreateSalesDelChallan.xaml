@@ -24,19 +24,23 @@
                 <ColumnDefinition Width="30*"></ColumnDefinition>
                 <ColumnDefinition Width="30*"></ColumnDefinition>
                 <ColumnDefinition Width="30*"></ColumnDefinition>
+                <ColumnDefinition Width="30*"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
                 <Label Content="SalesMan" FontSize="13" HorizontalAlignment="Left"></Label>
                 <ComboBox Name="cmbSalesMan" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding SalesMen}" SelectionChanged="cmbSalesMan_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding DailySale.SalesManID,Mode=TwoWay}" SelectedItem="{Binding SelectedSalesMan,Mode=TwoWay}"></ComboBox>
             </StackPanel>
-            
-            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
+                <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
+                <ComboBox Name="cmbGodown" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding SalesDeliveryChallan.GodownID,Mode=TwoWay}" SelectedItem="{Binding SelectedGodown,Mode=TwoWay}"></ComboBox>
+            </StackPanel>
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3">
                 <Label Content="Code" FontSize="13" HorizontalAlignment="Left"></Label>
                 <TextBox IsReadOnly="True" Background="AntiqueWhite" Name="txtCode" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding SalesDeliveryChallan.Code}"></TextBox>
             </StackPanel>
             
            
-            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="1">
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
                 <Label Content="DSR Number" FontSize="13" HorizontalAlignment="Left"></Label>
                 <TextBox Name="txtDSR" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding SalesDeliveryChallan.DSRNumber,Mode=TwoWay}"></TextBox>
             </StackPanel>
