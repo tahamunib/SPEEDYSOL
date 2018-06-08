@@ -46,7 +46,7 @@ namespace SPEEDYSOL.Screens.Purchases
 
         private void purchaseRetCDetailGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
-            PurchaseRCDetail row = (PurchaseRCDetail)e.Row.Item;
+            PurchaseRetCDetail row = (PurchaseRetCDetail)e.Row.Item;
             var totalCTN = 0;
             var totalPcs = 0;
             foreach (var item in purchaseRCVM.PurchaseRCDetails)
@@ -80,7 +80,8 @@ namespace SPEEDYSOL.Screens.Purchases
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             
-            purchaseRCVM.PurchaseReturnChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            purchaseRCVM.PurchaseReturnChallan.Code = purchaseRCVM.PurchaseReturnChallan.Code != null ? purchaseRCVM.PurchaseReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+            
             this.DataContext = purchaseRCVM;
             sOrderHeader.Text = headerText;
         }

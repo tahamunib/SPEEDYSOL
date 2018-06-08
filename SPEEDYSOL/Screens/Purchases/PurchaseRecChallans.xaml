@@ -1,4 +1,4 @@
-﻿<Page x:Class="SPEEDYSOL.Screens.Purchases.PurchaseRetChallans"
+﻿<Page x:Class="SPEEDYSOL.Screens.Purchases.PurchaseRecChallans"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SPEEDYSOL.Screens.Purchases"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="PurchaseRetChallans" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+      Title="PurchaseRecChallans" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -18,10 +18,10 @@
         <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
             <Button Name="btnCreateChallan" Width="80" Height="80" Click="btnCreateChallan_Click">Create Challan</Button>
         </StackPanel>
-        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">PURCHASE RETURN CHALLANS</TextBlock>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">PURCHASE RECEIVING CHALLANS</TextBlock>
         <DataGrid Width="Auto" Background="#FFAEABAB" Name="challanGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding}" AutoGenerateColumns="False" CanUserAddRows="False">
             <DataGrid.Columns>
-                
+
                 <DataGridTextColumn DisplayIndex="0" Header="Code" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
                 <DataGridHyperlinkColumn x:Name="Vendor" Binding="{Binding Vendor.Name}" Header="Vendor" DisplayIndex="1"></DataGridHyperlinkColumn>
                 <DataGridTextColumn DisplayIndex="2" Header="CreatedOn" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>

@@ -12,14 +12,33 @@ namespace SPEEDYBLL.ViewModels.Purchase
 {
     public class VMCreatePurchaseRecChalan
     {
-        public VMCreatePurchaseRecChalan()
+        public VMCreatePurchaseRecChalan(PurchaseRecievingChallan _PurchaseReceivingChallan = null)
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
-            PurchaseRecievingChallan = new PurchaseRecievingChallan();
-            PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>();
+            if (_PurchaseReceivingChallan != null)
+            {
+                PurchaseRecievingChallan = _PurchaseReceivingChallan;
+                PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>(SSPurchaseOrdersLINQ.GetPurchaseRecChallanItems(_PurchaseReceivingChallan.sysSerial));
+                SelectedVendor = PurchaseRecievingChallan.Vendor;
+                foreach (var item in PurchaseRCDetails)
+                {
+                    item.SelectedItem = Items.FirstOrDefault(x => x.sysSerial == item.ItemID);
+                    TotalCTN = TotalCTN + item.CTN;
+                    TotalPcs = TotalPcs + (int)item.PC;
+                }
+
+            }
+            else
+            {
+                PurchaseRecievingChallan = new PurchaseRecievingChallan();
+                PurchaseRCDetails = new ObservableCollection<PurchaseRCDetail>();
+            }
+
 
         }
+        public int TotalCTN { get; set; }
+        public int TotalPcs { get; set; }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }
         public ObservableCollection<PurchaseRCDetail> PurchaseRCDetails
@@ -36,6 +55,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
+        public long sysSerial { get; set; }
         public long ItemID { get; set; }
         public int CTN { get; set; }
         public Nullable<int> PC { get; set; }

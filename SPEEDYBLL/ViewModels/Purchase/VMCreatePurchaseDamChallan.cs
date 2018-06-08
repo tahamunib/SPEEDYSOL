@@ -10,12 +10,28 @@ namespace SPEEDYBLL.ViewModels.Purchase
 {
     public class VMCreatePurchaseDamChallan
     {
-        public VMCreatePurchaseDamChallan()
+        public VMCreatePurchaseDamChallan(PurchaseDamageChallan _PurchaseDamageChallan = null)
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
             Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
-            PurchaseDamageChallan = new PurchaseDamageChallan();
-            PurchaseDamCDetails = new ObservableCollection<PurchaseRCDetail>();
+            if (_PurchaseDamageChallan != null)
+            {
+                PurchaseDamageChallan = _PurchaseDamageChallan;
+                PurchaseDamCDetails = new ObservableCollection<PurchaseRCDetail>(SSPurchaseOrdersLINQ.GetPurchaseDamChallanItems(_PurchaseDamageChallan.sysSerial));
+                SelectedVendor = PurchaseDamageChallan.Vendor;
+                foreach (var item in PurchaseDamCDetails)
+                {
+                    item.SelectedItem = Items.FirstOrDefault(x => x.sysSerial == item.ItemID);
+                    TotalCTN = TotalCTN + item.CTN;
+                    TotalPcs = TotalPcs + (int)item.PC;
+                }
+
+            }
+            else
+            {
+                PurchaseDamageChallan = new PurchaseDamageChallan();
+                PurchaseDamCDetails = new ObservableCollection<PurchaseRCDetail>();
+            }
 
         }
 
@@ -28,5 +44,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
         public PurchaseDamageChallan PurchaseDamageChallan { get; set; }
         public Vendor SelectedVendor { get; set; }
+        public int TotalCTN { get; set; }
+        public int TotalPcs { get; set; }
     }
 }

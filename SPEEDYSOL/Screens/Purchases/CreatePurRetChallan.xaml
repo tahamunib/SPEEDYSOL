@@ -26,7 +26,7 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="0">
                 <Label Content="Vendor" FontSize="13" HorizontalAlignment="Left"></Label>
-                <ComboBox Name="cmbVendor" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Vendors}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding PurchaseReturnChallan.VendorID,Mode=TwoWay}" SelectedItem="{Binding SelectedVendor,Mode=TwoWay}"></ComboBox>
+                <ComboBox Name="cmbVendor" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Vendors}" SelectionChanged="cmbVendor_SelectionChanged" DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding PurchaseReturnChallan.VendorID,Mode=TwoWay}" SelectedItem="{Binding SelectedVendor,Mode=TwoWay}"></ComboBox>
             </StackPanel>
 
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
@@ -39,7 +39,7 @@
         </Grid>
         <DataGrid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="purchaseRetCDetailGrid_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,5,0,5" ItemsSource="{Binding PurchaseRCDetails, Mode=TwoWay}" Name="purchaseRetCDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
             <DataGrid.Columns>
-                <DataGridComboBoxColumn Header="Item" Width="50*" DisplayMemberPath="Name" SelectedItemBinding="{Binding SelectedItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                <DataGridComboBoxColumn Header="Item" Width="50*" DisplayMemberPath="Name" SelectedValuePath="ItemID" SelectedItemBinding="{Binding SelectedItem,Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
                     <DataGridComboBoxColumn.ElementStyle>
                         <Style TargetType="{x:Type ComboBox}">
                             <Setter Property="ItemsSource" Value="{Binding Path=DataContext.Items, RelativeSource={RelativeSource AncestorType={x:Type Page}}}" />
@@ -73,11 +73,11 @@
                 </StackPanel>
                 <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                     <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">QTY</Label>
-                    <TextBox Name="tbCTNTotal" VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
+                    <TextBox Name="tbCTNTotal" Text="{Binding TotalCTN}"  VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
                 </StackPanel>
                 <StackPanel  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" Orientation="Horizontal">
                     <Label VerticalAlignment="Center" FontWeight="Bold" Grid.Column="0" Grid.Row="0">Pcs</Label>
-                    <TextBox Name="tbPcsTotal"  VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
+                    <TextBox Name="tbPcsTotal" Text="{Binding TotalPcs}" VerticalAlignment="Center" Margin="20,0,0,0" Width="80" Height="35"></TextBox>
                 </StackPanel>
             </Grid>
         </GroupBox>

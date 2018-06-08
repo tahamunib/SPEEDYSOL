@@ -23,16 +23,28 @@ namespace SPEEDYSOL.Screens.Purchases
     public partial class CreatePurchaseRecChallan : Page
     {
         private VMCreatePurchaseRecChalan purchaseRCVM;
-        public CreatePurchaseRecChallan()
+        string headerText = "";
+        public CreatePurchaseRecChallan(SPEEDYDAL.PurchaseRecievingChallan challan = null)
         {
+            if (challan != null)
+            {
+                purchaseRCVM = new VMCreatePurchaseRecChalan(challan);
+                headerText = "EDIT PURCHASE RECEIVING CHALLAN";
+            }
+            else
+            {
+                purchaseRCVM = new VMCreatePurchaseRecChalan();
+                headerText = "CREATE PURCHASE RECEIVING CHALLAN";
+            }
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            purchaseRCVM = new VMCreatePurchaseRecChalan();
-            purchaseRCVM.PurchaseRecievingChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            purchaseRCVM.PurchaseRecievingChallan.Code = purchaseRCVM.PurchaseRecievingChallan.Code != null ? purchaseRCVM.PurchaseRecievingChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+
             this.DataContext = purchaseRCVM;
+            sOrderHeader.Text = headerText;
         }
 
         private void cmbVendor_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -69,6 +81,11 @@ namespace SPEEDYSOL.Screens.Purchases
         }
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void purchaseRetCDetailGrid_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
 
         }

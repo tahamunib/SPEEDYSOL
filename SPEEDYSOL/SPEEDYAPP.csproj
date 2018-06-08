@@ -149,11 +149,17 @@
     <Compile Include="Screens\Purchases\CreatePurRetChallan.xaml.cs">
       <DependentUpon>CreatePurRetChallan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Purchases\PurchaseDamChallans.xaml.cs">
+      <DependentUpon>PurchaseDamChallans.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Purchases\PurchaseOrder.xaml.cs">
       <DependentUpon>PurchaseOrder.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Purchases\CreateOrder_Purchase.xaml.cs">
       <DependentUpon>CreateOrder_Purchase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Purchases\PurchaseRecChallans.xaml.cs">
+      <DependentUpon>PurchaseRecChallans.xaml</DependentUpon>
     </Compile>
     <Compile Include="Screens\Purchases\PurchaseRetChallans.xaml.cs">
       <DependentUpon>PurchaseRetChallans.xaml</DependentUpon>
@@ -320,11 +326,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Purchases\PurchaseDamChallans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Purchases\PurchaseOrder.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Purchases\CreateOrder_Purchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Purchases\PurchaseRecChallans.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
