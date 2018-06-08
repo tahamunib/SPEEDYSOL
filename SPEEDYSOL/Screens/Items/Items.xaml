@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:SPEEDYSOL.Screens.Items"
+      xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
       Title="Items" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
@@ -11,16 +12,20 @@
     
 
     <Grid>
+        
         <Grid.RowDefinitions>
 
             <RowDefinition Height="20*"/>
             <RowDefinition Height="80*"/>
 
         </Grid.RowDefinitions>
-        <StackPanel Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
+        <StackPanel  Margin="10,0,0,0" HorizontalAlignment="Left" Orientation="Horizontal" Grid.Row="0">
             <Button Name="btnAddItem" Width="80" Height="80" Click="btnAddItem_Click">Add Item</Button>
         </StackPanel>
         <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40"  Width="Auto">ITEMS</TextBlock>
+        <fa:ImageAwesome Name="loadingIcon" Panel.ZIndex="1" Grid.Row="1" Icon="Refresh" Spin="True" Height="35" Width="35" Visibility="Visible">
+            
+        </fa:ImageAwesome>
         <DataGrid Width="Auto" Background="#FFAEABAB" Name="itemsGrid" ColumnWidth="*" Grid.Row="1" ItemsSource="{Binding Items}" SelectedItem="{Binding SelectedItem}" CanUserAddRows="False" AutoGenerateColumns="False">
             <DataGrid.ColumnHeaderStyle>
                 <Style  TargetType="{x:Type DataGridColumnHeader}">

@@ -13,5 +13,6 @@ namespace SSCommons
         {
             return DateTime.Now.Ticks.ToString();
         }
+        
     }
 }

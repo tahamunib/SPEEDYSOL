@@ -1,5 +1,6 @@
 ﻿using SPEEDYAuthorization;
 using SPEEDYDAL;
+using SSCommons;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -99,7 +100,7 @@ namespace SPEEDYBLL
                     else
                     {
                         user.CreatedOn = DateTime.UtcNow;
-
+                        user.Code = SSHelper.GenerateSystemCode();
                         ssContext.SSUsers.Add(user);
                         ssContext.SaveChanges();
                     }
