@@ -15,19 +15,20 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesDC.SalesDeliveryChallan.DSRNumber).FirstOrDefault();
+                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesDC.DailySale.DSRNumber).FirstOrDefault();
                     if (dailySale == null)
                     {
                         DailySales ds = new DailySales();
-                        ds.DSRNumber = salesDC.SalesDeliveryChallan.DSRNumber;
+                        ds.DSRNumber = salesDC.DailySale.DSRNumber;
                         ds.SalesManID = salesDC.DailySale.SalesManID;
                         ds.CreatedOn = DateTime.UtcNow.Date;
 
                         ssContext.DailySales.Add(ds);
+                        ssContext.SaveChanges();
 
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        sdc.DSRNumber = salesDC.SalesDeliveryChallan.DSRNumber;
+                        sdc.DSRNumber = ds.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
@@ -76,7 +77,7 @@ namespace SPEEDYBLL
                     {
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        sdc.DSRNumber = dailySale.DSRNumber;
+                        sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
@@ -134,19 +135,20 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesRC.SalesReturnChallan.DSRNumber).FirstOrDefault();
+                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesRC.DailySale.DSRNumber).FirstOrDefault();
                     if (dailySale == null)
                     {
                         DailySales ds = new DailySales();
-                        ds.DSRNumber = salesRC.SalesReturnChallan.DSRNumber;
+                        ds.DSRNumber = salesRC.DailySale.DSRNumber;
                         ds.SalesManID = salesRC.DailySale.SalesManID;
                         ds.CreatedOn = DateTime.UtcNow.Date;
 
                         ssContext.DailySales.Add(ds);
+                        ssContext.SaveChanges();
 
                         SalesReturnChallan src = new SalesReturnChallan();
                         src.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        src.DSRNumber = salesRC.SalesReturnChallan.DSRNumber;
+                        src.DSRNumber = ds.sysSerial;
                         src.CreatedOn = DateTime.UtcNow.Date;
                         src.GodownID = salesRC.SelectedGodown.sysSerial;
 
@@ -191,7 +193,7 @@ namespace SPEEDYBLL
                     {
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        sdc.DSRNumber = dailySale.DSRNumber;
+                        sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesRC.SelectedGodown.sysSerial;
 
@@ -245,19 +247,20 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesDC.SalesDamageChallan.DSRNumber).FirstOrDefault();
+                    var dailySale = ssContext.DailySales.Where(x => x.DSRNumber == salesDC.DailySale.DSRNumber).FirstOrDefault();
                     if (dailySale == null)
                     {
                         DailySales ds = new DailySales();
-                        ds.DSRNumber = salesDC.SalesDamageChallan.DSRNumber;
+                        ds.DSRNumber = salesDC.DailySale.DSRNumber;
                         ds.SalesManID = salesDC.DailySale.SalesManID;
                         ds.CreatedOn = DateTime.UtcNow.Date;
 
                         ssContext.DailySales.Add(ds);
+                        ssContext.SaveChanges();
 
                         SalesDamageChallan sdc = new SalesDamageChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        sdc.DSRNumber = salesDC.SalesDamageChallan.DSRNumber;
+                        sdc.DSRNumber = ds.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
@@ -302,7 +305,7 @@ namespace SPEEDYBLL
                     {
                         SalesDamageChallan sdc = new SalesDamageChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
-                        sdc.DSRNumber = salesDC.SalesDamageChallan.DSRNumber;
+                        sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
@@ -372,7 +375,7 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    return ssContext.SalesDeliveryChallan.ToList();
+                    return ssContext.SalesDeliveryChallan.Include(nameof(DailySales)).ToList();
                 }
             }
             catch (Exception ex)

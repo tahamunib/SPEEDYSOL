@@ -27,7 +27,7 @@ namespace SPEEDYSOL.Screens.Users
         VMCreateUser user;
         string _header = "";
         bool isEdit = false;
-        public CreateUser(SSUser _user = null)
+        public CreateUser(SSUsers _user = null)
         {
             if (_user != null)
             {
@@ -95,7 +95,7 @@ namespace SPEEDYSOL.Screens.Users
             }
         }
 
-        private bool ValidateInput(SSUser user,bool isEdit)
+        private bool ValidateInput(SSUsers user,bool isEdit)
         {
             bool isValidate = false;
             if(user.RoleID == 0)

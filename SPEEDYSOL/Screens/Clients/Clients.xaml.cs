@@ -122,7 +122,7 @@ namespace SPEEDYSOL.Screens.Clients
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSClient)clientsGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSClients)clientsGrid.SelectedItem;
                 window.mainFrame.Navigate(new CreateClient(selectedItem));
             }
             catch (Exception ex)
@@ -135,7 +135,7 @@ namespace SPEEDYSOL.Screens.Clients
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSClient)clientsGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSClients)clientsGrid.SelectedItem;
                 var result = MessageBox.Show(string.Format("Delete Client: Name {0} ?", selectedItem.Name), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)

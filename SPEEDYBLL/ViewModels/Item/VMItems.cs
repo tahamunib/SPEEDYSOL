@@ -11,12 +11,12 @@ namespace SPEEDYBLL.ViewModels.Item
     {
         public VMItems()
         {
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
         }
 
-        public ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
 
-        public SPEEDYDAL.Item SelectedItem { get; set; }
+        public SPEEDYDAL.Items SelectedItem { get; set; }
 
     }
 }

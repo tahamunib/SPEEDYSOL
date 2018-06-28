@@ -13,11 +13,11 @@ namespace SPEEDYBLL.ViewModels.Sale
         public VMSalesDelChallan()
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
             DailySales = new DailySales();
         }
         public ObservableCollection<Salesman> SalesMen { get; set; }
-        public ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
         
         public DailySales DailySales { get; set; }
     }

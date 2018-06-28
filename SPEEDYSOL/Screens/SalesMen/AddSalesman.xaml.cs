@@ -61,5 +61,28 @@ namespace SPEEDYSOL.Screens.SalesMen
                 MessageBox.Show(ex.Message);
             }
         }
+
+        private void txtName_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var typedName = txtName.Text;
+            var splitName = typedName.Split(' ');
+            foreach(var splittedName in splitName)
+            {
+                if(splittedName.Length < 3)
+                {
+                    MessageBox.Show("Invalid Name, please enter at least three letters word", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+                    return;
+                }
+            }
+        }
+
+        private void txtDSRCode_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var dsrCode = txtDSRCode.Text;
+            if (SSSalesManLINQ.isDSRCodeExists(dsrCode))
+            {
+                MessageBox.Show("DSRCode already exists, please enter a unique code.", "Validation Error", MessageBoxButton.OK, MessageBoxImage.Exclamation);
+            }
+        }
     }
 }

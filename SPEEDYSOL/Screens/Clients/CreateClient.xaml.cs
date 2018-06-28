@@ -22,10 +22,10 @@ namespace SPEEDYSOL.Screens.Clients
     /// </summary>
     public partial class CreateClient : Page
     {
-        SSClient client;
+        SSClients client;
         string _header = "";
         int _Visibilty = 0;
-        public CreateClient(SSClient _client = null)
+        public CreateClient(SSClients _client = null)
         {
             if (_client != null)
             {
@@ -34,7 +34,7 @@ namespace SPEEDYSOL.Screens.Clients
             }
             else
             {
-                client = new SSClient();
+                client = new SSClients();
                 _header = "CREATE CLIENT";
             }
             InitializeComponent();

@@ -17,10 +17,11 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public PurchaseOrder()
         {
-            this.PurchaseOrderDetails = new HashSet<PurchaseOrderDetail>();
+            this.PurchaseOrderDetail = new HashSet<PurchaseOrderDetail>();
         }
     
         public long sysSerial { get; set; }
+        public string POrderID { get; set; }
         public Nullable<long> GodownID { get; set; }
         public Nullable<long> ClientID { get; set; }
         public string InvType { get; set; }
@@ -38,12 +39,11 @@ namespace SPEEDYDAL
         public Nullable<bool> isPosted { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public string POrderID { get; set; }
         public string Code { get; set; }
     
-        public virtual Godown Godown { get; set; }
-        public virtual SSClient SSClient { get; set; }
+        public virtual Godowns Godowns { get; set; }
+        public virtual SSClients SSClients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetails { get; set; }
+        public virtual ICollection<PurchaseOrderDetail> PurchaseOrderDetail { get; set; }
     }
 }

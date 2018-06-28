@@ -12,18 +12,15 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SSUser
+    public partial class GodownItems
     {
         public long sysSerial { get; set; }
-        public Nullable<long> RoleID { get; set; }
-        public string Name { get; set; }
-        public string ContactNum { get; set; }
-        public string LoginID { get; set; }
-        public string Password { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public string Code { get; set; }
+        public long godownID { get; set; }
+        public long itemID { get; set; }
+        public long CTN { get; set; }
+        public Nullable<int> Pcs { get; set; }
     
-        public virtual SSUsersRole SSUsersRole { get; set; }
+        public virtual Godowns Godowns { get; set; }
+        public virtual Items Items { get; set; }
     }
 }

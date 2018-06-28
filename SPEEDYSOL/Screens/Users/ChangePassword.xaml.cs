@@ -23,9 +23,9 @@ namespace SPEEDYSOL.Screens.Users
     /// </summary>
     public partial class ChangePassword : Page
     {
-        SSUser user;
+        SSUsers user;
         
-        public ChangePassword(SSUser _user)
+        public ChangePassword(SSUsers _user)
         {
             user = _user;
             InitializeComponent();

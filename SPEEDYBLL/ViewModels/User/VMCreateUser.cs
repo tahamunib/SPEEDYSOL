@@ -9,15 +9,15 @@ namespace SPEEDYBLL.ViewModels.User
 {
     public class VMCreateUser
     {
-        public VMCreateUser(SPEEDYDAL.SSUser _User = null)
+        public VMCreateUser(SPEEDYDAL.SSUsers _User = null)
         {
-            Roles = new ObservableCollection<SPEEDYDAL.SSUsersRole>(SSUsersLINQ.GetUserRoles());
+            Roles = new ObservableCollection<SPEEDYDAL.SSUsersRoles>(SSUsersLINQ.GetUserRoles());
             if (_User != null)
                 User = _User;
             else
-                User = new SPEEDYDAL.SSUser();
+                User = new SPEEDYDAL.SSUsers();
         }
-        public SPEEDYDAL.SSUser User { get; set; }
-        public ObservableCollection<SPEEDYDAL.SSUsersRole> Roles { get; set; }
+        public SPEEDYDAL.SSUsers User { get; set; }
+        public ObservableCollection<SPEEDYDAL.SSUsersRoles> Roles { get; set; }
     }
 }

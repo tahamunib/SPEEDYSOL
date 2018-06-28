@@ -17,11 +17,11 @@ namespace SPEEDYBLL.ViewModels.Sale
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
             Bookers = new ObservableCollection<OrderBooker>(SSOrderBookersLINQ.GetOrderBookers());
-            Clients = new ObservableCollection<SSClient>(SSClientLINQ.GetClients());
+            Clients = new ObservableCollection<SSClients>(SSClientLINQ.GetClients());
             Posted = new ObservableCollection<object>(Enum.GetValues(typeof(SSEnums.Posted))
                 .Cast<object>()
                 .Select(x => new { Value = (int)x, DisplayName = x.ToString() }));
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
 
             SaleOrderDetails = new ObservableCollection<SaleOrderDetailVM>();
 
@@ -30,9 +30,9 @@ namespace SPEEDYBLL.ViewModels.Sale
         }
         public ObservableCollection<Salesman> SalesMen { get; set; }
         public ObservableCollection<OrderBooker> Bookers { get; set; }
-        public ObservableCollection<SSClient> Clients { get; set; }
+        public ObservableCollection<SSClients> Clients { get; set; }
         public ObservableCollection<object> Posted { get; set; }
-        public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
         public ObservableCollection<SaleOrderDetailVM> SaleOrderDetails
         {
             get;
@@ -41,7 +41,7 @@ namespace SPEEDYBLL.ViewModels.Sale
 
         public Salesman SelectedSalesMan { get; set; }
         public OrderBooker SelectedBooker { get; set; }
-        public SSClient SelectedSSClient { get; set; }
+        public SSClients SelectedSSClient { get; set; }
         public object SelectedPosted { get; set; }
 
         public long salesmanID { get; set; }
@@ -65,8 +65,8 @@ namespace SPEEDYBLL.ViewModels.Sale
         public long Total { get; set; }
         public int DiscountPercentage { get; set; }
 
-        private SPEEDYDAL.Item _selectedItem;
-        public SPEEDYDAL.Item SelectedItem
+        private SPEEDYDAL.Items _selectedItem;
+        public SPEEDYDAL.Items SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -77,8 +77,8 @@ namespace SPEEDYBLL.ViewModels.Sale
 
         }
 
-        private ObservableCollection<SPEEDYDAL.Item> _items = VMSaleOrderDetail.Items;
-        public ObservableCollection<SPEEDYDAL.Item> SItems
+        private ObservableCollection<SPEEDYDAL.Items> _items = VMSaleOrderDetail.Items;
+        public ObservableCollection<SPEEDYDAL.Items> SItems
         {
             get { return _items; }
             set

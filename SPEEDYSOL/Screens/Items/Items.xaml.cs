@@ -58,7 +58,7 @@ namespace SPEEDYSOL.Screens.Items
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.Item)itemsGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.Items)itemsGrid.SelectedItem;
                 VMCreateItem item = new VMCreateItem();
                 item.Item = selectedItem;
                 window.mainFrame.Navigate(new AddItem(item));
@@ -78,7 +78,7 @@ namespace SPEEDYSOL.Screens.Items
 
                 if (result == MessageBoxResult.Yes)
                 {
-                    var selectedItem = (SPEEDYDAL.Item)itemsGrid.SelectedItem;
+                    var selectedItem = (SPEEDYDAL.Items)itemsGrid.SelectedItem;
                     if (SSItemsLINQ.DeleteItem(selectedItem))
                     {
                         vmItems.Items.Remove(selectedItem);

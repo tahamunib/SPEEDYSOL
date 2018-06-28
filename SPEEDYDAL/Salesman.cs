@@ -17,20 +17,20 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Salesman()
         {
-            this.SaleOrders = new HashSet<SaleOrder>();
             this.DailySales = new HashSet<DailySales>();
+            this.SaleOrder = new HashSet<SaleOrder>();
         }
     
         public long sysSerial { get; set; }
         public string Name { get; set; }
-        public string Type { get; set; }
+        public string DSRCode { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleOrder> SaleOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DailySales> DailySales { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SaleOrder> SaleOrder { get; set; }
     }
 }

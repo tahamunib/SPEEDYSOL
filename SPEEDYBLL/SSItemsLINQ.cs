@@ -9,7 +9,7 @@ namespace SPEEDYBLL
 {
     public class SSItemsLINQ
     {
-        public static List<Item> GetItems()
+        public static List<Items> GetItems()
         {
             try
             {
@@ -69,7 +69,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool SaveItem(Item item)
+        public static bool SaveItem(Items item)
         {
             try
             {
@@ -100,7 +100,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool DeleteItem(Item item)
+        public static bool DeleteItem(Items item)
         {
             try
             {

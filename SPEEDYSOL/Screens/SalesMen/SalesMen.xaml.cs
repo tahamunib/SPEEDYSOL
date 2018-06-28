@@ -40,7 +40,7 @@ namespace SPEEDYSOL.Screens.SalesMen
                 case "Name":
                     e.Column.DisplayIndex = 0;
                     break;
-                case "Type":
+                case "DSRCode":
                     e.Column.DisplayIndex = 1;
                     break;
                 case "CreatedOn":
@@ -50,6 +50,9 @@ namespace SPEEDYSOL.Screens.SalesMen
                     e.Column.DisplayIndex = 3;
                     break;
                 case "SaleOrders":
+                    e.Cancel = true;
+                    break;
+                case "DailySales":
                     e.Cancel = true;
                     break;
 

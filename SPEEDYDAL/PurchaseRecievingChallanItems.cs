@@ -20,7 +20,7 @@ namespace SPEEDYDAL
         public long Ctn { get; set; }
         public long Pcs { get; set; }
     
-        public virtual Item Items { get; set; }
+        public virtual Items Items { get; set; }
         public virtual PurchaseRecievingChallan PurchaseRecievingChallan { get; set; }
     }
 }

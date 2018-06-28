@@ -17,7 +17,7 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public AccountCategory()
         {
-            this.SSAccounts = new HashSet<SSAccount>();
+            this.SSAccounts = new HashSet<SSAccounts>();
         }
     
         public int sysSerial { get; set; }
@@ -29,6 +29,6 @@ namespace SPEEDYDAL
     
         public virtual AccountGroup AccountGroup { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SSAccount> SSAccounts { get; set; }
+        public virtual ICollection<SSAccounts> SSAccounts { get; set; }
     }
 }

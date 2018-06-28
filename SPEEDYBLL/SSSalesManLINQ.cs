@@ -13,7 +13,7 @@ namespace SPEEDYBLL
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
-                return ssContext.Salesmen.ToList();
+                return ssContext.Salesman.ToList();
             }
         }
 
@@ -35,7 +35,7 @@ namespace SPEEDYBLL
                         salesman.CreatedOn = DateTime.UtcNow;
                         salesman.UpdatedOn = DateTime.UtcNow;
 
-                        ssContext.Salesmen.Add(salesman);
+                        ssContext.Salesman.Add(salesman);
                         ssContext.SaveChanges();
                     }
 
@@ -70,26 +70,39 @@ namespace SPEEDYBLL
                 throw ex;
             }
         }
-
-        public static long isDSRCreated(long salesmanID)
+        /// <summary>
+        /// Creates DSRNumber if not created and returns it.
+        /// </summary>
+        /// <param name="salesmanID"></param>
+        /// <param name="dsrCode"></param>
+        /// <returns>DSRNumber</returns>
+        public static string isDSRCreated(long salesmanID,string dsrCode)
         {
-            long dsrNumber = 0;
+            string dsrNum = "";
             using(var sscontext =new SPEEDYSOLEntities())
             {
-                if (salesmanID > 0)
+                if (!String.IsNullOrEmpty(dsrCode))
                 {
                     var dsr = sscontext.DailySales.Where(x => x.SalesManID == salesmanID && x.CreatedOn.ToString() == DateTime.Today.Date.ToString()).FirstOrDefault();
                     if (dsr != null)
                     {
-                        dsrNumber = dsr.DSRNumber;
+                        dsrNum = dsr.DSRNumber;
                     }
                     else
                     {
-                        dsrNumber = long.Parse(salesmanID.ToString()+DateTime.Now.ToString("yyMMdd"));
+                        dsrNum = string.Format("{0}-{1}", dsrCode, DateTime.Now.ToString("yyMMdd"));
                     }
                 }
             }
-            return dsrNumber;
+            return dsrNum;
+        }
+
+        public static bool isDSRCodeExists(string dsrCode)
+        {
+            using (var sscontext = new SPEEDYSOLEntities())
+            {
+                return sscontext.Salesman.Any(x => x.DSRCode == dsrCode);
+            }
         }
     }
 }

@@ -40,7 +40,7 @@ namespace SPEEDYSOL.Screens.Accounts
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSAccount)accountsGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSAccounts)accountsGrid.SelectedItem;
                 VMCreateAccount accToEdit = new VMCreateAccount { Account = selectedItem };
                 window.mainFrame.Navigate(new CreateAccount(accToEdit));
             }
@@ -54,7 +54,7 @@ namespace SPEEDYSOL.Screens.Accounts
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSAccount)accountsGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSAccounts)accountsGrid.SelectedItem;
                 var result = MessageBox.Show(string.Format("Delete Account: AccNo {0} ?",selectedItem.AccNo), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)

@@ -15,7 +15,7 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public VMCreatePurchaseRetChallan(PurchaseReturnChallan _PurchaseReturnChallan = null)
         {
             Vendors = new ObservableCollection<Vendor>(SSVendorsLINQ.GetVendors());
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
             if (_PurchaseReturnChallan != null)
             {
                 PurchaseReturnChallan = _PurchaseReturnChallan;
@@ -37,16 +37,16 @@ namespace SPEEDYBLL.ViewModels.Purchase
         }
 
         public static ObservableCollection<SPEEDYDAL.Vendor> Vendors { get; set; }
-        public static ObservableCollection<SPEEDYDAL.Godown> Godowns { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Godowns> Godowns { get; set; }
         public ObservableCollection<PurchaseRetCDetail> PurchaseRCDetails
         {
             get;
             set;
         }
-        public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
         public PurchaseReturnChallan PurchaseReturnChallan { get; set; }
         public Vendor SelectedVendor { get; set; }
-        public Godown SelectedGodown { get; set; }
+        public Godowns SelectedGodown { get; set; }
 
         public int TotalCTN { get; set; }
         public int TotalPcs { get; set; }
@@ -61,8 +61,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public int CTN { get; set; }
         public Nullable<int> PC { get; set; }
 
-        private SPEEDYDAL.Item _selectedItem;
-        public SPEEDYDAL.Item SelectedItem
+        private SPEEDYDAL.Items _selectedItem;
+        public SPEEDYDAL.Items SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -73,8 +73,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
 
         }
 
-        private ObservableCollection<SPEEDYDAL.Item> _items = VMCreatePurchaseRetChallan.Items;
-        public ObservableCollection<SPEEDYDAL.Item> Items
+        private ObservableCollection<SPEEDYDAL.Items> _items = VMCreatePurchaseRetChallan.Items;
+        public ObservableCollection<SPEEDYDAL.Items> Items
         {
             get { return _items; }
             set

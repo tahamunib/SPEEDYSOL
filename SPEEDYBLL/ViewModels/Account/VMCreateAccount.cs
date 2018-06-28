@@ -9,15 +9,15 @@ namespace SPEEDYBLL.ViewModels.Account
 {
     public class VMCreateAccount
     {
-        public VMCreateAccount(SPEEDYDAL.SSAccount _Account = null)
+        public VMCreateAccount(SPEEDYDAL.SSAccounts _Account = null)
         {
             Categories = new ObservableCollection<SPEEDYDAL.AccountCategory>(SSAccountsLINQ.GetAccountCategories());
             if (_Account != null)
                 Account = _Account;
             else
-                Account = new SPEEDYDAL.SSAccount();
+                Account = new SPEEDYDAL.SSAccounts();
         }
-        public SPEEDYDAL.SSAccount Account { get; set; }
+        public SPEEDYDAL.SSAccounts Account { get; set; }
         public ObservableCollection<SPEEDYDAL.AccountCategory> Categories { get; set; }
     }
 }

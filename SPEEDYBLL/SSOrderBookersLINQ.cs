@@ -13,7 +13,7 @@ namespace SPEEDYBLL
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
-                return ssContext.OrderBookers.ToList();
+                return ssContext.OrderBooker.ToList();
             }
         }
 
@@ -57,7 +57,7 @@ namespace SPEEDYBLL
                         booker.CreatedOn = DateTime.UtcNow;
                         booker.UpdatedOn = DateTime.UtcNow;
 
-                        ssContext.OrderBookers.Add(booker);
+                        ssContext.OrderBooker.Add(booker);
                         ssContext.SaveChanges();
                     }
 

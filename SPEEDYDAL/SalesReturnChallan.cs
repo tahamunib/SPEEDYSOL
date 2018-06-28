@@ -28,8 +28,8 @@ namespace SPEEDYDAL
         public long GodownID { get; set; }
     
         public virtual DailySales DailySales { get; set; }
+        public virtual Godowns Godowns { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesReturnChallanItems> SalesReturnChallanItems { get; set; }
-        public virtual Godown Godowns { get; set; }
     }
 }

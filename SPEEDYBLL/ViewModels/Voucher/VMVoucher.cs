@@ -11,11 +11,11 @@ namespace SPEEDYBLL.ViewModels.Voucher
     {
         public VMVoucher()
         {
-            Vouchers = new ObservableCollection<SPEEDYDAL.Voucher>(SSVouchersLINQ.GetVouchers());
+            Vouchers = new ObservableCollection<SPEEDYDAL.Vouchers>(SSVouchersLINQ.GetVouchers());
         }
 
-        public ObservableCollection<SPEEDYDAL.Voucher> Vouchers { get; set; }
+        public ObservableCollection<SPEEDYDAL.Vouchers> Vouchers { get; set; }
 
-        public SPEEDYDAL.Voucher SelectedVoucher { get; set; }
+        public SPEEDYDAL.Vouchers SelectedVoucher { get; set; }
     }
 }

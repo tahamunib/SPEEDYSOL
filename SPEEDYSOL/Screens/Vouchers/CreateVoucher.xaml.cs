@@ -27,7 +27,7 @@ namespace SPEEDYSOL.Screens.Vouchers
         string _header = "";
         int _Visibilty = 0;
         string message = "";
-        public CreateVoucher(Voucher _voucher = null)
+        public CreateVoucher(SPEEDYDAL.Vouchers _voucher = null)
         {
             if (_voucher != null)
             {   

@@ -11,11 +11,11 @@ namespace SPEEDYBLL.ViewModels.User
     {
         public VMUser()
         {
-            Users = new ObservableCollection<SPEEDYDAL.SSUser>(SSUsersLINQ.GetUsers());
+            Users = new ObservableCollection<SPEEDYDAL.SSUsers>(SSUsersLINQ.GetUsers());
         }
 
-        public ObservableCollection<SPEEDYDAL.SSUser> Users { get; set; }
+        public ObservableCollection<SPEEDYDAL.SSUsers> Users { get; set; }
 
-        public SPEEDYDAL.SSUser SelectedUser { get; set; }
+        public SPEEDYDAL.SSUsers SelectedUser { get; set; }
     }
 }

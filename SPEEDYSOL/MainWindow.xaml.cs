@@ -29,13 +29,14 @@ namespace SPEEDYSOL
     /// </summary>
     public partial class MainWindow : Window
     {
-        public static SPEEDYDAL.SSUser currentlyLoggedInUser;
+        public static SPEEDYDAL.SSUsers currentlyLoggedInUser;
         
         public MainWindow()
         {
             InitializeComponent();
             windowButtons.Visibility = Visibility.Hidden;
             mainMenu.Visibility = Visibility.Hidden;
+            date.Content = DateTime.UtcNow.Date.ToString("MM/dd/yyyy");
         }
 
         private void btnSubmit_Click(object sender, RoutedEventArgs e)
@@ -100,7 +101,7 @@ namespace SPEEDYSOL
 
         private void MI_CashPay_Click(object sender, RoutedEventArgs e)
         {
-
+            //mainFrame.Navigate();
         }
 
         private void MI_CashRec_Click(object sender, RoutedEventArgs e)

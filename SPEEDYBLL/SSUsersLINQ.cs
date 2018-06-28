@@ -14,7 +14,7 @@ namespace SPEEDYBLL
     public class SSUsersLINQ
     {
 
-        public static SSUser AuthenticateUser(string username,string password)
+        public static SSUsers AuthenticateUser(string username,string password)
         {
             //using (var ssContext = new SPEEDYSOLEntities())
             //{
@@ -28,7 +28,7 @@ namespace SPEEDYBLL
             using (SqlConnection conn = new SqlConnection("Server=(local);DataBase=SPEEDYSOL;Integrated Security=SSPI"))
             {
                 conn.Open();
-                SSUser user = new SSUser();
+                SSUsers user = new SSUsers();
                 // 1.  create a command object identifying the stored procedure
                 SqlCommand cmd = new SqlCommand("dbo.uspGetUser", conn);
 
@@ -69,15 +69,15 @@ namespace SPEEDYBLL
             }
         }
 
-        public static List<SSUser> GetUsers()
+        public static List<SSUsers> GetUsers()
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
-                return ssContext.SSUsers.Include("SSUsersRole").ToList();
+                return ssContext.SSUsers.Include("SSUsersRoles").ToList();
             }
         }
 
-        public static List<SSUsersRole> GetUserRoles()
+        public static List<SSUsersRoles> GetUserRoles()
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
@@ -85,7 +85,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool SaveUser(SSUser user)
+        public static bool SaveUser(SSUsers user)
         {
             try
             {
@@ -114,7 +114,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool DeleteUser(SSUser user)
+        public static bool DeleteUser(SSUsers user)
         {
             try
             {

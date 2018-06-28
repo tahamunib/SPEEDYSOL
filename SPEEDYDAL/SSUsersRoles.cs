@@ -12,24 +12,21 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class PurchaseDamageChallan
+    public partial class SSUsersRoles
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PurchaseDamageChallan()
+        public SSUsersRoles()
         {
-            this.PurchaseDamageChallanItems = new HashSet<PurchaseDamageChallanItems>();
+            this.SSUsers = new HashSet<SSUsers>();
         }
     
         public long sysSerial { get; set; }
-        public string Code { get; set; }
-        public long VendorID { get; set; }
-        public System.DateTime CreatedOn { get; set; }
+        public string Name { get; set; }
+        public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public long GodownID { get; set; }
+        public string Code { get; set; }
     
-        public virtual Godowns Godowns { get; set; }
-        public virtual Vendor Vendor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseDamageChallanItems> PurchaseDamageChallanItems { get; set; }
+        public virtual ICollection<SSUsers> SSUsers { get; set; }
     }
 }

@@ -15,33 +15,33 @@ namespace SPEEDYBLL.ViewModels.Purchase
     {
         public VMPurchaseOrderDetail()
         {
-            Godowns = new ObservableCollection<Godown>(SSGodownsLINQ.ListGodowns());
-            Clients = new ObservableCollection<SSClient>(SSClientLINQ.GetClients());
+            Godowns = new ObservableCollection<Godowns>(SSGodownsLINQ.ListGodowns());
+            Clients = new ObservableCollection<SSClients>(SSClientLINQ.GetClients());
             InvType = new ObservableCollection<object>(Enum.GetValues(typeof(SSEnums.InvType))
                 .Cast<object>()
                 .Select(x=> new { Value = (int)x, DisplayName = x.ToString()}));
             Posted = new ObservableCollection<object>(Enum.GetValues(typeof(SSEnums.Posted))
                 .Cast<object>()
                 .Select(x=> new { Value = (int)x, DisplayName = x.ToString()}));
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
 
             PurchaseOrderDetails = new ObservableCollection<PurchaseOrderDetailVM>();
 
             pOrder = new PurchaseOrder();
             
         }
-        public ObservableCollection<Godown> Godowns { get; set; }
-        public ObservableCollection<SSClient> Clients { get; set; }
+        public ObservableCollection<Godowns> Godowns { get; set; }
+        public ObservableCollection<SSClients> Clients { get; set; }
         public ObservableCollection<object> InvType { get; set; }
         public ObservableCollection<object> Posted { get; set; }
-        public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
         public ObservableCollection<PurchaseOrderDetailVM> PurchaseOrderDetails {
             get;
             set;
         }
         
-        public Godown SelectedGodown { get; set; }
-        public SSClient SelectedSSClient { get; set; }
+        public Godowns SelectedGodown { get; set; }
+        public SSClients SelectedSSClient { get; set; }
         public object SelectedInvType { get; set; }
         public object SelectedPosted { get; set; }
 
@@ -71,8 +71,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
         public long GrossAmount { get; set; }
         public int DiscPercentage { get; set; }
 
-        private SPEEDYDAL.Item _selectedItem;
-        public SPEEDYDAL.Item SelectedItem
+        private SPEEDYDAL.Items _selectedItem;
+        public SPEEDYDAL.Items SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -83,8 +83,8 @@ namespace SPEEDYBLL.ViewModels.Purchase
 
         }
 
-        private ObservableCollection<SPEEDYDAL.Item> _items = VMPurchaseOrderDetail.Items;
-        public ObservableCollection<SPEEDYDAL.Item> PItems { get { return _items; }
+        private ObservableCollection<SPEEDYDAL.Items> _items = VMPurchaseOrderDetail.Items;
+        public ObservableCollection<SPEEDYDAL.Items> PItems { get { return _items; }
             set {
                 _items = value;
                 NotifyPropertyChanged("PItems");

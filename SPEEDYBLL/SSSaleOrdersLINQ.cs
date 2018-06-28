@@ -13,7 +13,7 @@ namespace SPEEDYBLL
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
-                var saleOrders = ssContext.SaleOrders.Include("Salesman").Include("OrderBooker").Include("SSClient").ToList();
+                var saleOrders = ssContext.SaleOrder.Include("Salesman").Include("OrderBookers").Include("SSClients").ToList();
                 return saleOrders;
             }
         }

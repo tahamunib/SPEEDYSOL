@@ -47,7 +47,7 @@ namespace SPEEDYSOL.Screens.Vouchers
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.Voucher)vouchersGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.Vouchers)vouchersGrid.SelectedItem;
                 window.mainFrame.Navigate(new CreateVoucher(selectedItem));
             }
             catch (Exception ex)
@@ -60,7 +60,7 @@ namespace SPEEDYSOL.Screens.Vouchers
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.Voucher)vouchersGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.Vouchers)vouchersGrid.SelectedItem;
                 var result = MessageBox.Show(string.Format("Delete Voucher: Code {0} ?", selectedItem.VoucherCode), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)

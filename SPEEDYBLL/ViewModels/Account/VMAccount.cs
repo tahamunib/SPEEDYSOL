@@ -11,11 +11,11 @@ namespace SPEEDYBLL.ViewModels.Account
     {
         public VMAccount()
         {
-            Accounts = new ObservableCollection<SPEEDYDAL.SSAccount>(SSAccountsLINQ.GetAccounts());
+            Accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(SSAccountsLINQ.GetAccounts());
         }
 
-        public ObservableCollection<SPEEDYDAL.SSAccount> Accounts { get; set; }
+        public ObservableCollection<SPEEDYDAL.SSAccounts> Accounts { get; set; }
 
-        public SPEEDYDAL.SSAccount SelectedAccount { get; set; }
+        public SPEEDYDAL.SSAccounts SelectedAccount { get; set; }
     }
 }

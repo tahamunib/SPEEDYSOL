@@ -17,7 +17,7 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public OrderBooker()
         {
-            this.SaleOrders = new HashSet<SaleOrder>();
+            this.SaleOrder = new HashSet<SaleOrder>();
         }
     
         public long sysSerial { get; set; }
@@ -30,6 +30,6 @@ namespace SPEEDYDAL
         public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleOrder> SaleOrders { get; set; }
+        public virtual ICollection<SaleOrder> SaleOrder { get; set; }
     }
 }

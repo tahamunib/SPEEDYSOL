@@ -11,11 +11,11 @@ namespace SPEEDYBLL.ViewModels.Client
     {
         public VMClient()
         {
-            Clients = new ObservableCollection<SPEEDYDAL.SSClient>(SSClientLINQ.GetClients());
+            Clients = new ObservableCollection<SPEEDYDAL.SSClients>(SSClientLINQ.GetClients());
         }
 
-        public ObservableCollection<SPEEDYDAL.SSClient> Clients { get; set; }
+        public ObservableCollection<SPEEDYDAL.SSClients> Clients { get; set; }
 
-        public SPEEDYDAL.SSClient SelectedClient { get; set; }
+        public SPEEDYDAL.SSClients SelectedClient { get; set; }
     }
 }

@@ -15,7 +15,7 @@ namespace SPEEDYBLL
         {
             using (var ssContext = new SPEEDYSOLEntities())
             {
-                var purchaseOrders = ssContext.PurchaseOrders.Include("Godown").Include("SSClient").ToList();
+                var purchaseOrders = ssContext.PurchaseOrder.Include("Godowns").Include("SSClients").ToList();
                 return purchaseOrders;
             }
         }
@@ -130,7 +130,7 @@ namespace SPEEDYBLL
                 bool created = false;
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    ssContext.PurchaseOrders.Add(purchaseOrder);
+                    ssContext.PurchaseOrder.Add(purchaseOrder);
                     ssContext.SaveChanges();
 
                     created = true;
@@ -146,7 +146,7 @@ namespace SPEEDYBLL
         private static PurchaseOrder GeneratePurchaseOrderFromVM(ViewModels.Purchase.VMPurchaseOrderDetail viewModel)
         {
             PurchaseOrder pOrder = new PurchaseOrder();
-            viewModel.pOrder.PurchaseOrderDetails = (ICollection<PurchaseOrderDetail>)viewModel.PurchaseOrderDetails;
+            viewModel.pOrder.PurchaseOrderDetail = (ICollection<PurchaseOrderDetail>)viewModel.PurchaseOrderDetails;
 
             pOrder = viewModel.pOrder;
 
@@ -160,7 +160,7 @@ namespace SPEEDYBLL
             pOrder.isPosted = Posted == SSEnums.Posted.Yes ? true : false;
 
             pOrder.Remarks = viewModel.pOrder.Remarks;
-            pOrder.PurchaseOrderDetails = (ICollection<PurchaseOrderDetail>)viewModel.PurchaseOrderDetails;
+            pOrder.PurchaseOrderDetail = (ICollection<PurchaseOrderDetail>)viewModel.PurchaseOrderDetails;
             pOrder.TotalDiscountPercentage = viewModel.pOrder.TotalDiscountPercentage;
 
             return pOrder;
@@ -274,7 +274,7 @@ namespace SPEEDYBLL
 
                             if (gItem == null)
                             {
-                                GodownItem newGodownItem = new GodownItem();
+                                GodownItems newGodownItem = new GodownItems();
                                 newGodownItem.CTN = prcItem.Ctn;
                                 newGodownItem.Pcs = (int)prcItem.Pcs;
                                 newGodownItem.itemID = prcItem.ItemID;

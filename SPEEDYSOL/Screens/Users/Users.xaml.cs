@@ -48,7 +48,7 @@ namespace SPEEDYSOL.Screens.Users
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSUser)usersGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSUsers)usersGrid.SelectedItem;
                 window.mainFrame.Navigate(new CreateUser(selectedItem));
             }
             catch (Exception ex)
@@ -61,7 +61,7 @@ namespace SPEEDYSOL.Screens.Users
         {
             try
             {
-                var selectedItem = (SPEEDYDAL.SSUser)usersGrid.SelectedItem;
+                var selectedItem = (SPEEDYDAL.SSUsers)usersGrid.SelectedItem;
                 var result = MessageBox.Show(string.Format("Delete User: LoginID {0} ?", selectedItem.LoginID), "Confirmation", MessageBoxButton.YesNo, MessageBoxImage.Warning);
 
                 if (result == MessageBoxResult.Yes)
@@ -87,7 +87,7 @@ namespace SPEEDYSOL.Screens.Users
 
         private void usersGrid_LoadingRow(object sender, DataGridRowEventArgs e)
         {
-            SSUser currentRowUser = (SSUser)e.Row.DataContext;
+            SSUsers currentRowUser = (SSUsers)e.Row.DataContext;
             if(currentRowUser.RoleID == 1)
             {
                 var type = e.GetType();

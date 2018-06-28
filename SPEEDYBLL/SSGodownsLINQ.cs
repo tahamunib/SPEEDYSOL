@@ -9,7 +9,7 @@ namespace SPEEDYBLL
 {
     public class SSGodownsLINQ
     {
-        public static Godown GetGodown(long sysSerial)
+        public static Godowns GetGodown(long sysSerial)
         {
             try
             {
@@ -41,13 +41,13 @@ namespace SPEEDYBLL
             }
         }
 
-        public static Godown GetGodownByName(string godownName)
+        public static Godowns GetGodownByName(string godownName)
         {
             try
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    var godown = ssContext.Godowns.Include("GodownItems.Item").Where(x => x.Name.Equals(godownName)).FirstOrDefault();
+                    var godown = ssContext.Godowns.Include("GodownItems.Items").Where(x => x.Name.Equals(godownName)).FirstOrDefault();
                     return godown;
                 }
             }
@@ -82,7 +82,7 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    Godown godown = new Godown();
+                    Godowns godown = new Godowns();
                     godown.Name = godownName;
                     godown.Code = SSCommons.SSHelper.GenerateSystemCode();
                     godown.CreatedOn = DateTime.Now;
@@ -100,7 +100,7 @@ namespace SPEEDYBLL
 
         
 
-        public static List<Godown> ListGodowns()
+        public static List<Godowns> ListGodowns()
         {
             try
             {

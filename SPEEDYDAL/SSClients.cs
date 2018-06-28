@@ -12,13 +12,13 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SSClient
+    public partial class SSClients
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SSClient()
+        public SSClients()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
-            this.SaleOrders = new HashSet<SaleOrder>();
+            this.PurchaseOrder = new HashSet<PurchaseOrder>();
+            this.SaleOrder = new HashSet<SaleOrder>();
         }
     
         public long sysSerial { get; set; }
@@ -37,8 +37,8 @@ namespace SPEEDYDAL
         public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
+        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleOrder> SaleOrders { get; set; }
+        public virtual ICollection<SaleOrder> SaleOrder { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace SPEEDYBLL
 {
     public class SSAccountsLINQ
     {
-        public static bool SaveAccount(SSAccount account)
+        public static bool SaveAccount(SSAccounts account)
         {
             try
             {
@@ -42,13 +42,13 @@ namespace SPEEDYBLL
             }
         }
 
-        private static string GenerateUniqueAccNo(SSAccount account)
+        private static string GenerateUniqueAccNo(SSAccounts account)
         {
             var accNO = string.Format("{0}-{1}", account.Name.ToUpper(), Guid.NewGuid().ToString());
             return accNO;
         }
 
-        public static List<SSAccount> GetAccounts()
+        public static List<SSAccounts> GetAccounts()
         {
             try
             {
@@ -78,7 +78,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool DeleteAccount(SSAccount account)
+        public static bool DeleteAccount(SSAccounts account)
         {
             try
             {

@@ -12,26 +12,20 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class SSAccount
+    public partial class VoucherType
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public SSAccount()
+        public VoucherType()
         {
-            this.Vouchers = new HashSet<Voucher>();
+            this.Vouchers = new HashSet<Vouchers>();
         }
     
-        public long sysSerial { get; set; }
-        public string AccNo { get; set; }
-        public string Name { get; set; }
-        public long BalanceLimit { get; set; }
-        public Nullable<int> DiscountInPercentage { get; set; }
-        public string Remarks { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
+        public int sysSerial { get; set; }
+        public string VoucherType1 { get; set; }
+        public System.DateTime CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public Nullable<int> CategoryID { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Voucher> Vouchers { get; set; }
-        public virtual AccountCategory AccountCategory { get; set; }
+        public virtual ICollection<Vouchers> Vouchers { get; set; }
     }
 }

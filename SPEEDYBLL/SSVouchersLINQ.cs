@@ -9,13 +9,13 @@ namespace SPEEDYBLL
 {
     public class SSVouchersLINQ
     {
-        public static List<Voucher> GetVouchers()
+        public static List<Vouchers> GetVouchers()
         {
             try
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    return ssContext.Vouchers.Include("SSAccount").ToList();
+                    return ssContext.Vouchers.Include("SSAccounts").ToList();
                 }
             }
             catch (Exception ex)
@@ -24,7 +24,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool SaveVoucher(Voucher voucher)
+        public static bool SaveVoucher(Vouchers voucher)
         {
             try
             {
@@ -59,7 +59,7 @@ namespace SPEEDYBLL
             return voucherCOde;
         }
 
-        public static bool DeleteVoucher(Voucher voucher)
+        public static bool DeleteVoucher(Vouchers voucher)
         {
             try
             {

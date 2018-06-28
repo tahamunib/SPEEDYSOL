@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="ba0d76312320419e8be7f52c4b2b6d02" Name="Diagram1">
+        <EntityTypeShape EntityType="SPEEDYSOLModel.AccountCategory" Width="1.5" PointX="11" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.AccountGroup" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.DailySales" Width="1.5" PointX="6.75" PointY="30" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.GodownItems" Width="1.5" PointX="3" PointY="41.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Godowns" Width="1.5" PointX="0.75" PointY="27.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.ItemBrand" Width="1.5" PointX="0.75" PointY="15.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.ItemGroup" Width="1.5" PointX="0.75" PointY="11.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.ItemManufacturer" Width="1.5" PointX="0.75" PointY="18.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Items" Width="1.5" PointX="3" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.OrderBooker" Width="1.5" PointX="3.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseDamageChallan" Width="1.5" PointX="3" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseDamageChallanItems" Width="1.5" PointX="5.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseOrder" Width="1.5" PointX="6" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseOrderDetail" Width="1.5" PointX="8.25" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseRecievingChallan" Width="1.5" PointX="3" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseRecievingChallanItems" Width="1.5" PointX="5.25" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseReturnChallan" Width="1.5" PointX="3" PointY="37.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.PurchaseReturnChallanItems" Width="1.5" PointX="5.25" PointY="19" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SaleOrder" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SaleOrderDetail" Width="1.5" PointX="8.25" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesDamageChallan" Width="1.5" PointX="9" PointY="25.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesDamageChallanItems" Width="1.5" PointX="11.25" PointY="26.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesDeliveryChallan" Width="1.5" PointX="6" PointY="33.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesDeliveryChallanItems" Width="1.5" PointX="8.25" PointY="20" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Salesman" Width="1.5" PointX="3.75" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesReturnChallan" Width="1.5" PointX="9" PointY="29.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SalesReturnChallanItems" Width="1.5" PointX="11.25" PointY="15" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSAccounts" Width="1.5" PointX="13.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSClients" Width="1.5" PointX="3.75" PointY="22.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSUsers" Width="1.5" PointX="13" PointY="8.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSUsersRoles" Width="1.5" PointX="10.75" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Vendor" Width="1.5" PointX="0.75" PointY="32.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.Vouchers" Width="1.5" PointX="15.5" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_AccountCategory_AccountGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SSAccounts_AccountCategory" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_DailySales_Salesman" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallan_DailySales" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDeliveryChallan_DailySales" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesReturnChallan_DailySales" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_GodownItems_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseDamageChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrder_Godown" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseReturnChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDeliveryChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesReturnChallan_Godowns" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Items_ItemBrand" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Items_ItemGroup" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Items_ItemManufacturer" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrderDetail_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDCItems" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesRCItems_Items" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrder_Booker" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseDamageChallan_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseDamageChallanItems_PurchaseDamageChallan" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrder_SSClients" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseOrderDetail_POrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseRecievingChallan_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseRecievingChallanItems_PurchaseRecievingChallan" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseReturnChallan_Vendor" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_PurchaseReturnChallanItems_PurchaseReturnChallan" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrder_SalesMan" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrder_SSClients" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SaleOrderDetail_SOrder" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDamageChallanItems_SalesDamageChallan" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesDCItems_SalesDC" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SalesRCItems_SalesRC" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SSUsers_SSUserRoles" ManuallyRouted="false" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_GodownItems_Items" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.VoucherType" Width="1.5" PointX="0.75" PointY="0.875" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_VoucherType" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts_ACHead" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

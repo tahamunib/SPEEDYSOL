@@ -17,7 +17,7 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SaleOrder()
         {
-            this.SaleOrderDetails = new HashSet<SaleOrderDetail>();
+            this.SaleOrderDetail = new HashSet<SaleOrderDetail>();
         }
     
         public long sysSerial { get; set; }
@@ -50,8 +50,8 @@ namespace SPEEDYDAL
     
         public virtual OrderBooker OrderBooker { get; set; }
         public virtual Salesman Salesman { get; set; }
-        public virtual SSClient SSClient { get; set; }
+        public virtual SSClients SSClients { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SaleOrderDetail> SaleOrderDetails { get; set; }
+        public virtual ICollection<SaleOrderDetail> SaleOrderDetail { get; set; }
     }
 }

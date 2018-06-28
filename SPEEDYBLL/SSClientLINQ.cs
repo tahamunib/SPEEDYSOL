@@ -9,7 +9,7 @@ namespace SPEEDYBLL
 {
     public class SSClientLINQ
     {
-        public static List<SSClient> GetClients()
+        public static List<SSClients> GetClients()
         {
             try
             {
@@ -24,7 +24,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool SaveClient(SSClient client)
+        public static bool SaveClient(SSClients client)
         {
             try
             {
@@ -55,7 +55,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool DeleteClient(SSClient client)
+        public static bool DeleteClient(SSClients client)
         {
             try
             {

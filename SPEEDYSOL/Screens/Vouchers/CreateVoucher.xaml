@@ -6,20 +6,16 @@
       xmlns:local="clr-namespace:SPEEDYSOL.Screens.Vouchers"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="CreateVoucher"  Width="1000" Height="600" Background="#FFAEABAB" Loaded="Page_Loaded">
+      Title="PAYMENT VOUCHER"  Width="1000" Height="600" Background="#FFAEABAB" Loaded="Page_Loaded">
 
     <Grid >
         <Grid.RowDefinitions>
-            <RowDefinition Height="25*" />
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="10*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
+            <RowDefinition Height="5*" />
 
-            <RowDefinition Height="10*" />
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="15*"/>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="10*"/>
+            <RowDefinition Height="5*" />
+            
 
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -31,51 +27,89 @@
 
 
         </Grid.ColumnDefinitions>
-
         <TextBlock Name="header"
-            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40" Width="Auto">ISSUE VOUCHER</TextBlock>
+            Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="5" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="30" Height="40" Width="Auto">PAYMENT VOUCHER</TextBlock>
+        <Grid Grid.Row="1" Grid.RowSpan="2" Grid.ColumnSpan="5">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+                <RowDefinition Height="2*" />
+                <RowDefinition Height="1*" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                
+            </Grid.ColumnDefinitions>
         <Label
-        Content="Account"
-        Grid.Row="1" Grid.Column="0" 
+        Content="A/C Head"
+        Grid.Row="0" Grid.Column="0" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <ComboBox Name="cmbAccounts"
-                 Grid.Row="1"
-        Grid.Column="1"
+        <TextBox Name="txtAcHead"
+                 Grid.Row="0"
+        Grid.Column="1" 
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="180" Height="30" Margin="10" FontSize="16" ItemsSource="{Binding Accounts,Mode=TwoWay}" SelectionChanged="cmbAccounts_SelectionChanged"  DisplayMemberPath="Name" SelectedValuePath="sysSerial" SelectedValue="{Binding Voucher.AccountID}"  />
-
+        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Voucher.AccHead,Mode=TwoWay}"/>
         <Label
         Content="Amount"
-        Grid.Row="2" Grid.Column="0" 
-        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        Grid.Row="1" Grid.Column="4" 
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Name="txtAmount"
                  Grid.Row="2"
-        Grid.Column="1"
-        HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Voucher.Amount,Mode=TwoWay}"/>
+        Grid.Column="4"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+         Height="40" Margin="2" FontSize="16" Text="{Binding Voucher.Amount,Mode=TwoWay}"/>
 
         <Label
-        Content="Remarks"
-        Grid.Row="3" Grid.Column="0" 
-        HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+        Content="Description"
+        Grid.Row="1" Grid.Column="3" 
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Name="txtRemarks"
-                 Grid.Row="3"
-        Grid.Column="1"
-        HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="250" Height="30" Margin="10" FontSize="16" Text="{Binding Voucher.Remarks,Mode=TwoWay}"/>
+                 Grid.Row="2"
+        Grid.Column="3"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+         Height="40" Margin="2" FontSize="16" Text="{Binding Voucher.Remarks,Mode=TwoWay}"/>
 
         <Label Name="lblVoucherCode"
-        Content="VoucherCode"
-        Grid.Row="1" Grid.Column="2" 
+        Content="VoucherNo"
+        Grid.Row="0" Grid.Column="2" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
         <TextBox Name="txtVoucherCode"
-                 Grid.Row="1"
+                 Grid.Row="0"
         Grid.Column="3" Grid.ColumnSpan="2" IsReadOnly="True" Background="NavajoWhite"
         HorizontalAlignment="Left" VerticalAlignment="Center" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"
-        Width="300" Height="30" Margin="10" FontSize="13" Text="{Binding Voucher.VoucherCode,Mode=OneWay}"/>
-
-
-        <Button Name="btnCreateVoucher" Width="100" Height="40" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="16" Click="btnCreateVoucher_Click">Save</Button>
-
+        Width="300" Height="30" Margin="10" FontSize="13" Text="{Binding Voucher.Code,Mode=OneWay}"/>
+            <Label
+        Content="RefNo"
+        Grid.Row="1" Grid.Column="2" 
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Name="txtRefNo"
+                 Grid.Row="2"
+        Grid.Column="2"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+         Height="40" Margin="2" FontSize="16" Text="{Binding Voucher.RefNo,Mode=TwoWay}"/>
+            <Label
+        Content="Account"
+        Grid.Row="1" Grid.Column="1" 
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <ComboBox Name="cmbAccount"
+                 Grid.Row="2"
+        Grid.Column="1"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+         Height="40" Margin="2" FontSize="16" Text="{Binding Accounts,Mode=TwoWay}"/>
+            <Label
+        Content="A/C Code"
+        Grid.Row="1" Grid.Column="0" 
+        HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
+            <TextBox Name="AccountCode"
+                 Grid.Row="2"
+        Grid.Column="0"
+        HorizontalAlignment="Stretch" VerticalAlignment="Center"
+         Height="40" Margin="2" FontSize="16" Text="{Binding SelectedAccount.Code,Mode=TwoWay}"/>
+        </Grid>
+        <Button Name="btnCreateVoucher" Width="100" Height="40" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="16" Click="btnCreateVoucher_Click">Save</Button>
     </Grid>
 </Page>

@@ -27,6 +27,14 @@ namespace SSCommons.Enums
             stockKeeper = 3
         }
 
+        public enum VoucherType
+        {
+            CashPayment = 1,
+            CashReciept = 2,
+            BankPayment = 5,
+            BankReciept = 6
+        }
+
         
     }
     

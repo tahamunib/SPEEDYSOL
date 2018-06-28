@@ -24,7 +24,7 @@ namespace SPEEDYDAL
         public int Qty { get; set; }
         public Nullable<int> Bonus { get; set; }
     
+        public virtual Items Items { get; set; }
         public virtual SaleOrder SaleOrder { get; set; }
-        public virtual Item Item { get; set; }
     }
 }

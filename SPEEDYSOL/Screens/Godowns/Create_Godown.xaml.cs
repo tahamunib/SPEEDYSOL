@@ -23,7 +23,7 @@ namespace SPEEDYSOL.Screens.Godowns
     public partial class Create_Godown : Page
     {
         MainWindow window;
-        static Godown _godown;
+        static SPEEDYDAL.Godowns _godown;
         public Create_Godown(MainWindow _window)
         {
             window = _window;
@@ -39,7 +39,7 @@ namespace SPEEDYSOL.Screens.Godowns
             
         }
 
-        public Create_Godown(Godown godown)
+        public Create_Godown(SPEEDYDAL.Godowns godown)
         {
             InitializeComponent();
             txtGodown.Text = godown.Name;

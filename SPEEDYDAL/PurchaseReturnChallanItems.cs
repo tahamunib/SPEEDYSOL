@@ -20,7 +20,7 @@ namespace SPEEDYDAL
         public int CTN { get; set; }
         public Nullable<int> PC { get; set; }
     
-        public virtual Item Items { get; set; }
+        public virtual Items Items { get; set; }
         public virtual PurchaseReturnChallan PurchaseReturnChallan { get; set; }
     }
 }

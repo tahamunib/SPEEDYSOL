@@ -15,7 +15,7 @@ namespace SPEEDYBLL.ViewModels.Sale
         public VMCreateSalesDamChallan()
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
-            Items = new ObservableCollection<SPEEDYDAL.Item>(SSItemsLINQ.GetItems());
+            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
             SalesDamageChallan = new SalesDamageChallan();
             SaleDamCDetails = new ObservableCollection<SaleDamCDetail>();
             DailySale = new DailySales();
@@ -27,11 +27,11 @@ namespace SPEEDYBLL.ViewModels.Sale
             set;
         }
         public ObservableCollection<Salesman> SalesMen { get; set; }
-        public ObservableCollection<Godown> Godowns { get; set; }
-        public static ObservableCollection<SPEEDYDAL.Item> Items { get; set; }
+        public ObservableCollection<Godowns> Godowns { get; set; }
+        public static ObservableCollection<SPEEDYDAL.Items> Items { get; set; }
         public SalesDamageChallan SalesDamageChallan { get; set; }
         public SPEEDYDAL.Salesman SelectedSalesMan { get; set; }
-        public SPEEDYDAL.Godown SelectedGodown { get; set; }
+        public SPEEDYDAL.Godowns SelectedGodown { get; set; }
         public DailySales DailySale { get; set; }
     }
 
@@ -43,8 +43,8 @@ namespace SPEEDYBLL.ViewModels.Sale
         public int CTN { get; set; }
         public Nullable<int> PC { get; set; }
 
-        private SPEEDYDAL.Item _selectedItem;
-        public SPEEDYDAL.Item SelectedItem
+        private SPEEDYDAL.Items _selectedItem;
+        public SPEEDYDAL.Items SelectedItem
         {
             get { return _selectedItem; }
             set
@@ -55,8 +55,8 @@ namespace SPEEDYBLL.ViewModels.Sale
 
         }
 
-        private ObservableCollection<SPEEDYDAL.Item> _items = VMCreateSalesDamChallan.Items;
-        public ObservableCollection<SPEEDYDAL.Item> Items
+        private ObservableCollection<SPEEDYDAL.Items> _items = VMCreateSalesDamChallan.Items;
+        public ObservableCollection<SPEEDYDAL.Items> Items
         {
             get { return _items; }
             set

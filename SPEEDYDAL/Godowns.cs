@@ -12,14 +12,14 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class Godown
+    public partial class Godowns
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Godown()
+        public Godowns()
         {
-            this.PurchaseOrders = new HashSet<PurchaseOrder>();
-            this.GodownItems = new HashSet<GodownItem>();
+            this.GodownItems = new HashSet<GodownItems>();
             this.PurchaseDamageChallan = new HashSet<PurchaseDamageChallan>();
+            this.PurchaseOrder = new HashSet<PurchaseOrder>();
             this.PurchaseRecievingChallan = new HashSet<PurchaseRecievingChallan>();
             this.PurchaseReturnChallan = new HashSet<PurchaseReturnChallan>();
             this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
@@ -28,17 +28,17 @@ namespace SPEEDYDAL
         }
     
         public long sysSerial { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public string Code { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PurchaseOrder> PurchaseOrders { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GodownItem> GodownItems { get; set; }
+        public virtual ICollection<GodownItems> GodownItems { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseDamageChallan> PurchaseDamageChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PurchaseRecievingChallan> PurchaseRecievingChallan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

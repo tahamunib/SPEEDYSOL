@@ -23,7 +23,7 @@
             <DataGrid.Columns>
 
                 <DataGridTextColumn DisplayIndex="0" Header="Code" Binding="{Binding Code}" x:Name="Code"></DataGridTextColumn>
-                <DataGridHyperlinkColumn x:Name="DSR" Binding="{Binding DSRNumber}" Header="Vendor" DisplayIndex="1"></DataGridHyperlinkColumn>
+                <DataGridTextColumn x:Name="DSR" Binding="{Binding DailySales.DSRNumber}" Header="DSR" DisplayIndex="1"></DataGridTextColumn>
                 <DataGridTextColumn DisplayIndex="2" Header="CreatedOn" Binding="{Binding CreatedOn}" x:Name="CreatedOn"></DataGridTextColumn>
                 <DataGridTextColumn DisplayIndex="3" Header="UpdatedOn" Binding="{Binding UpdatedOn}" x:Name="UpdatedOn"></DataGridTextColumn>
                 <DataGridTemplateColumn DisplayIndex="4">

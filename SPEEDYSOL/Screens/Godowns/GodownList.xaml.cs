@@ -24,7 +24,7 @@ namespace SPEEDYSOL.Screens.Godowns
     {
         MainWindow window;
 
-        private static SPEEDYDAL.Godown godownObj;
+        private static SPEEDYDAL.Godowns godownObj;
         public GodownList(MainWindow _window)
         {
             window = _window;
@@ -83,7 +83,7 @@ namespace SPEEDYSOL.Screens.Godowns
         {
             var obj = JsonConvert.SerializeObject(godownGrid.SelectedItem);
             
-            godownObj = JsonConvert.DeserializeObject<SPEEDYDAL.Godown>(obj);
+            godownObj = JsonConvert.DeserializeObject<SPEEDYDAL.Godowns>(obj);
         }
 
         private void godownGrid_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

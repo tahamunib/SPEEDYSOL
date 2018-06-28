@@ -38,12 +38,13 @@
                 <Label Content="Code" FontSize="13" HorizontalAlignment="Left"></Label>
                 <TextBox IsReadOnly="True" Background="AntiqueWhite" Name="txtCode" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding SalesDeliveryChallan.Code}"></TextBox>
             </StackPanel>
-            
-           
-            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
-                <Label Content="DSR Number" FontSize="13" HorizontalAlignment="Left"></Label>
-                <TextBox Name="txtDSR" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding SalesDeliveryChallan.DSRNumber,Mode=TwoWay}"></TextBox>
-            </StackPanel>
+
+            <Grid Grid.Column="2">
+                <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
+                    <Label Content="DSR Number" FontSize="13" HorizontalAlignment="Left"></Label>
+                    <TextBox Name="txtDSR" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding DailySale.DSRNumber,Mode=TwoWay}"></TextBox>
+                </StackPanel>
+            </Grid>
         </Grid>
         <DataGrid ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="salesDCDetailGrid_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,5,0,5" ItemsSource="{Binding SaleDCDetails, Mode=TwoWay}" Name="salesDCDetailGrid" Grid.Row="2" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="True" CanUserDeleteRows="True" >
             <DataGrid.Columns>

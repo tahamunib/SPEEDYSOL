@@ -85,8 +85,8 @@ namespace SPEEDYSOL.Screens.Sales
         private void cmbSalesMan_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Salesman salesman = (Salesman)cmbSalesMan.SelectedValue;
-            var dsrNumber = SSSalesManLINQ.isDSRCreated(salesman.sysSerial);
-            salesrcVM.SalesReturnChallan.DSRNumber = dsrNumber;
+            var dsrNumber = SSSalesManLINQ.isDSRCreated(salesman.sysSerial,salesman.DSRCode);
+            salesrcVM.DailySale.DSRNumber = dsrNumber;
             txtDSR.Text = dsrNumber.ToString();
             salesrcVM.SelectedSalesMan = salesman;
             salesrcVM.DailySale.SalesManID = salesman.sysSerial;

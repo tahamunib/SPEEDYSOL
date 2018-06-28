@@ -50,148 +50,151 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AccountCategory.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="AccountGroup.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="DailySales.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="Godown.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="GodownItems.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="GodownItem.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Item.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="Godowns.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemBrand.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemGroup.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemManufacturer.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Items.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderBooker.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PurchaseDamageChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseDamageChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrder.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderDetail.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseRecievingChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseRecievingChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseReturnChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseReturnChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleOrder.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleOrderDetail.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesDamageChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesDamageChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesDeliveryChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesDeliveryChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="Salesman.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesReturnChallan.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SalesReturnChallanItems.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPEEDYSOLModel.Context.cs">
+    <Compile Include="SPEEDYSOL2Entties.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SPEEDYSOLModel.Context.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPEEDYSOLModel.cs">
+    <Compile Include="SPEEDYSOL2Entties.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="SPEEDYSOLModel.Designer.cs">
+    <Compile Include="SPEEDYSOL2Entties.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>SPEEDYSOLModel.edmx</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.edmx</DependentUpon>
     </Compile>
-    <Compile Include="SSAccount.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="SSAccounts.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="SSClient.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="SSClients.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="SSUser.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="SSUsers.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="SSUsersRole.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="SSUsersRoles.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="uspGetUser_Result.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="Vendor.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
-    <Compile Include="Voucher.cs">
-      <DependentUpon>SPEEDYSOLModel.tt</DependentUpon>
+    <Compile Include="Vouchers.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VoucherType.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
-    <EntityDeploy Include="SPEEDYSOLModel.edmx">
+    <EntityDeploy Include="SPEEDYSOL2Entties.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SPEEDYSOLModel.Designer.cs</LastGenOutput>
+      <LastGenOutput>SPEEDYSOL2Entties.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="SPEEDYSOLModel.edmx.diagram">
-      <DependentUpon>SPEEDYSOLModel.edmx</DependentUpon>
+    <None Include="SPEEDYSOL2Entties.edmx.diagram">
+      <DependentUpon>SPEEDYSOL2Entties.edmx</DependentUpon>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="SPEEDYSOLModel.Context.tt">
+    <Content Include="SPEEDYSOL2Entties.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SPEEDYSOLModel.edmx</DependentUpon>
-      <LastGenOutput>SPEEDYSOLModel.Context.cs</LastGenOutput>
+      <DependentUpon>SPEEDYSOL2Entties.edmx</DependentUpon>
+      <LastGenOutput>SPEEDYSOL2Entties.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="SPEEDYSOLModel.tt">
+    <Content Include="SPEEDYSOL2Entties.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>SPEEDYSOLModel.edmx</DependentUpon>
-      <LastGenOutput>SPEEDYSOLModel.cs</LastGenOutput>
+      <DependentUpon>SPEEDYSOL2Entties.edmx</DependentUpon>
+      <LastGenOutput>SPEEDYSOL2Entties.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

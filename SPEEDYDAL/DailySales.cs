@@ -17,21 +17,22 @@ namespace SPEEDYDAL
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public DailySales()
         {
+            this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
             this.SalesDeliveryChallan = new HashSet<SalesDeliveryChallan>();
             this.SalesReturnChallan = new HashSet<SalesReturnChallan>();
-            this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
         }
     
-        public long DSRNumber { get; set; }
+        public long sysSerial { get; set; }
+        public string DSRNumber { get; set; }
         public long SalesManID { get; set; }
         public System.DateTime CreatedOn { get; set; }
     
         public virtual Salesman Salesman { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SalesDamageChallan> SalesDamageChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesDeliveryChallan> SalesDeliveryChallan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesReturnChallan> SalesReturnChallan { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SalesDamageChallan> SalesDamageChallan { get; set; }
     }
 }

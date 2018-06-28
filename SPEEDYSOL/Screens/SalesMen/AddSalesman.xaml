@@ -39,17 +39,17 @@
                  Grid.Row="2"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="180" Height="30" Margin="10" FontSize="16" Text="{Binding Name,Mode=TwoWay}" />
+        Width="180" Height="30" Margin="10" FontSize="16" Text="{Binding Name,Mode=TwoWay}" LostFocus="txtName_LostFocus" />
 
         <Label
-        Content="Type"
+        Content="DSRCode"
         Grid.Row="3" Grid.Column="0" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtPPrice"
+        <TextBox Name="txtDSRCode"
                  Grid.Row="3"
         Grid.Column="1"
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Type,Mode=TwoWay}"/>
+        Width="130" Height="30" Margin="10" FontSize="16" IsEnabled="True"  Text="{Binding DSRCode,Mode=TwoWay}" LostFocus="txtDSRCode_LostFocus"/>
 
         
 

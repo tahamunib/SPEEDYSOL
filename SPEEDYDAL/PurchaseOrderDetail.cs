@@ -31,7 +31,7 @@ namespace SPEEDYDAL
         public Nullable<long> GrossAmount { get; set; }
         public Nullable<int> DiscPercentage { get; set; }
     
+        public virtual Items Items { get; set; }
         public virtual PurchaseOrder PurchaseOrder { get; set; }
-        public virtual Item Item { get; set; }
     }
 }

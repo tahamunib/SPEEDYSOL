@@ -21,8 +21,8 @@ namespace SPEEDYSOL.Screens.Godowns
     /// </summary>
     public partial class ViewGodownDetails : Page
     {
-        private static SPEEDYDAL.Godown _godown;
-        public ViewGodownDetails(SPEEDYDAL.Godown godown)
+        private static SPEEDYDAL.Godowns _godown;
+        public ViewGodownDetails(SPEEDYDAL.Godowns godown)
         {
             _godown = godown;
             InitializeComponent();

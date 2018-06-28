@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:SPEEDYSOL"
         mc:Ignorable="d"
         Loaded="Main_Loaded"
-        Title="SPEEDY Solutions" Height="600" Width="1000" WindowStyle="None" WindowStartupLocation="CenterScreen">
+        Title="SPEEDY Solutions" Height="650" Width="1000" WindowStyle="None" WindowStartupLocation="CenterScreen">
     
     <Grid Width="Auto" Height="Auto" Background="#FFAEABAB">
         <Grid.RowDefinitions>
@@ -72,7 +72,7 @@
                 <Image HorizontalAlignment="Center" VerticalAlignment="Center" Source="/Content/Icons/x-mark.png"></Image>
             </Button>
         </StackPanel>
-        
+        <Label Name="date" Grid.Row="0" HorizontalAlignment="Right" Margin="0,36,0,0" TextBlock.FontSize="15" VerticalContentAlignment="Top" HorizontalContentAlignment="Stretch" FontWeight="Medium"></Label>
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30*"/>
