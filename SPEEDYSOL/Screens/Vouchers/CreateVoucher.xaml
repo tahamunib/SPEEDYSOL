@@ -48,11 +48,14 @@
         Content="A/C Head"
         Grid.Row="0" Grid.Column="0" 
         HorizontalAlignment="Right" VerticalAlignment="Center" FontSize="16" Height="30" Width="Auto" HorizontalContentAlignment="Center" VerticalContentAlignment="Center"/>
-        <TextBox Name="txtAcHead"
+        <ComboBox Name="cmbAcHead"
                  Grid.Row="0"
         Grid.Column="1" 
         HorizontalAlignment="Left" VerticalAlignment="Center"
-        Width="130" Height="30" Margin="10" FontSize="16" Text="{Binding Voucher.AccHead,Mode=TwoWay}"/>
+        Width="130" Height="30" Margin="10" FontSize="16"  SelectedValue="{Binding Voucher.AccHead,Mode=TwoWay}"
+                  DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" ItemsSource="{Binding AccHeads}"
+                  SelectedItem="{Binding SelectedACHead,Mode=TwoWay}"/>
+            
         <Label
         Content="Amount"
         Grid.Row="1" Grid.Column="4" 
@@ -99,7 +102,9 @@
                  Grid.Row="2"
         Grid.Column="1"
         HorizontalAlignment="Stretch" VerticalAlignment="Center"
-         Height="40" Margin="2" FontSize="16" Text="{Binding Accounts,Mode=TwoWay}"/>
+         Height="40" Margin="2" FontSize="16" SelectedValue="{Binding Voucher.AccountID,Mode=TwoWay}"
+                  DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" ItemsSource="{Binding Accounts}"
+                  SelectedItem="{Binding SelectedAccount,Mode=TwoWay}" />
             <Label
         Content="A/C Code"
         Grid.Row="1" Grid.Column="0" 

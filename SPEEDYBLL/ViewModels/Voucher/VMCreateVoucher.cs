@@ -14,31 +14,48 @@ namespace SPEEDYBLL.ViewModels.Voucher
     {
         public VMCreateVoucher(VoucherType voucherType, SPEEDYDAL.Vouchers _Voucher = null)
         {
-            _accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(SSAccountsLINQ.GetAccounts());
+            dbAccounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(SSAccountsLINQ.GetAccounts());
             if (_Voucher != null)
             {
+                if (voucherType == VoucherType.CashPayment || voucherType == VoucherType.CashReciept)
+                {
+                    _accHeads = _accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 5));
+                }
+                else if(voucherType == VoucherType.BankPayment || voucherType == VoucherType.BankReciept)
+                {
+                    _accHeads = _accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 7));
+                }
                 Voucher = _Voucher;
-                SelectedAccount = _accounts.Where(x => x.sysSerial == _Voucher.AcHead).First();
-                ACHead = _accounts.Where(x => x.sysSerial == _Voucher.AccountID).First();
+                _selectedAccount = _accounts.Where(x => x.sysSerial == _Voucher.AccountID).First();
+                _selectedAcHead = _accHeads.Where(x => x.sysSerial == _Voucher.AcHead).First();
+
             }
             else
             {
                 if (voucherType == VoucherType.CashPayment || voucherType == VoucherType.CashReciept)
                 {
-                    ACHead = _accounts.Where(x => x.CategoryID == 5).FirstOrDefault();
-                    if (ACHead == null)
+
+                    _accHeads  = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 5));
+                    if (AccHeads == null)
                         throw new Exception("No Account Found with Category \"Cash In Hand\", Please make an account of type Cash In Hand to process Cash Payments/Reciepts.");
+                    _selectedAcHead = _accHeads.Where(x => x.CategoryID == 5).FirstOrDefault();
+                    
 
                 }
                 else if (voucherType == VoucherType.BankPayment || voucherType == VoucherType.BankReciept)
                 {
-                    ACHead = _accounts.Where(x => x.CategoryID == 7).FirstOrDefault();
-                    if (ACHead == null)
+                    _accHeads = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 7));
+                    if (AccHeads == null)
                         throw new Exception("No Account Found with Category \"Bank\", Please make an account of type Bank to process Bank Payments/Reciepts.");
                 }
+
                 Voucher = new SPEEDYDAL.Vouchers();
+                _accounts = dbAccounts;
+                Voucher.AcHead = _selectedAcHead != null && _selectedAcHead.sysSerial > 0 ? _selectedAcHead.sysSerial : 0;
             }
         }
+
+        private ObservableCollection<SPEEDYDAL.SSAccounts> dbAccounts;
         public SPEEDYDAL.Vouchers Voucher { get; set; }
 
         private ObservableCollection<SPEEDYDAL.SSAccounts> _accounts;
@@ -65,8 +82,18 @@ namespace SPEEDYBLL.ViewModels.Voucher
 
         }
 
-        private SPEEDYDAL.SSAccounts _acHead;
-        public SPEEDYDAL.SSAccounts ACHead { get => _acHead; set => _acHead = value; }
+        private SPEEDYDAL.SSAccounts _selectedAcHead;
+        public SPEEDYDAL.SSAccounts SelectedACHead { get => _selectedAcHead; set => _selectedAcHead = value; }
+
+        private ObservableCollection<SPEEDYDAL.SSAccounts> _accHeads;
+        public ObservableCollection<SPEEDYDAL.SSAccounts> AccHeads
+        {
+            get { return _accHeads; }
+            set
+            {
+                _accHeads = value;
+            }
+        }
 
         private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
         {

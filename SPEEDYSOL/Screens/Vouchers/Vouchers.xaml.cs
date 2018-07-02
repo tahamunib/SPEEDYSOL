@@ -34,7 +34,7 @@ namespace SPEEDYSOL.Screens.Vouchers
 
         private void btnIssueVoucher_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(new Screens.Vouchers.CreateVoucher());
+            window.mainFrame.Navigate(new Screens.Vouchers.CreateVoucher(SSCommons.Enums.SSEnums.VoucherType.CashPayment));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -48,7 +48,7 @@ namespace SPEEDYSOL.Screens.Vouchers
             try
             {
                 var selectedItem = (SPEEDYDAL.Vouchers)vouchersGrid.SelectedItem;
-                window.mainFrame.Navigate(new CreateVoucher(selectedItem));
+                window.mainFrame.Navigate(new CreateVoucher(SSCommons.Enums.SSEnums.VoucherType.CashPayment,selectedItem));
             }
             catch (Exception ex)
             {

@@ -27,21 +27,21 @@ namespace SPEEDYSOL.Screens.Vouchers
         string _header = "";
         int _Visibilty = 0;
         string message = "";
-        public CreateVoucher(SPEEDYDAL.Vouchers _voucher = null)
+        public CreateVoucher(SSCommons.Enums.SSEnums.VoucherType voucherType,SPEEDYDAL.Vouchers _voucher = null)
         {
             if (_voucher != null)
             {   
-                _header = "EDIT VOUCHER";
+                _header = "EDIT " + voucherType.ToString().Insert(4," ").ToUpper() + "VOUCHER";
                 _Visibilty = (int)Visibility.Visible;
-                message = "Voucher Edited";
+                message = "Voucher Saved";
             }
             else
             {
                 _Visibilty = (int)Visibility.Hidden;
-                _header = "ISSUE VOUCHER";
-                message = "Voucher Issued";
+                _header = "ISSUE " + voucherType.ToString().Insert(4, " ").ToUpper() + "VOUCHER";
+                message = "Voucher Saved";
             }
-            vmVoucher = new VMCreateVoucher(_voucher);
+            vmVoucher = new VMCreateVoucher(voucherType, _voucher);
             InitializeComponent();
         }
 
@@ -52,7 +52,7 @@ namespace SPEEDYSOL.Screens.Vouchers
                 if (SSVouchersLINQ.SaveVoucher(vmVoucher.Voucher))
                     MessageBox.Show(message,"Confirmation",MessageBoxButton.OK);
                 else
-                    MessageBox.Show("Error Ocuured: Could not issue voucher.","ERROR",MessageBoxButton.OK);
+                    MessageBox.Show("Error Occured: Could not save voucher.","ERROR",MessageBoxButton.OK);
             }
             catch (Exception ex)
             {

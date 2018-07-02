@@ -101,7 +101,7 @@ namespace SPEEDYSOL
 
         private void MI_CashPay_Click(object sender, RoutedEventArgs e)
         {
-            //mainFrame.Navigate();
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this));
         }
 
         private void MI_CashRec_Click(object sender, RoutedEventArgs e)
