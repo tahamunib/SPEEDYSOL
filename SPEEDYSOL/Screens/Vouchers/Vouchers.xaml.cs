@@ -42,7 +42,7 @@ namespace SPEEDYSOL.Screens.Vouchers
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            vmVoucher = new VMVoucher();
+            vmVoucher = new VMVoucher(voucherType);
             this.DataContext = vmVoucher;
         }
 

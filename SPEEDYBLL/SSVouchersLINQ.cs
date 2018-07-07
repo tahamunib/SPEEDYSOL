@@ -4,18 +4,19 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static SSCommons.Enums.SSEnums;
 
 namespace SPEEDYBLL
 {
     public class SSVouchersLINQ
     {
-        public static List<Vouchers> GetVouchers()
+        public static List<Vouchers> GetVouchers(VoucherType voucherType)
         {
             try
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    return ssContext.Vouchers.Include(nameof(SSAccounts)).ToList();
+                    return ssContext.Vouchers.Include(nameof(SSAccounts)).Where(x => x.VoucherTypeID == (int)voucherType).ToList();
                 }
             }
             catch (Exception ex)
