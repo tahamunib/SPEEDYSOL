@@ -100,7 +100,7 @@ namespace SPEEDYBLL
                     else
                     {
                         user.CreatedOn = DateTime.UtcNow;
-                        user.Code = SSHelper.GenerateSystemCode();
+                        user.Code = SSHelper.GenerateSystemCode(nameof(SSUsers));
                         ssContext.SSUsers.Add(user);
                         ssContext.SaveChanges();
                     }

@@ -26,7 +26,6 @@ namespace SPEEDYDAL
         public long AcHead { get; set; }
     
         public virtual SSAccounts SSAccounts { get; set; }
-        public virtual VoucherType VoucherType { get; set; }
         public virtual SSAccounts SSAccounts1 { get; set; }
     }
 }

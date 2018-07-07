@@ -251,7 +251,7 @@ namespace SPEEDYBLL
                     else
                     {
                         PurchaseRecievingChallan prc = new PurchaseRecievingChallan();
-                        prc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        prc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(PurchaseRecievingChallan));
                         prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
                         prc.CreatedOn = DateTime.UtcNow.Date;
                         prc.GodownID = purchaseRC.SelectedGodown.sysSerial;
@@ -396,7 +396,7 @@ namespace SPEEDYBLL
                     else
                     {
                         PurchaseReturnChallan prc = new PurchaseReturnChallan();
-                        prc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        prc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(PurchaseReturnChallan));
                         prc.VendorID = purchaseRC.SelectedVendor.sysSerial;
                         prc.CreatedOn = DateTime.UtcNow.Date;
                         prc.GodownID = purchaseRC.SelectedGodown.sysSerial;
@@ -535,7 +535,7 @@ namespace SPEEDYBLL
                     else
                     {
                         PurchaseDamageChallan prd = new PurchaseDamageChallan();
-                        prd.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        prd.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(PurchaseDamageChallan));
                         prd.VendorID = purchaseDC.SelectedVendor.sysSerial;
                         prd.CreatedOn = DateTime.UtcNow.Date;
                         prd.GodownID = purchaseDC.SelectedGodown.sysSerial;

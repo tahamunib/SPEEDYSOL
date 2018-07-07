@@ -25,6 +25,7 @@ namespace SPEEDYBLL.ViewModels.Voucher
                 {
                     _accHeads = _accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 7));
                 }
+                _Voucher.VoucherTypeID = (int)voucherType;
                 Voucher = _Voucher;
                 _selectedAccount = _accounts.Where(x => x.sysSerial == _Voucher.AccountID).First();
                 _selectedAcHead = _accHeads.Where(x => x.sysSerial == _Voucher.AcHead).First();
@@ -40,7 +41,6 @@ namespace SPEEDYBLL.ViewModels.Voucher
                         throw new Exception("No Account Found with Category \"Cash In Hand\", Please make an account of type Cash In Hand to process Cash Payments/Reciepts.");
                     _selectedAcHead = _accHeads.Where(x => x.CategoryID == 5).FirstOrDefault();
                     
-
                 }
                 else if (voucherType == VoucherType.BankPayment || voucherType == VoucherType.BankReciept)
                 {
@@ -52,6 +52,7 @@ namespace SPEEDYBLL.ViewModels.Voucher
                 Voucher = new SPEEDYDAL.Vouchers();
                 _accounts = dbAccounts;
                 Voucher.AcHead = _selectedAcHead != null && _selectedAcHead.sysSerial > 0 ? _selectedAcHead.sysSerial : 0;
+                Voucher.VoucherTypeID = (int)voucherType;
             }
         }
 

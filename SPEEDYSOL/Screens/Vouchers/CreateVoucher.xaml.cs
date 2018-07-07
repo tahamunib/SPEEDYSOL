@@ -31,14 +31,14 @@ namespace SPEEDYSOL.Screens.Vouchers
         {
             if (_voucher != null)
             {   
-                _header = "EDIT " + voucherType.ToString().Insert(4," ").ToUpper() + "VOUCHER";
+                _header = "EDIT " + voucherType.ToString().Insert(4," ").ToUpper() + " VOUCHER";
                 _Visibilty = (int)Visibility.Visible;
                 message = "Voucher Saved";
             }
             else
             {
                 _Visibilty = (int)Visibility.Hidden;
-                _header = "ISSUE " + voucherType.ToString().Insert(4, " ").ToUpper() + "VOUCHER";
+                _header = "ISSUE " + voucherType.ToString().Insert(4, " ").ToUpper() + " VOUCHER";
                 message = "Voucher Saved";
             }
             vmVoucher = new VMCreateVoucher(voucherType, _voucher);
@@ -49,7 +49,7 @@ namespace SPEEDYSOL.Screens.Vouchers
         {
             try
             {
-                if (SSVouchersLINQ.SaveVoucher(vmVoucher.Voucher))
+                if (SSVouchersLINQ.SaveVoucher(vmVoucher))
                     MessageBox.Show(message,"Confirmation",MessageBoxButton.OK);
                 else
                     MessageBox.Show("Error Occured: Could not save voucher.","ERROR",MessageBoxButton.OK);

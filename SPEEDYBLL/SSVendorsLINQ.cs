@@ -23,7 +23,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        vendor.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        vendor.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(Vendor));
                         vendor.CreatedOn = DateTime.UtcNow;
                         vendor.UpdatedOn = DateTime.UtcNow;
 

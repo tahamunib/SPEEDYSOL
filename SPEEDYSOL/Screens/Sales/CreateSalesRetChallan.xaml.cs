@@ -43,7 +43,7 @@ namespace SPEEDYSOL.Screens.Sales
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             
-            salesrcVM.SalesReturnChallan.Code = salesrcVM.SalesReturnChallan.Code != null ? salesrcVM.SalesReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+            salesrcVM.SalesReturnChallan.Code = salesrcVM.SalesReturnChallan.Code != null ? salesrcVM.SalesReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode(nameof(SalesReturnChallan));
             this.DataContext = salesrcVM;
             sOrderHeader.Text = headerText;
         }

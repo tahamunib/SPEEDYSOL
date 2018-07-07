@@ -45,7 +45,7 @@ namespace SPEEDYSOL.Screens
 
         private void btnVouchers_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(new Screens.Vouchers.Vouchers(window));
+            
         }
 
         private void btnGodowns_Click(object sender, RoutedEventArgs e)

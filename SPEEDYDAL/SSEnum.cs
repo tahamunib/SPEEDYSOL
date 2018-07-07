@@ -12,20 +12,18 @@ namespace SPEEDYDAL
     using System;
     using System.Collections.Generic;
     
-    public partial class VoucherType
+    public partial class SSEnum
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public VoucherType()
+        public SSEnum()
         {
-            this.Vouchers = new HashSet<Vouchers>();
+            this.SSEnumValues = new HashSet<SSEnumValues>();
         }
     
         public int sysSerial { get; set; }
-        public string VoucherType1 { get; set; }
-        public System.DateTime CreatedOn { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public string Enum { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Vouchers> Vouchers { get; set; }
+        public virtual ICollection<SSEnumValues> SSEnumValues { get; set; }
     }
 }

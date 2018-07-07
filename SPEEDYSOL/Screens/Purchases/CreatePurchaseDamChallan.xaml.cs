@@ -41,7 +41,7 @@ namespace SPEEDYSOL.Screens.Purchases
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            purchaseDamCVM.PurchaseDamageChallan.Code = purchaseDamCVM.PurchaseDamageChallan.Code != null ? purchaseDamCVM.PurchaseDamageChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+            purchaseDamCVM.PurchaseDamageChallan.Code = purchaseDamCVM.PurchaseDamageChallan.Code != null ? purchaseDamCVM.PurchaseDamageChallan.Code : SSCommons.SSHelper.GenerateSystemCode(nameof(SPEEDYDAL.PurchaseDamageChallan));
 
             this.DataContext = purchaseDamCVM;
             sOrderHeader.Text = headerText;

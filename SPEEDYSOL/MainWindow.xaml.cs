@@ -7,6 +7,7 @@ using SPEEDYSOL.Screens.Purchases;
 using SPEEDYSOL.Screens.Sales;
 using SPEEDYSOL.Screens.SalesMen;
 using SPEEDYSOL.Screens.Vendor;
+using SSCommons.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -91,22 +92,22 @@ namespace SPEEDYSOL
 
         private void MI_BankPay_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this, SSEnums.VoucherType.BankPayment));
         }
 
         private void MI_BankRec_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this, SSEnums.VoucherType.BankReciept));
         }
 
         private void MI_CashPay_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this));
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this,SSEnums.VoucherType.CashPayment));
         }
 
         private void MI_CashRec_Click(object sender, RoutedEventArgs e)
         {
-
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this, SSEnums.VoucherType.CashReciept));
         }
 
         private void MI_PurInv_Click(object sender, RoutedEventArgs e)

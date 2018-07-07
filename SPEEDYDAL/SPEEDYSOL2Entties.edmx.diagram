@@ -80,9 +80,10 @@
         <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SSUsers_SSUserRoles" ManuallyRouted="false" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_GodownItems_Items" />
-        <EntityTypeShape EntityType="SPEEDYSOLModel.VoucherType" Width="1.5" PointX="0.75" PointY="0.875" />
-        <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_VoucherType" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts_ACHead" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSEnumValues" Width="1.5" PointX="15.625" PointY="12.875" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.SSEnum" Width="1.5" PointX="13.375" PointY="18.125" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_SSEnumValues_SSEnumValues1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

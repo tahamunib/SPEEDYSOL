@@ -113,7 +113,7 @@
                  Grid.Row="2"
         Grid.Column="0"
         HorizontalAlignment="Stretch" VerticalAlignment="Center"
-         Height="40" Margin="2" FontSize="16" Text="{Binding SelectedAccount.Code,Mode=TwoWay}"/>
+         Height="40" Margin="2" FontSize="16" Text="{Binding SelectedAccount.AccNo,Mode=TwoWay}"/>
         </Grid>
         <Button Name="btnCreateVoucher" Width="100" Height="40" Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" Margin="20,10,0,10" FontSize="16" Click="btnCreateVoucher_Click">Save</Button>
     </Grid>

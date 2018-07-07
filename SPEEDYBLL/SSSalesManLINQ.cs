@@ -31,7 +31,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        salesman.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        salesman.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(Salesman));
                         salesman.CreatedOn = DateTime.UtcNow;
                         salesman.UpdatedOn = DateTime.UtcNow;
 

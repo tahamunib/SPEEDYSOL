@@ -83,7 +83,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        item.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        item.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(Items));
                         item.CreatedOn = DateTime.UtcNow;
                         item.UpdatedOn = DateTime.UtcNow;
 
@@ -137,7 +137,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        itemBrand.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        itemBrand.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(ItemBrand));
                         itemBrand.CreatedOn = DateTime.UtcNow;
                         itemBrand.UpdatedOn = DateTime.UtcNow;
 
@@ -214,7 +214,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        itemManufacturer.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        itemManufacturer.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(ItemManufacturer));
                         itemManufacturer.CreatedOn = DateTime.UtcNow;
                         itemManufacturer.UpdatedOn = DateTime.UtcNow;
 
@@ -245,7 +245,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        itemGroup.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        itemGroup.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(ItemGroup));
                         itemGroup.CreatedOn = DateTime.UtcNow;
                         itemGroup.UpdatedOn = DateTime.UtcNow;
 

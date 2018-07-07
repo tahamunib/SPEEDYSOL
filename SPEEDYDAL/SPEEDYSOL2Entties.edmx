@@ -381,6 +381,22 @@
           <Property Name="UpdatedOn" Type="date" />
           <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="SSEnum">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Enum" Type="varchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SSEnumValues">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EnumID" Type="int" Nullable="false" />
+          <Property Name="EnumString" Type="varchar(max)" />
+          <Property Name="EnumValue" Type="int" />
+        </EntityType>
         <EntityType Name="SSUsers">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -429,15 +445,6 @@
           <Property Name="UpdatedOn" Type="date" />
           <Property Name="VoucherTypeID" Type="int" Nullable="false" />
           <Property Name="AcHead" Type="bigint" Nullable="false" />
-        </EntityType>
-        <EntityType Name="VoucherType">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="VoucherType" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="CreatedOn" Type="datetime" Nullable="false" />
-          <Property Name="UpdatedOn" Type="datetime" />
         </EntityType>
         <Association Name="FK_AccountCategory_AccountGroup">
           <End Role="AccountGroup" Type="Self.AccountGroup" Multiplicity="1" />
@@ -923,6 +930,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_SSEnumValues_SSEnumValues">
+          <End Role="SSEnum" Type="Self.SSEnum" Multiplicity="1" />
+          <End Role="SSEnumValues" Type="Self.SSEnumValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSEnum">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSEnumValues">
+              <PropertyRef Name="EnumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SSUsers_SSUserRoles">
           <End Role="SSUsersRoles" Type="Self.SSUsersRoles" Multiplicity="0..1" />
           <End Role="SSUsers" Type="Self.SSUsers" Multiplicity="*" />
@@ -959,18 +978,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Vouchers_VoucherType">
-          <End Role="VoucherType" Type="Self.VoucherType" Multiplicity="1" />
-          <End Role="Vouchers" Type="Self.Vouchers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VoucherType">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="Vouchers">
-              <PropertyRef Name="VoucherTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Function Name="uspGetUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="loginid" Type="nvarchar" Mode="In" />
         </Function>
@@ -1004,11 +1011,12 @@
           <EntitySet Name="SalesReturnChallanItems" EntityType="Self.SalesReturnChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSAccounts" EntityType="Self.SSAccounts" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSClients" EntityType="Self.SSClients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSEnum" EntityType="Self.SSEnum" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SSEnumValues" EntityType="Self.SSEnumValues" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsers" EntityType="Self.SSUsers" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SSUsersRoles" EntityType="Self.SSUsersRoles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vendor" EntityType="Self.Vendor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Vouchers" EntityType="Self.Vouchers" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="VoucherType" EntityType="Self.VoucherType" Schema="dbo" store:Type="Tables" />
           <AssociationSet Name="FK_AccountCategory_AccountGroup" Association="Self.FK_AccountCategory_AccountGroup">
             <End Role="AccountGroup" EntitySet="AccountGroup" />
             <End Role="AccountCategory" EntitySet="AccountCategory" />
@@ -1169,6 +1177,10 @@
             <End Role="AccountCategory" EntitySet="AccountCategory" />
             <End Role="SSAccounts" EntitySet="SSAccounts" />
           </AssociationSet>
+          <AssociationSet Name="FK_SSEnumValues_SSEnumValues" Association="Self.FK_SSEnumValues_SSEnumValues">
+            <End Role="SSEnum" EntitySet="SSEnum" />
+            <End Role="SSEnumValues" EntitySet="SSEnumValues" />
+          </AssociationSet>
           <AssociationSet Name="FK_SSUsers_SSUserRoles" Association="Self.FK_SSUsers_SSUserRoles">
             <End Role="SSUsersRoles" EntitySet="SSUsersRoles" />
             <End Role="SSUsers" EntitySet="SSUsers" />
@@ -1179,10 +1191,6 @@
           </AssociationSet>
           <AssociationSet Name="FK_Vouchers_SSAccounts_ACHead" Association="Self.FK_Vouchers_SSAccounts_ACHead">
             <End Role="SSAccounts" EntitySet="SSAccounts" />
-            <End Role="Vouchers" EntitySet="Vouchers" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Vouchers_VoucherType" Association="Self.FK_Vouchers_VoucherType">
-            <End Role="VoucherType" EntitySet="VoucherType" />
             <End Role="Vouchers" EntitySet="Vouchers" />
           </AssociationSet>
         </EntityContainer>
@@ -1698,7 +1706,6 @@
           <NavigationProperty Name="SSAccounts" Relationship="Self.FK_Vouchers_SSAccounts" FromRole="Vouchers" ToRole="SSAccounts" />
           <Property Name="RefNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VoucherTypeID" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="VoucherType" Relationship="SPEEDYSOLModel.FK_Vouchers_VoucherType" FromRole="Vouchers" ToRole="VoucherType" />
           <Property Name="AcHead" Type="Int64" Nullable="false" />
           <NavigationProperty Name="SSAccounts1" Relationship="SPEEDYSOLModel.FK_Vouchers_SSAccounts_ACHead" FromRole="Vouchers" ToRole="SSAccounts" />
         </EntityType>
@@ -2403,14 +2410,15 @@
             <End Role="Items" EntitySet="Items" />
             <End Role="GodownItems" EntitySet="GodownItems" />
           </AssociationSet>
-          <EntitySet Name="VoucherType" EntityType="SPEEDYSOLModel.VoucherType" />
-          <AssociationSet Name="FK_Vouchers_VoucherType" Association="SPEEDYSOLModel.FK_Vouchers_VoucherType">
-            <End Role="VoucherType" EntitySet="VoucherType" />
-            <End Role="Vouchers" EntitySet="Vouchers" />
-          </AssociationSet>
           <AssociationSet Name="FK_Vouchers_SSAccounts_ACHead" Association="SPEEDYSOLModel.FK_Vouchers_SSAccounts_ACHead">
             <End Role="SSAccounts" EntitySet="SSAccounts" />
             <End Role="Vouchers" EntitySet="Vouchers" />
+          </AssociationSet>
+          <EntitySet Name="SSEnumValues" EntityType="SPEEDYSOLModel.SSEnumValues" />
+          <EntitySet Name="SSEnum" EntityType="SPEEDYSOLModel.SSEnum" />
+          <AssociationSet Name="FK_SSEnumValues_SSEnumValues1" Association="SPEEDYSOLModel.FK_SSEnumValues_SSEnumValues1">
+            <End Role="SSEnum" EntitySet="SSEnum" />
+            <End Role="SSEnumValues" EntitySet="SSEnumValues" />
           </AssociationSet>
         </EntityContainer>
         <ComplexType Name="uspGetUser_Result">
@@ -2436,28 +2444,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="VoucherType">
-          <Key>
-            <PropertyRef Name="sysSerial" />
-          </Key>
-          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="VoucherType1" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
-          <NavigationProperty Name="Vouchers" Relationship="SPEEDYSOLModel.FK_Vouchers_VoucherType" FromRole="VoucherType" ToRole="Vouchers" />
-        </EntityType>
-        <Association Name="FK_Vouchers_VoucherType">
-          <End Type="SPEEDYSOLModel.VoucherType" Role="VoucherType" Multiplicity="1" />
-          <End Type="SPEEDYSOLModel.Vouchers" Role="Vouchers" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="VoucherType">
-              <PropertyRef Name="sysSerial" />
-            </Principal>
-            <Dependent Role="Vouchers">
-              <PropertyRef Name="VoucherTypeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Vouchers_SSAccounts_ACHead">
           <End Type="SPEEDYSOLModel.SSAccounts" Role="SSAccounts" Multiplicity="1" />
           <End Type="SPEEDYSOLModel.Vouchers" Role="Vouchers" Multiplicity="*" />
@@ -2467,6 +2453,36 @@
             </Principal>
             <Dependent Role="Vouchers">
               <PropertyRef Name="AcHead" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SSEnumValues">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="EnumID" Type="Int32" Nullable="false" />
+          <Property Name="EnumString" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="EnumValue" Type="Int32" />
+          <NavigationProperty Name="SSEnum" Relationship="SPEEDYSOLModel.FK_SSEnumValues_SSEnumValues1" FromRole="SSEnumValues" ToRole="SSEnum" />
+        </EntityType>
+        <EntityType Name="SSEnum">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Enum" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="SSEnumValues" Relationship="SPEEDYSOLModel.FK_SSEnumValues_SSEnumValues1" FromRole="SSEnum" ToRole="SSEnumValues" />
+        </EntityType>
+        <Association Name="FK_SSEnumValues_SSEnumValues1">
+          <End Type="SPEEDYSOLModel.SSEnum" Role="SSEnum" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.SSEnumValues" Role="SSEnumValues" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSEnum">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="SSEnumValues">
+              <PropertyRef Name="EnumID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2949,12 +2965,20 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <EntitySetMapping Name="VoucherType">
-            <EntityTypeMapping TypeName="SPEEDYSOLModel.VoucherType">
-              <MappingFragment StoreEntitySet="VoucherType">
-                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
-                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
-                <ScalarProperty Name="VoucherType1" ColumnName="VoucherType" />
+          <EntitySetMapping Name="SSEnumValues">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSEnumValues">
+              <MappingFragment StoreEntitySet="SSEnumValues">
+                <ScalarProperty Name="EnumValue" ColumnName="EnumValue" />
+                <ScalarProperty Name="EnumString" ColumnName="EnumString" />
+                <ScalarProperty Name="EnumID" ColumnName="EnumID" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SSEnum">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.SSEnum">
+              <MappingFragment StoreEntitySet="SSEnum">
+                <ScalarProperty Name="Enum" ColumnName="Enum" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
               </MappingFragment>
             </EntityTypeMapping>

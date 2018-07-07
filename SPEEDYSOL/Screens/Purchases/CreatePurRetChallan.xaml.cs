@@ -80,7 +80,7 @@ namespace SPEEDYSOL.Screens.Purchases
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             
-            purchaseRCVM.PurchaseReturnChallan.Code = purchaseRCVM.PurchaseReturnChallan.Code != null ? purchaseRCVM.PurchaseReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode();
+            purchaseRCVM.PurchaseReturnChallan.Code = purchaseRCVM.PurchaseReturnChallan.Code != null ? purchaseRCVM.PurchaseReturnChallan.Code : SSCommons.SSHelper.GenerateSystemCode(nameof(SPEEDYDAL.PurchaseReturnChallan));
             
             this.DataContext = purchaseRCVM;
             sOrderHeader.Text = headerText;

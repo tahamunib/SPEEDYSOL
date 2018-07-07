@@ -152,6 +152,12 @@
     <Compile Include="SSClients.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
+    <Compile Include="SSEnum.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SSEnumValues.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
     <Compile Include="SSUsers.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
@@ -165,9 +171,6 @@
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="Vouchers.cs">
-      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VoucherType.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
   </ItemGroup>

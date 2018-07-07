@@ -32,7 +32,7 @@ namespace SPEEDYSOL.Screens.Sales
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             salesdcVM = new VMCreateSalesDamChallan();
-            salesdcVM.SalesDamageChallan.Code = SSCommons.SSHelper.GenerateSystemCode();
+            salesdcVM.SalesDamageChallan.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDamageChallan));
             this.DataContext = salesdcVM;
         }
 

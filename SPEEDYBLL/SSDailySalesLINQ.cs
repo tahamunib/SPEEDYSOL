@@ -27,7 +27,7 @@ namespace SPEEDYBLL
                         ssContext.SaveChanges();
 
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
-                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDeliveryChallan));
                         sdc.DSRNumber = ds.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
@@ -76,7 +76,7 @@ namespace SPEEDYBLL
                     else
                     {
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
-                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDeliveryChallan));
                         sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
@@ -147,7 +147,7 @@ namespace SPEEDYBLL
                         ssContext.SaveChanges();
 
                         SalesReturnChallan src = new SalesReturnChallan();
-                        src.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        src.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesReturnChallan));
                         src.DSRNumber = ds.sysSerial;
                         src.CreatedOn = DateTime.UtcNow.Date;
                         src.GodownID = salesRC.SelectedGodown.sysSerial;
@@ -192,7 +192,7 @@ namespace SPEEDYBLL
                     else
                     {
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
-                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDeliveryChallan));
                         sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesRC.SelectedGodown.sysSerial;
@@ -259,7 +259,7 @@ namespace SPEEDYBLL
                         ssContext.SaveChanges();
 
                         SalesDamageChallan sdc = new SalesDamageChallan();
-                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDamageChallan));
                         sdc.DSRNumber = ds.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
@@ -304,7 +304,7 @@ namespace SPEEDYBLL
                     else
                     {
                         SalesDamageChallan sdc = new SalesDamageChallan();
-                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDamageChallan));
                         sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;

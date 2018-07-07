@@ -15,7 +15,7 @@ namespace SPEEDYBLL
             {
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
-                    return ssContext.Vouchers.Include("SSAccounts").ToList();
+                    return ssContext.Vouchers.Include(nameof(SSAccounts)).ToList();
                 }
             }
             catch (Exception ex)
@@ -24,10 +24,11 @@ namespace SPEEDYBLL
             }
         }
 
-        public static bool SaveVoucher(Vouchers voucher)
+        public static bool SaveVoucher(ViewModels.Voucher.VMCreateVoucher vmVoucher)
         {
             try
             {
+                var voucher = vmVoucher.Voucher;
                 using (var ssContext = new SPEEDYSOLEntities())
                 {
                     if (voucher.sysSerial > 0)

@@ -1,4 +1,5 @@
 ﻿using SPEEDYDAL;
+using SSCommons;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,7 +26,7 @@ namespace SPEEDYBLL
                     {
                         if (string.IsNullOrEmpty(account.Remarks))
                             account.Remarks = "";
-                        account.AccNo = GenerateUniqueAccNo(account);
+                        account.AccNo = SSHelper.GenerateSystemCode(nameof(SSAccounts));
                         account.CreatedOn = DateTime.UtcNow.Date;
                         account.UpdatedOn = DateTime.UtcNow.Date;
 
@@ -41,13 +42,7 @@ namespace SPEEDYBLL
                 throw ex;
             }
         }
-
-        private static string GenerateUniqueAccNo(SSAccounts account)
-        {
-            var accNO = string.Format("{0}-{1}", account.Name.ToUpper(), Guid.NewGuid().ToString());
-            return accNO;
-        }
-
+        
         public static List<SSAccounts> GetAccounts()
         {
             try
@@ -115,7 +110,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        accGroup.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        accGroup.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(AccountGroup));
                         accGroup.CreatedOn = DateTime.UtcNow.Date;
                         accGroup.UpdatedOn = DateTime.UtcNow.Date;
 
@@ -182,7 +177,7 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        accCategory.Code = SSCommons.SSHelper.GenerateSystemCode();
+                        accCategory.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(AccountCategory));
                         accCategory.CreatedOn = DateTime.UtcNow.Date;
                         accCategory.UpdatedOn = DateTime.UtcNow.Date;
 

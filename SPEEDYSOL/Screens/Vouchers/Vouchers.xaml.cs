@@ -1,5 +1,6 @@
 ﻿using SPEEDYBLL;
 using SPEEDYBLL.ViewModels.Voucher;
+using SSCommons.Enums;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,9 +25,11 @@ namespace SPEEDYSOL.Screens.Vouchers
     {
         MainWindow window;
         VMVoucher vmVoucher;
-        public Vouchers(MainWindow _mainWindow)
+        SSEnums.VoucherType voucherType;
+        public Vouchers(MainWindow _mainWindow,SSEnums.VoucherType _voucherType)
         {
             window = _mainWindow;
+            voucherType = _voucherType;
             InitializeComponent();
         }
 
@@ -34,7 +37,7 @@ namespace SPEEDYSOL.Screens.Vouchers
 
         private void btnIssueVoucher_Click(object sender, RoutedEventArgs e)
         {
-            window.mainFrame.Navigate(new Screens.Vouchers.CreateVoucher(SSCommons.Enums.SSEnums.VoucherType.CashPayment));
+            window.mainFrame.Navigate(new Screens.Vouchers.CreateVoucher(voucherType));
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
@@ -48,7 +51,7 @@ namespace SPEEDYSOL.Screens.Vouchers
             try
             {
                 var selectedItem = (SPEEDYDAL.Vouchers)vouchersGrid.SelectedItem;
-                window.mainFrame.Navigate(new CreateVoucher(SSCommons.Enums.SSEnums.VoucherType.CashPayment,selectedItem));
+                window.mainFrame.Navigate(new CreateVoucher(voucherType,selectedItem));
             }
             catch (Exception ex)
             {
