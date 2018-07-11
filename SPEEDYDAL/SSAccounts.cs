@@ -25,11 +25,10 @@ namespace SPEEDYDAL
         public string AccNo { get; set; }
         public Nullable<int> CategoryID { get; set; }
         public string Name { get; set; }
-        public long BalanceLimit { get; set; }
-        public Nullable<int> DiscountInPercentage { get; set; }
         public string Remarks { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
+        public long Balance { get; set; }
     
         public virtual AccountCategory AccountCategory { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

@@ -35,11 +35,12 @@ namespace SPEEDYBLL
                     if (voucher.sysSerial > 0)
                     {
                         voucher.UpdatedOn = DateTime.UtcNow;
-                        ssContext.Entry(voucher).State = System.Data.Entity.EntityState.Modified;
-                        ssContext.SaveChanges();
+                        //ssContext.Entry(voucher).State = System.Data.Entity.EntityState.Modified;
+                        //ssContext.SaveChanges();
                     }
                     else
                     {
+                        HandleAccountTransactions(ssContext, voucher);
                         voucher.VoucherCode = GenerateUniqueVoucherCode();
                         voucher.CreatedOn = DateTime.UtcNow;
 
@@ -82,6 +83,51 @@ namespace SPEEDYBLL
             {
                 throw ex;
             }
+        }
+
+        private static bool HandleAccountTransactions(SPEEDYSOLEntities ssContext,Vouchers voucher)
+        {
+            bool transactionSuccess = false;
+            try
+            {
+                var acHead = ssContext.SSAccounts.Where(x => x.sysSerial == voucher.AcHead).FirstOrDefault();
+                var account = ssContext.SSAccounts.Where(x => x.sysSerial == voucher.AccountID).FirstOrDefault();
+
+                if(acHead != null && account != null)
+                {
+                    switch (voucher.VoucherTypeID)
+                    {
+                        case (int)VoucherType.CashPayment:
+                            acHead.Balance = acHead.Balance - voucher.Amount;
+                            account.Balance = account.Balance + voucher.Amount;
+                            break;
+                        case (int)VoucherType.CashReciept:
+                            acHead.Balance = acHead.Balance + voucher.Amount;
+                            account.Balance = account.Balance - voucher.Amount;
+                            break;
+                        case (int)VoucherType.BankPayment:
+                            acHead.Balance = acHead.Balance - voucher.Amount;
+                            account.Balance = account.Balance + voucher.Amount;
+                            break;
+                        case (int)VoucherType.BankReciept:
+                            acHead.Balance = acHead.Balance + voucher.Amount;
+                            account.Balance = account.Balance - voucher.Amount;
+                            break;
+                    }
+                    account.UpdatedOn = DateTime.UtcNow;
+                    acHead.UpdatedOn = DateTime.UtcNow;
+                    transactionSuccess = true;
+                }
+                else
+                {
+                    transactionSuccess = false;
+                }
+            }
+            catch(Exception ex)
+            {
+                throw ex;
+            }
+            return transactionSuccess;
         }
     }
 }

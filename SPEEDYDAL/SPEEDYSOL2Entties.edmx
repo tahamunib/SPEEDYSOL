@@ -356,8 +356,7 @@
           <Property Name="AccNo" Type="varchar(max)" Nullable="false" />
           <Property Name="CategoryID" Type="int" />
           <Property Name="Name" Type="varchar" MaxLength="255" Nullable="false" />
-          <Property Name="BalanceLimit" Type="bigint" Nullable="false" />
-          <Property Name="DiscountInPercentage" Type="int" />
+          <Property Name="Balance" Type="bigint" Nullable="false" />
           <Property Name="Remarks" Type="varchar" MaxLength="255" />
           <Property Name="CreatedOn" Type="date" />
           <Property Name="UpdatedOn" Type="date" />
@@ -1623,14 +1622,13 @@
           <Property Name="AccNo" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="CategoryID" Type="Int32" />
           <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="false" Nullable="false" />
-          <Property Name="BalanceLimit" Type="Int64" Nullable="false" />
-          <Property Name="DiscountInPercentage" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Name="CreatedOn" Type="DateTime" Precision="0" />
           <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
           <NavigationProperty Name="AccountCategory" Relationship="Self.FK_SSAccounts_AccountCategory" FromRole="SSAccounts" ToRole="AccountCategory" />
           <NavigationProperty Name="Vouchers" Relationship="Self.FK_Vouchers_SSAccounts" FromRole="SSAccounts" ToRole="Vouchers" />
           <NavigationProperty Name="Vouchers1" Relationship="SPEEDYSOLModel.FK_Vouchers_SSAccounts_ACHead" FromRole="SSAccounts" ToRole="Vouchers" />
+          <Property Name="Balance" Type="Int64" Nullable="false" />
         </EntityType>
         <EntityType Name="SSClients">
           <Key>
@@ -2865,12 +2863,11 @@
           <EntitySetMapping Name="SSAccounts">
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SSAccounts">
               <MappingFragment StoreEntitySet="SSAccounts">
+                <ScalarProperty Name="Balance" ColumnName="Balance" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
                 <ScalarProperty Name="AccNo" ColumnName="AccNo" />
                 <ScalarProperty Name="CategoryID" ColumnName="CategoryID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="BalanceLimit" ColumnName="BalanceLimit" />
-                <ScalarProperty Name="DiscountInPercentage" ColumnName="DiscountInPercentage" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
