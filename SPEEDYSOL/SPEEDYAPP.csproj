@@ -182,6 +182,9 @@
     <Compile Include="Screens\Sales\CreateSalesRetChallan.xaml.cs">
       <DependentUpon>CreateSalesRetChallan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Sales\Reports\DailySales.xaml.cs">
+      <DependentUpon>DailySales.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Sales\SaleOrders.xaml.cs">
       <DependentUpon>SaleOrders.xaml</DependentUpon>
     </Compile>
@@ -373,6 +376,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Sales\CreateSalesRetChallan.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Sales\Reports\DailySales.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

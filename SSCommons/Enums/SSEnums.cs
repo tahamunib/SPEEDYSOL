@@ -31,8 +31,9 @@ namespace SSCommons.Enums
         {
             CashPayment = 1,
             CashReciept = 2,
-            BankPayment = 5,
-            BankReciept = 6
+            BankPayment = 3,
+            BankReciept = 4,
+            Journal = 5
         }
 
         

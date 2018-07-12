@@ -58,7 +58,12 @@
                         <MenuItem Header="_Bank Reciepts" Name="MI_BankRec" Click="MI_BankRec_Click"/>
                         <MenuItem Header="_Bank Payments" Name="MI_BankPay" Click="MI_BankPay_Click"/>
                     </MenuItem>
+                    <MenuItem Header="_Journal" Click="MI_Journal_Click"/>
+
                 </MenuItem>
+            </MenuItem>
+            <MenuItem Header="_Reports">
+                <MenuItem Header="_SalesInvoice" Click="MI_SalesInv_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <StackPanel Name="windowButtons" Orientation="Horizontal" Margin="0,-2,0,0"  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top">
