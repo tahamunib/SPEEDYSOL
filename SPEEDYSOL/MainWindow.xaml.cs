@@ -204,5 +204,15 @@ namespace SPEEDYSOL
         {
             mainFrame.Navigate(new Vendors(this));
         }
+
+        private void MenuItem_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Journal_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Screens.Vouchers.Vouchers(this, SSEnums.VoucherType.Journal));
+        }
     }
 }

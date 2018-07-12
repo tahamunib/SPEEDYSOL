@@ -41,7 +41,7 @@ namespace SPEEDYBLL
                     else
                     {
                         HandleAccountTransactions(ssContext, voucher);
-                        voucher.VoucherCode = GenerateUniqueVoucherCode();
+                        voucher.VoucherCode = SSCommons.SSHelper.GenerateSystemCode(nameof(Vouchers));
                         voucher.CreatedOn = DateTime.UtcNow;
 
                         ssContext.Vouchers.Add(voucher);
@@ -56,11 +56,7 @@ namespace SPEEDYBLL
                 throw ex;
             }
         }
-        private static string GenerateUniqueVoucherCode()
-        {
-            var voucherCOde = string.Format("{0}", Guid.NewGuid().ToString());
-            return voucherCOde;
-        }
+        
 
         public static bool DeleteVoucher(Vouchers voucher)
         {
@@ -112,6 +108,10 @@ namespace SPEEDYBLL
                         case (int)VoucherType.BankReciept:
                             acHead.Balance = acHead.Balance + voucher.Amount;
                             account.Balance = account.Balance - voucher.Amount;
+                            break;
+                        case (int)VoucherType.Journal:
+                            acHead.Balance = acHead.Balance - voucher.Amount;
+                            account.Balance = account.Balance + voucher.Amount;
                             break;
                     }
                     account.UpdatedOn = DateTime.UtcNow;

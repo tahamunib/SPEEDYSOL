@@ -25,6 +25,11 @@ namespace SPEEDYBLL.ViewModels.Voucher
                 {
                     _accHeads = _accounts = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 7));
                 }
+                else if(voucherType == VoucherType.Journal)
+                {
+                    _accHeads = dbAccounts;
+                    _accounts = dbAccounts;
+                }
                 _Voucher.VoucherTypeID = (int)voucherType;
                 Voucher = _Voucher;
                 _selectedAccount = _accounts.Where(x => x.sysSerial == _Voucher.AccountID).First();
@@ -47,6 +52,11 @@ namespace SPEEDYBLL.ViewModels.Voucher
                     _accHeads = new ObservableCollection<SPEEDYDAL.SSAccounts>(dbAccounts.Where(x => x.CategoryID == 7));
                     if (AccHeads == null)
                         throw new Exception("No Account Found with Category \"Bank\", Please make an account of type Bank to process Bank Payments/Reciepts.");
+                }
+                else if (voucherType == VoucherType.Journal)
+                {
+                    _accHeads = dbAccounts;
+                    _accounts = dbAccounts;
                 }
 
                 Voucher = new SPEEDYDAL.Vouchers();
