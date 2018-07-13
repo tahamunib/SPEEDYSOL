@@ -72,6 +72,7 @@
     <Compile Include="ViewModels\Purchase\VMCreatePurchaseRetChallan.cs" />
     <Compile Include="ViewModels\Purchase\VMPurchaseOrderDetail.cs" />
     <Compile Include="ViewModels\Salesmen\VMSalesmen.cs" />
+    <Compile Include="ViewModels\Sale\Reports\VMDailySalesReport.cs" />
     <Compile Include="ViewModels\Sale\VMCreateSalesDamChallan.cs" />
     <Compile Include="ViewModels\Sale\VMCreateSalesDelChallan.cs" />
     <Compile Include="ViewModels\Sale\VMCreateSalesRetChallan.cs" />

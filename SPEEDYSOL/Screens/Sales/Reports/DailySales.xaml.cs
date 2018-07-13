@@ -29,5 +29,15 @@ namespace SPEEDYSOL.Screens.Sales.Reports
         {
 
         }
+
+        private void IssueDetail_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+
+        }
+
+        private void ReturnDetail_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
+        {
+
+        }
     }
 }
