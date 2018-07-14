@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SPEEDYBLL.ViewModels.Sale.Reports;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,14 +21,16 @@ namespace SPEEDYSOL.Screens.Sales.Reports
     /// </summary>
     public partial class DailySales : Page
     {
+        VMDailySalesReport report;
         public DailySales()
         {
+            report = new VMDailySalesReport();
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-
+            this.DataContext = report;
         }
 
         private void IssueDetail_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)

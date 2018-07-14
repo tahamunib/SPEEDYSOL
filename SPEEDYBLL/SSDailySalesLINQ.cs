@@ -443,6 +443,21 @@ namespace SPEEDYBLL
             }
             return res;
         }
+
+        public static DailySales GetDSR(string dsrNumber)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    return ssContext.DailySales.Include(nameof(SalesDeliveryChallan)).Include(nameof(SalesDamageChallanItems)).Include(nameof(SalesReturnChallan)).Include(nameof(SalesReturnChallanItems)).Include(nameof(SalesDamageChallan)).Include(nameof(SalesDamageChallanItems)).Where(x=>x.DSRNumber == dsrNumber).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     
