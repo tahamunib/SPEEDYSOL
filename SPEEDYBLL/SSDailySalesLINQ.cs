@@ -493,23 +493,27 @@ namespace SPEEDYBLL
                             if (!string.IsNullOrEmpty(rdr["ItemName"].ToString()))
                                 itemSale.ItemName = (string)rdr["ItemName"];
                             if (!string.IsNullOrEmpty(rdr["IssuedCtn"].ToString()))
-                                itemSale.IssuedCtn = (int)rdr["IssuedCtn"];
+                                itemSale.IssueDetail.CTN = (int)rdr["IssuedCtn"];
                             if (!string.IsNullOrEmpty(rdr["IssuedPcs"].ToString()))
-                                itemSale.IssuedPcs = (int)rdr["IssuedPcs"];
+                                itemSale.IssueDetail.PC = (int)rdr["IssuedPcs"];
                             if (!string.IsNullOrEmpty(rdr["IssuedKgs"].ToString()))
-                                itemSale.IssuedKgs = (int)rdr["IssuedKgs"];
+                                itemSale.IssueDetail.KG = (int)rdr["IssuedKgs"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedCtns"].ToString()))
-                                itemSale.ReturnedCtns = (int)rdr["ReturnedCtns"];
+                                itemSale.ReturnDetail.CTN = (int)rdr["ReturnedCtns"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedPcs"].ToString()))
-                                itemSale.ReturnedPcs = (int)rdr["ReturnedPcs"];
+                                itemSale.ReturnDetail.PC = (int)rdr["ReturnedPcs"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedKgs"].ToString()))
-                                itemSale.ReturnedKgs = (int)rdr["ReturnedKgs"];
+                                itemSale.ReturnDetail.KG = (int)rdr["ReturnedKgs"];
                             if (!string.IsNullOrEmpty(rdr["DamagedCtns"].ToString()))
-                                itemSale.DamagedCtns = (int)rdr["DamagedCtns"];
+                                itemSale.ReturnDetail.CTN = itemSale.ReturnDetail.CTN +(int)rdr["DamagedCtns"];
                             if (!string.IsNullOrEmpty(rdr["DamagedPcs"].ToString()))
-                                itemSale.DamagedPcs = (int)rdr["DamagedPcs"];
+                                itemSale.ReturnDetail.PC = itemSale.ReturnDetail.PC +(int)rdr["DamagedPcs"];
                             if (!string.IsNullOrEmpty(rdr["DamagedKgs"].ToString()))
-                                itemSale.DamagedKgs = (int)rdr["DamagedKgs"];
+                                itemSale.ReturnDetail.KG = itemSale.ReturnDetail.KG +(int)rdr["DamagedKgs"];
+
+                            itemSale.SaleDetail.CTN = itemSale.IssueDetail.CTN - itemSale.ReturnDetail.CTN;
+                            itemSale.SaleDetail.PC = itemSale.IssueDetail.PC - itemSale.ReturnDetail.PC;
+                            itemSale.SaleDetail.KG = itemSale.IssueDetail.KG - itemSale.ReturnDetail.KG;
 
                             dsrReport.Add(itemSale);
                         }

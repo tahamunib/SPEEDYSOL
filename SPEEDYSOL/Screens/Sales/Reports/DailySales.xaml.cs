@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,13 +25,13 @@ namespace SPEEDYSOL.Screens.Sales.Reports
         VMDailySalesReport report;
         public DailySales()
         {
-            report = new VMDailySalesReport();
+            
             InitializeComponent();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            this.DataContext = report;
+            //this.DataContext = report;
         }
 
         private void IssueDetail_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
@@ -41,6 +42,16 @@ namespace SPEEDYSOL.Screens.Sales.Reports
         private void ReturnDetail_RowEditEnding(object sender, DataGridRowEditEndingEventArgs e)
         {
 
+        }
+
+        private void txtDSR_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            //var textDSR = txtDSR.Text;
+            //if(textDSR.Length > 6 && Regex.Match(textDSR, @"^[a-zA-Z]{3}-[0-9]{5,}").Success)
+            //{
+            //    report = new VMDailySalesReport(textDSR);
+            //}
+            //this.DataContext = report;
         }
     }
 }

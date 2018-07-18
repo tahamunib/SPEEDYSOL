@@ -6,7 +6,7 @@
       xmlns:local="clr-namespace:SPEEDYSOL.Screens.Sales.Reports"
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="300"
-      Title="DailySales"  Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
+      Title="DailySales" Height="600" Width="1000" Background="#FFAEABAB" Loaded="Page_Loaded">
     
     
 
@@ -17,8 +17,8 @@
             <RowDefinition Height="300"></RowDefinition>
             <RowDefinition Height="100"></RowDefinition>
         </Grid.RowDefinitions>
-        <TextBlock Name="sOrderHeader" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="Auto" Width="Auto" FontSize="30">DAILY SALES</TextBlock>
-        <Grid Width="Auto" Grid.Row="1" Height="Auto" Name="sOrder1">
+        <!--<TextBlock Name="sOrderHeader" Grid.Row="0" HorizontalAlignment="Center" VerticalAlignment="Center" Height="Auto" Width="Auto" FontSize="30">DAILY SALES</TextBlock>-->
+        <!--<Grid Width="Auto" Grid.Row="1" Height="Auto" Name="sOrder1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="100*"></RowDefinition>
             </Grid.RowDefinitions>
@@ -30,49 +30,33 @@
             </Grid.ColumnDefinitions>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
                 <Label Content="SalesMan" FontSize="13" HorizontalAlignment="Left"></Label>
-                <TextBox Name="txtSalesMan" IsReadOnly="True" Background="AntiqueWhite" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding DailySale.DSRNumber,Mode=TwoWay}"></TextBox>
+                <TextBox Name="txtSalesMan" IsReadOnly="True" Background="AntiqueWhite" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right"></TextBox>
             </StackPanel>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="3">
                 <Label Content="Date" FontSize="13" HorizontalAlignment="Left"></Label>
-                <TextBox Name="txtDate" IsReadOnly="True" Background="AntiqueWhite" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding DailySale.DSRNumber,Mode=TwoWay}"></TextBox>
+                <TextBox Name="txtDate" IsReadOnly="True" Background="AntiqueWhite" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right"></TextBox>
             </StackPanel>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
                 <Label Content="Code" FontSize="13" HorizontalAlignment="Left"></Label>
-                <TextBox IsReadOnly="True" Background="AntiqueWhite" Name="txtCode" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding SalesDeliveryChallan.Code}"></TextBox>
+                <TextBox IsReadOnly="True" Background="AntiqueWhite" Name="txtCode" Margin="26,0,0,0" Width="160" HorizontalAlignment="Right" ></TextBox>
             </StackPanel>
-
-            <Grid Grid.Column="0">
-                <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="2">
-                    <Label Content="DSR Number" FontSize="13" HorizontalAlignment="Left"></Label>
-                    <TextBox Name="txtDSR" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" Text="{Binding DailySale.DSRNumber,Mode=TwoWay}"></TextBox>
-                </StackPanel>
-            </Grid>
-        </Grid>
-        <DataGrid Grid.Row="2" >
-            <!--<Grid.RowDefinitions>
-                <RowDefinition Height="10*" />
-                <RowDefinition Height="10*"/>
-                <RowDefinition Height="80*"/>
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="20*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-                <ColumnDefinition Width="10*"/>
-            </Grid.ColumnDefinitions>-->
+            <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="0">
+                 <Label Content="DSR Number" FontSize="13" HorizontalAlignment="Left"></Label>
+                 <TextBox Name="txtDSR" Margin="15,0,0,0" Width="160" HorizontalAlignment="Right" TextChanged="txtDSR_TextChanged"></TextBox>
+            </StackPanel>
             
+        </Grid>-->
+        <!--<DataGrid Grid.Row="2" ItemsSource="{Binding}" Name="dsrReportGrid" Width="Auto" Background="#FFAEABAB"  HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
             <DataGrid.Columns>
-                <DataGridTextColumn Header="ITEMS" Width="20*"></DataGridTextColumn>
-                <DataGridTemplateColumn Header="ISSUE" Width="20*">
+                <DataGridTextColumn Header="ITEMS" Width="20*" Binding="{Binding Name}" DisplayIndex="0"></DataGridTextColumn>
+                <DataGridTemplateColumn Header="ISSUE" Width="20*" DisplayIndex="1">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DataGrid ColumnHeaderHeight="22" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" RowEditEnding="IssueDetail_RowEditEnding"  ItemsSource="{Binding IssueDetail, Mode=TwoWay}" Name="IssueDetail"  Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                            <DataGrid ColumnHeaderHeight="22" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Hidden" ItemsSource="{Binding IssueDetail, Mode=TwoWay}" Name="IssueDetail"  Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="CTN(s)"  x:Name="IssueCTNs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding PC,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="PC(s)"  x:Name="IssuePCs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding KG,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="KG(s)"  x:Name="IssueKGs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN}" IsReadOnly="True" Header="CTN(s)"  x:Name="IssueCTNs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding PC}" IsReadOnly="True" Header="PC(s)"  x:Name="IssuePCs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding KG}" IsReadOnly="True" Header="KG(s)"  x:Name="IssueKGs"></DataGridTextColumn>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -84,14 +68,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="RETURN" Width="20*">
+                <DataGridTemplateColumn Header="RETURN" Width="20*" DisplayIndex="2">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DataGrid Grid.RowSpan="2" BorderThickness="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="ReturnDetail_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,0,0,0" ItemsSource="{Binding ReturnDetail, Mode=TwoWay}" Name="ReturnDetail" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                            <DataGrid Grid.RowSpan="2" BorderThickness="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MinHeight="20" Width="Auto" Margin="0,0,0,0" ItemsSource="{Binding ReturnDetail, Mode=TwoWay}" Name="ReturnDetail" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="CTN(s)"  x:Name="ReturnCTNs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding PC,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="PC(s)"  x:Name="ReturnPCs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding KG,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="KG(s)"  x:Name="ReturnKGs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN}" IsReadOnly="True" Header="CTN(s)"  x:Name="ReturnCTNs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding PC}" IsReadOnly="True" Header="PC(s)"  x:Name="ReturnPCs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding KG}" IsReadOnly="True" Header="KG(s)"  x:Name="ReturnKGs"></DataGridTextColumn>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -102,14 +86,14 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Header="SALE" Width="20*">
+                <DataGridTemplateColumn Header="SALE" Width="20*" DisplayIndex="3">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <DataGrid Grid.RowSpan="2" BorderThickness="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" RowEditEnding="ReturnDetail_RowEditEnding" MinHeight="20" Width="Auto" Margin="0,0,0,0" ItemsSource="{Binding SaleDetail, Mode=TwoWay}" Name="SaleDetail" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
+                            <DataGrid Grid.RowSpan="2" BorderThickness="0" ScrollViewer.CanContentScroll="True" ScrollViewer.VerticalScrollBarVisibility="Auto" MinHeight="20" Width="Auto" Margin="0,0,0,0" ItemsSource="{Binding SaleDetail, Mode=TwoWay}" Name="SaleDetail" Background="#FFAEABAB" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" AutoGenerateColumns="False" CanUserAddRows="False" CanUserDeleteRows="False" >
                                 <DataGrid.Columns>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="CTN(s)"  x:Name="SaleCTNs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding PC,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="PC(s)"  x:Name="SalePCs"></DataGridTextColumn>
-                                    <DataGridTextColumn Width="30*" Binding="{Binding KG,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True" Header="KG(s)"  x:Name="SaleKGs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding CTN}" IsReadOnly="True" Header="CTN(s)"  x:Name="SaleCTNs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding PC}" IsReadOnly="True" Header="PC(s)"  x:Name="SalePCs"></DataGridTextColumn>
+                                    <DataGridTextColumn Width="30*" Binding="{Binding KG}" IsReadOnly="True" Header="KG(s)"  x:Name="SaleKGs"></DataGridTextColumn>
                                 </DataGrid.Columns>
                                 <DataGrid.ColumnHeaderStyle>
                                     <Style TargetType="DataGridColumnHeader">
@@ -120,12 +104,12 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTextColumn Header="NET VALUE" Width="10*" Binding="{Binding NetValue}"></DataGridTextColumn>
-                <DataGridTextColumn Header="GST VALUE" Width="10*" Binding="{Binding GSTValue}"></DataGridTextColumn>
-                <DataGridTextColumn Header="INCL TAX" Width="10*" Binding="{Binding InclTax}"></DataGridTextColumn>
+                <DataGridTextColumn Header="NET VALUE" Width="10*" Binding="{Binding NetValue}" DisplayIndex="4"></DataGridTextColumn>
+                <DataGridTextColumn Header="GST VALUE" Width="10*" Binding="{Binding GSTValue}" DisplayIndex="5"></DataGridTextColumn>
+                <DataGridTextColumn Header="INCL TAX" Width="10*" Binding="{Binding InclTax}" DisplayIndex="6"></DataGridTextColumn>
             </DataGrid.Columns>
-        </DataGrid>
-        <Grid Grid.Row="3" >
+        </DataGrid>-->
+        <!--<Grid Grid.Row="3" >
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20*"/>
                 <ColumnDefinition Width="20*"/>
@@ -143,13 +127,16 @@
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="50*"></RowDefinition>
-                    <!--<RowDefinition Height="50*"></RowDefinition>-->
+                    -->
+        <!--<RowDefinition Height="50*"></RowDefinition>--><!--
                 </Grid.RowDefinitions>
 
-                <!--<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
+                -->
+        <!--<StackPanel Grid.Row="1" Grid.ColumnSpan="2" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Orientation="Horizontal">
                     <Button VerticalAlignment="Center" Margin="0,0,15,0" Width="80" Height="30" Content="Save" Name="btnCreate" Click="btnCreate_Click"></Button>
                     <Button VerticalAlignment="Center" Width="80" Height="30" Content="Close" Name="btnClose" Click="btnClose_Click"></Button>
                 </StackPanel>-->
+        <!--
                 <StackPanel Width="Auto"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" Orientation="Horizontal">
                     <TextBox Name="tbSumNet" Width="100" Margin="0,0,0,0" Height="35"></TextBox>
                 </StackPanel>
@@ -161,6 +148,6 @@
                     </StackPanel>
                 </Grid>
         </GroupBox>
-        </Grid>
+        </Grid>-->
     </Grid>
 </Page>

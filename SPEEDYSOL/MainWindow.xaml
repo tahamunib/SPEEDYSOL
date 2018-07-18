@@ -63,7 +63,7 @@
                 </MenuItem>
             </MenuItem>
             <MenuItem Header="_Reports">
-                <MenuItem Header="_SalesInvoice" Click="MI_SalesInv_Click"></MenuItem>
+                <MenuItem Header="_DailySales" Click="MI_SalesInv_Click"></MenuItem>
             </MenuItem>
         </Menu>
         <StackPanel Name="windowButtons" Orientation="Horizontal" Margin="0,-2,0,0"  Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top">
