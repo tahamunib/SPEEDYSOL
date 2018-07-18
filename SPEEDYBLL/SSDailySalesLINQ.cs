@@ -1,6 +1,9 @@
-﻿using SPEEDYDAL;
+﻿using SPEEDYBLL.ViewModels.Sale.Reports;
+using SPEEDYDAL;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -454,6 +457,68 @@ namespace SPEEDYBLL
                 }
             }
             catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public static List<Items_DailySale> GetDSRReport(string dsrSysSerial)
+        {
+            try
+            {
+                List<Items_DailySale> dsrReport = new List<Items_DailySale>();
+                using (SqlConnection conn = new SqlConnection("Server=(local);DataBase=SPEEDYSOL;Integrated Security=SSPI"))
+                {
+                    conn.Open();
+                    
+                    // 1.  create a command object identifying the stored procedure
+                    SqlCommand cmd = new SqlCommand("dbo.sp_GetDailySales_Report", conn);
+
+                    // 2. set the command object so it knows to execute a stored procedure
+                    cmd.CommandType = CommandType.StoredProcedure;
+
+                    // 3. add parameter to command, which will be passed to the stored procedure
+                    cmd.Parameters.Add(new SqlParameter("@DsrNumber", dsrSysSerial));
+
+                    // execute the command
+                    using (SqlDataReader rdr = cmd.ExecuteReader())
+                    {
+                        // iterate through results, printing each to console
+                        while (rdr.Read())
+                        {
+                            Items_DailySale itemSale = new Items_DailySale();
+
+                            if (!string.IsNullOrEmpty(rdr["ItemID"].ToString()))
+                                itemSale.ItemID = (int)rdr["ItemID"];
+                            if (!string.IsNullOrEmpty(rdr["ItemName"].ToString()))
+                                itemSale.ItemName = (string)rdr["ItemName"];
+                            if (!string.IsNullOrEmpty(rdr["IssuedCtn"].ToString()))
+                                itemSale.IssuedCtn = (int)rdr["IssuedCtn"];
+                            if (!string.IsNullOrEmpty(rdr["IssuedPcs"].ToString()))
+                                itemSale.IssuedPcs = (int)rdr["IssuedPcs"];
+                            if (!string.IsNullOrEmpty(rdr["IssuedKgs"].ToString()))
+                                itemSale.IssuedKgs = (int)rdr["IssuedKgs"];
+                            if (!string.IsNullOrEmpty(rdr["ReturnedCtns"].ToString()))
+                                itemSale.ReturnedCtns = (int)rdr["ReturnedCtns"];
+                            if (!string.IsNullOrEmpty(rdr["ReturnedPcs"].ToString()))
+                                itemSale.ReturnedPcs = (int)rdr["ReturnedPcs"];
+                            if (!string.IsNullOrEmpty(rdr["ReturnedKgs"].ToString()))
+                                itemSale.ReturnedKgs = (int)rdr["ReturnedKgs"];
+                            if (!string.IsNullOrEmpty(rdr["DamagedCtns"].ToString()))
+                                itemSale.DamagedCtns = (int)rdr["DamagedCtns"];
+                            if (!string.IsNullOrEmpty(rdr["DamagedPcs"].ToString()))
+                                itemSale.DamagedPcs = (int)rdr["DamagedPcs"];
+                            if (!string.IsNullOrEmpty(rdr["DamagedKgs"].ToString()))
+                                itemSale.DamagedKgs = (int)rdr["DamagedKgs"];
+
+                            dsrReport.Add(itemSale);
+                        }
+                    }
+                    
+                }
+                return dsrReport;
+            }
+            catch(Exception ex)
             {
                 throw ex;
             }
