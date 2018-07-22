@@ -32,7 +32,7 @@
             </StackPanel>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="1" Grid.Column="1">
                 <Label Content="Godown" FontSize="13" HorizontalAlignment="Left"></Label>
-                <ComboBox Name="cmbGodown" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding SalesReturnChallan.GodownID,Mode=TwoWay}" SelectedItem="{Binding SelectedGodown,Mode=TwoWay}"></ComboBox>
+                <ComboBox Name="cmbGodown" Margin="5,0,0,0" Width="160" HorizontalAlignment="Right" ItemsSource="{Binding Godowns}" DisplayMemberPath="Name" SelectedValuePath="{Binding sysSerial}" SelectedValue="{Binding SalesReturnChallan.GodownID,Mode=TwoWay}" SelectedItem="{Binding SelectedGodown,Mode=TwoWay}" SelectionChanged="cmbGodown_SelectionChanged"></ComboBox>
             </StackPanel>
             <StackPanel Margin="0,0,0,0" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Row="0" Grid.Column="3">
                 <Label Content="Code" FontSize="13" HorizontalAlignment="Left"></Label>

@@ -46,12 +46,28 @@ namespace SPEEDYSOL.Screens.Sales.Reports
 
         private void txtDSR_TextChanged(object sender, TextChangedEventArgs e)
         {
-            //var textDSR = txtDSR.Text;
-            //if(textDSR.Length > 6 && Regex.Match(textDSR, @"^[a-zA-Z]{3}-[0-9]{5,}").Success)
-            //{
-            //    report = new VMDailySalesReport(textDSR);
-            //}
-            //this.DataContext = report;
+           
+        }
+
+        private void btnCreate_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void txtDSR_LostFocus(object sender, RoutedEventArgs e)
+        {
+            var textDSR = txtDSR.Text;
+            if (textDSR.Length > 6 && Regex.Match(textDSR, @"^[a-zA-Z]{3}-[0-9]{5,}").Success)
+            {
+                report = new VMDailySalesReport(textDSR);
+            }
+            this.DataContext = report;
+            this.tbTotalNet.Text = report.DsrReport.Select(x => x.NetValue).Sum().ToString();
+            this.tbTotalGST.Text = report.DsrReport.Select(x => x.GSTValue).Sum().ToString();
+            this.tbTotalInclTax.Text = report.DsrReport.Select(x => x.InclTax).Sum().ToString();
+            this.tbTotalCTN.Text = report.DsrReport.Select(x => x.SaleDetail.Select(y => y.CTN).Sum()).Sum().ToString();
+            this.tbTotalPc.Text = report.DsrReport.Select(x => x.SaleDetail.Select(y => y.PC).Sum()).Sum().ToString();
+            this.tbTotalKg.Text = report.DsrReport.Select(x => x.SaleDetail.Select(y => y.KG).Sum()).Sum().ToString();
         }
     }
 }

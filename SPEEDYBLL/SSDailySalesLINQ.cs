@@ -25,39 +25,36 @@ namespace SPEEDYBLL
                         ds.DSRNumber = salesDC.DailySale.DSRNumber;
                         ds.SalesManID = salesDC.DailySale.SalesManID;
                         ds.CreatedOn = DateTime.UtcNow.Date;
-
-                        ssContext.DailySales.Add(ds);
-                        ssContext.SaveChanges();
+                        
+                        
 
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDeliveryChallan));
-                        sdc.DSRNumber = ds.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
 
-                        ssContext.SalesDeliveryChallan.Add(sdc);
-                        ssContext.SaveChanges();
+                        
 
 
-                        List<SalesDeliveryChallanItems> sdcItems = new List<SalesDeliveryChallanItems>();
+                        //List<SalesDeliveryChallanItems> sdcItems = new List<SalesDeliveryChallanItems>();
                         foreach (var item in salesDC.SaleDCDetails)
                         {
                             SalesDeliveryChallanItems sdcItem = new SalesDeliveryChallanItems();
                             sdcItem.CTN = item.CTN;
                             sdcItem.ItemID = item.SelectedItem.sysSerial;
                             sdcItem.PC = item.PC != null ? item.PC : 0;
-                            sdcItem.DCID = sdc.sysSerial;
+                            
 
                             var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.godownID == sdc.GodownID).FirstOrDefault();
 
                             if (gItem == null)
                             {
-                                
                                 throw new Exception("Requested Item not present in Godown!");
+                                
                             }
                             else
                             {
-                                var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + (int)item.PC;
+                                var requestedPcs = (item.SelectedItem.CTNSize * item.CTN) + item.PC != null ? (int)item.PC : 0;
                                 var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
 
                                 if (requestedPcs > stockPcs)
@@ -69,33 +66,31 @@ namespace SPEEDYBLL
                                 gItem.CTN = remainingCtn;
                                 gItem.Pcs = remainingPC;
                                 ssContext.SaveChanges();
+
+                                sdc.SalesDeliveryChallanItems.Add(sdcItem);
                             }
                             
                         }
 
-                        ssContext.SalesDeliveryChallanItems.AddRange(sdcItems);
+                        ds.SalesDeliveryChallan.Add(sdc);
+
+                        ssContext.DailySales.Add(ds);
                         ssContext.SaveChanges();
                     }
                     else
                     {
                         SalesDeliveryChallan sdc = new SalesDeliveryChallan();
                         sdc.Code = SSCommons.SSHelper.GenerateSystemCode(nameof(SalesDeliveryChallan));
-                        sdc.DSRNumber = dailySale.sysSerial;
                         sdc.CreatedOn = DateTime.UtcNow.Date;
                         sdc.GodownID = salesDC.SelectedGodown.sysSerial;
-
-                        ssContext.SalesDeliveryChallan.Add(sdc);
-                        ssContext.SaveChanges();
-
-
-                        List<SalesDeliveryChallanItems> sdcItems = new List<SalesDeliveryChallanItems>();
+                        
+                        //List<SalesDeliveryChallanItems> sdcItems = new List<SalesDeliveryChallanItems>();
                         foreach (var item in salesDC.SaleDCDetails)
                         {
                             SalesDeliveryChallanItems sdcItem = new SalesDeliveryChallanItems();
                             sdcItem.CTN = item.CTN;
                             sdcItem.ItemID = item.SelectedItem.sysSerial;
                             sdcItem.PC = item.PC;
-                            sdcItem.DCID = sdc.sysSerial;
 
                             var gItem = ssContext.GodownItems.Where(x => x.itemID == sdcItem.ItemID && x.godownID == sdc.GodownID).FirstOrDefault();
 
@@ -110,7 +105,7 @@ namespace SPEEDYBLL
                                 var stockPcs = (gItem.CTN * item.SelectedItem.CTNSize) + (int)gItem.Pcs;
 
                                 if (requestedPcs > stockPcs)
-                                    throw new Exception($"Requested Item {item.SelectedItem.Name} Quantity exceeds stock: {gItem.CTN} CTN and {gItem.Pcs} Pcs!");
+                                    throw new Exception($"Requested Item: {item.SelectedItem.Name}`s Quantity exceeds stock: {gItem.CTN} CTN and {gItem.Pcs} Pcs!");
                                 var resultingPcs = stockPcs - requestedPcs;
                                 long remainingCtn = (long)resultingPcs / item.SelectedItem.CTNSize;
                                 int remainingPC = (int)resultingPcs % item.SelectedItem.CTNSize;
@@ -118,10 +113,12 @@ namespace SPEEDYBLL
                                 gItem.CTN = remainingCtn;
                                 gItem.Pcs = remainingPC;
                                 ssContext.SaveChanges();
+
+                                sdc.SalesDeliveryChallanItems.Add(sdcItem);
                             }
                         }
 
-                        ssContext.SalesDeliveryChallanItems.AddRange(sdcItems);
+                        dailySale.SalesDeliveryChallan.Add(sdc);
                         ssContext.SaveChanges();
                     }
                 }
@@ -462,7 +459,7 @@ namespace SPEEDYBLL
             }
         }
 
-        public static List<Items_DailySale> GetDSRReport(string dsrSysSerial)
+        public static List<Items_DailySale> GetDSRReport(string dsrSysSerial,ref string salesman,ref DateTime dsrdate)
         {
             try
             {
@@ -487,33 +484,54 @@ namespace SPEEDYBLL
                         while (rdr.Read())
                         {
                             Items_DailySale itemSale = new Items_DailySale();
+                            ItemDetail IssueDetail = new ItemDetail();
+                            ItemDetail ReturnDetail = new ItemDetail();
+                            ItemDetail SaleDetail = new ItemDetail();
 
-                            if (!string.IsNullOrEmpty(rdr["ItemID"].ToString()))
-                                itemSale.ItemID = (int)rdr["ItemID"];
+                            if (!string.IsNullOrEmpty(rdr["ItemId"].ToString()))
+                                itemSale.ItemID = (long)rdr["ItemId"];
                             if (!string.IsNullOrEmpty(rdr["ItemName"].ToString()))
                                 itemSale.ItemName = (string)rdr["ItemName"];
-                            if (!string.IsNullOrEmpty(rdr["IssuedCtn"].ToString()))
-                                itemSale.IssueDetail.CTN = (int)rdr["IssuedCtn"];
+                            if (!string.IsNullOrEmpty(rdr["IssuedCtns"].ToString()))
+                                IssueDetail.CTN = (int)rdr["IssuedCtns"];
                             if (!string.IsNullOrEmpty(rdr["IssuedPcs"].ToString()))
-                                itemSale.IssueDetail.PC = (int)rdr["IssuedPcs"];
+                                IssueDetail.PC = (int)rdr["IssuedPcs"];
                             if (!string.IsNullOrEmpty(rdr["IssuedKgs"].ToString()))
-                                itemSale.IssueDetail.KG = (int)rdr["IssuedKgs"];
+                                IssueDetail.KG = (double)rdr["IssuedKgs"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedCtns"].ToString()))
-                                itemSale.ReturnDetail.CTN = (int)rdr["ReturnedCtns"];
+                                ReturnDetail.CTN = (int)rdr["ReturnedCtns"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedPcs"].ToString()))
-                                itemSale.ReturnDetail.PC = (int)rdr["ReturnedPcs"];
+                                ReturnDetail.PC = (int)rdr["ReturnedPcs"];
                             if (!string.IsNullOrEmpty(rdr["ReturnedKgs"].ToString()))
-                                itemSale.ReturnDetail.KG = (int)rdr["ReturnedKgs"];
+                                ReturnDetail.KG = (double)rdr["ReturnedKgs"];
                             if (!string.IsNullOrEmpty(rdr["DamagedCtns"].ToString()))
-                                itemSale.ReturnDetail.CTN = itemSale.ReturnDetail.CTN +(int)rdr["DamagedCtns"];
+                                ReturnDetail.CTN = ReturnDetail.CTN +(int)rdr["DamagedCtns"];
                             if (!string.IsNullOrEmpty(rdr["DamagedPcs"].ToString()))
-                                itemSale.ReturnDetail.PC = itemSale.ReturnDetail.PC +(int)rdr["DamagedPcs"];
+                                ReturnDetail.PC = ReturnDetail.PC +(int)rdr["DamagedPcs"];
                             if (!string.IsNullOrEmpty(rdr["DamagedKgs"].ToString()))
-                                itemSale.ReturnDetail.KG = itemSale.ReturnDetail.KG +(int)rdr["DamagedKgs"];
+                                ReturnDetail.KG = ReturnDetail.KG +(double)rdr["DamagedKgs"];
+                            if (!string.IsNullOrEmpty(rdr["ItemNetValue"].ToString()))
+                                itemSale.ItemNetValue = (double)rdr["ItemNetValue"];
+                            if (!string.IsNullOrEmpty(rdr["ItemCtnSize"].ToString()))
+                                itemSale.ItemCtnSize = (int)rdr["ItemCtnSize"];
 
-                            itemSale.SaleDetail.CTN = itemSale.IssueDetail.CTN - itemSale.ReturnDetail.CTN;
-                            itemSale.SaleDetail.PC = itemSale.IssueDetail.PC - itemSale.ReturnDetail.PC;
-                            itemSale.SaleDetail.KG = itemSale.IssueDetail.KG - itemSale.ReturnDetail.KG;
+                            if (!string.IsNullOrEmpty(rdr["DSRDate"].ToString()))
+                                dsrdate = (DateTime)rdr["DSRDate"];
+                            if (!string.IsNullOrEmpty(rdr["SalesMan"].ToString()))
+                                salesman = (string)rdr["SalesMan"];
+
+
+                            SaleDetail.CTN = IssueDetail.CTN - ReturnDetail.CTN;
+                            SaleDetail.PC = IssueDetail.PC - ReturnDetail.PC;
+                            SaleDetail.KG = IssueDetail.KG - ReturnDetail.KG;
+
+                            itemSale.NetValue = itemSale.ItemNetValue * ((itemSale.ItemCtnSize * SaleDetail.CTN) + SaleDetail.PC);
+                            itemSale.GSTValue = itemSale.NetValue * 0.13;
+                            itemSale.InclTax = itemSale.NetValue + itemSale.GSTValue;
+
+                            itemSale.IssueDetail.Add(IssueDetail);
+                            itemSale.ReturnDetail.Add(ReturnDetail);
+                            itemSale.SaleDetail.Add(SaleDetail);
 
                             dsrReport.Add(itemSale);
                         }

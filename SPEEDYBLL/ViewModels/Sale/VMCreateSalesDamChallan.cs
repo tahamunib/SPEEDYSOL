@@ -15,7 +15,7 @@ namespace SPEEDYBLL.ViewModels.Sale
         public VMCreateSalesDamChallan()
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
-            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
+            //Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
             SalesDamageChallan = new SalesDamageChallan();
             SaleDamCDetails = new ObservableCollection<SaleDamCDetail>();
             DailySale = new DailySales();

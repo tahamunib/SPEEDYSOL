@@ -24,6 +24,22 @@ namespace SPEEDYBLL
             }
         }
 
+        public static List<Items> GetItems(long godownID)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    var itemIDs = ssContext.GodownItems.Where(x => x.godownID == godownID).Select(x => x.itemID).ToArray();
+                    return ssContext.Items.Include(nameof(ItemBrand)).Include(nameof(ItemGroup)).Include(nameof(ItemManufacturer)).Where(x=>itemIDs.Contains(x.sysSerial)).ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public static List<ItemManufacturer> GetItemManufacturers()
         {
             try

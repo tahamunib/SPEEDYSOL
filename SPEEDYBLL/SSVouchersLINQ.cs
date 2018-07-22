@@ -40,9 +40,11 @@ namespace SPEEDYBLL
                     }
                     else
                     {
-                        HandleAccountTransactions(ssContext, voucher);
+                        HandleAccountTransactions(ssContext, vmVoucher.Voucher, vmVoucher.SelectedACHead, vmVoucher.SelectedAccount);
                         voucher.VoucherCode = SSCommons.SSHelper.GenerateSystemCode(nameof(Vouchers));
                         voucher.CreatedOn = DateTime.UtcNow;
+                        voucher.AcHead = vmVoucher.SelectedACHead.sysSerial;
+                        voucher.AccountID = vmVoucher.SelectedAccount.sysSerial;
 
                         ssContext.Vouchers.Add(voucher);
                         ssContext.SaveChanges();
@@ -81,14 +83,11 @@ namespace SPEEDYBLL
             }
         }
 
-        private static bool HandleAccountTransactions(SPEEDYSOLEntities ssContext,Vouchers voucher)
+        private static bool HandleAccountTransactions(SPEEDYSOLEntities ssContext,Vouchers voucher, SSAccounts acHead,SSAccounts account)
         {
             bool transactionSuccess = false;
             try
             {
-                var acHead = ssContext.SSAccounts.Where(x => x.sysSerial == voucher.AcHead).FirstOrDefault();
-                var account = ssContext.SSAccounts.Where(x => x.sysSerial == voucher.AccountID).FirstOrDefault();
-
                 if(acHead != null && account != null)
                 {
                     switch (voucher.VoucherTypeID)
@@ -116,6 +115,9 @@ namespace SPEEDYBLL
                     }
                     account.UpdatedOn = DateTime.UtcNow;
                     acHead.UpdatedOn = DateTime.UtcNow;
+                    ssContext.Entry(acHead).State = System.Data.Entity.EntityState.Modified;
+                    ssContext.Entry(account).State = System.Data.Entity.EntityState.Modified;
+                    ssContext.SaveChanges();
                     transactionSuccess = true;
                 }
                 else

@@ -3,6 +3,7 @@ using SPEEDYBLL.ViewModels.Sale;
 using SPEEDYDAL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -90,6 +91,12 @@ namespace SPEEDYSOL.Screens.Sales
             txtDSR.Text = dsrNumber.ToString();
             salesrcVM.SelectedSalesMan = salesman;
             salesrcVM.DailySale.SalesManID = salesman.sysSerial;
+        }
+
+        private void cmbGodown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SPEEDYDAL.Godowns godown = (SPEEDYDAL.Godowns)cmbGodown.SelectedValue;
+            VMCreateSalesRetChallan.Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems(godown.sysSerial));
         }
     }
 }

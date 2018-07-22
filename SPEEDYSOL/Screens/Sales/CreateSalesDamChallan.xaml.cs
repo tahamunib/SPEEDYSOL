@@ -3,6 +3,7 @@ using SPEEDYBLL.ViewModels.Sale;
 using SPEEDYDAL;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -77,6 +78,12 @@ namespace SPEEDYSOL.Screens.Sales
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
 
+        }
+
+        private void cmbGodown_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SPEEDYDAL.Godowns godown = (SPEEDYDAL.Godowns)cmbGodown.SelectedValue;
+            VMCreateSalesDamChallan.Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems(godown.sysSerial));
         }
     }
 }

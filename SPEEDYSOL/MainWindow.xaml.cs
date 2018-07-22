@@ -132,7 +132,7 @@ namespace SPEEDYSOL
 
         private void MI_SalesInv_Click(object sender, RoutedEventArgs e)
         {
-            mainFrame.Navigate(new SaleOrders(this));
+            mainFrame.Navigate(new Screens.Sales.Reports.DailySales());
         }
 
         private void MI_SalesDamC_Click(object sender, RoutedEventArgs e)

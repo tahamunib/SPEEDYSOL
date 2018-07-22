@@ -16,7 +16,7 @@ namespace SPEEDYBLL.ViewModels.Sale
         {
             SalesMen = new ObservableCollection<Salesman>(SSSalesManLINQ.GetSalesMen());
             Godowns = new ObservableCollection<Godowns>(SSGodownsLINQ.ListGodowns());
-            Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
+            //Items = new ObservableCollection<SPEEDYDAL.Items>(SSItemsLINQ.GetItems());
             SalesReturnChallan = new SalesReturnChallan();
             SaleRCDetails = new ObservableCollection<SaleRCDetail>();
             DailySale = new DailySales();
