@@ -19,6 +19,7 @@ namespace SPEEDYDAL
         {
             this.PurchaseOrder = new HashSet<PurchaseOrder>();
             this.SaleOrder = new HashSet<SaleOrder>();
+            this.CreditSlip = new HashSet<CreditSlip>();
         }
     
         public long sysSerial { get; set; }
@@ -40,5 +41,7 @@ namespace SPEEDYDAL
         public virtual ICollection<PurchaseOrder> PurchaseOrder { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SaleOrder> SaleOrder { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CreditSlip> CreditSlip { get; set; }
     }
 }

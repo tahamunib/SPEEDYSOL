@@ -55,6 +55,15 @@
     <Compile Include="AccountGroup.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
+    <Compile Include="CashSlip.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ChequeSlip.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CreditSlip.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
     <Compile Include="DailySales.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
@@ -102,6 +111,9 @@
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseReturnChallanItems.cs">
+      <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RecoverySlip.cs">
       <DependentUpon>SPEEDYSOL2Entties.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleOrder.cs">

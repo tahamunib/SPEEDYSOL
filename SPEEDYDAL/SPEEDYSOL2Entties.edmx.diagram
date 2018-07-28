@@ -84,6 +84,15 @@
         <EntityTypeShape EntityType="SPEEDYSOLModel.SSEnumValues" Width="1.5" PointX="15.625" PointY="12.875" />
         <EntityTypeShape EntityType="SPEEDYSOLModel.SSEnum" Width="1.5" PointX="13.375" PointY="18.125" />
         <AssociationConnector Association="SPEEDYSOLModel.FK_SSEnumValues_SSEnumValues1" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.CashSlip" Width="1.5" PointX="9" PointY="37.625" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.ChequeSlip" Width="1.5" PointX="9" PointY="34" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.CreditSlip" Width="1.5" PointX="9" PointY="42.75" />
+        <EntityTypeShape EntityType="SPEEDYSOLModel.RecoverySlip" Width="1.5" PointX="9" PointY="46.375" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_CashSlip_DailySales" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_ChequeSlip_DailySales" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_CreditSlip_DailySales" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_RecoverySlip_DailySales" />
+        <AssociationConnector Association="SPEEDYSOLModel.FK_CreditSlip_SSClients" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -197,6 +197,12 @@
     <Compile Include="Screens\Sales\SalesRetChallans.xaml.cs">
       <DependentUpon>SalesRetChallans.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Screens\Slips\CreateCashSlip.xaml.cs">
+      <DependentUpon>CreateCashSlip.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Slips\CreateCreditSlip.xaml.cs">
+      <DependentUpon>CreateCreditSlip.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Screens\Users\ChangePassword.xaml.cs">
       <DependentUpon>ChangePassword.xaml</DependentUpon>
     </Compile>
@@ -399,6 +405,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Screens\Sales\SalesRetChallans.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Slips\CreateCashSlip.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Slips\CreateCreditSlip.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

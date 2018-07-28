@@ -52,6 +52,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SSSaleOrdersLINQ.cs" />
     <Compile Include="SSSalesManLINQ.cs" />
+    <Compile Include="SSSlipsLINQ.cs" />
     <Compile Include="SSUsersLINQ.cs" />
     <Compile Include="SSVendorsLINQ.cs" />
     <Compile Include="SSVouchersLINQ.cs" />
@@ -78,6 +79,7 @@
     <Compile Include="ViewModels\Sale\VMCreateSalesRetChallan.cs" />
     <Compile Include="ViewModels\Sale\VMSaleOrderDetails.cs" />
     <Compile Include="ViewModels\Sale\VMSalesDelChallan.cs" />
+    <Compile Include="ViewModels\Slips\VMCreateCashSlip.cs" />
     <Compile Include="ViewModels\User\VMCreateUser.cs" />
     <Compile Include="ViewModels\User\VMUser.cs" />
     <Compile Include="ViewModels\Vendors\VMVendors.cs" />

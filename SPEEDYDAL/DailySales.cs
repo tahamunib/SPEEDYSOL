@@ -20,6 +20,10 @@ namespace SPEEDYDAL
             this.SalesDamageChallan = new HashSet<SalesDamageChallan>();
             this.SalesDeliveryChallan = new HashSet<SalesDeliveryChallan>();
             this.SalesReturnChallan = new HashSet<SalesReturnChallan>();
+            this.CashSlip = new HashSet<CashSlip>();
+            this.ChequeSlip = new HashSet<ChequeSlip>();
+            this.CreditSlip = new HashSet<CreditSlip>();
+            this.RecoverySlip = new HashSet<RecoverySlip>();
         }
     
         public long sysSerial { get; set; }
@@ -34,5 +38,13 @@ namespace SPEEDYDAL
         public virtual ICollection<SalesDeliveryChallan> SalesDeliveryChallan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SalesReturnChallan> SalesReturnChallan { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CashSlip> CashSlip { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ChequeSlip> ChequeSlip { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<CreditSlip> CreditSlip { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<RecoverySlip> RecoverySlip { get; set; }
     }
 }

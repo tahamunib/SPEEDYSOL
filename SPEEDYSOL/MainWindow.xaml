@@ -61,6 +61,12 @@
                     <MenuItem Header="_Journal" Click="MI_Journal_Click"/>
 
                 </MenuItem>
+                <MenuItem Header="_Slips" >
+                    <MenuItem Header="_Cash" Name="MI_Slips_Cash" Click="MI_Slips_Cash_Click"/>
+                    <MenuItem Header="_Cheque" Name="MI_Slips_Cheque" Click="MI_Slips_Cheque_Click"/>
+                    <MenuItem Header="_Credit" Name="MI_Slips_Credit" Click="MI_Slips_Credit_Click"/>
+                    <MenuItem Header="_Recovery" Name="MI_Slips_Recovery" Click="MI_Slips_Recovery_Click"/>
+                </MenuItem>
             </MenuItem>
             <MenuItem Header="_Reports">
                 <MenuItem Header="_DailySales" Click="MI_SalesInv_Click"></MenuItem>

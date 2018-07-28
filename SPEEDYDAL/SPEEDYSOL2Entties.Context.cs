@@ -62,6 +62,10 @@ namespace SPEEDYDAL
         public virtual DbSet<Vouchers> Vouchers { get; set; }
         public virtual DbSet<SSEnumValues> SSEnumValues { get; set; }
         public virtual DbSet<SSEnum> SSEnum { get; set; }
+        public virtual DbSet<CashSlip> CashSlip { get; set; }
+        public virtual DbSet<ChequeSlip> ChequeSlip { get; set; }
+        public virtual DbSet<CreditSlip> CreditSlip { get; set; }
+        public virtual DbSet<RecoverySlip> RecoverySlip { get; set; }
     
         public virtual ObjectResult<uspGetUser_Result> uspGetUser(string loginid)
         {

@@ -26,6 +26,55 @@
           <Property Name="UpdatedOn" Type="date" />
           <Property Name="Code" Type="nvarchar(max)" Nullable="false" />
         </EntityType>
+        <EntityType Name="CashSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="varchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="Den5000" Type="int" Nullable="false" />
+          <Property Name="Den1000" Type="int" Nullable="false" />
+          <Property Name="Den500" Type="int" Nullable="false" />
+          <Property Name="Den100" Type="int" Nullable="false" />
+          <Property Name="Den50" Type="int" Nullable="false" />
+          <Property Name="Den20" Type="int" Nullable="false" />
+          <Property Name="Den10" Type="int" Nullable="false" />
+          <Property Name="Den5" Type="int" Nullable="false" />
+          <Property Name="Den2" Type="int" Nullable="false" />
+          <Property Name="Den1" Type="int" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+          <Property Name="Amount" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ChequeSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="varchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="ChqNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Bank" Type="varchar(max)" />
+          <Property Name="ChqDate" Type="date" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+          <Property Name="Amount" Type="bigint" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CreditSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="varchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="CustomerID" Type="bigint" Nullable="false" />
+          <Property Name="InvNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="CreditDueDate" Type="date" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
+          <Property Name="Amount" Type="bigint" Nullable="false" />
+        </EntityType>
         <EntityType Name="DailySales">
           <Key>
             <PropertyRef Name="sysSerial" />
@@ -227,6 +276,20 @@
           <Property Name="ItemID" Type="bigint" Nullable="false" />
           <Property Name="CTN" Type="int" Nullable="false" />
           <Property Name="PC" Type="int" />
+        </EntityType>
+        <EntityType Name="RecoverySlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="bigint" Nullable="false" />
+          <Property Name="Code" Type="varchar(max)" Nullable="false" />
+          <Property Name="DSRNumber" Type="bigint" Nullable="false" />
+          <Property Name="CustomerName" Type="varchar(max)" Nullable="false" />
+          <Property Name="InvNo" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="RecievedAmount" Type="bigint" Nullable="false" />
+          <Property Name="BalancedAmount" Type="bigint" Nullable="false" />
+          <Property Name="CreatedOn" Type="date" Nullable="false" />
+          <Property Name="UpdatedOn" Type="date" />
         </EntityType>
         <EntityType Name="SaleOrder">
           <Key>
@@ -454,6 +517,54 @@
             </Principal>
             <Dependent Role="AccountCategory">
               <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CashSlip_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="CashSlip" Type="Self.CashSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CashSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChequeSlip_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="ChequeSlip" Type="Self.ChequeSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="ChequeSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditSlip_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="CreditSlip" Type="Self.CreditSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CreditSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditSlip_SSClients">
+          <End Role="SSClients" Type="Self.SSClients" Multiplicity="1" />
+          <End Role="CreditSlip" Type="Self.CreditSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CreditSlip">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -723,6 +834,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_RecoverySlip_DailySales">
+          <End Role="DailySales" Type="Self.DailySales" Multiplicity="1" />
+          <End Role="RecoverySlip" Type="Self.RecoverySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="RecoverySlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SaleOrder_Booker">
           <End Role="OrderBooker" Type="Self.OrderBooker" Multiplicity="0..1" />
           <End Role="SaleOrder" Type="Self.SaleOrder" Multiplicity="*" />
@@ -983,6 +1106,9 @@
         <EntityContainer Name="SPEEDYSOLModelStoreContainer">
           <EntitySet Name="AccountCategory" EntityType="Self.AccountCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="AccountGroup" EntityType="Self.AccountGroup" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CashSlip" EntityType="Self.CashSlip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ChequeSlip" EntityType="Self.ChequeSlip" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CreditSlip" EntityType="Self.CreditSlip" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DailySales" EntityType="Self.DailySales" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GodownItems" EntityType="Self.GodownItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Godowns" EntityType="Self.Godowns" Schema="dbo" store:Type="Tables" />
@@ -999,6 +1125,7 @@
           <EntitySet Name="PurchaseRecievingChallanItems" EntityType="Self.PurchaseRecievingChallanItems" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseReturnChallan" EntityType="Self.PurchaseReturnChallan" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PurchaseReturnChallanItems" EntityType="Self.PurchaseReturnChallanItems" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RecoverySlip" EntityType="Self.RecoverySlip" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleOrder" EntityType="Self.SaleOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SaleOrderDetail" EntityType="Self.SaleOrderDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SalesDamageChallan" EntityType="Self.SalesDamageChallan" Schema="dbo" store:Type="Tables" />
@@ -1019,6 +1146,22 @@
           <AssociationSet Name="FK_AccountCategory_AccountGroup" Association="Self.FK_AccountCategory_AccountGroup">
             <End Role="AccountGroup" EntitySet="AccountGroup" />
             <End Role="AccountCategory" EntitySet="AccountCategory" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CashSlip_DailySales" Association="Self.FK_CashSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="CashSlip" EntitySet="CashSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChequeSlip_DailySales" Association="Self.FK_ChequeSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="ChequeSlip" EntitySet="ChequeSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditSlip_DailySales" Association="Self.FK_CreditSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="CreditSlip" EntitySet="CreditSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditSlip_SSClients" Association="Self.FK_CreditSlip_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="CreditSlip" EntitySet="CreditSlip" />
           </AssociationSet>
           <AssociationSet Name="FK_DailySales_Salesman" Association="Self.FK_DailySales_Salesman">
             <End Role="Salesman" EntitySet="Salesman" />
@@ -1107,6 +1250,10 @@
           <AssociationSet Name="FK_PurchaseReturnChallanItems_PurchaseReturnChallan" Association="Self.FK_PurchaseReturnChallanItems_PurchaseReturnChallan">
             <End Role="PurchaseReturnChallan" EntitySet="PurchaseReturnChallan" />
             <End Role="PurchaseReturnChallanItems" EntitySet="PurchaseReturnChallanItems" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecoverySlip_DailySales" Association="Self.FK_RecoverySlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="RecoverySlip" EntitySet="RecoverySlip" />
           </AssociationSet>
           <AssociationSet Name="FK_SaleOrder_Booker" Association="Self.FK_SaleOrder_Booker">
             <End Role="OrderBooker" EntitySet="OrderBooker" />
@@ -1233,6 +1380,10 @@
           <NavigationProperty Name="SalesDamageChallan" Relationship="Self.FK_SalesDamageChallan_DailySales" FromRole="DailySales" ToRole="SalesDamageChallan" />
           <NavigationProperty Name="SalesDeliveryChallan" Relationship="Self.FK_SalesDeliveryChallan_DailySales" FromRole="DailySales" ToRole="SalesDeliveryChallan" />
           <NavigationProperty Name="SalesReturnChallan" Relationship="Self.FK_SalesReturnChallan_DailySales" FromRole="DailySales" ToRole="SalesReturnChallan" />
+          <NavigationProperty Name="CashSlip" Relationship="SPEEDYSOLModel.FK_CashSlip_DailySales" FromRole="DailySales" ToRole="CashSlip" />
+          <NavigationProperty Name="ChequeSlip" Relationship="SPEEDYSOLModel.FK_ChequeSlip_DailySales" FromRole="DailySales" ToRole="ChequeSlip" />
+          <NavigationProperty Name="CreditSlip" Relationship="SPEEDYSOLModel.FK_CreditSlip_DailySales" FromRole="DailySales" ToRole="CreditSlip" />
+          <NavigationProperty Name="RecoverySlip" Relationship="SPEEDYSOLModel.FK_RecoverySlip_DailySales" FromRole="DailySales" ToRole="RecoverySlip" />
         </EntityType>
         <EntityType Name="GodownItems">
           <Key>
@@ -1650,6 +1801,7 @@
           <Property Name="Code" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="PurchaseOrder" Relationship="Self.FK_PurchaseOrder_SSClients" FromRole="SSClients" ToRole="PurchaseOrder" />
           <NavigationProperty Name="SaleOrder" Relationship="Self.FK_SaleOrder_SSClients" FromRole="SSClients" ToRole="SaleOrder" />
+          <NavigationProperty Name="CreditSlip" Relationship="SPEEDYSOLModel.FK_CreditSlip_SSClients" FromRole="SSClients" ToRole="CreditSlip" />
         </EntityType>
         <EntityType Name="SSUsers">
           <Key>
@@ -2418,6 +2570,30 @@
             <End Role="SSEnum" EntitySet="SSEnum" />
             <End Role="SSEnumValues" EntitySet="SSEnumValues" />
           </AssociationSet>
+          <EntitySet Name="CashSlip" EntityType="SPEEDYSOLModel.CashSlip" />
+          <EntitySet Name="ChequeSlip" EntityType="SPEEDYSOLModel.ChequeSlip" />
+          <EntitySet Name="CreditSlip" EntityType="SPEEDYSOLModel.CreditSlip" />
+          <EntitySet Name="RecoverySlip" EntityType="SPEEDYSOLModel.RecoverySlip" />
+          <AssociationSet Name="FK_CashSlip_DailySales" Association="SPEEDYSOLModel.FK_CashSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="CashSlip" EntitySet="CashSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ChequeSlip_DailySales" Association="SPEEDYSOLModel.FK_ChequeSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="ChequeSlip" EntitySet="ChequeSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditSlip_DailySales" Association="SPEEDYSOLModel.FK_CreditSlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="CreditSlip" EntitySet="CreditSlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_RecoverySlip_DailySales" Association="SPEEDYSOLModel.FK_RecoverySlip_DailySales">
+            <End Role="DailySales" EntitySet="DailySales" />
+            <End Role="RecoverySlip" EntitySet="RecoverySlip" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CreditSlip_SSClients" Association="SPEEDYSOLModel.FK_CreditSlip_SSClients">
+            <End Role="SSClients" EntitySet="SSClients" />
+            <End Role="CreditSlip" EntitySet="CreditSlip" />
+          </AssociationSet>
         </EntityContainer>
         <ComplexType Name="uspGetUser_Result">
           <Property Type="Int64" Name="sysSerial" Nullable="false" />
@@ -2481,6 +2657,134 @@
             </Principal>
             <Dependent Role="SSEnumValues">
               <PropertyRef Name="EnumID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CashSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="Den5000" Type="Int32" Nullable="false" />
+          <Property Name="Den1000" Type="Int32" Nullable="false" />
+          <Property Name="Den500" Type="Int32" Nullable="false" />
+          <Property Name="Den100" Type="Int32" Nullable="false" />
+          <Property Name="Den50" Type="Int32" Nullable="false" />
+          <Property Name="Den20" Type="Int32" Nullable="false" />
+          <Property Name="Den10" Type="Int32" Nullable="false" />
+          <Property Name="Den5" Type="Int32" Nullable="false" />
+          <Property Name="Den2" Type="Int32" Nullable="false" />
+          <Property Name="Den1" Type="Int32" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_CashSlip_DailySales" FromRole="CashSlip" ToRole="DailySales" />
+        </EntityType>
+        <EntityType Name="ChequeSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="ChqNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Bank" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="ChqDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_ChequeSlip_DailySales" FromRole="ChequeSlip" ToRole="DailySales" />
+        </EntityType>
+        <EntityType Name="CreditSlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="InvNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="CreditDueDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <Property Name="Amount" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_CreditSlip_DailySales" FromRole="CreditSlip" ToRole="DailySales" />
+          <Property Name="CustomerID" Type="Int64" Nullable="false" />
+          <NavigationProperty Name="SSClients" Relationship="SPEEDYSOLModel.FK_CreditSlip_SSClients" FromRole="CreditSlip" ToRole="SSClients" />
+        </EntityType>
+        <EntityType Name="RecoverySlip">
+          <Key>
+            <PropertyRef Name="sysSerial" />
+          </Key>
+          <Property Name="sysSerial" Type="Int64" Nullable="false" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="DSRNumber" Type="Int64" Nullable="false" />
+          <Property Name="CustomerName" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="InvNo" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RecievedAmount" Type="Int64" Nullable="false" />
+          <Property Name="BalancedAmount" Type="Int64" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="DailySales" Relationship="SPEEDYSOLModel.FK_RecoverySlip_DailySales" FromRole="RecoverySlip" ToRole="DailySales" />
+        </EntityType>
+        <Association Name="FK_CashSlip_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.CashSlip" Role="CashSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CashSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ChequeSlip_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.ChequeSlip" Role="ChequeSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="ChequeSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditSlip_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.CreditSlip" Role="CreditSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CreditSlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_RecoverySlip_DailySales">
+          <End Type="SPEEDYSOLModel.DailySales" Role="DailySales" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.RecoverySlip" Role="RecoverySlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DailySales">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="RecoverySlip">
+              <PropertyRef Name="DSRNumber" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CreditSlip_SSClients">
+          <End Type="SPEEDYSOLModel.SSClients" Role="SSClients" Multiplicity="1" />
+          <End Type="SPEEDYSOLModel.CreditSlip" Role="CreditSlip" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="SSClients">
+              <PropertyRef Name="sysSerial" />
+            </Principal>
+            <Dependent Role="CreditSlip">
+              <PropertyRef Name="CustomerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -2976,6 +3280,73 @@
             <EntityTypeMapping TypeName="SPEEDYSOLModel.SSEnum">
               <MappingFragment StoreEntitySet="SSEnum">
                 <ScalarProperty Name="Enum" ColumnName="Enum" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CashSlip">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.CashSlip">
+              <MappingFragment StoreEntitySet="CashSlip">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="Den1" ColumnName="Den1" />
+                <ScalarProperty Name="Den2" ColumnName="Den2" />
+                <ScalarProperty Name="Den5" ColumnName="Den5" />
+                <ScalarProperty Name="Den10" ColumnName="Den10" />
+                <ScalarProperty Name="Den20" ColumnName="Den20" />
+                <ScalarProperty Name="Den50" ColumnName="Den50" />
+                <ScalarProperty Name="Den100" ColumnName="Den100" />
+                <ScalarProperty Name="Den500" ColumnName="Den500" />
+                <ScalarProperty Name="Den1000" ColumnName="Den1000" />
+                <ScalarProperty Name="Den5000" ColumnName="Den5000" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ChequeSlip">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.ChequeSlip">
+              <MappingFragment StoreEntitySet="ChequeSlip">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="ChqDate" ColumnName="ChqDate" />
+                <ScalarProperty Name="Bank" ColumnName="Bank" />
+                <ScalarProperty Name="ChqNo" ColumnName="ChqNo" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CreditSlip">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.CreditSlip">
+              <MappingFragment StoreEntitySet="CreditSlip">
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="CreditDueDate" ColumnName="CreditDueDate" />
+                <ScalarProperty Name="InvNo" ColumnName="InvNo" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RecoverySlip">
+            <EntityTypeMapping TypeName="SPEEDYSOLModel.RecoverySlip">
+              <MappingFragment StoreEntitySet="RecoverySlip">
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="BalancedAmount" ColumnName="BalancedAmount" />
+                <ScalarProperty Name="RecievedAmount" ColumnName="RecievedAmount" />
+                <ScalarProperty Name="InvNo" ColumnName="InvNo" />
+                <ScalarProperty Name="CustomerName" ColumnName="CustomerName" />
+                <ScalarProperty Name="DSRNumber" ColumnName="DSRNumber" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="sysSerial" ColumnName="sysSerial" />
               </MappingFragment>
             </EntityTypeMapping>

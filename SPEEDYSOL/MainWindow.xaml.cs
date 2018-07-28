@@ -214,5 +214,25 @@ namespace SPEEDYSOL
         {
             mainFrame.Navigate(new Screens.Vouchers.Vouchers(this, SSEnums.VoucherType.Journal));
         }
+
+        private void MI_Slips_Cash_Click(object sender, RoutedEventArgs e)
+        {
+            mainFrame.Navigate(new Screens.Slips.CreateCashSlip());
+        }
+
+        private void MI_Slips_Cheque_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Slips_Credit_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MI_Slips_Recovery_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

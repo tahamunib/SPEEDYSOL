@@ -545,6 +545,21 @@ namespace SPEEDYBLL
                 throw ex;
             }
         }
+
+        public static long GetDSRID(string dsrNumber)
+        {
+            try
+            {
+                using (var ssContext = new SPEEDYSOLEntities())
+                {
+                    return ssContext.DailySales.Where(x => x.DSRNumber == dsrNumber).Select(x=>x.sysSerial).FirstOrDefault();
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 
     
